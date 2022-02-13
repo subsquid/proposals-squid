@@ -13,7 +13,7 @@ type Token {
 type ChainState @entity {
   id: ID!
   chain: ChainInfo! @index
-  timestamp: Data! @index
+  timestamp: DateTime! @index
   tokenBalance: BigInt!
   tokenHolders: BigInt!
   councilMembers: Int!
