@@ -1,0 +1,7 @@
+{
+  "outDir": "../src/types",
+  "chainVersions": "./versions.json",
+  "typesBundle": "kusama",
+  "events": [],
+  "calls": []
+}
