@@ -3,5 +3,7 @@
   "chainVersions": "./versions.json",
   "typesBundle": "kusama",
   "events": [],
-  "calls": []
+  "calls": [
+    "timestamp.set"
+  ]
 }

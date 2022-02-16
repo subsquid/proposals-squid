@@ -7,16 +7,15 @@ type ChainInfo @entity {
 type Token {
   name: String!
   symbol: String!
-  address: String!
 }
 
 type ChainState @entity {
   id: ID!
-  chain: ChainInfo! @index
-  timestamp: DateTime! @index
-  tokenBalance: BigInt!
-  tokenHolders: BigInt!
-  councilMembers: Int!
-  democracyProposals: Int!
-  councilProposals: Int!
+  chain: ChainInfo @index
+  timestamp: DateTime @index
+  tokenBalance: BigInt
+  tokenHolders: Int
+  councilMembers: Int
+  democracyProposals: Int
+  councilProposals: Int
 }
