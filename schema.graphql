@@ -5,8 +5,8 @@ type ChainInfo @entity {
 }
 
 type Token {
-  name: String!
   symbol: String!
+  decimal: Int!
 }
 
 type ChainState @entity {
