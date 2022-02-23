@@ -2,13 +2,13 @@ import { Store } from '@subsquid/substrate-processor'
 import { ChainInfo, RelayChain, Token } from '../model'
 
 const chainInfo: ChainInfo = new ChainInfo({
-    name: 'Kusama',
+    name: 'Polkadot',
     token: new Token({
-        symbol: 'KSM',
-        decimal: 12,
+        symbol: 'DOT',
+        decimal: 10,
     }),
     paraId: 0,
-    relayChain: RelayChain.KUSAMA,
+    relayChain: RelayChain.POLKADOT,
 })
 
 function getId() {
