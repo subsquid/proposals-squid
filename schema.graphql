@@ -1,7 +1,14 @@
+enum RelayChain {
+  KUSAMA
+  POLKADOT
+}
+
 type ChainInfo @entity {
   id: ID!
   name: String!
   token: Token!
+  paraId: Int!
+  relayChain: RelayChain!
 }
 
 type Token {

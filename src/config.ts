@@ -8,13 +8,13 @@ export default {
         chain: 'wss://kusama.api.onfinality.io/public-ws',
     },
     typesBundle: 'kusama',
-    batchSize: 100,
-    eventHandlers: {
-        balances: {
-            Transfer: {
+    batchSize: 250,
+    eventHandlers: {},
+    extrinsicsHandlers: {
+        timestamp: {
+            set: {
                 handler: handleSet,
             },
         },
     },
-    extrinsicsHandlers: {},
 } as ProcessorConfig

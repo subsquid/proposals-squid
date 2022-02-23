@@ -2,24 +2,15 @@ import assert from "assert"
 import * as marshal from "./marshal"
 
 export class Token {
-  private _name!: string
   private _symbol!: string
+  private _decimal!: number
 
   constructor(props?: Partial<Omit<Token, 'toJSON'>>, json?: any) {
     Object.assign(this, props)
     if (json != null) {
-      this._name = marshal.string.fromJSON(json.name)
       this._symbol = marshal.string.fromJSON(json.symbol)
+      this._decimal = marshal.int.fromJSON(json.decimal)
     }
-  }
-
-  get name(): string {
-    assert(this._name != null, 'uninitialized access')
-    return this._name
-  }
-
-  set name(value: string) {
-    this._name = value
   }
 
   get symbol(): string {
@@ -31,10 +22,19 @@ export class Token {
     this._symbol = value
   }
 
+  get decimal(): number {
+    assert(this._decimal != null, 'uninitialized access')
+    return this._decimal
+  }
+
+  set decimal(value: number) {
+    this._decimal = value
+  }
+
   toJSON(): object {
     return {
-      name: this.name,
       symbol: this.symbol,
+      decimal: this.decimal,
     }
   }
 }
