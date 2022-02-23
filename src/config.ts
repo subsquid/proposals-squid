@@ -4,8 +4,8 @@ import { handleSet } from './handler/extrinsics/timestamp/set'
 export default {
     chainName: 'kusama',
     dataSource: {
-        archive: 'https://kusama.indexer.gc.subsquid.io/v4/graphql',
-        chain: 'wss://kusama.api.onfinality.io/public-ws',
+        archive: 'https://polkadot.indexer.gc.subsquid.io/v4/graphql',
+        chain: 'wss://polkadot.api.onfinality.io/public-ws',
     },
     typesBundle: 'kusama',
     batchSize: 250,
