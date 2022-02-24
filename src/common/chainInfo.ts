@@ -2,12 +2,12 @@ import { Store } from '@subsquid/substrate-processor'
 import { ChainInfo, RelayChain, Token } from '../model'
 
 const chainInfo: ChainInfo = new ChainInfo({
-    name: 'Moonbeam',
+    name: 'Darwinia Network',
     token: new Token({
-        symbol: 'GLMR',
-        decimal: 18,
+        symbol: 'RING',
+        decimal: 9,
     }),
-    paraId: 2004,
+    paraId: 2003,
     relayChain: RelayChain.POLKADOT,
 })
 
