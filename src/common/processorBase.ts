@@ -22,7 +22,7 @@ type Handlers<T> = Record<
 >
 
 export interface ProcessorConfig {
-    chainName: ChainName
+    chainName: string
     dataSource: Parameters<SubstrateProcessor['setDataSource']>[HandlerParams.NAME]
     typesBundle: Parameters<SubstrateProcessor['setTypesBundle']>[HandlerParams.NAME]
     batchSize?: Parameters<SubstrateProcessor['setBatchSize']>[HandlerParams.NAME]

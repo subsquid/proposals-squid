@@ -2,8 +2,8 @@ import { ApiPromise, WsProvider } from '@polkadot/api'
 import { ApiDecoration, ApiOptions } from '@polkadot/api/types'
 import { u128, u32, Vec } from '@polkadot/types'
 import { Hash, AccountId32 } from '@polkadot/types/interfaces'
-import * as ss58 from '@subsquid/ss58'
 import config from '../config'
+import fs from 'fs'
 
 export class SubstrateApi {
     private _api?: ApiPromise
@@ -70,12 +70,15 @@ export class SubstrateApi {
     }
 }
 
+const typesBundle = JSON.parse(fs.readFileSync('./jsons/oldTypesBundle.json').toString())
+
 let api: SubstrateApi
 
 export async function getApi() {
     if (!api) {
         const provider = new WsProvider(config.dataSource.chain)
         api = await new SubstrateApi().init({
+            typesBundle,
             provider: provider,
         })
     }
