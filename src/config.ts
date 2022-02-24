@@ -5,7 +5,7 @@ export default {
     chainName: 'moonbeam',
     dataSource: {
         archive: 'https://moonbeam.indexer.gc.subsquid.io/v4/graphql',
-        chain: 'wss://moonbeam.api.onfinality.io/public-ws',
+        chain: 'wss://wss.api.moonbeam.network',
     },
     typesBundle: './jsons/newTypesBundle.json',
     batchSize: 250,
