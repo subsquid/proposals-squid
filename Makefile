@@ -22,11 +22,11 @@ codegen:
 	@npx sqd codegen
 
 
-typegen: kusamaVersions.json
-	@npx squid-substrate-typegen typegen.json
+typegen: ./typegen/versions.json
+	@npx squid-substrate-typegen ./typegen/typegen.json
 
 
-kusamaVersions.json:
+./typegen/versions.json:
 	@make explore
 
 
@@ -34,7 +34,7 @@ explore:
 	@npx squid-substrate-metadata-explorer \
 		--chain wss://kusama-rpc.polkadot.io \
 		--archive https://kusama.indexer.gc.subsquid.io/v4/graphql \
-		--out kusamaVersions.json
+		--out ./typegen/versions.json
 
 
 up:
@@ -45,4 +45,4 @@ down:
 	@docker-compose down
 
 
-.PHONY: process serve start codegen migration migrate up down
+.PHONY: process serve start codegen migration migrate up down typegen
