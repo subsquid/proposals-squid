@@ -11,7 +11,7 @@ export async function handleSet(ctx: ExtrinsicHandlerContext) {
     }
 
     if (ctx.block.timestamp - lastStateTimestamp >= INTERVAL) {
-        await saveChainState(ctx.store, ctx.block)
+        await saveChainState(ctx)
         lastStateTimestamp = ctx.block.timestamp
         console.log(`Chain state updated at block ${ctx.block.height}`)
     }
