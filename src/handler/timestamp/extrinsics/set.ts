@@ -1,6 +1,6 @@
 import { ExtrinsicHandlerContext } from '@subsquid/substrate-processor'
 import { getLastChainState, saveChainState } from '../../../common/chainState'
-import { INTERVAL } from '../../../common/consts'
+import { PERIOD } from '../../../common/consts'
 
 let lastStateTimestamp = 0
 
@@ -10,7 +10,7 @@ export async function handleSet(ctx: ExtrinsicHandlerContext) {
         if (lastChainState) lastStateTimestamp = lastChainState.timestamp?.getTime() || 0
     }
 
-    if (ctx.block.timestamp - lastStateTimestamp >= INTERVAL) {
+    if (ctx.block.timestamp - lastStateTimestamp >= PERIOD) {
         await saveChainState(ctx)
         lastStateTimestamp = ctx.block.timestamp
         console.log(`Chain state updated at block ${ctx.block.height}`)
