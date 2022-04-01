@@ -1,14 +1,14 @@
 enum RelayChain {
-  KUSAMA
-  POLKADOT
+  kusama
+  polkadot
 }
 
-type ChainInfo @entity {
+type Chain @entity {
   id: ID!
   name: String!
   token: Token!
-  paraId: Int!
-  relayChain: RelayChain!
+  paraId: Int
+  relayChain: RelayChain
 }
 
 type Token {
@@ -18,7 +18,7 @@ type Token {
 
 type ChainState @entity {
   id: ID!
-  chain: ChainInfo @index
+  chain: Chain @index
   timestamp: DateTime @index
   tokenBalance: BigInt
   tokenHolders: Int

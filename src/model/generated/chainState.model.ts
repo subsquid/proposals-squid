@@ -1,6 +1,6 @@
 import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, ManyToOne as ManyToOne_, Index as Index_} from "typeorm"
 import * as marshal from "./marshal"
-import {ChainInfo} from "./chainInfo.model"
+import {Chain} from "./chain.model"
 
 @Entity_()
 export class ChainState {
@@ -12,8 +12,8 @@ export class ChainState {
   id!: string
 
   @Index_()
-  @ManyToOne_(() => ChainInfo, {nullable: true})
-  chain!: ChainInfo | undefined | null
+  @ManyToOne_(() => Chain, {nullable: true})
+  chain!: Chain | undefined | null
 
   @Index_()
   @Column_("timestamp with time zone", {nullable: true})

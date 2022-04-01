@@ -4,8 +4,8 @@ import {Token} from "./_token"
 import {RelayChain} from "./_relayChain"
 
 @Entity_()
-export class ChainInfo {
-  constructor(props?: Partial<ChainInfo>) {
+export class Chain {
+  constructor(props?: Partial<Chain>) {
     Object.assign(this, props)
   }
 
@@ -18,9 +18,9 @@ export class ChainInfo {
   @Column_("jsonb", {transformer: {to: obj => obj.toJSON(), from: obj => new Token(undefined, marshal.nonNull(obj))}, nullable: false})
   token!: Token
 
-  @Column_("integer", {nullable: false})
-  paraId!: number
+  @Column_("integer", {nullable: true})
+  paraId!: number | undefined | null
 
-  @Column_("varchar", {length: 8, nullable: false})
-  relayChain!: RelayChain
+  @Column_("varchar", {length: 8, nullable: true})
+  relayChain!: RelayChain | undefined | null
 }

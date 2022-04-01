@@ -1,4 +1,4 @@
 export enum RelayChain {
-  KUSAMA = "KUSAMA",
-  POLKADOT = "POLKADOT",
+  kusama = "kusama",
+  polkadot = "polkadot",
 }
