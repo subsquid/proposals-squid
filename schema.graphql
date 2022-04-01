@@ -18,11 +18,11 @@ type Token {
 
 type ChainState @entity {
   id: ID!
-  chain: Chain @index
-  timestamp: DateTime @index
-  tokenBalance: BigInt
-  tokenHolders: Int
-  councilMembers: Int
-  democracyProposals: Int
-  councilProposals: Int
+  chain: Chain! @index
+  timestamp: DateTime! @index
+  tokenBalance: BigInt!
+  tokenHolders: Int!
+  councilMembers: Int!
+  democracyProposals: Int!
+  councilProposals: Int!
 }

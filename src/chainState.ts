@@ -11,6 +11,7 @@ import { PERIOD } from './common/consts'
 import { StorageContext } from './types/support'
 import chains from './chains'
 import config from './config'
+import { UnknownVersionError } from './common/errors'
 
 let lastStateTimestamp = 0
 
@@ -32,10 +33,10 @@ async function saveChainState(ctx: BlockHandlerContext) {
 
     state.chain = await getChainInfo(ctx.store)
     state.timestamp = new Date(ctx.block.timestamp)
-    state.councilMembers = (await getCouncilMembers(ctx))?.length
-    state.councilProposals = await getCouncilProposalsCount(ctx)
-    state.democracyProposals = await getDemocracyProposalsCount(ctx)
-    state.tokenBalance = await getTotalIssuance(ctx)
+    state.councilMembers = (await getCouncilMembers(ctx))?.length || 0
+    state.councilProposals = (await getCouncilProposalsCount(ctx)) || 0
+    state.democracyProposals = (await getDemocracyProposalsCount(ctx)) || 0
+    state.tokenBalance = (await getTotalIssuance(ctx)) || 0n
 
     const api = await getApi()
     state.tokenHolders = await api.getHoldersCount(ctx.block.hash)
@@ -88,6 +89,8 @@ async function getCouncilMembers(ctx: StorageContext) {
     if (storage.isV9111) {
         return await storage.getAsV9111()
     }
+
+    throw new UnknownVersionError(storage.constructor.name)
 }
 
 async function getCouncilProposalsCount(ctx: StorageContext) {
@@ -97,6 +100,8 @@ async function getCouncilProposalsCount(ctx: StorageContext) {
     if (storage.isV9111) {
         return await storage.getAsV9111()
     }
+
+    throw new UnknownVersionError(storage.constructor.name)
 }
 
 async function getDemocracyProposalsCount(ctx: StorageContext) {
@@ -106,6 +111,8 @@ async function getDemocracyProposalsCount(ctx: StorageContext) {
     if (storage.isV1020) {
         return await storage.getAsV1020()
     }
+
+    throw new UnknownVersionError(storage.constructor.name)
 }
 
 async function getTotalIssuance(ctx: StorageContext) {
@@ -115,6 +122,8 @@ async function getTotalIssuance(ctx: StorageContext) {
     if (storage.isV1020) {
         return await storage.getAsV1020()
     }
+
+    throw new UnknownVersionError(storage.constructor.name)
 }
 
 // function getHoldersCount(ctx: EventHandlerContext) {
