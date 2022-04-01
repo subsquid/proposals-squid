@@ -12,9 +12,6 @@ export class Chain {
   @PrimaryColumn_()
   id!: string
 
-  @Column_("text", {nullable: false})
-  name!: string
-
   @Column_("jsonb", {transformer: {to: obj => obj.toJSON(), from: obj => new Token(undefined, marshal.nonNull(obj))}, nullable: false})
   token!: Token
 

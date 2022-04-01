@@ -5,15 +5,14 @@ enum RelayChain {
 
 type Chain @entity {
   id: ID!
-  name: String!
   token: Token!
   paraId: Int
   relayChain: RelayChain
 }
 
 type Token {
-  symbol: String!
-  decimal: Int!
+  symbol: String
+  decimals: Int
 }
 
 type ChainState @entity {
