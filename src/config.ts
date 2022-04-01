@@ -1,4 +1,4 @@
-import { ProcessorConfig } from './common/processorBase'
+import { ProcessorConfig } from './common/processorConfig'
 
 export default {
     chainName: 'kusama',
