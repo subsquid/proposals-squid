@@ -2,7 +2,12 @@
   "outDir": "../src/types",
   "chainVersions": "./versions.json",
   "typesBundle": "kusama",
-  "storage": true,
+  "storage": [
+    "Council.Members",
+    "Council.ProposalCount",
+    "Democracy.PublicPropCount",
+    "Balances.TotalIssuance"
+  ],
   "events": [],
   "calls": []
 }
