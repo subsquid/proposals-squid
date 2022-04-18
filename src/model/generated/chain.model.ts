@@ -1,7 +1,8 @@
-import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_} from "typeorm"
+import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, OneToMany as OneToMany_} from "typeorm"
 import * as marshal from "./marshal"
 import {Token} from "./_token"
 import {RelayChain} from "./_relayChain"
+import {ChainState} from "./chainState.model"
 
 @Entity_()
 export class Chain {
@@ -20,4 +21,7 @@ export class Chain {
 
   @Column_("varchar", {length: 8, nullable: true})
   relayChain!: RelayChain | undefined | null
+
+  @OneToMany_(() => ChainState, e => e.chain)
+  states!: ChainState[]
 }

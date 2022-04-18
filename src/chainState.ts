@@ -7,11 +7,12 @@ import {
     DemocracyPublicPropCountStorage,
 } from './types/storage'
 import { getApi } from './common/api'
-import { PERIOD } from './common/consts'
+import { PERIOD } from './consts/consts'
 import { StorageContext } from './types/support'
-import chains from './chains'
+import chains from './consts/chains'
 import config from './config'
 import { UnknownVersionError } from './common/errors'
+import { ChainInfo } from './common/chainInfo'
 
 let lastStateTimestamp = 0
 
@@ -51,7 +52,7 @@ async function getChainInfo(store: Store) {
 
     if (!chain) {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const chainInfo = chains.find((ch) => ch.name === id)!
+        const chainInfo = chains.find((ch: ChainInfo) => ch.name === id)!
 
         chain = new Chain({
             id,

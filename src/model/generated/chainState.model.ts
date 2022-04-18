@@ -15,10 +15,6 @@ export class ChainState {
   @ManyToOne_(() => Chain, {nullable: false})
   chain!: Chain
 
-  @Index_()
-  @Column_("timestamp with time zone", {nullable: false})
-  timestamp!: Date
-
   @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
   tokenBalance!: bigint
 
@@ -33,4 +29,8 @@ export class ChainState {
 
   @Column_("integer", {nullable: false})
   councilProposals!: number
+
+  @Index_()
+  @Column_("timestamp with time zone", {nullable: false})
+  timestamp!: Date
 }
