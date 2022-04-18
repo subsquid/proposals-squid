@@ -1,5 +1,5 @@
 import { EventHandlerContext } from '@subsquid/substrate-processor'
-import { UnknownVersionError } from '../../../common/errors'
+import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
@@ -56,7 +56,7 @@ export async function handleClaimed(ctx: EventHandlerContext) {
         status: ProposalStatus.Claimed,
     })
     if (!proposal) {
-        console.warn(`Missing record for Bounty ${index} at block ${ctx.block.height}`)
+        console.warn(new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height))
         return
     }
 

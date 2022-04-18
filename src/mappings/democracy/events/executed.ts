@@ -1,5 +1,5 @@
 import { EventHandlerContext } from '@subsquid/substrate-processor'
-import { UnknownVersionError } from '../../../common/errors'
+import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
@@ -32,6 +32,6 @@ export async function handleExecuted(ctx: EventHandlerContext) {
         isEnded: true,
     })
     if (!proposal) {
-        console.warn(`Missing record for referendum with index ${index} at block ${ctx.block.height}`)
+        console.warn(new MissingProposalRecord(ProposalType.Referendum, index, ctx.block.height))
     }
 }
