@@ -1,6 +1,6 @@
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { TipsNewTipEvent, TreasuryNewTipEvent } from '../../../types/events'
-import { UnknownVersionError } from '../../../common/errors'
+import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { TipsTipsStorage, TreasuryTipsStorage } from '../../../types/storage'
 import { EventContext, StorageContext } from '../../../types/support'
 import { Proposal, ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
@@ -86,7 +86,7 @@ export async function handleNewTip(ctx: EventHandlerContext) {
     const hexHash = toHex(hash)
     const storageData = (await getTipsStorageData(ctx, hash)) || (await getTreasuryStorageData(ctx, hash))
     if (!storageData) {
-        console.warn(`Storage for tip ${hexHash} doesn't exist at block ${ctx.block.height}`)
+        console.warn(new StorageNotExists(ProposalType.Tip, hexHash, ctx.block.height))
         return
     }
 

@@ -17,3 +17,9 @@ export class MissingProposalRecord extends Error {
         super(`Missing record for ${proposal} ${hashOrIndex} at block ${block}`)
     }
 }
+
+export class StorageNotExists extends Error {
+    constructor(proposal: ProposalType, hashOrIndex: string | number, block: number) {
+        super(`Storage doesn't exist for ${proposal} ${hashOrIndex} at block ${block}`)
+    }
+}

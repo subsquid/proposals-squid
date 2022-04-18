@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { CouncilProposedEvent } from '../../../types/events'
-import { UnknownVersionError } from '../../../common/errors'
+import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { CouncilProposalOfStorage, Instance1CollectiveProposalOfStorage } from '../../../types/storage'
 import { EventContext, StorageContext } from '../../../types/support'
 import {
@@ -160,7 +160,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const storageData = await getStorageData(ctx, hash)
     if (!storageData) {
-        console.warn(`Storage for council motion doesn't exist at block ${ctx.block.height}`)
+        console.warn(new StorageNotExists(ProposalType.CouncilMotion, index, ctx.block.height))
         return
     }
 

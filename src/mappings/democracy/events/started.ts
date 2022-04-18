@@ -1,6 +1,6 @@
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { DemocracyStartedEvent } from '../../../types/events'
-import { UnknownVersionError } from '../../../common/errors'
+import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext, StorageContext } from '../../../types/support'
 import {
     Proposal,
@@ -150,9 +150,7 @@ export async function handleStarted(ctx: EventHandlerContext) {
 
     const storageData = await getStorageData(ctx, index)
     if (!storageData) {
-        console.warn(
-            `Storage for referendum info for referendum with index ${index} doesn't exist at block ${ctx.block.height}`
-        )
+        console.warn(new StorageNotExists(ProposalType.Referendum, index, ctx.block.height))
         return
     }
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { EventHandlerContext } from '@subsquid/substrate-processor'
 import { TreasuryProposedEvent } from '../../../types/events'
-import { UnknownVersionError } from '../../../common/errors'
+import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { TreasuryProposalsStorage } from '../../../types/storage'
 import { EventContext, StorageContext } from '../../../types/support'
 import { Proposal, ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
@@ -54,7 +54,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const storageData = await getStorageData(ctx, index)
     if (!storageData) {
-        console.warn(`Storage for treasury proposal doesn't exist at block ${ctx.block.height}`)
+        console.warn(new StorageNotExists(ProposalType.TreasuryProposal, index, ctx.block.height))
         return
     }
 

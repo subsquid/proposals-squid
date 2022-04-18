@@ -1,6 +1,6 @@
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { DemocracyProposedEvent } from '../../../types/events'
-import { UnknownVersionError } from '../../../common/errors'
+import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { DemocracyPublicPropsStorage } from '../../../types/storage'
 import { EventContext, StorageContext } from '../../../types/support'
 import { Proposal, ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
@@ -64,13 +64,13 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const storageData = await getStorageData(ctx)
     if (!storageData) {
-        console.warn(`Storage for democracy proposals doesn't exist at block ${ctx.block.height}`)
+        console.warn(`Storage doesn't exist for democracy proposals at block ${ctx.block.height}`)
         return
     }
 
     const proposalData = storageData.find((prop) => prop.index === index)
     if (!proposalData) {
-        console.warn(`Missing storage data for democracy proposal with index ${index} at block ${ctx.block.height}`)
+        console.warn(new StorageNotExists(ProposalType.DemocracyProposal, index, ctx.block.height))
         return
     }
     const { hash, proposer } = proposalData

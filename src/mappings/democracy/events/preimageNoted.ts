@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { DemocracyPreimageNotedEvent } from '../../../types/events'
-import { UnknownVersionError } from '../../../common/errors'
+import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext, StorageContext } from '../../../types/support'
 import { DemocracyPreimagesStorage } from '../../../types/storage'
 import { Proposal, ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
@@ -101,7 +101,10 @@ export async function handlePreimageNoted(ctx: EventHandlerContext) {
     const hexHash = toHex(hash)
 
     const storageData = await getStorageData(ctx, hash)
-    if (!storageData) return
+    if (!storageData) {
+        console.warn(new StorageNotExists(ProposalType.Preimage, hexHash, ctx.block.height))
+        return
+    }
 
     let proposedCall: ProposedCall | null = null
 
