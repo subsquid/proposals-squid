@@ -1,7 +1,7 @@
 import { EventHandlerContext } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
+import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { TreasuryRejectedEvent } from '../../../types/events'
 
@@ -29,21 +29,11 @@ function getEventData(ctx: EventContext): TreasuryEventData {
 export async function handleRejected(ctx: EventHandlerContext) {
     const { index } = getEventData(ctx)
 
-    const proposal = await proposalManager.get(ctx, index, ProposalType.TreasuryProposal)
+    const proposal = await proposalManager.updateStatus(ctx, index, ProposalType.TreasuryProposal, {
+        status: ProposalStatus.Rejected,
+        isEnded: true,
+    })
     if (!proposal) {
         console.warn(`Missing record for TreasuryProposal with index ${index} at block ${ctx.block.height}`)
-        return
     }
-
-    proposal.status = ProposalStatus.Rejected
-    proposal.endedAt = ctx.block.height
-    proposal.statusHistory.push(
-        new StatusHistoryItem({
-            block: ctx.block.height,
-            timestamp: new Date(ctx.block.timestamp),
-            status: proposal.status,
-        })
-    )
-
-    await proposalManager.save(ctx, proposal)
 }

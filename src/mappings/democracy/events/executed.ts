@@ -1,7 +1,7 @@
 import { EventHandlerContext } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
+import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { DemocracyExecutedEvent } from '../../../types/events'
 
@@ -27,20 +27,11 @@ function getEventData(ctx: EventContext): number {
 export async function handleExecuted(ctx: EventHandlerContext) {
     const index = getEventData(ctx)
 
-    const proposal = await proposalManager.get(ctx, index, ProposalType.Referendum)
+    const proposal = await proposalManager.updateStatus(ctx, index, ProposalType.Referendum, {
+        status: ProposalStatus.Executed,
+        isEnded: true,
+    })
     if (!proposal) {
         console.warn(`Missing record for referendum with index ${index} at block ${ctx.block.height}`)
-        return
     }
-
-    proposal.status = ProposalStatus.Executed
-    proposal.statusHistory.push(
-        new StatusHistoryItem({
-            block: ctx.block.height,
-            timestamp: new Date(ctx.block.timestamp),
-            status: proposal.status,
-        })
-    )
-
-    await proposalManager.save(ctx, proposal)
 }

@@ -1,7 +1,7 @@
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
+import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { CouncilExecutedEvent } from '../../../types/events'
 
@@ -28,20 +28,11 @@ export async function handleExecuted(ctx: EventHandlerContext) {
     const hash = getEventData(ctx)
 
     const hexHash = toHex(hash)
-    const proposal = await proposalManager.get(ctx, hexHash, ProposalType.CouncilMotion)
+    const proposal = await proposalManager.updateStatus(ctx, hexHash, ProposalType.CouncilMotion, {
+        status: ProposalStatus.Executed,
+        isEnded: true,
+    })
     if (!proposal) {
         console.warn(`Missing record for council motion with hash ${hash} at block ${ctx.block.height}`)
-        return
     }
-
-    proposal.status = ProposalStatus.Executed
-    proposal.statusHistory.push(
-        new StatusHistoryItem({
-            block: ctx.block.height,
-            timestamp: new Date(ctx.block.timestamp),
-            status: proposal.status,
-        })
-    )
-
-    await proposalManager.save(ctx, proposal)
 }

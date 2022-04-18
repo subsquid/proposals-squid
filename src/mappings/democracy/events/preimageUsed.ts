@@ -1,7 +1,7 @@
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
+import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { DemocracyPreimageUsedEvent } from '../../../types/events'
 
@@ -37,20 +37,10 @@ export async function handlePreimageUsed(ctx: EventHandlerContext) {
 
     const hexHash = toHex(hash)
 
-    const proposal = await proposalManager.get(ctx, hexHash, ProposalType.Preimage)
+    const proposal = await proposalManager.updateStatus(ctx, hexHash, ProposalType.Preimage, {
+        status: ProposalStatus.Used,
+    })
     if (!proposal) {
         console.warn(`Missing record for preimage with hash ${hexHash} at block ${ctx.block.height}`)
-        return
     }
-
-    proposal.status = ProposalStatus.Used
-    proposal.statusHistory.push(
-        new StatusHistoryItem({
-            block: ctx.block.height,
-            timestamp: new Date(ctx.block.timestamp),
-            status: proposal.status,
-        })
-    )
-
-    await proposalManager.save(ctx, proposal)
 }

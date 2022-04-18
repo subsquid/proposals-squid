@@ -1,7 +1,7 @@
 import { EventHandlerContext } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
+import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { BountiesBountyClaimedEvent, TreasuryBountyClaimedEvent } from '../../../types/events'
 import { encodeId } from '../../../common/tools'
@@ -52,22 +52,16 @@ export async function handleClaimed(ctx: EventHandlerContext) {
     const getEventData = ctx.event.section === 'bounties' ? getBountyEventData : getTreasuryEventData
     const { index, payout, beneficiary } = getEventData(ctx)
 
-    const proposal = await proposalManager.get(ctx, index, ProposalType.Bounty)
+    const proposal = await proposalManager.updateStatus(ctx, index, ProposalType.Bounty, {
+        status: ProposalStatus.Claimed,
+    })
     if (!proposal) {
         console.warn(`Missing record for Bounty ${index} at block ${ctx.block.height}`)
         return
     }
 
-    proposal.status = ProposalStatus.Claimed
     proposal.payee = encodeId(beneficiary, config.prefix)
     proposal.reward = payout
-    proposal.statusHistory.push(
-        new StatusHistoryItem({
-            block: ctx.block.height,
-            timestamp: new Date(ctx.block.timestamp),
-            status: proposal.status,
-        })
-    )
 
     await proposalManager.save(ctx, proposal)
 }

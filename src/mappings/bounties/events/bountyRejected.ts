@@ -1,7 +1,7 @@
 import { EventHandlerContext } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
+import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { BountiesBountyRejectedEvent, TreasuryBountyRejectedEvent } from '../../../types/events'
 
@@ -42,21 +42,11 @@ export async function handleRejected(ctx: EventHandlerContext) {
     const getEventData = ctx.event.section === 'bounties' ? getBountyEventData : getTreasuryEventData
     const { index } = getEventData(ctx)
 
-    const proposal = await proposalManager.get(ctx, index, ProposalType.Bounty)
+    const proposal = await proposalManager.updateStatus(ctx, index, ProposalType.Bounty, {
+        status: ProposalStatus.Rejected,
+        isEnded: true,
+    })
     if (!proposal) {
         console.warn(`Missing record for Bounty ${index} at block ${ctx.block.height}`)
-        return
     }
-
-    proposal.status = ProposalStatus.Rejected
-    proposal.endedAt = ctx.block.height
-    proposal.statusHistory.push(
-        new StatusHistoryItem({
-            block: ctx.block.height,
-            timestamp: new Date(ctx.block.timestamp),
-            status: proposal.status,
-        })
-    )
-
-    await proposalManager.save(ctx, proposal)
 }

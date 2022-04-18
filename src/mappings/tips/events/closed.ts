@@ -1,7 +1,7 @@
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
+import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { TipsTipClosedEvent, TreasuryTipClosedEvent } from '../../../types/events'
 
@@ -47,22 +47,16 @@ export async function handleClosed(ctx: EventHandlerContext) {
     const { hash, reward } = getEventData(ctx)
 
     const hexHash = toHex(hash)
-    const proposal = await proposalManager.get(ctx, hexHash, ProposalType.Tip)
+    const proposal = await proposalManager.updateStatus(ctx, hexHash, ProposalType.Tip, {
+        status: ProposalStatus.Closed,
+        isEnded: true,
+    })
     if (!proposal) {
         console.warn(`Missing record for Tip with hash ${hexHash} at block ${ctx.block.height}`)
         return
     }
 
     proposal.reward = reward
-    proposal.status = ProposalStatus.Closed
-    proposal.endedAt = ctx.block.height
-    proposal.statusHistory.push(
-        new StatusHistoryItem({
-            block: ctx.block.height,
-            timestamp: new Date(ctx.block.timestamp),
-            status: proposal.status,
-        })
-    )
 
     await proposalManager.save(ctx, proposal)
 }

@@ -1,7 +1,7 @@
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
+import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { TechnicalCommitteeClosedEvent } from '../../../types/events'
 
@@ -20,21 +20,10 @@ export async function handleClosed(ctx: EventHandlerContext) {
     const hash = getEventData(ctx)
 
     const hexHash = toHex(hash)
-    const proposal = await proposalManager.get(ctx, hexHash, ProposalType.TechCommitteeProposal)
+    const proposal = await proposalManager.updateStatus(ctx, hexHash, ProposalType.TechCommitteeProposal, {
+        status: ProposalStatus.Closed,
+    })
     if (!proposal) {
         console.warn(`Missing record for TechnicalCommittee motion with hash ${hash} at block ${ctx.block.height}`)
-        return
     }
-
-    proposal.status = ProposalStatus.Closed
-    proposal.endedAt = ctx.block.height
-    proposal.statusHistory.push(
-        new StatusHistoryItem({
-            block: ctx.block.height,
-            timestamp: new Date(ctx.block.timestamp),
-            status: proposal.status,
-        })
-    )
-
-    await proposalManager.save(ctx, proposal)
 }

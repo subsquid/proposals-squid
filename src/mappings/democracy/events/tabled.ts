@@ -2,7 +2,7 @@ import { EventHandlerContext } from '@subsquid/substrate-processor'
 import { DemocracyTabledEvent } from '../../../types/events'
 import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
+import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 
 interface TabledEventData {
@@ -35,20 +35,10 @@ function getEventData(ctx: EventContext): TabledEventData {
 export async function handleTabled(ctx: EventHandlerContext) {
     const { index } = getEventData(ctx)
 
-    const proposal = await proposalManager.get(ctx, index, ProposalType.DemocracyProposal)
+    const proposal = await proposalManager.updateStatus(ctx, index, ProposalType.DemocracyProposal, {
+        status: ProposalStatus.Tabled,
+    })
     if (!proposal) {
         console.warn(`Missing record for proposal with index ${index} at block ${ctx.block.height}`)
-        return
     }
-
-    proposal.status = ProposalStatus.Tabled
-    proposal.statusHistory.push(
-        new StatusHistoryItem({
-            block: ctx.block.height,
-            timestamp: new Date(ctx.block.timestamp),
-            status: proposal.status,
-        })
-    )
-
-    await proposalManager.save(ctx, proposal)
 }
