@@ -1,6 +1,18 @@
 import { BlockHandlerContext, EventHandlerContext } from '@subsquid/substrate-processor'
-import { Proposal, ProposalStatus, ProposalType, StatusHistoryItem } from '../model'
+import { Threshold } from '../common/types'
+import {
+    MotionThreshold,
+    Proposal,
+    ProposalGroup,
+    ProposalStatus,
+    ProposalType,
+    ProposedCall,
+    ReferendumThreshold,
+    ReferendumThresholdType,
+    StatusHistoryItem,
+} from '../model'
 import { Manager } from './Manager'
+import { proposalGroupManager } from './ProposalGroupManager'
 
 type IndexProposal =
     | ProposalType.DemocracyProposal
@@ -15,6 +27,105 @@ type HashProposal =
     | ProposalType.Tip
     | ProposalType.CouncilMotion
     | ProposalType.TechCommitteeProposal
+
+interface DemocracyProposalData {
+    type: ProposalType.DemocracyProposal
+    index: number
+    hash: string
+    proposer: string
+    deposit: bigint
+    status: ProposalStatus
+}
+
+interface ReferendumData {
+    type: ProposalType.Referendum
+    index: number
+    hash: string
+    threshold: Threshold
+    status: ProposalStatus
+}
+
+interface CouncilMotionData {
+    type: ProposalType.CouncilMotion
+    index: number
+    hash: string
+    threshold: number
+    proposer: string
+    call: {
+        section: string
+        method: string
+        description: string
+        args: Record<string, unknown>
+    }
+    status: ProposalStatus
+}
+
+interface TechCommitteeData {
+    type: ProposalType.TechCommitteeProposal
+    index: number
+    hash: string
+    threshold: number
+    proposer: string
+    call: {
+        section: string
+        method: string
+        description: string
+        args: Record<string, unknown>
+    }
+    status: ProposalStatus
+}
+
+interface TipData {
+    type: ProposalType.Tip
+    hash: string
+    proposer?: string
+    payee: string
+    deposit?: bigint
+    status: ProposalStatus
+}
+
+interface BountyData {
+    type: ProposalType.Bounty
+    index: number
+    proposer: string
+    status: ProposalStatus
+    reward: bigint
+    deposit: bigint
+}
+
+interface TreasuryData {
+    type: ProposalType.TreasuryProposal
+    index: number
+    proposer: string
+    status: ProposalStatus
+    reward: bigint
+    deposit: bigint
+    payee: string
+}
+
+interface PreimageData {
+    type: ProposalType.Preimage
+    hash: string
+    proposer: string
+    status: ProposalStatus
+    deposit: bigint
+    call?: {
+        section: string
+        method: string
+        description: string
+        args: Record<string, unknown>
+    }
+}
+
+type ProposalData =
+    | DemocracyProposalData
+    | ReferendumData
+    | CouncilMotionData
+    | TechCommitteeData
+    | TipData
+    | BountyData
+    | TreasuryData
+    | PreimageData
 
 export class ProposalManager extends Manager<Proposal> {
     async get(
@@ -89,12 +200,249 @@ export class ProposalManager extends Manager<Proposal> {
             proposal.endedAt = ctx.block.height
         }
 
-        return await this.save(ctx, proposal)
+        return await this.update(ctx, proposal)
     }
 
-    async save(ctx: EventHandlerContext | BlockHandlerContext, item: Proposal): Promise<Proposal> {
+    async create(ctx: EventHandlerContext, data: ProposalData): Promise<Proposal> {
+        let proposal: Proposal
+
+        switch (data.type) {
+            case ProposalType.DemocracyProposal:
+                proposal = await this.createDemocracyProposal(ctx, data)
+                break
+            case ProposalType.Referendum:
+                proposal = await this.createReferendum(ctx, data)
+                break
+            case ProposalType.CouncilMotion:
+            case ProposalType.TechCommitteeProposal:
+                proposal = await this.createCoucilMotion(ctx, data)
+                break
+            case ProposalType.Tip:
+                proposal = await this.createTip(ctx, data)
+                break
+            case ProposalType.TreasuryProposal:
+                proposal = await this.createTreasury(ctx, data)
+                break
+            case ProposalType.Bounty:
+                proposal = await this.createBounty(ctx, data)
+                break
+            case ProposalType.Preimage:
+                proposal = await this.createPreimage(ctx, data)
+                break
+        }
+
+        if (await ctx.store.insert(Proposal, proposal)) {
+            return proposal
+        } else {
+            throw new Error('Failed to save new proposal')
+        }
+    }
+
+    async update(ctx: EventHandlerContext | BlockHandlerContext, item: Proposal): Promise<Proposal> {
         item.updatedAt = ctx.block.height
         return await ctx.store.save(item)
+    }
+
+    private async createDemocracyProposal(ctx: EventHandlerContext, data: DemocracyProposalData): Promise<Proposal> {
+        const { index, type, hash, proposer, deposit, status } = data
+
+        const group = await proposalGroupManager.get(ctx, hash, ProposalType.Preimage)
+
+        return new Proposal({
+            id: ctx.event.id,
+            index,
+            type,
+            hash,
+            proposer,
+            deposit,
+            status,
+            createdAt: ctx.block.height,
+            statusHistory: [
+                new StatusHistoryItem({
+                    block: ctx.block.height,
+                    timestamp: new Date(ctx.block.timestamp),
+                    status,
+                }),
+            ],
+            group,
+        })
+    }
+
+    private async createReferendum(ctx: EventHandlerContext, data: ReferendumData): Promise<Proposal> {
+        const { index, type, status, threshold, hash } = data
+
+        const group = await proposalGroupManager.get(ctx, hash, ProposalType.Preimage)
+
+        return new Proposal({
+            id: ctx.event.id,
+            index,
+            type,
+            hash,
+            threshold: new ReferendumThreshold({
+                type: threshold as ReferendumThresholdType,
+            }),
+            status,
+            createdAt: ctx.block.height,
+            statusHistory: [
+                new StatusHistoryItem({
+                    block: ctx.block.height,
+                    timestamp: new Date(ctx.block.timestamp),
+                    status,
+                }),
+            ],
+            group,
+        })
+    }
+
+    private async createCoucilMotion(
+        ctx: EventHandlerContext,
+        data: CouncilMotionData | TechCommitteeData
+    ): Promise<Proposal> {
+        const { index, type, status, threshold, hash, call, proposer } = data
+
+        let group: ProposalGroup | undefined
+        if (call.args['proposalHash']) {
+            const hexHash = call.args['proposalHash'] as string
+            group = await proposalGroupManager.get(ctx, hexHash, ProposalType.Preimage)
+        } else if (call.args['bountyId']) {
+            const index = call.args['bountyId'] as number
+            group = await proposalGroupManager.get(ctx, index, ProposalType.Bounty)
+        } else if (call.args['proposalId']) {
+            const index = call.args['proposalId'] as number
+            group = await proposalGroupManager.get(ctx, index, ProposalType.TreasuryProposal)
+        }
+
+        return new Proposal({
+            id: ctx.event.id,
+            index,
+            type,
+            hash,
+            proposer,
+            status,
+            threshold: new MotionThreshold({
+                value: threshold,
+            }),
+            proposedCall: new ProposedCall({
+                section: call.section,
+                method: call.method,
+                description: call.description,
+                args: JSON.stringify(call.args),
+            }),
+            createdAt: ctx.block.height,
+            statusHistory: [
+                new StatusHistoryItem({
+                    block: ctx.block.height,
+                    timestamp: new Date(ctx.block.timestamp),
+                    status,
+                }),
+            ],
+            group,
+        })
+    }
+
+    private async createTip(ctx: EventHandlerContext, data: TipData): Promise<Proposal> {
+        const { type, status, hash, proposer, payee, deposit } = data
+
+        return new Proposal({
+            id: ctx.event.id,
+            type,
+            hash,
+            proposer,
+            payee,
+            deposit,
+            status,
+            createdAt: ctx.block.height,
+            statusHistory: [
+                new StatusHistoryItem({
+                    block: ctx.block.height,
+                    timestamp: new Date(ctx.block.timestamp),
+                    status,
+                }),
+            ],
+        })
+    }
+
+    private async createBounty(ctx: EventHandlerContext, data: BountyData): Promise<Proposal> {
+        const { type, status, index, proposer, deposit, reward } = data
+
+        const group = await proposalGroupManager.get(ctx, index, ProposalType.Bounty)
+
+        return new Proposal({
+            id: ctx.event.id,
+            type,
+            index,
+            proposer,
+            deposit,
+            reward,
+            status,
+            createdAt: ctx.block.height,
+            statusHistory: [
+                new StatusHistoryItem({
+                    block: ctx.block.height,
+                    timestamp: new Date(ctx.block.timestamp),
+                    status,
+                }),
+            ],
+            group,
+        })
+    }
+
+    private async createTreasury(ctx: EventHandlerContext, data: TreasuryData): Promise<Proposal> {
+        const { type, status, index, proposer, deposit, reward, payee } = data
+
+        const group = await proposalGroupManager.get(ctx, index, ProposalType.TreasuryProposal)
+
+        return new Proposal({
+            id: ctx.event.id,
+            type,
+            index,
+            proposer,
+            deposit,
+            reward,
+            status,
+            payee,
+            createdAt: ctx.block.height,
+            statusHistory: [
+                new StatusHistoryItem({
+                    block: ctx.block.height,
+                    timestamp: new Date(ctx.block.timestamp),
+                    status,
+                }),
+            ],
+            group,
+        })
+    }
+
+    private async createPreimage(ctx: EventHandlerContext, data: PreimageData): Promise<Proposal> {
+        const { type, status, hash, proposer, deposit, call } = data
+
+        const group = await proposalGroupManager.get(ctx, hash, ProposalType.Preimage)
+
+        return new Proposal({
+            id: ctx.event.id,
+            type,
+            hash,
+            proposer,
+            deposit,
+            status,
+            proposedCall: call
+                ? new ProposedCall({
+                      section: call.section,
+                      method: call.method,
+                      description: call.description,
+                      args: JSON.stringify(call.args),
+                  })
+                : null,
+            createdAt: ctx.block.height,
+            statusHistory: [
+                new StatusHistoryItem({
+                    block: ctx.block.height,
+                    timestamp: new Date(ctx.block.timestamp),
+                    status,
+                }),
+            ],
+            group,
+        })
     }
 }
 

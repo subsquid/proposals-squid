@@ -3,8 +3,8 @@ import { EventHandlerContext } from '@subsquid/substrate-processor'
 import { TreasuryProposedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { Proposal, ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
-import { proposalGroupManager, proposalManager } from '../../../managers'
+import { ProposalStatus, ProposalType } from '../../../model'
+import { proposalManager } from '../../../managers'
 import config from '../../../config'
 import { encodeId } from '../../../common/tools'
 import { storage } from '../../../storage'
@@ -41,28 +41,13 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const { proposer, beneficiary, value, bond } = storageData
 
-    const group = await proposalGroupManager.get(ctx, index, ProposalType.TreasuryProposal)
-
-    await proposalManager.save(
-        ctx,
-        new Proposal({
-            id: ctx.event.id,
-            index,
-            type: ProposalType.TreasuryProposal,
-            proposer: encodeId(proposer, config.prefix),
-            createdAt: ctx.block.height,
-            status: ProposalStatus.Proposed,
-            reward: value,
-            deposit: bond,
-            payee: encodeId(beneficiary, config.prefix),
-            statusHistory: [
-                new StatusHistoryItem({
-                    block: ctx.block.height,
-                    timestamp: new Date(ctx.block.timestamp),
-                    status: ProposalStatus.Proposed,
-                }),
-            ],
-            group,
-        })
-    )
+    await proposalManager.create(ctx, {
+        index,
+        type: ProposalType.TreasuryProposal,
+        proposer: encodeId(proposer, config.prefix),
+        status: ProposalStatus.Proposed,
+        reward: value,
+        deposit: bond,
+        payee: encodeId(beneficiary, config.prefix),
+    })
 }

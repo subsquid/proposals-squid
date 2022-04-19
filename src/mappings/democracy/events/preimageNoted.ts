@@ -4,13 +4,12 @@ import { DemocracyPreimageNotedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext, StorageContext } from '../../../types/support'
 import { DemocracyPreimagesStorage } from '../../../types/storage'
-import { Proposal, ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
+import { ProposalStatus, ProposalType } from '../../../model'
 import { encodeId, parseProposalCall } from '../../../common/tools'
 import config from '../../../config'
-import { ProposedCall } from '../../../model/generated/_proposedCall'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
 import { Call } from '../../../types/v9111'
-import { proposalGroupManager, proposalManager } from '../../../managers'
+import { proposalManager } from '../../../managers'
 
 type ProposalCall = Call
 
@@ -106,7 +105,14 @@ export async function handlePreimageNoted(ctx: EventHandlerContext) {
         return
     }
 
-    let proposedCall: ProposedCall | null = null
+    let decodedCall:
+        | {
+              section: string
+              method: string
+              description: string
+              args: Record<string, unknown>
+          }
+        | undefined
 
     try {
         const proposal = decodeProposal(ctx._chain as Chain, storageData.data)
@@ -116,39 +122,24 @@ export async function handlePreimageNoted(ctx: EventHandlerContext) {
         const meta = ctx._chain.calls.get(`${section}.${method}`)
         const description = (meta.docs as string[]).join('\n')
 
-        proposedCall = new ProposedCall({
+        decodedCall = {
             section,
             method,
             description,
-            args: JSON.stringify(args),
-        })
+            args,
+        }
     } catch (e) {
         console.warn(`Failed to decode ProposedCall of Preimage ${hash} at block ${ctx.block.height}`)
     }
 
     const proposer = encodeId(provider, config.prefix)
 
-    const group = await proposalGroupManager.get(ctx, hexHash, ProposalType.Preimage)
-
-    await proposalManager.save(
-        ctx,
-        new Proposal({
-            id: ctx.event.id,
-            hash: hexHash,
-            type: ProposalType.Preimage,
-            proposer,
-            deposit,
-            createdAt: storageData.block,
-            proposedCall,
-            status: ProposalStatus.Noted,
-            statusHistory: [
-                new StatusHistoryItem({
-                    block: ctx.block.height,
-                    timestamp: new Date(ctx.block.timestamp),
-                    status: ProposalStatus.Noted,
-                }),
-            ],
-            group,
-        })
-    )
+    await proposalManager.create(ctx, {
+        hash: hexHash,
+        type: ProposalType.Preimage,
+        proposer,
+        deposit,
+        call: decodedCall,
+        status: ProposalStatus.Noted,
+    })
 }

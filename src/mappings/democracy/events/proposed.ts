@@ -2,8 +2,8 @@ import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { DemocracyProposedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { Proposal, ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
-import { proposalGroupManager, proposalManager } from '../../../managers'
+import { ProposalStatus, ProposalType } from '../../../model'
+import { proposalManager } from '../../../managers'
 import { encodeId } from '../../../common/tools'
 import config from '../../../config'
 import { storage } from '../../../storage'
@@ -49,27 +49,12 @@ export async function handleProposed(ctx: EventHandlerContext) {
     const { hash, proposer } = proposalData
     const hexHash = toHex(hash)
 
-    const group = await proposalGroupManager.get(ctx, hexHash, ProposalType.Preimage)
-
-    await proposalManager.save(
-        ctx,
-        new Proposal({
-            id: ctx.event.id,
-            index,
-            type: ProposalType.DemocracyProposal,
-            hash: hexHash,
-            proposer: encodeId(proposer, config.prefix),
-            deposit,
-            createdAt: ctx.block.height,
-            status: ProposalStatus.Proposed,
-            statusHistory: [
-                new StatusHistoryItem({
-                    block: ctx.block.height,
-                    timestamp: new Date(ctx.block.timestamp),
-                    status: ProposalStatus.Proposed,
-                }),
-            ],
-            group,
-        })
-    )
+    await proposalManager.create(ctx, {
+        hash: hexHash,
+        index,
+        proposer: encodeId(proposer, config.prefix),
+        type: ProposalType.DemocracyProposal,
+        status: ProposalStatus.Proposed,
+        deposit,
+    })
 }

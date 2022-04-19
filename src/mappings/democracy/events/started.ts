@@ -12,8 +12,7 @@ import {
 } from '../../../model'
 import { proposalGroupManager, proposalManager } from '../../../managers'
 import { storage } from '../../../storage'
-
-type Threshold = 'SuperMajorityApprove' | 'SuperMajorityAgainst' | 'SimpleMajority'
+import { Threshold } from '../../../common/types'
 
 interface ReferendumEventData {
     index: number
@@ -71,7 +70,7 @@ export async function handleStarted(ctx: EventHandlerContext) {
 
     const group = await proposalGroupManager.get(ctx, hexHash, ProposalType.Preimage)
 
-    await proposalManager.save(
+    await proposalManager.update(
         ctx,
         new Proposal({
             id: ctx.event.id,
@@ -92,4 +91,12 @@ export async function handleStarted(ctx: EventHandlerContext) {
             group,
         })
     )
+
+    await proposalManager.create(ctx, {
+        index,
+        type: ProposalType.Referendum,
+        threshold,
+        status: ProposalStatus.Started,
+        hash: hexHash,
+    })
 }

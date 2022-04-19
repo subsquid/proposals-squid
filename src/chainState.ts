@@ -12,7 +12,7 @@ import { StorageContext } from './types/support'
 import chains from './consts/chains'
 import config from './config'
 import { UnknownVersionError } from './common/errors'
-import { ChainInfo } from './common/chainInfo'
+import { ChainInfo } from './common/types'
 
 let lastStateTimestamp = 0
 

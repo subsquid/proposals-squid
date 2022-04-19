@@ -2,7 +2,7 @@ import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { TipsNewTipEvent, TreasuryNewTipEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { Proposal, ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
+import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import config from '../../../config'
 import { encodeId } from '../../../common/tools'
@@ -54,24 +54,12 @@ export async function handleNewTip(ctx: EventHandlerContext) {
 
     const { who, deposit, finder } = storageData
 
-    await proposalManager.save(
-        ctx,
-        new Proposal({
-            id: ctx.event.id,
-            hash: hexHash,
-            type: ProposalType.Tip,
-            proposer: finder ? encodeId(finder, config.prefix) : null,
-            createdAt: ctx.block.height,
-            status: ProposalStatus.Proposed,
-            deposit,
-            payee: encodeId(who, config.prefix),
-            statusHistory: [
-                new StatusHistoryItem({
-                    block: ctx.block.height,
-                    timestamp: new Date(ctx.block.timestamp),
-                    status: ProposalStatus.Proposed,
-                }),
-            ],
-        })
-    )
+    await proposalManager.create(ctx, {
+        type: ProposalType.Tip,
+        hash: hexHash,
+        proposer: finder ? encodeId(finder, config.prefix) : undefined,
+        payee: encodeId(who, config.prefix),
+        deposit,
+        status: ProposalStatus.Proposed,
+    })
 }

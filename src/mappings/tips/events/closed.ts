@@ -58,5 +58,5 @@ export async function handleClosed(ctx: EventHandlerContext) {
 
     proposal.reward = reward
 
-    await proposalManager.save(ctx, proposal)
+    await proposalManager.update(ctx, proposal)
 }

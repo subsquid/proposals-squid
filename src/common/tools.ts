@@ -2,12 +2,12 @@ import * as ss58 from '@subsquid/ss58'
 import { toHex } from '@subsquid/substrate-processor'
 import config from '../config'
 
-export function encodeId(id: Uint8Array, prefix: string | number): string | undefined {
+export function encodeId(id: Uint8Array, prefix: string | number): string {
     try {
         return ss58.codec(prefix).encode(id)
     } catch (e) {
         console.error(`Failed to encode id ${toHex(id)} with prefix ${prefix}`)
-        return undefined
+        return 'undefined'
     }
 }
 

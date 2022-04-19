@@ -63,5 +63,5 @@ export async function handleClaimed(ctx: EventHandlerContext) {
     proposal.payee = encodeId(beneficiary, config.prefix)
     proposal.reward = payout
 
-    await proposalManager.save(ctx, proposal)
+    await proposalManager.update(ctx, proposal)
 }

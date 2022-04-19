@@ -1,5 +1,5 @@
 import { SubstrateProcessor } from '@subsquid/substrate-processor'
-import { ChainName } from './chainInfo'
+import { ChainName } from './types'
 
 type Parameters<T> = T extends (...args: infer T) => any ? T : never
 

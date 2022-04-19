@@ -58,5 +58,5 @@ export async function handleAwarded(ctx: EventHandlerContext) {
     }
 
     proposal.payee = encodeId(beneficiary, config.prefix)
-    await proposalManager.save(ctx, proposal)
+    await proposalManager.update(ctx, proposal)
 }
