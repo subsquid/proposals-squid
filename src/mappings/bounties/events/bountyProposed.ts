@@ -2,21 +2,15 @@
 import { EventHandlerContext } from '@subsquid/substrate-processor'
 import { BountiesBountyProposedEvent, TreasuryBountyProposedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
-import { BountiesBountiesStorage, TreasuryBountiesStorage } from '../../../types/storage'
-import { EventContext, StorageContext } from '../../../types/support'
+import { EventContext } from '../../../types/support'
 import { Proposal, ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
 import { proposalGroupManager, proposalManager } from '../../../managers'
 import config from '../../../config'
 import { encodeId } from '../../../common/tools'
+import { storage } from '../../../storage'
 
 interface BountyEventData {
     index: number
-}
-
-interface BountyStorageData {
-    proposer: Uint8Array
-    value: bigint
-    bond: bigint
 }
 
 function getTreasuryEventData(ctx: EventContext): BountyEventData {
@@ -48,33 +42,11 @@ function getBountyEventData(ctx: EventContext): BountyEventData {
     }
 }
 
-async function getBountyStorageData(ctx: StorageContext, index: number): Promise<BountyStorageData | undefined> {
-    const storage = new BountiesBountiesStorage(ctx)
-    if (!storage.isExists) return undefined
-
-    if (storage.isV9111) {
-        return await storage.getAsV9111(index)
-    } else {
-        throw new UnknownVersionError(storage.constructor.name)
-    }
-}
-
-async function getTreasuryStorageData(ctx: StorageContext, index: number): Promise<BountyStorageData | undefined> {
-    const storage = new TreasuryBountiesStorage(ctx)
-    if (!storage.isExists) return undefined
-
-    if (storage.isV2025) {
-        return await storage.getAsV2025(index)
-    } else {
-        throw new UnknownVersionError(storage.constructor.name)
-    }
-}
-
 export async function handleProposed(ctx: EventHandlerContext) {
     const getEventData = ctx.event.section === 'bounties' ? getBountyEventData : getTreasuryEventData
     const { index } = getEventData(ctx)
 
-    const storageData = (await getBountyStorageData(ctx, index)) || (await getTreasuryStorageData(ctx, index))
+    const storageData = await storage.bounties.getBounties(ctx, index)
     if (!storageData) {
         console.warn(new StorageNotExists(ProposalType.Bounty, index, ctx.block.height))
         return

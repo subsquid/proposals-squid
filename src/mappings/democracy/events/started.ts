@@ -1,7 +1,7 @@
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { DemocracyStartedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
-import { EventContext, StorageContext } from '../../../types/support'
+import { EventContext } from '../../../types/support'
 import {
     Proposal,
     ProposalStatus,
@@ -10,33 +10,14 @@ import {
     ReferendumThresholdType,
     StatusHistoryItem,
 } from '../../../model'
-import { DemocracyReferendumInfoOfStorage } from '../../../types/storage'
-import * as v1055 from '../../../types/v1055'
-import * as v9111 from '../../../types/v9111'
 import { proposalGroupManager, proposalManager } from '../../../managers'
+import { storage } from '../../../storage'
 
 type Threshold = 'SuperMajorityApprove' | 'SuperMajorityAgainst' | 'SimpleMajority'
 
 interface ReferendumEventData {
     index: number
     threshold: Threshold
-}
-
-type FinishedReferendumData = {
-    approved: boolean
-    end: number
-}
-
-type OngoingReferendumData = {
-    end: number
-    hash: Uint8Array
-    threshold: Threshold
-    delay: number
-}
-
-interface ReferendumStorageData {
-    status: 'Finished' | 'Ongoing'
-    info: FinishedReferendumData | OngoingReferendumData
 }
 
 function fixThreshold(ctx: EventHandlerContext) {
@@ -69,86 +50,12 @@ function getEventData(ctx: EventContext): ReferendumEventData {
     }
 }
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
-async function getStorageData(ctx: StorageContext, index: number): Promise<ReferendumStorageData | undefined> {
-    const storage = new DemocracyReferendumInfoOfStorage(ctx)
-    if (storage.isV1020) {
-        const storageData = await storage.getAsV1020(index)
-        if (!storageData) return undefined
-
-        const { proposalHash: hash, end, delay, threshold } = storageData
-        return {
-            status: 'Ongoing',
-            info: {
-                hash,
-                end,
-                delay,
-                threshold: threshold.__kind,
-            },
-        }
-    } else if (storage.isV1055) {
-        const storageData = await storage.getAsV1055(index)
-        if (!storageData) return undefined
-
-        const { __kind: status } = storageData
-        if (status === 'Ongoing') {
-            const { proposalHash: hash, end, delay, threshold } = (storageData as v1055.ReferendumInfo_Ongoing).value
-            return {
-                status,
-                info: {
-                    hash,
-                    end,
-                    delay,
-                    threshold: threshold.__kind,
-                },
-            }
-        } else {
-            const { end, approved } = (storageData as v1055.ReferendumInfo_Finished).value
-            return {
-                status,
-                info: {
-                    end,
-                    approved,
-                },
-            }
-        }
-    } else if (storage.isV9111) {
-        const storageData = await storage.getAsV9111(index)
-        if (!storageData) return undefined
-
-        const { __kind: status } = storageData
-        if (status === 'Ongoing') {
-            const { proposalHash: hash, end, delay, threshold } = (storageData as v9111.ReferendumInfo_Ongoing).value
-            return {
-                status,
-                info: {
-                    hash,
-                    end,
-                    delay,
-                    threshold: threshold.__kind,
-                },
-            }
-        } else {
-            const { end, approved } = storageData as v9111.ReferendumInfo_Finished
-            return {
-                status,
-                info: {
-                    end,
-                    approved,
-                },
-            }
-        }
-    } else {
-        throw new UnknownVersionError(storage.constructor.name)
-    }
-}
-
 export async function handleStarted(ctx: EventHandlerContext) {
     fixThreshold(ctx)
 
     const { index, threshold } = getEventData(ctx)
 
-    const storageData = await getStorageData(ctx, index)
+    const storageData = await storage.democracy.getReferendumInfoOf(ctx, index)
     if (!storageData) {
         console.warn(new StorageNotExists(ProposalType.Referendum, index, ctx.block.height))
         return
@@ -159,7 +66,7 @@ export async function handleStarted(ctx: EventHandlerContext) {
         return
     }
 
-    const { hash } = storageData.info as OngoingReferendumData
+    const { hash } = storageData
     const hexHash = toHex(hash)
 
     const group = await proposalGroupManager.get(ctx, hexHash, ProposalType.Preimage)

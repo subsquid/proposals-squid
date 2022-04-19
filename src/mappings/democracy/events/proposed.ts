@@ -1,22 +1,16 @@
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { DemocracyProposedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
-import { DemocracyPublicPropsStorage } from '../../../types/storage'
-import { EventContext, StorageContext } from '../../../types/support'
+import { EventContext } from '../../../types/support'
 import { Proposal, ProposalStatus, ProposalType, StatusHistoryItem } from '../../../model'
 import { proposalGroupManager, proposalManager } from '../../../managers'
 import { encodeId } from '../../../common/tools'
 import config from '../../../config'
+import { storage } from '../../../storage'
 
 interface DemocracyProposalEventData {
     index: number
     deposit: bigint
-}
-
-interface DemocracyProposalStorageData {
-    index: number
-    hash: Uint8Array
-    proposer: Uint8Array
 }
 
 function getEventData(ctx: EventContext): DemocracyProposalEventData {
@@ -38,31 +32,10 @@ function getEventData(ctx: EventContext): DemocracyProposalEventData {
     }
 }
 
-async function getStorageData(ctx: StorageContext): Promise<DemocracyProposalStorageData[] | undefined> {
-    const storage = new DemocracyPublicPropsStorage(ctx)
-    if (storage.isV1020) {
-        return undefined
-    } else if (storage.isV1022) {
-        const storageData = await storage.getAsV1022()
-        if (!storageData) return undefined
-
-        return storageData.map((proposal): DemocracyProposalStorageData => {
-            const [index, hash, proposer] = proposal
-            return {
-                index,
-                hash,
-                proposer,
-            }
-        })
-    } else {
-        throw new UnknownVersionError(storage.constructor.name)
-    }
-}
-
 export async function handleProposed(ctx: EventHandlerContext) {
     const { index, deposit } = getEventData(ctx)
 
-    const storageData = await getStorageData(ctx)
+    const storageData = await storage.democracy.getProposals(ctx)
     if (!storageData) {
         console.warn(`Storage doesn't exist for democracy proposals at block ${ctx.block.height}`)
         return
