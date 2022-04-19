@@ -38,16 +38,7 @@ export class ProposalManager extends Manager<Proposal> {
     }
 
     async getLast(ctx: EventHandlerContext | BlockHandlerContext, type: ProposalType): Promise<Proposal | undefined> {
-        return await ctx.store.findOne(
-            Proposal,
-            { type },
-            {
-                cache: true,
-                order: {
-                    createdAt: 'DESC',
-                },
-            }
-        )
+        return await ctx.store.findOne(Proposal, { type }, { order: { createdAt: 'DESC' } })
     }
 
     async updateStatus(
