@@ -66,9 +66,6 @@ processor.addEventHandler('bounties.BountyClaimed', modules.bounties.events.hand
 processor.addEventHandler('bounties.BountyCanceled', modules.bounties.events.handleCanceled)
 processor.addEventHandler('bounties.BountyExtended', modules.bounties.events.handleExtended)
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-// processor.addEventHandler('balances.Transfer', async () => {})
-
-// processor.addPostHook(handleChainState)
+processor.addPostHook(handleChainState)
 
 processor.run()

@@ -1,8 +1,6 @@
 import { ApiPromise, WsProvider } from '@polkadot/api'
 import { ApiDecoration, ApiOptions } from '@polkadot/api/types'
-import { u128, u32, Vec } from '@polkadot/types'
-import { Hash, AccountId32 } from '@polkadot/types/interfaces'
-import * as ss58 from '@subsquid/ss58'
+import { Hash } from '@polkadot/types/interfaces'
 import config from '../config'
 
 export class SubstrateApi {
@@ -22,29 +20,6 @@ export class SubstrateApi {
             await this.connect(options)
         })
     }
-
-    // public async getCouncilMembers(hash: Hash | Uint8Array | string): Promise<Vec<AccountId32> | undefined> {
-    //     const apiAt = await this.apiAt(hash)
-    //     return (await apiAt?.query.council.members()) as unknown as Vec<AccountId32>
-    // }
-
-    // public async getCouncilProposalsCount(hash: Hash | Uint8Array | string): Promise<number> {
-    //     const apiAt = await this.apiAt(hash)
-    //     const count = (await apiAt?.query.council.proposalCount?.()) as u32 | undefined
-    //     return count?.toNumber() || 0
-    // }
-
-    // public async getDemocracyProposalsCount(hash: Hash | Uint8Array | string): Promise<number> {
-    //     const apiAt = await this.apiAt(hash)
-    //     const count = (await apiAt?.query.democracy.publicPropCount?.()) as u32 | undefined
-    //     return count?.toNumber() || 0
-    // }
-
-    // public async getTotalIssuance(hash: Hash | Uint8Array | string): Promise<bigint> {
-    //     const apiAt = await this.apiAt(hash)
-    //     const count = (await apiAt?.query.balances.totalIssuance?.()) as u128 | undefined
-    //     return count?.toBigInt() || 0n
-    // }
 
     public async getHoldersCount(hash: Hash | Uint8Array | string): Promise<number> {
         const apiAt = await this.apiAt(hash)

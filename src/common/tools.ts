@@ -1,7 +1,6 @@
 import * as ss58 from '@subsquid/ss58'
 import { toHex } from '@subsquid/substrate-processor'
 import config from '../config'
-import isBigInt from 'is-bigint'
 
 export function encodeId(id: Uint8Array, prefix: string | number): string | undefined {
     try {

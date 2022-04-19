@@ -8,7 +8,7 @@ export default {
         chain: 'wss://kusama.api.onfinality.io/public-ws',
     },
     typesBundle: 'kusama',
-    batchSize: 5,
+    batchSize: 500,
     blockRange: {
         from: 0,
     },
