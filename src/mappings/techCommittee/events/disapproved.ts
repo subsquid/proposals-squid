@@ -7,10 +7,10 @@ import { TechnicalCommitteeDisapprovedEvent } from '../../../types/events'
 
 function getEventData(ctx: EventContext): Uint8Array {
     const event = new TechnicalCommitteeDisapprovedEvent(ctx)
-    if (event.isV1020) {
-        return event.asV1020
-    } else if (event.isV9130) {
-        return event.asV9130.proposalHash
+    if (event.isV0) {
+        return event.asV0
+    } else if (event.isV9140) {
+        return event.asV9140.proposalHash
     } else {
         throw new UnknownVersionError(event.constructor.name)
     }
@@ -25,6 +25,6 @@ export async function handleDisapproved(ctx: EventHandlerContext) {
         isEnded: true,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.TechCommitteeProposal, hexHash, ctx.block.height))
+        new MissingProposalRecord(ProposalType.TechCommitteeProposal, hexHash, ctx.block.height)
     }
 }

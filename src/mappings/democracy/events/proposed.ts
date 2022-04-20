@@ -15,14 +15,14 @@ interface DemocracyProposalEventData {
 
 function getEventData(ctx: EventContext): DemocracyProposalEventData {
     const event = new DemocracyProposedEvent(ctx)
-    if (event.isV1020) {
-        const [index, deposit] = event.asV1020
+    if (event.isV0) {
+        const [index, deposit] = event.asV0
         return {
             index,
             deposit,
         }
-    } else if (event.isV9130) {
-        const { proposalIndex: index, deposit } = event.asV9130
+    } else if (event.isV9140) {
+        const { proposalIndex: index, deposit } = event.asV9140
         return {
             index,
             deposit,
@@ -43,7 +43,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const proposalData = storageData.find((prop) => prop.index === index)
     if (!proposalData) {
-        (new StorageNotExists(ProposalType.DemocracyProposal, index, ctx.block.height))
+        new StorageNotExists(ProposalType.DemocracyProposal, index, ctx.block.height)
         return
     }
     const { hash, proposer } = proposalData

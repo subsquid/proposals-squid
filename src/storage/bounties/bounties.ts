@@ -13,8 +13,8 @@ async function getBountyStorageData(ctx: StorageContext, index: number): Promise
     const storage = new BountiesBountiesStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV9111) {
-        return await storage.getAsV9111(index)
+    if (storage.isV9110) {
+        return await storage.getAsV9110(index)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
@@ -24,8 +24,8 @@ async function getTreasuryStorageData(ctx: StorageContext, index: number): Promi
     const storage = new TreasuryBountiesStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV2025) {
-        return await storage.getAsV2025(index)
+    if (storage.isV25) {
+        return await storage.getAsV25(index)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }

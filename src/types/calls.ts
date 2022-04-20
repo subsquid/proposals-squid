@@ -1,38 +1,11 @@
 import assert from 'assert'
 import {CallContext, Result, deprecateLatest} from './support'
-import * as v1055 from './v1055'
-import * as v9111 from './v9111'
+import * as v0 from './v0'
+import * as v9110 from './v9110'
 
 export class DemocracyVoteCall {
   constructor(private ctx: CallContext) {
     assert(this.ctx.extrinsic.name === 'democracy.vote')
-  }
-
-  /**
-   *  Vote in a referendum. If `vote.is_aye()`, the vote is to enact the proposal;
-   *  otherwise it is a vote to keep the status quo.
-   * 
-   *  # <weight>
-   *  - O(1).
-   *  - One DB change, one DB entry.
-   *  # </weight>
-   */
-  get isV1020(): boolean {
-    return this.ctx._chain.getCallHash('democracy.vote') === '3a01fd8d5e95145a311b99cf21decce5be8578650f311f3a6091395407f5efe9'
-  }
-
-  /**
-   *  Vote in a referendum. If `vote.is_aye()`, the vote is to enact the proposal;
-   *  otherwise it is a vote to keep the status quo.
-   * 
-   *  # <weight>
-   *  - O(1).
-   *  - One DB change, one DB entry.
-   *  # </weight>
-   */
-  get asV1020(): {refIndex: number, vote: number} {
-    assert(this.isV1020)
-    return this.ctx._chain.decodeCall(this.ctx.extrinsic)
   }
 
   /**
@@ -45,11 +18,17 @@ export class DemocracyVoteCall {
    *  - `vote`: The vote configuration.
    * 
    *  # <weight>
-   *  - `O(1)`.
-   *  - One DB change, one DB entry.
+   *  - Complexity: `O(R)` where R is the number of referendums the voter has voted on.
+   *    weight is charged as if maximum votes.
+   *  - Db reads: `ReferendumInfoOf`, `VotingOf`, `balances locks`
+   *  - Db writes: `ReferendumInfoOf`, `VotingOf`, `balances locks`
+   *  --------------------
+   *  - Base Weight:
+   *      - Vote New: 49.24 + .333 * R µs
+   *      - Vote Existing: 49.94 + .343 * R µs
    *  # </weight>
    */
-  get isV1055(): boolean {
+  get isV0(): boolean {
     return this.ctx._chain.getCallHash('democracy.vote') === '6cdb35b5ffcb74405cdf222b0cc0bf7ad7025d59f676bea6712d77bcc9aff1db'
   }
 
@@ -63,12 +42,18 @@ export class DemocracyVoteCall {
    *  - `vote`: The vote configuration.
    * 
    *  # <weight>
-   *  - `O(1)`.
-   *  - One DB change, one DB entry.
+   *  - Complexity: `O(R)` where R is the number of referendums the voter has voted on.
+   *    weight is charged as if maximum votes.
+   *  - Db reads: `ReferendumInfoOf`, `VotingOf`, `balances locks`
+   *  - Db writes: `ReferendumInfoOf`, `VotingOf`, `balances locks`
+   *  --------------------
+   *  - Base Weight:
+   *      - Vote New: 49.24 + .333 * R µs
+   *      - Vote Existing: 49.94 + .343 * R µs
    *  # </weight>
    */
-  get asV1055(): {refIndex: number, vote: v1055.AccountVote} {
-    assert(this.isV1055)
+  get asV0(): {refIndex: number, vote: v0.AccountVote} {
+    assert(this.isV0)
     return this.ctx._chain.decodeCall(this.ctx.extrinsic)
   }
 
@@ -83,7 +68,7 @@ export class DemocracyVoteCall {
    * 
    * Weight: `O(R)` where R is the number of referendums the voter has voted on.
    */
-  get isV9111(): boolean {
+  get isV9110(): boolean {
     return this.ctx._chain.getCallHash('democracy.vote') === '3936a4cb49f77280bd94142d4ec458afcf5cb8a5e5b0d602b1b1530928021e28'
   }
 
@@ -98,18 +83,18 @@ export class DemocracyVoteCall {
    * 
    * Weight: `O(R)` where R is the number of referendums the voter has voted on.
    */
-  get asV9111(): {refIndex: number, vote: v9111.AccountVote} {
-    assert(this.isV9111)
+  get asV9110(): {refIndex: number, vote: v9110.AccountVote} {
+    assert(this.isV9110)
     return this.ctx._chain.decodeCall(this.ctx.extrinsic)
   }
 
   get isLatest(): boolean {
     deprecateLatest()
-    return this.isV9111
+    return this.isV9110
   }
 
-  get asLatest(): {refIndex: number, vote: v9111.AccountVote} {
+  get asLatest(): {refIndex: number, vote: v9110.AccountVote} {
     deprecateLatest()
-    return this.asV9111
+    return this.asV9110
   }
 }

@@ -14,8 +14,8 @@ interface BountyEventData {
 
 function getTreasuryEventData(ctx: EventContext): BountyEventData {
     const event = new TreasuryBountyAwardedEvent(ctx)
-    if (event.isV2025) {
-        const [index, beneficiary] = event.asV2025
+    if (event.isV25) {
+        const [index, beneficiary] = event.asV25
         return {
             index,
             beneficiary,
@@ -27,14 +27,14 @@ function getTreasuryEventData(ctx: EventContext): BountyEventData {
 
 function getBountyEventData(ctx: EventContext): BountyEventData {
     const event = new BountiesBountyAwardedEvent(ctx)
-    if (event.isV2028) {
-        const [index, beneficiary] = event.asV2028
+    if (event.isV28) {
+        const [index, beneficiary] = event.asV28
         return {
             index,
             beneficiary,
         }
-    } else if (event.isV9130) {
-        const { index, beneficiary } = event.asV9130
+    } else if (event.isV9140) {
+        const { index, beneficiary } = event.asV9140
         return {
             index,
             beneficiary,
@@ -53,7 +53,7 @@ export async function handleAwarded(ctx: EventHandlerContext) {
         isEnded: true,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height))
+        new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height)
         return
     }
 

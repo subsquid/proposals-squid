@@ -7,16 +7,12 @@ import { TechnicalCommitteeExecutedEvent } from '../../../types/events'
 
 function getEventData(ctx: EventContext): Uint8Array {
     const event = new TechnicalCommitteeExecutedEvent(ctx)
-    if (event.isV1020) {
-        return event.asV1020[0]
-    } else if (event.isV2005) {
-        return event.asV2005[0]
-    } else if (event.isV9111) {
-        return event.asV9111[0]
-    } else if (event.isV9130) {
-        return event.asV9130.proposalHash
-    } else if (event.isV9160) {
-        return event.asV9160.proposalHash
+    if (event.isV0) {
+        return event.asV0[0]
+    } else if (event.isV9110) {
+        return event.asV9110[0]
+    } else if (event.isV9140) {
+        return event.asV9140.proposalHash
     } else if (event.isV9170) {
         return event.asV9170.proposalHash
     } else {
@@ -32,6 +28,6 @@ export async function handleExecuted(ctx: EventHandlerContext) {
         status: ProposalStatus.Executed,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.TechCommitteeProposal, hexHash, ctx.block.height))
+        new MissingProposalRecord(ProposalType.TechCommitteeProposal, hexHash, ctx.block.height)
     }
 }

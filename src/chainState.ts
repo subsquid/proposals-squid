@@ -87,8 +87,8 @@ async function getCouncilMembers(ctx: StorageContext) {
     const storage = new CouncilMembersStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV9111) {
-        return await storage.getAsV9111()
+    if (storage.isV9110) {
+        return await storage.getAsV9110()
     }
 
     throw new UnknownVersionError(storage.constructor.name)
@@ -98,8 +98,8 @@ async function getCouncilProposalsCount(ctx: StorageContext) {
     const storage = new CouncilProposalCountStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV9111) {
-        return await storage.getAsV9111()
+    if (storage.isV9110) {
+        return await storage.getAsV9110()
     }
 
     throw new UnknownVersionError(storage.constructor.name)
@@ -109,8 +109,8 @@ async function getDemocracyProposalsCount(ctx: StorageContext) {
     const storage = new DemocracyPublicPropCountStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV1020) {
-        return await storage.getAsV1020()
+    if (storage.isV0) {
+        return await storage.getAsV0()
     }
 
     throw new UnknownVersionError(storage.constructor.name)
@@ -120,8 +120,8 @@ async function getTotalIssuance(ctx: StorageContext) {
     const storage = new BalancesTotalIssuanceStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV1020) {
-        return await storage.getAsV1020()
+    if (storage.isV0) {
+        return await storage.getAsV0()
     }
 
     throw new UnknownVersionError(storage.constructor.name)
@@ -130,8 +130,8 @@ async function getTotalIssuance(ctx: StorageContext) {
 // function getHoldersCount(ctx: EventHandlerContext) {
 //     const storage = new BalancesTotalIssuanceStorage(ctx)
 
-//     if (storage.isV1020) {
-//         return await storage.getAsV1020()
+//     if (storage.isV0) {
+//         return await storage.getasV0()
 //     }
 
 //     return undefined

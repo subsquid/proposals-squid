@@ -1,163 +1,158 @@
 import type {Result} from './support'
 
-export type Type_176 = Type_176_System | Type_176_Babe | Type_176_Timestamp | Type_176_Indices | Type_176_Balances | Type_176_Authorship | Type_176_Staking | Type_176_Offences | Type_176_Session | Type_176_FinalityTracker | Type_176_Grandpa | Type_176_ImOnline | Type_176_AuthorityDiscovery | Type_176_Democracy | Type_176_Council | Type_176_TechnicalCommittee | Type_176_ElectionsPhragmen | Type_176_TechnicalMembership | Type_176_Treasury | Type_176_Claims | Type_176_Parachains | Type_176_Attestations | Type_176_Slots | Type_176_Registrar | Type_176_Utility | Type_176_Identity | Type_176_Society | Type_176_Recovery | Type_176_Vesting | Type_176_Scheduler | Type_176_Proxy | Type_176_Multisig
+export type Type_181 = Type_181_System | Type_181_Scheduler | Type_181_Babe | Type_181_Timestamp | Type_181_Indices | Type_181_Balances | Type_181_Authorship | Type_181_Staking | Type_181_Offences | Type_181_Session | Type_181_FinalityTracker | Type_181_Grandpa | Type_181_ImOnline | Type_181_AuthorityDiscovery | Type_181_Democracy | Type_181_Council | Type_181_TechnicalCommittee | Type_181_ElectionsPhragmen | Type_181_TechnicalMembership | Type_181_Treasury | Type_181_Parachains | Type_181_Attestations | Type_181_Slots | Type_181_Registrar | Type_181_Claims | Type_181_Vesting | Type_181_Utility | Type_181_Sudo | Type_181_Identity | Type_181_Proxy | Type_181_Multisig
 
-export interface Type_176_System {
+export interface Type_181_System {
   __kind: 'System'
   value: SystemCall
 }
 
-export interface Type_176_Babe {
-  __kind: 'Babe'
-  value: BabeCall
-}
-
-export interface Type_176_Timestamp {
-  __kind: 'Timestamp'
-  value: TimestampCall
-}
-
-export interface Type_176_Indices {
-  __kind: 'Indices'
-  value: IndicesCall
-}
-
-export interface Type_176_Balances {
-  __kind: 'Balances'
-  value: BalancesCall
-}
-
-export interface Type_176_Authorship {
-  __kind: 'Authorship'
-  value: AuthorshipCall
-}
-
-export interface Type_176_Staking {
-  __kind: 'Staking'
-  value: StakingCall
-}
-
-export interface Type_176_Offences {
-  __kind: 'Offences'
-  value: OffencesCall
-}
-
-export interface Type_176_Session {
-  __kind: 'Session'
-  value: SessionCall
-}
-
-export interface Type_176_FinalityTracker {
-  __kind: 'FinalityTracker'
-  value: FinalityTrackerCall
-}
-
-export interface Type_176_Grandpa {
-  __kind: 'Grandpa'
-  value: GrandpaCall
-}
-
-export interface Type_176_ImOnline {
-  __kind: 'ImOnline'
-  value: ImOnlineCall
-}
-
-export interface Type_176_AuthorityDiscovery {
-  __kind: 'AuthorityDiscovery'
-  value: AuthorityDiscoveryCall
-}
-
-export interface Type_176_Democracy {
-  __kind: 'Democracy'
-  value: DemocracyCall
-}
-
-export interface Type_176_Council {
-  __kind: 'Council'
-  value: CouncilCall
-}
-
-export interface Type_176_TechnicalCommittee {
-  __kind: 'TechnicalCommittee'
-  value: TechnicalCommitteeCall
-}
-
-export interface Type_176_ElectionsPhragmen {
-  __kind: 'ElectionsPhragmen'
-  value: ElectionsPhragmenCall
-}
-
-export interface Type_176_TechnicalMembership {
-  __kind: 'TechnicalMembership'
-  value: TechnicalMembershipCall
-}
-
-export interface Type_176_Treasury {
-  __kind: 'Treasury'
-  value: TreasuryCall
-}
-
-export interface Type_176_Claims {
-  __kind: 'Claims'
-  value: ClaimsCall
-}
-
-export interface Type_176_Parachains {
-  __kind: 'Parachains'
-  value: ParachainsCall
-}
-
-export interface Type_176_Attestations {
-  __kind: 'Attestations'
-  value: AttestationsCall
-}
-
-export interface Type_176_Slots {
-  __kind: 'Slots'
-  value: SlotsCall
-}
-
-export interface Type_176_Registrar {
-  __kind: 'Registrar'
-  value: RegistrarCall
-}
-
-export interface Type_176_Utility {
-  __kind: 'Utility'
-  value: UtilityCall
-}
-
-export interface Type_176_Identity {
-  __kind: 'Identity'
-  value: IdentityCall
-}
-
-export interface Type_176_Society {
-  __kind: 'Society'
-  value: SocietyCall
-}
-
-export interface Type_176_Recovery {
-  __kind: 'Recovery'
-  value: RecoveryCall
-}
-
-export interface Type_176_Vesting {
-  __kind: 'Vesting'
-  value: VestingCall
-}
-
-export interface Type_176_Scheduler {
+export interface Type_181_Scheduler {
   __kind: 'Scheduler'
   value: SchedulerCall
 }
 
-export interface Type_176_Proxy {
+export interface Type_181_Babe {
+  __kind: 'Babe'
+  value: BabeCall
+}
+
+export interface Type_181_Timestamp {
+  __kind: 'Timestamp'
+  value: TimestampCall
+}
+
+export interface Type_181_Indices {
+  __kind: 'Indices'
+  value: IndicesCall
+}
+
+export interface Type_181_Balances {
+  __kind: 'Balances'
+  value: BalancesCall
+}
+
+export interface Type_181_Authorship {
+  __kind: 'Authorship'
+  value: AuthorshipCall
+}
+
+export interface Type_181_Staking {
+  __kind: 'Staking'
+  value: StakingCall
+}
+
+export interface Type_181_Offences {
+  __kind: 'Offences'
+  value: OffencesCall
+}
+
+export interface Type_181_Session {
+  __kind: 'Session'
+  value: SessionCall
+}
+
+export interface Type_181_FinalityTracker {
+  __kind: 'FinalityTracker'
+  value: FinalityTrackerCall
+}
+
+export interface Type_181_Grandpa {
+  __kind: 'Grandpa'
+  value: GrandpaCall
+}
+
+export interface Type_181_ImOnline {
+  __kind: 'ImOnline'
+  value: ImOnlineCall
+}
+
+export interface Type_181_AuthorityDiscovery {
+  __kind: 'AuthorityDiscovery'
+  value: AuthorityDiscoveryCall
+}
+
+export interface Type_181_Democracy {
+  __kind: 'Democracy'
+  value: DemocracyCall
+}
+
+export interface Type_181_Council {
+  __kind: 'Council'
+  value: CouncilCall
+}
+
+export interface Type_181_TechnicalCommittee {
+  __kind: 'TechnicalCommittee'
+  value: TechnicalCommitteeCall
+}
+
+export interface Type_181_ElectionsPhragmen {
+  __kind: 'ElectionsPhragmen'
+  value: ElectionsPhragmenCall
+}
+
+export interface Type_181_TechnicalMembership {
+  __kind: 'TechnicalMembership'
+  value: TechnicalMembershipCall
+}
+
+export interface Type_181_Treasury {
+  __kind: 'Treasury'
+  value: TreasuryCall
+}
+
+export interface Type_181_Parachains {
+  __kind: 'Parachains'
+  value: ParachainsCall
+}
+
+export interface Type_181_Attestations {
+  __kind: 'Attestations'
+  value: AttestationsCall
+}
+
+export interface Type_181_Slots {
+  __kind: 'Slots'
+  value: SlotsCall
+}
+
+export interface Type_181_Registrar {
+  __kind: 'Registrar'
+  value: RegistrarCall
+}
+
+export interface Type_181_Claims {
+  __kind: 'Claims'
+  value: ClaimsCall
+}
+
+export interface Type_181_Vesting {
+  __kind: 'Vesting'
+  value: VestingCall
+}
+
+export interface Type_181_Utility {
+  __kind: 'Utility'
+  value: UtilityCall
+}
+
+export interface Type_181_Sudo {
+  __kind: 'Sudo'
+  value: SudoCall
+}
+
+export interface Type_181_Identity {
+  __kind: 'Identity'
+  value: IdentityCall
+}
+
+export interface Type_181_Proxy {
   __kind: 'Proxy'
   value: ProxyCall
 }
 
-export interface Type_176_Multisig {
+export interface Type_181_Multisig {
   __kind: 'Multisig'
   value: MultisigCall
 }
@@ -313,6 +308,84 @@ export interface SystemCall_kill_prefix {
  */
 export interface SystemCall_suicide {
   __kind: 'suicide'
+}
+
+export type SchedulerCall = SchedulerCall_schedule | SchedulerCall_cancel | SchedulerCall_schedule_named | SchedulerCall_cancel_named
+
+/**
+ *  Anonymously schedule a task.
+ * 
+ *  # <weight>
+ *  - S = Number of already scheduled calls
+ *  - Base Weight: 22.29 + .126 * S µs
+ *  - DB Weight:
+ *      - Read: Agenda
+ *      - Write: Agenda
+ *  - Will use base weight of 25 which should be good for up to 30 scheduled calls
+ *  # </weight>
+ */
+export interface SchedulerCall_schedule {
+  __kind: 'schedule'
+  when: number
+  maybePeriodic: ([number, number] | undefined)
+  priority: number
+  call: Type_21
+}
+
+/**
+ *  Cancel an anonymously scheduled task.
+ * 
+ *  # <weight>
+ *  - S = Number of already scheduled calls
+ *  - Base Weight: 22.15 + 2.869 * S µs
+ *  - DB Weight:
+ *      - Read: Agenda
+ *      - Write: Agenda, Lookup
+ *  - Will use base weight of 100 which should be good for up to 30 scheduled calls
+ *  # </weight>
+ */
+export interface SchedulerCall_cancel {
+  __kind: 'cancel'
+  when: number
+  index: number
+}
+
+/**
+ *  Schedule a named task.
+ * 
+ *  # <weight>
+ *  - S = Number of already scheduled calls
+ *  - Base Weight: 29.6 + .159 * S µs
+ *  - DB Weight:
+ *      - Read: Agenda, Lookup
+ *      - Write: Agenda, Lookup
+ *  - Will use base weight of 35 which should be good for more than 30 scheduled calls
+ *  # </weight>
+ */
+export interface SchedulerCall_schedule_named {
+  __kind: 'schedule_named'
+  id: Uint8Array
+  when: number
+  maybePeriodic: ([number, number] | undefined)
+  priority: number
+  call: Type_21
+}
+
+/**
+ *  Cancel a named scheduled task.
+ * 
+ *  # <weight>
+ *  - S = Number of already scheduled calls
+ *  - Base Weight: 24.91 + 2.907 * S µs
+ *  - DB Weight:
+ *      - Read: Agenda, Lookup
+ *      - Write: Agenda, Lookup
+ *  - Will use base weight of 100 which should be good for up to 30 scheduled calls
+ *  # </weight>
+ */
+export interface SchedulerCall_cancel_named {
+  __kind: 'cancel_named'
+  id: Uint8Array
 }
 
 export type BabeCall = never
@@ -591,7 +664,7 @@ export interface AuthorshipCall_set_uncles {
   newUncles: Header[]
 }
 
-export type StakingCall = StakingCall_bond | StakingCall_bond_extra | StakingCall_unbond | StakingCall_withdraw_unbonded | StakingCall_validate | StakingCall_nominate | StakingCall_chill | StakingCall_set_payee | StakingCall_set_controller | StakingCall_set_validator_count | StakingCall_increase_validator_count | StakingCall_scale_validator_count | StakingCall_force_no_eras | StakingCall_force_new_era | StakingCall_set_invulnerables | StakingCall_force_unstake | StakingCall_force_new_era_always | StakingCall_cancel_deferred_slash | StakingCall_payout_stakers | StakingCall_rebond | StakingCall_set_history_depth | StakingCall_reap_stash | StakingCall_submit_election_solution | StakingCall_submit_election_solution_unsigned
+export type StakingCall = StakingCall_bond | StakingCall_bond_extra | StakingCall_unbond | StakingCall_withdraw_unbonded | StakingCall_validate | StakingCall_nominate | StakingCall_chill | StakingCall_set_payee | StakingCall_set_controller | StakingCall_set_validator_count | StakingCall_force_no_eras | StakingCall_force_new_era | StakingCall_set_invulnerables | StakingCall_force_unstake | StakingCall_force_new_era_always | StakingCall_cancel_deferred_slash | StakingCall_payout_stakers | StakingCall_rebond | StakingCall_set_history_depth | StakingCall_reap_stash | StakingCall_submit_election_solution | StakingCall_submit_election_solution_unsigned
 
 /**
  *  Take the origin account as a stash and lock up `value` of its balance. `controller` will
@@ -861,36 +934,6 @@ export interface StakingCall_set_controller {
 export interface StakingCall_set_validator_count {
   __kind: 'set_validator_count'
   new: number
-}
-
-/**
- *  Increments the ideal number of validators.
- * 
- *  The dispatch origin must be Root.
- * 
- *  # <weight>
- *  Base Weight: 1.717 µs
- *  Read/Write: Validator Count
- *  # </weight>
- */
-export interface StakingCall_increase_validator_count {
-  __kind: 'increase_validator_count'
-  additional: number
-}
-
-/**
- *  Scale up the ideal number of validators by a factor.
- * 
- *  The dispatch origin must be Root.
- * 
- *  # <weight>
- *  Base Weight: 1.717 µs
- *  Read/Write: Validator Count
- *  # </weight>
- */
-export interface StakingCall_scale_validator_count {
-  __kind: 'scale_validator_count'
-  factor: number
 }
 
 /**
@@ -1829,7 +1872,7 @@ export interface CouncilCall_set_members {
  */
 export interface CouncilCall_execute {
   __kind: 'execute'
-  proposal: Type_176
+  proposal: Type_181
   lengthBound: number
 }
 
@@ -1865,7 +1908,7 @@ export interface CouncilCall_execute {
 export interface CouncilCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_176
+  proposal: Type_181
   lengthBound: number
 }
 
@@ -1997,7 +2040,7 @@ export interface TechnicalCommitteeCall_set_members {
  */
 export interface TechnicalCommitteeCall_execute {
   __kind: 'execute'
-  proposal: Type_176
+  proposal: Type_181
   lengthBound: number
 }
 
@@ -2033,7 +2076,7 @@ export interface TechnicalCommitteeCall_execute {
 export interface TechnicalCommitteeCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_176
+  proposal: Type_181
   lengthBound: number
 }
 
@@ -2565,171 +2608,6 @@ export interface TreasuryCall_close_tip {
   hash: Uint8Array
 }
 
-export type ClaimsCall = ClaimsCall_claim | ClaimsCall_mint_claim | ClaimsCall_claim_attest | ClaimsCall_attest | ClaimsCall_move_claim
-
-/**
- *  Make a claim to collect your DOTs.
- * 
- *  The dispatch origin for this call must be _None_.
- * 
- *  Unsigned Validation:
- *  A call to claim is deemed valid if the signature provided matches
- *  the expected signed message of:
- * 
- *  > Ethereum Signed Message:
- *  > (configured prefix string)(address)
- * 
- *  and `address` matches the `dest` account.
- * 
- *  Parameters:
- *  - `dest`: The destination account to payout the claim.
- *  - `ethereum_signature`: The signature of an ethereum signed message
- *     matching the format described above.
- * 
- *  <weight>
- *  The weight of this call is invariant over the input parameters.
- *  - One `eth_recover` operation which involves a keccak hash and a
- *    ecdsa recover.
- *  - Three storage reads to check if a claim exists for the user, to
- *    get the current pot size, to see if there exists a vesting schedule.
- *  - Up to one storage write for adding a new vesting schedule.
- *  - One `deposit_creating` Currency call.
- *  - One storage write to update the total.
- *  - Two storage removals for vesting and claims information.
- *  - One deposit event.
- * 
- *  Total Complexity: O(1)
- *  ----------------------------
- *  Base Weight: 269.7 µs
- *  DB Weight:
- *  - Read: Signing, Claims, Total, Claims Vesting, Vesting Vesting, Balance Lock, Account
- *  - Write: Vesting Vesting, Account, Balance Lock, Total, Claim, Claims Vesting, Signing
- *  Validate Unsigned: +188.7 µs
- *  </weight>
- */
-export interface ClaimsCall_claim {
-  __kind: 'claim'
-  dest: Uint8Array
-  ethereumSignature: Uint8Array
-}
-
-/**
- *  Mint a new claim to collect DOTs.
- * 
- *  The dispatch origin for this call must be _Root_.
- * 
- *  Parameters:
- *  - `who`: The Ethereum address allowed to collect this claim.
- *  - `value`: The number of DOTs that will be claimed.
- *  - `vesting_schedule`: An optional vesting schedule for these DOTs.
- * 
- *  <weight>
- *  The weight of this call is invariant over the input parameters.
- *  - One storage mutate to increase the total claims available.
- *  - One storage write to add a new claim.
- *  - Up to one storage write to add a new vesting schedule.
- * 
- *  Total Complexity: O(1)
- *  ---------------------
- *  Base Weight: 10.46 µs
- *  DB Weight:
- *  - Reads: Total
- *  - Writes: Total, Claims
- *  - Maybe Write: Vesting, Statement
- *  </weight>
- */
-export interface ClaimsCall_mint_claim {
-  __kind: 'mint_claim'
-  who: Uint8Array
-  value: bigint
-  vestingSchedule: ([bigint, bigint, number] | undefined)
-  statement: (StatementKind | undefined)
-}
-
-/**
- *  Make a claim to collect your DOTs by signing a statement.
- * 
- *  The dispatch origin for this call must be _None_.
- * 
- *  Unsigned Validation:
- *  A call to `claim_attest` is deemed valid if the signature provided matches
- *  the expected signed message of:
- * 
- *  > Ethereum Signed Message:
- *  > (configured prefix string)(address)(statement)
- * 
- *  and `address` matches the `dest` account; the `statement` must match that which is
- *  expected according to your purchase arrangement.
- * 
- *  Parameters:
- *  - `dest`: The destination account to payout the claim.
- *  - `ethereum_signature`: The signature of an ethereum signed message
- *     matching the format described above.
- *  - `statement`: The identity of the statement which is being attested to in the signature.
- * 
- *  <weight>
- *  The weight of this call is invariant over the input parameters.
- *  - One `eth_recover` operation which involves a keccak hash and a
- *    ecdsa recover.
- *  - Four storage reads to check if a claim exists for the user, to
- *    get the current pot size, to see if there exists a vesting schedule, to get the
- *    required statement.
- *  - Up to one storage write for adding a new vesting schedule.
- *  - One `deposit_creating` Currency call.
- *  - One storage write to update the total.
- *  - Two storage removals for vesting and claims information.
- *  - One deposit event.
- * 
- *  Total Complexity: O(1)
- *  ----------------------------
- *  Base Weight: 270.2 µs
- *  DB Weight:
- *  - Read: Signing, Claims, Total, Claims Vesting, Vesting Vesting, Balance Lock, Account
- *  - Write: Vesting Vesting, Account, Balance Lock, Total, Claim, Claims Vesting, Signing
- *  Validate Unsigned: +190.1 µs
- *  </weight>
- */
-export interface ClaimsCall_claim_attest {
-  __kind: 'claim_attest'
-  dest: Uint8Array
-  ethereumSignature: Uint8Array
-  statement: Uint8Array
-}
-
-/**
- *  Attest to a statement, needed to finalize the claims process.
- * 
- *  WARNING: Insecure unless your chain includes `PrevalidateAttests` as a `SignedExtension`.
- * 
- *  Unsigned Validation:
- *  A call to attest is deemed valid if the sender has a `Preclaim` registered
- *  and provides a `statement` which is expected for the account.
- * 
- *  Parameters:
- *  - `statement`: The identity of the statement which is being attested to in the signature.
- * 
- *  <weight>
- *  Total Complexity: O(1)
- *  ----------------------------
- *  Base Weight: 93.3 µs
- *  DB Weight:
- *  - Read: Preclaims, Signing, Claims, Total, Claims Vesting, Vesting Vesting, Balance Lock, Account
- *  - Write: Vesting Vesting, Account, Balance Lock, Total, Claim, Claims Vesting, Signing, Preclaims
- *  Validate PreValidateAttests: +8.631 µs
- *  </weight>
- */
-export interface ClaimsCall_attest {
-  __kind: 'attest'
-  statement: Uint8Array
-}
-
-export interface ClaimsCall_move_claim {
-  __kind: 'move_claim'
-  old: Uint8Array
-  new: Uint8Array
-  maybePreclaim: (Uint8Array | undefined)
-}
-
 export type ParachainsCall = ParachainsCall_set_heads | ParachainsCall_report_double_vote
 
 /**
@@ -2973,6 +2851,276 @@ export interface RegistrarCall_swap {
   other: number
 }
 
+export type ClaimsCall = ClaimsCall_claim | ClaimsCall_mint_claim | ClaimsCall_claim_attest | ClaimsCall_attest | ClaimsCall_move_claim
+
+/**
+ *  Make a claim to collect your DOTs.
+ * 
+ *  The dispatch origin for this call must be _None_.
+ * 
+ *  Unsigned Validation:
+ *  A call to claim is deemed valid if the signature provided matches
+ *  the expected signed message of:
+ * 
+ *  > Ethereum Signed Message:
+ *  > (configured prefix string)(address)
+ * 
+ *  and `address` matches the `dest` account.
+ * 
+ *  Parameters:
+ *  - `dest`: The destination account to payout the claim.
+ *  - `ethereum_signature`: The signature of an ethereum signed message
+ *     matching the format described above.
+ * 
+ *  <weight>
+ *  The weight of this call is invariant over the input parameters.
+ *  - One `eth_recover` operation which involves a keccak hash and a
+ *    ecdsa recover.
+ *  - Three storage reads to check if a claim exists for the user, to
+ *    get the current pot size, to see if there exists a vesting schedule.
+ *  - Up to one storage write for adding a new vesting schedule.
+ *  - One `deposit_creating` Currency call.
+ *  - One storage write to update the total.
+ *  - Two storage removals for vesting and claims information.
+ *  - One deposit event.
+ * 
+ *  Total Complexity: O(1)
+ *  ----------------------------
+ *  Base Weight: 269.7 µs
+ *  DB Weight:
+ *  - Read: Signing, Claims, Total, Claims Vesting, Vesting Vesting, Balance Lock, Account
+ *  - Write: Vesting Vesting, Account, Balance Lock, Total, Claim, Claims Vesting, Signing
+ *  Validate Unsigned: +188.7 µs
+ *  </weight>
+ */
+export interface ClaimsCall_claim {
+  __kind: 'claim'
+  dest: Uint8Array
+  ethereumSignature: Uint8Array
+}
+
+/**
+ *  Mint a new claim to collect DOTs.
+ * 
+ *  The dispatch origin for this call must be _Root_.
+ * 
+ *  Parameters:
+ *  - `who`: The Ethereum address allowed to collect this claim.
+ *  - `value`: The number of DOTs that will be claimed.
+ *  - `vesting_schedule`: An optional vesting schedule for these DOTs.
+ * 
+ *  <weight>
+ *  The weight of this call is invariant over the input parameters.
+ *  - One storage mutate to increase the total claims available.
+ *  - One storage write to add a new claim.
+ *  - Up to one storage write to add a new vesting schedule.
+ * 
+ *  Total Complexity: O(1)
+ *  ---------------------
+ *  Base Weight: 10.46 µs
+ *  DB Weight:
+ *  - Reads: Total
+ *  - Writes: Total, Claims
+ *  - Maybe Write: Vesting, Statement
+ *  </weight>
+ */
+export interface ClaimsCall_mint_claim {
+  __kind: 'mint_claim'
+  who: Uint8Array
+  value: bigint
+  vestingSchedule: ([bigint, bigint, number] | undefined)
+  statement: (StatementKind | undefined)
+}
+
+/**
+ *  Make a claim to collect your DOTs by signing a statement.
+ * 
+ *  The dispatch origin for this call must be _None_.
+ * 
+ *  Unsigned Validation:
+ *  A call to `claim_attest` is deemed valid if the signature provided matches
+ *  the expected signed message of:
+ * 
+ *  > Ethereum Signed Message:
+ *  > (configured prefix string)(address)(statement)
+ * 
+ *  and `address` matches the `dest` account; the `statement` must match that which is
+ *  expected according to your purchase arrangement.
+ * 
+ *  Parameters:
+ *  - `dest`: The destination account to payout the claim.
+ *  - `ethereum_signature`: The signature of an ethereum signed message
+ *     matching the format described above.
+ *  - `statement`: The identity of the statement which is being attested to in the signature.
+ * 
+ *  <weight>
+ *  The weight of this call is invariant over the input parameters.
+ *  - One `eth_recover` operation which involves a keccak hash and a
+ *    ecdsa recover.
+ *  - Four storage reads to check if a claim exists for the user, to
+ *    get the current pot size, to see if there exists a vesting schedule, to get the
+ *    required statement.
+ *  - Up to one storage write for adding a new vesting schedule.
+ *  - One `deposit_creating` Currency call.
+ *  - One storage write to update the total.
+ *  - Two storage removals for vesting and claims information.
+ *  - One deposit event.
+ * 
+ *  Total Complexity: O(1)
+ *  ----------------------------
+ *  Base Weight: 270.2 µs
+ *  DB Weight:
+ *  - Read: Signing, Claims, Total, Claims Vesting, Vesting Vesting, Balance Lock, Account
+ *  - Write: Vesting Vesting, Account, Balance Lock, Total, Claim, Claims Vesting, Signing
+ *  Validate Unsigned: +190.1 µs
+ *  </weight>
+ */
+export interface ClaimsCall_claim_attest {
+  __kind: 'claim_attest'
+  dest: Uint8Array
+  ethereumSignature: Uint8Array
+  statement: Uint8Array
+}
+
+/**
+ *  Attest to a statement, needed to finalize the claims process.
+ * 
+ *  WARNING: Insecure unless your chain includes `PrevalidateAttests` as a `SignedExtension`.
+ * 
+ *  Unsigned Validation:
+ *  A call to attest is deemed valid if the sender has a `Preclaim` registered
+ *  and provides a `statement` which is expected for the account.
+ * 
+ *  Parameters:
+ *  - `statement`: The identity of the statement which is being attested to in the signature.
+ * 
+ *  <weight>
+ *  Total Complexity: O(1)
+ *  ----------------------------
+ *  Base Weight: 93.3 µs
+ *  DB Weight:
+ *  - Read: Preclaims, Signing, Claims, Total, Claims Vesting, Vesting Vesting, Balance Lock, Account
+ *  - Write: Vesting Vesting, Account, Balance Lock, Total, Claim, Claims Vesting, Signing, Preclaims
+ *  Validate PreValidateAttests: +8.631 µs
+ *  </weight>
+ */
+export interface ClaimsCall_attest {
+  __kind: 'attest'
+  statement: Uint8Array
+}
+
+export interface ClaimsCall_move_claim {
+  __kind: 'move_claim'
+  old: Uint8Array
+  new: Uint8Array
+  maybePreclaim: (Uint8Array | undefined)
+}
+
+export type VestingCall = VestingCall_vest | VestingCall_vest_other | VestingCall_vested_transfer | VestingCall_force_vested_transfer
+
+/**
+ *  Unlock any vested funds of the sender account.
+ * 
+ *  The dispatch origin for this call must be _Signed_ and the sender must have funds still
+ *  locked under this module.
+ * 
+ *  Emits either `VestingCompleted` or `VestingUpdated`.
+ * 
+ *  # <weight>
+ *  - `O(1)`.
+ *  - DbWeight: 2 Reads, 2 Writes
+ *      - Reads: Vesting Storage, Balances Locks, [Sender Account]
+ *      - Writes: Vesting Storage, Balances Locks, [Sender Account]
+ *  - Benchmark:
+ *      - Unlocked: 48.76 + .048 * l µs (min square analysis)
+ *      - Locked: 44.43 + .284 * l µs (min square analysis)
+ *  - Using 50 µs fixed. Assuming less than 50 locks on any user, else we may want factor in number of locks.
+ *  # </weight>
+ */
+export interface VestingCall_vest {
+  __kind: 'vest'
+}
+
+/**
+ *  Unlock any vested funds of a `target` account.
+ * 
+ *  The dispatch origin for this call must be _Signed_.
+ * 
+ *  - `target`: The account whose vested funds should be unlocked. Must have funds still
+ *  locked under this module.
+ * 
+ *  Emits either `VestingCompleted` or `VestingUpdated`.
+ * 
+ *  # <weight>
+ *  - `O(1)`.
+ *  - DbWeight: 3 Reads, 3 Writes
+ *      - Reads: Vesting Storage, Balances Locks, Target Account
+ *      - Writes: Vesting Storage, Balances Locks, Target Account
+ *  - Benchmark:
+ *      - Unlocked: 44.3 + .294 * l µs (min square analysis)
+ *      - Locked: 48.16 + .103 * l µs (min square analysis)
+ *  - Using 50 µs fixed. Assuming less than 50 locks on any user, else we may want factor in number of locks.
+ *  # </weight>
+ */
+export interface VestingCall_vest_other {
+  __kind: 'vest_other'
+  target: Uint8Array
+}
+
+/**
+ *  Create a vested transfer.
+ * 
+ *  The dispatch origin for this call must be _Signed_.
+ * 
+ *  - `target`: The account that should be transferred the vested funds.
+ *  - `amount`: The amount of funds to transfer and will be vested.
+ *  - `schedule`: The vesting schedule attached to the transfer.
+ * 
+ *  Emits `VestingCreated`.
+ * 
+ *  # <weight>
+ *  - `O(1)`.
+ *  - DbWeight: 3 Reads, 3 Writes
+ *      - Reads: Vesting Storage, Balances Locks, Target Account, [Sender Account]
+ *      - Writes: Vesting Storage, Balances Locks, Target Account, [Sender Account]
+ *  - Benchmark: 100.3 + .365 * l µs (min square analysis)
+ *  - Using 100 µs fixed. Assuming less than 50 locks on any user, else we may want factor in number of locks.
+ *  # </weight>
+ */
+export interface VestingCall_vested_transfer {
+  __kind: 'vested_transfer'
+  target: Uint8Array
+  schedule: VestingInfo
+}
+
+/**
+ *  Force a vested transfer.
+ * 
+ *  The dispatch origin for this call must be _Root_.
+ * 
+ *  - `source`: The account whose funds should be transferred.
+ *  - `target`: The account that should be transferred the vested funds.
+ *  - `amount`: The amount of funds to transfer and will be vested.
+ *  - `schedule`: The vesting schedule attached to the transfer.
+ * 
+ *  Emits `VestingCreated`.
+ * 
+ *  # <weight>
+ *  - `O(1)`.
+ *  - DbWeight: 4 Reads, 4 Writes
+ *      - Reads: Vesting Storage, Balances Locks, Target Account, Source Account
+ *      - Writes: Vesting Storage, Balances Locks, Target Account, Source Account
+ *  - Benchmark: 100.3 + .365 * l µs (min square analysis)
+ *  - Using 100 µs fixed. Assuming less than 50 locks on any user, else we may want factor in number of locks.
+ *  # </weight>
+ */
+export interface VestingCall_force_vested_transfer {
+  __kind: 'force_vested_transfer'
+  source: Uint8Array
+  target: Uint8Array
+  schedule: VestingInfo
+}
+
 export type UtilityCall = UtilityCall_batch | UtilityCall_as_sub | UtilityCall_as_limited_sub
 
 /**
@@ -2999,7 +3147,7 @@ export type UtilityCall = UtilityCall_batch | UtilityCall_as_sub | UtilityCall_a
  */
 export interface UtilityCall_batch {
   __kind: 'batch'
-  calls: Type_177[]
+  calls: Type_21[]
 }
 
 /**
@@ -3019,7 +3167,7 @@ export interface UtilityCall_batch {
 export interface UtilityCall_as_sub {
   __kind: 'as_sub'
   index: number
-  call: Type_177
+  call: Type_21
 }
 
 /**
@@ -3042,7 +3190,79 @@ export interface UtilityCall_as_sub {
 export interface UtilityCall_as_limited_sub {
   __kind: 'as_limited_sub'
   index: number
-  call: Type_177
+  call: Type_21
+}
+
+export type SudoCall = SudoCall_sudo | SudoCall_sudo_unchecked_weight | SudoCall_set_key | SudoCall_sudo_as
+
+/**
+ *  Authenticates the sudo key and dispatches a function call with `Root` origin.
+ * 
+ *  The dispatch origin for this call must be _Signed_.
+ * 
+ *  # <weight>
+ *  - O(1).
+ *  - Limited storage reads.
+ *  - One DB write (event).
+ *  - Weight of derivative `call` execution + 10,000.
+ *  # </weight>
+ */
+export interface SudoCall_sudo {
+  __kind: 'sudo'
+  call: Type_21
+}
+
+/**
+ *  Authenticates the sudo key and dispatches a function call with `Root` origin.
+ *  This function does not check the weight of the call, and instead allows the
+ *  Sudo user to specify the weight of the call.
+ * 
+ *  The dispatch origin for this call must be _Signed_.
+ * 
+ *  # <weight>
+ *  - O(1).
+ *  - The weight of this call is defined by the caller.
+ *  # </weight>
+ */
+export interface SudoCall_sudo_unchecked_weight {
+  __kind: 'sudo_unchecked_weight'
+  call: Type_21
+  weight: bigint
+}
+
+/**
+ *  Authenticates the current sudo key and sets the given AccountId (`new`) as the new sudo key.
+ * 
+ *  The dispatch origin for this call must be _Signed_.
+ * 
+ *  # <weight>
+ *  - O(1).
+ *  - Limited storage reads.
+ *  - One DB change.
+ *  # </weight>
+ */
+export interface SudoCall_set_key {
+  __kind: 'set_key'
+  new: Uint8Array
+}
+
+/**
+ *  Authenticates the sudo key and dispatches a function call with `Signed` origin from
+ *  a given account.
+ * 
+ *  The dispatch origin for this call must be _Signed_.
+ * 
+ *  # <weight>
+ *  - O(1).
+ *  - Limited storage reads.
+ *  - One DB write (event).
+ *  - Weight of derivative `call` execution + 10,000.
+ *  # </weight>
+ */
+export interface SudoCall_sudo_as {
+  __kind: 'sudo_as'
+  who: Uint8Array
+  call: Type_21
 }
 
 export type IdentityCall = IdentityCall_add_registrar | IdentityCall_set_identity | IdentityCall_set_subs | IdentityCall_clear_identity | IdentityCall_request_judgement | IdentityCall_cancel_request | IdentityCall_set_fee | IdentityCall_set_account_id | IdentityCall_set_fields | IdentityCall_provide_judgement | IdentityCall_kill_identity
@@ -3317,802 +3537,6 @@ export interface IdentityCall_kill_identity {
   target: Uint8Array
 }
 
-export type SocietyCall = SocietyCall_bid | SocietyCall_unbid | SocietyCall_vouch | SocietyCall_unvouch | SocietyCall_vote | SocietyCall_defender_vote | SocietyCall_payout | SocietyCall_found | SocietyCall_unfound | SocietyCall_judge_suspended_member | SocietyCall_judge_suspended_candidate | SocietyCall_set_max_members
-
-/**
- *  A user outside of the society can make a bid for entry.
- * 
- *  Payment: `CandidateDeposit` will be reserved for making a bid. It is returned
- *  when the bid becomes a member, or if the bid calls `unbid`.
- * 
- *  The dispatch origin for this call must be _Signed_.
- * 
- *  Parameters:
- *  - `value`: A one time payment the bid would like to receive when joining the society.
- * 
- *  # <weight>
- *  Key: B (len of bids), C (len of candidates), M (len of members), X (balance reserve)
- *  - Storage Reads:
- *  	- One storage read to check for suspended candidate. O(1)
- *  	- One storage read to check for suspended member. O(1)
- *  	- One storage read to retrieve all current bids. O(B)
- *  	- One storage read to retrieve all current candidates. O(C)
- *  	- One storage read to retrieve all members. O(M)
- *  - Storage Writes:
- *  	- One storage mutate to add a new bid to the vector O(B) (TODO: possible optimization w/ read)
- *  	- Up to one storage removal if bid.len() > MAX_BID_COUNT. O(1)
- *  - Notable Computation:
- *  	- O(B + C + log M) search to check user is not already a part of society.
- *  	- O(log B) search to insert the new bid sorted.
- *  - External Module Operations:
- *  	- One balance reserve operation. O(X)
- *  	- Up to one balance unreserve operation if bids.len() > MAX_BID_COUNT.
- *  - Events:
- *  	- One event for new bid.
- *  	- Up to one event for AutoUnbid if bid.len() > MAX_BID_COUNT.
- * 
- *  Total Complexity: O(M + B + C + logM + logB + X)
- *  # </weight>
- */
-export interface SocietyCall_bid {
-  __kind: 'bid'
-  value: bigint
-}
-
-/**
- *  A bidder can remove their bid for entry into society.
- *  By doing so, they will have their candidate deposit returned or
- *  they will unvouch their voucher.
- * 
- *  Payment: The bid deposit is unreserved if the user made a bid.
- * 
- *  The dispatch origin for this call must be _Signed_ and a bidder.
- * 
- *  Parameters:
- *  - `pos`: Position in the `Bids` vector of the bid who wants to unbid.
- * 
- *  # <weight>
- *  Key: B (len of bids), X (balance unreserve)
- *  - One storage read and write to retrieve and update the bids. O(B)
- *  - Either one unreserve balance action O(X) or one vouching storage removal. O(1)
- *  - One event.
- * 
- *  Total Complexity: O(B + X)
- *  # </weight>
- */
-export interface SocietyCall_unbid {
-  __kind: 'unbid'
-  pos: number
-}
-
-/**
- *  As a member, vouch for someone to join society by placing a bid on their behalf.
- * 
- *  There is no deposit required to vouch for a new bid, but a member can only vouch for
- *  one bid at a time. If the bid becomes a suspended candidate and ultimately rejected by
- *  the suspension judgement origin, the member will be banned from vouching again.
- * 
- *  As a vouching member, you can claim a tip if the candidate is accepted. This tip will
- *  be paid as a portion of the reward the member will receive for joining the society.
- * 
- *  The dispatch origin for this call must be _Signed_ and a member.
- * 
- *  Parameters:
- *  - `who`: The user who you would like to vouch for.
- *  - `value`: The total reward to be paid between you and the candidate if they become
- *  a member in the society.
- *  - `tip`: Your cut of the total `value` payout when the candidate is inducted into
- *  the society. Tips larger than `value` will be saturated upon payout.
- * 
- *  # <weight>
- *  Key: B (len of bids), C (len of candidates), M (len of members)
- *  - Storage Reads:
- *  	- One storage read to retrieve all members. O(M)
- *  	- One storage read to check member is not already vouching. O(1)
- *  	- One storage read to check for suspended candidate. O(1)
- *  	- One storage read to check for suspended member. O(1)
- *  	- One storage read to retrieve all current bids. O(B)
- *  	- One storage read to retrieve all current candidates. O(C)
- *  - Storage Writes:
- *  	- One storage write to insert vouching status to the member. O(1)
- *  	- One storage mutate to add a new bid to the vector O(B) (TODO: possible optimization w/ read)
- *  	- Up to one storage removal if bid.len() > MAX_BID_COUNT. O(1)
- *  - Notable Computation:
- *  	- O(log M) search to check sender is a member.
- *  	- O(B + C + log M) search to check user is not already a part of society.
- *  	- O(log B) search to insert the new bid sorted.
- *  - External Module Operations:
- *  	- One balance reserve operation. O(X)
- *  	- Up to one balance unreserve operation if bids.len() > MAX_BID_COUNT.
- *  - Events:
- *  	- One event for vouch.
- *  	- Up to one event for AutoUnbid if bid.len() > MAX_BID_COUNT.
- * 
- *  Total Complexity: O(M + B + C + logM + logB + X)
- *  # </weight>
- */
-export interface SocietyCall_vouch {
-  __kind: 'vouch'
-  who: Uint8Array
-  value: bigint
-  tip: bigint
-}
-
-/**
- *  As a vouching member, unvouch a bid. This only works while vouched user is
- *  only a bidder (and not a candidate).
- * 
- *  The dispatch origin for this call must be _Signed_ and a vouching member.
- * 
- *  Parameters:
- *  - `pos`: Position in the `Bids` vector of the bid who should be unvouched.
- * 
- *  # <weight>
- *  Key: B (len of bids)
- *  - One storage read O(1) to check the signer is a vouching member.
- *  - One storage mutate to retrieve and update the bids. O(B)
- *  - One vouching storage removal. O(1)
- *  - One event.
- * 
- *  Total Complexity: O(B)
- *  # </weight>
- */
-export interface SocietyCall_unvouch {
-  __kind: 'unvouch'
-  pos: number
-}
-
-/**
- *  As a member, vote on a candidate.
- * 
- *  The dispatch origin for this call must be _Signed_ and a member.
- * 
- *  Parameters:
- *  - `candidate`: The candidate that the member would like to bid on.
- *  - `approve`: A boolean which says if the candidate should be
- *               approved (`true`) or rejected (`false`).
- * 
- *  # <weight>
- *  Key: C (len of candidates), M (len of members)
- *  - One storage read O(M) and O(log M) search to check user is a member.
- *  - One account lookup.
- *  - One storage read O(C) and O(C) search to check that user is a candidate.
- *  - One storage write to add vote to votes. O(1)
- *  - One event.
- * 
- *  Total Complexity: O(M + logM + C)
- *  # </weight>
- */
-export interface SocietyCall_vote {
-  __kind: 'vote'
-  candidate: Uint8Array
-  approve: boolean
-}
-
-/**
- *  As a member, vote on the defender.
- * 
- *  The dispatch origin for this call must be _Signed_ and a member.
- * 
- *  Parameters:
- *  - `approve`: A boolean which says if the candidate should be
- *  approved (`true`) or rejected (`false`).
- * 
- *  # <weight>
- *  - Key: M (len of members)
- *  - One storage read O(M) and O(log M) search to check user is a member.
- *  - One storage write to add vote to votes. O(1)
- *  - One event.
- * 
- *  Total Complexity: O(M + logM)
- *  # </weight>
- */
-export interface SocietyCall_defender_vote {
-  __kind: 'defender_vote'
-  approve: boolean
-}
-
-/**
- *  Transfer the first matured payout for the sender and remove it from the records.
- * 
- *  NOTE: This extrinsic needs to be called multiple times to claim multiple matured payouts.
- * 
- *  Payment: The member will receive a payment equal to their first matured
- *  payout to their free balance.
- * 
- *  The dispatch origin for this call must be _Signed_ and a member with
- *  payouts remaining.
- * 
- *  # <weight>
- *  Key: M (len of members), P (number of payouts for a particular member)
- *  - One storage read O(M) and O(log M) search to check signer is a member.
- *  - One storage read O(P) to get all payouts for a member.
- *  - One storage read O(1) to get the current block number.
- *  - One currency transfer call. O(X)
- *  - One storage write or removal to update the member's payouts. O(P)
- * 
- *  Total Complexity: O(M + logM + P + X)
- *  # </weight>
- */
-export interface SocietyCall_payout {
-  __kind: 'payout'
-}
-
-/**
- *  Found the society.
- * 
- *  This is done as a discrete action in order to allow for the
- *  module to be included into a running chain and can only be done once.
- * 
- *  The dispatch origin for this call must be from the _FounderSetOrigin_.
- * 
- *  Parameters:
- *  - `founder` - The first member and head of the newly founded society.
- *  - `max_members` - The initial max number of members for the society.
- *  - `rules` - The rules of this society concerning membership.
- * 
- *  # <weight>
- *  - Two storage mutates to set `Head` and `Founder`. O(1)
- *  - One storage write to add the first member to society. O(1)
- *  - One event.
- * 
- *  Total Complexity: O(1)
- *  # </weight>
- */
-export interface SocietyCall_found {
-  __kind: 'found'
-  founder: Uint8Array
-  maxMembers: number
-  rules: Uint8Array
-}
-
-/**
- *  Annul the founding of the society.
- * 
- *  The dispatch origin for this call must be Signed, and the signing account must be both
- *  the `Founder` and the `Head`. This implies that it may only be done when there is one
- *  member.
- * 
- *  # <weight>
- *  - Two storage reads O(1).
- *  - Four storage removals O(1).
- *  - One event.
- * 
- *  Total Complexity: O(1)
- *  # </weight>
- */
-export interface SocietyCall_unfound {
-  __kind: 'unfound'
-}
-
-/**
- *  Allow suspension judgement origin to make judgement on a suspended member.
- * 
- *  If a suspended member is forgiven, we simply add them back as a member, not affecting
- *  any of the existing storage items for that member.
- * 
- *  If a suspended member is rejected, remove all associated storage items, including
- *  their payouts, and remove any vouched bids they currently have.
- * 
- *  The dispatch origin for this call must be from the _SuspensionJudgementOrigin_.
- * 
- *  Parameters:
- *  - `who` - The suspended member to be judged.
- *  - `forgive` - A boolean representing whether the suspension judgement origin
- *                forgives (`true`) or rejects (`false`) a suspended member.
- * 
- *  # <weight>
- *  Key: B (len of bids), M (len of members)
- *  - One storage read to check `who` is a suspended member. O(1)
- *  - Up to one storage write O(M) with O(log M) binary search to add a member back to society.
- *  - Up to 3 storage removals O(1) to clean up a removed member.
- *  - Up to one storage write O(B) with O(B) search to remove vouched bid from bids.
- *  - Up to one additional event if unvouch takes place.
- *  - One storage removal. O(1)
- *  - One event for the judgement.
- * 
- *  Total Complexity: O(M + logM + B)
- *  # </weight>
- */
-export interface SocietyCall_judge_suspended_member {
-  __kind: 'judge_suspended_member'
-  who: Uint8Array
-  forgive: boolean
-}
-
-/**
- *  Allow suspended judgement origin to make judgement on a suspended candidate.
- * 
- *  If the judgement is `Approve`, we add them to society as a member with the appropriate
- *  payment for joining society.
- * 
- *  If the judgement is `Reject`, we either slash the deposit of the bid, giving it back
- *  to the society treasury, or we ban the voucher from vouching again.
- * 
- *  If the judgement is `Rebid`, we put the candidate back in the bid pool and let them go
- *  through the induction process again.
- * 
- *  The dispatch origin for this call must be from the _SuspensionJudgementOrigin_.
- * 
- *  Parameters:
- *  - `who` - The suspended candidate to be judged.
- *  - `judgement` - `Approve`, `Reject`, or `Rebid`.
- * 
- *  # <weight>
- *  Key: B (len of bids), M (len of members), X (balance action)
- *  - One storage read to check `who` is a suspended candidate.
- *  - One storage removal of the suspended candidate.
- *  - Approve Logic
- *  	- One storage read to get the available pot to pay users with. O(1)
- *  	- One storage write to update the available pot. O(1)
- *  	- One storage read to get the current block number. O(1)
- *  	- One storage read to get all members. O(M)
- *  	- Up to one unreserve currency action.
- *  	- Up to two new storage writes to payouts.
- *  	- Up to one storage write with O(log M) binary search to add a member to society.
- *  - Reject Logic
- *  	- Up to one repatriate reserved currency action. O(X)
- *  	- Up to one storage write to ban the vouching member from vouching again.
- *  - Rebid Logic
- *  	- Storage mutate with O(log B) binary search to place the user back into bids.
- *  - Up to one additional event if unvouch takes place.
- *  - One storage removal.
- *  - One event for the judgement.
- * 
- *  Total Complexity: O(M + logM + B + X)
- *  # </weight>
- */
-export interface SocietyCall_judge_suspended_candidate {
-  __kind: 'judge_suspended_candidate'
-  who: Uint8Array
-  judgement: SocietyJudgement
-}
-
-/**
- *  Allows root origin to change the maximum number of members in society.
- *  Max membership count must be greater than 1.
- * 
- *  The dispatch origin for this call must be from _ROOT_.
- * 
- *  Parameters:
- *  - `max` - The maximum number of members for the society.
- * 
- *  # <weight>
- *  - One storage write to update the max. O(1)
- *  - One event.
- * 
- *  Total Complexity: O(1)
- *  # </weight>
- */
-export interface SocietyCall_set_max_members {
-  __kind: 'set_max_members'
-  max: number
-}
-
-export type RecoveryCall = RecoveryCall_as_recovered | RecoveryCall_set_recovered | RecoveryCall_create_recovery | RecoveryCall_initiate_recovery | RecoveryCall_vouch_recovery | RecoveryCall_claim_recovery | RecoveryCall_close_recovery | RecoveryCall_remove_recovery | RecoveryCall_cancel_recovered
-
-/**
- *  Send a call through a recovered account.
- * 
- *  The dispatch origin for this call must be _Signed_ and registered to
- *  be able to make calls on behalf of the recovered account.
- * 
- *  Parameters:
- *  - `account`: The recovered account you want to make a call on-behalf-of.
- *  - `call`: The call you want to make with the recovered account.
- * 
- *  # <weight>
- *  - The weight of the `call` + 10,000.
- *  - One storage lookup to check account is recovered by `who`. O(1)
- *  # </weight>
- */
-export interface RecoveryCall_as_recovered {
-  __kind: 'as_recovered'
-  account: Uint8Array
-  call: Type_177
-}
-
-/**
- *  Allow ROOT to bypass the recovery process and set an a rescuer account
- *  for a lost account directly.
- * 
- *  The dispatch origin for this call must be _ROOT_.
- * 
- *  Parameters:
- *  - `lost`: The "lost account" to be recovered.
- *  - `rescuer`: The "rescuer account" which can call as the lost account.
- * 
- *  # <weight>
- *  - One storage write O(1)
- *  - One event
- *  # </weight>
- */
-export interface RecoveryCall_set_recovered {
-  __kind: 'set_recovered'
-  lost: Uint8Array
-  rescuer: Uint8Array
-}
-
-/**
- *  Create a recovery configuration for your account. This makes your account recoverable.
- * 
- *  Payment: `ConfigDepositBase` + `FriendDepositFactor` * #_of_friends balance
- *  will be reserved for storing the recovery configuration. This deposit is returned
- *  in full when the user calls `remove_recovery`.
- * 
- *  The dispatch origin for this call must be _Signed_.
- * 
- *  Parameters:
- *  - `friends`: A list of friends you trust to vouch for recovery attempts.
- *    Should be ordered and contain no duplicate values.
- *  - `threshold`: The number of friends that must vouch for a recovery attempt
- *    before the account can be recovered. Should be less than or equal to
- *    the length of the list of friends.
- *  - `delay_period`: The number of blocks after a recovery attempt is initialized
- *    that needs to pass before the account can be recovered.
- * 
- *  # <weight>
- *  - Key: F (len of friends)
- *  - One storage read to check that account is not already recoverable. O(1).
- *  - A check that the friends list is sorted and unique. O(F)
- *  - One currency reserve operation. O(X)
- *  - One storage write. O(1). Codec O(F).
- *  - One event.
- * 
- *  Total Complexity: O(F + X)
- *  # </weight>
- */
-export interface RecoveryCall_create_recovery {
-  __kind: 'create_recovery'
-  friends: Uint8Array[]
-  threshold: number
-  delayPeriod: number
-}
-
-/**
- *  Initiate the process for recovering a recoverable account.
- * 
- *  Payment: `RecoveryDeposit` balance will be reserved for initiating the
- *  recovery process. This deposit will always be repatriated to the account
- *  trying to be recovered. See `close_recovery`.
- * 
- *  The dispatch origin for this call must be _Signed_.
- * 
- *  Parameters:
- *  - `account`: The lost account that you want to recover. This account
- *    needs to be recoverable (i.e. have a recovery configuration).
- * 
- *  # <weight>
- *  - One storage read to check that account is recoverable. O(F)
- *  - One storage read to check that this recovery process hasn't already started. O(1)
- *  - One currency reserve operation. O(X)
- *  - One storage read to get the current block number. O(1)
- *  - One storage write. O(1).
- *  - One event.
- * 
- *  Total Complexity: O(F + X)
- *  # </weight>
- */
-export interface RecoveryCall_initiate_recovery {
-  __kind: 'initiate_recovery'
-  account: Uint8Array
-}
-
-/**
- *  Allow a "friend" of a recoverable account to vouch for an active recovery
- *  process for that account.
- * 
- *  The dispatch origin for this call must be _Signed_ and must be a "friend"
- *  for the recoverable account.
- * 
- *  Parameters:
- *  - `lost`: The lost account that you want to recover.
- *  - `rescuer`: The account trying to rescue the lost account that you
- *    want to vouch for.
- * 
- *  The combination of these two parameters must point to an active recovery
- *  process.
- * 
- *  # <weight>
- *  Key: F (len of friends in config), V (len of vouching friends)
- *  - One storage read to get the recovery configuration. O(1), Codec O(F)
- *  - One storage read to get the active recovery process. O(1), Codec O(V)
- *  - One binary search to confirm caller is a friend. O(logF)
- *  - One binary search to confirm caller has not already vouched. O(logV)
- *  - One storage write. O(1), Codec O(V).
- *  - One event.
- * 
- *  Total Complexity: O(F + logF + V + logV)
- *  # </weight>
- */
-export interface RecoveryCall_vouch_recovery {
-  __kind: 'vouch_recovery'
-  lost: Uint8Array
-  rescuer: Uint8Array
-}
-
-/**
- *  Allow a successful rescuer to claim their recovered account.
- * 
- *  The dispatch origin for this call must be _Signed_ and must be a "rescuer"
- *  who has successfully completed the account recovery process: collected
- *  `threshold` or more vouches, waited `delay_period` blocks since initiation.
- * 
- *  Parameters:
- *  - `account`: The lost account that you want to claim has been successfully
- *    recovered by you.
- * 
- *  # <weight>
- *  Key: F (len of friends in config), V (len of vouching friends)
- *  - One storage read to get the recovery configuration. O(1), Codec O(F)
- *  - One storage read to get the active recovery process. O(1), Codec O(V)
- *  - One storage read to get the current block number. O(1)
- *  - One storage write. O(1), Codec O(V).
- *  - One event.
- * 
- *  Total Complexity: O(F + V)
- *  # </weight>
- */
-export interface RecoveryCall_claim_recovery {
-  __kind: 'claim_recovery'
-  account: Uint8Array
-}
-
-/**
- *  As the controller of a recoverable account, close an active recovery
- *  process for your account.
- * 
- *  Payment: By calling this function, the recoverable account will receive
- *  the recovery deposit `RecoveryDeposit` placed by the rescuer.
- * 
- *  The dispatch origin for this call must be _Signed_ and must be a
- *  recoverable account with an active recovery process for it.
- * 
- *  Parameters:
- *  - `rescuer`: The account trying to rescue this recoverable account.
- * 
- *  # <weight>
- *  Key: V (len of vouching friends)
- *  - One storage read/remove to get the active recovery process. O(1), Codec O(V)
- *  - One balance call to repatriate reserved. O(X)
- *  - One event.
- * 
- *  Total Complexity: O(V + X)
- *  # </weight>
- */
-export interface RecoveryCall_close_recovery {
-  __kind: 'close_recovery'
-  rescuer: Uint8Array
-}
-
-/**
- *  Remove the recovery process for your account. Recovered accounts are still accessible.
- * 
- *  NOTE: The user must make sure to call `close_recovery` on all active
- *  recovery attempts before calling this function else it will fail.
- * 
- *  Payment: By calling this function the recoverable account will unreserve
- *  their recovery configuration deposit.
- *  (`ConfigDepositBase` + `FriendDepositFactor` * #_of_friends)
- * 
- *  The dispatch origin for this call must be _Signed_ and must be a
- *  recoverable account (i.e. has a recovery configuration).
- * 
- *  # <weight>
- *  Key: F (len of friends)
- *  - One storage read to get the prefix iterator for active recoveries. O(1)
- *  - One storage read/remove to get the recovery configuration. O(1), Codec O(F)
- *  - One balance call to unreserved. O(X)
- *  - One event.
- * 
- *  Total Complexity: O(F + X)
- *  # </weight>
- */
-export interface RecoveryCall_remove_recovery {
-  __kind: 'remove_recovery'
-}
-
-/**
- *  Cancel the ability to use `as_recovered` for `account`.
- * 
- *  The dispatch origin for this call must be _Signed_ and registered to
- *  be able to make calls on behalf of the recovered account.
- * 
- *  Parameters:
- *  - `account`: The recovered account you are able to call on-behalf-of.
- * 
- *  # <weight>
- *  - One storage mutation to check account is recovered by `who`. O(1)
- *  # </weight>
- */
-export interface RecoveryCall_cancel_recovered {
-  __kind: 'cancel_recovered'
-  account: Uint8Array
-}
-
-export type VestingCall = VestingCall_vest | VestingCall_vest_other | VestingCall_vested_transfer | VestingCall_force_vested_transfer
-
-/**
- *  Unlock any vested funds of the sender account.
- * 
- *  The dispatch origin for this call must be _Signed_ and the sender must have funds still
- *  locked under this module.
- * 
- *  Emits either `VestingCompleted` or `VestingUpdated`.
- * 
- *  # <weight>
- *  - `O(1)`.
- *  - DbWeight: 2 Reads, 2 Writes
- *      - Reads: Vesting Storage, Balances Locks, [Sender Account]
- *      - Writes: Vesting Storage, Balances Locks, [Sender Account]
- *  - Benchmark:
- *      - Unlocked: 48.76 + .048 * l µs (min square analysis)
- *      - Locked: 44.43 + .284 * l µs (min square analysis)
- *  - Using 50 µs fixed. Assuming less than 50 locks on any user, else we may want factor in number of locks.
- *  # </weight>
- */
-export interface VestingCall_vest {
-  __kind: 'vest'
-}
-
-/**
- *  Unlock any vested funds of a `target` account.
- * 
- *  The dispatch origin for this call must be _Signed_.
- * 
- *  - `target`: The account whose vested funds should be unlocked. Must have funds still
- *  locked under this module.
- * 
- *  Emits either `VestingCompleted` or `VestingUpdated`.
- * 
- *  # <weight>
- *  - `O(1)`.
- *  - DbWeight: 3 Reads, 3 Writes
- *      - Reads: Vesting Storage, Balances Locks, Target Account
- *      - Writes: Vesting Storage, Balances Locks, Target Account
- *  - Benchmark:
- *      - Unlocked: 44.3 + .294 * l µs (min square analysis)
- *      - Locked: 48.16 + .103 * l µs (min square analysis)
- *  - Using 50 µs fixed. Assuming less than 50 locks on any user, else we may want factor in number of locks.
- *  # </weight>
- */
-export interface VestingCall_vest_other {
-  __kind: 'vest_other'
-  target: Uint8Array
-}
-
-/**
- *  Create a vested transfer.
- * 
- *  The dispatch origin for this call must be _Signed_.
- * 
- *  - `target`: The account that should be transferred the vested funds.
- *  - `amount`: The amount of funds to transfer and will be vested.
- *  - `schedule`: The vesting schedule attached to the transfer.
- * 
- *  Emits `VestingCreated`.
- * 
- *  # <weight>
- *  - `O(1)`.
- *  - DbWeight: 3 Reads, 3 Writes
- *      - Reads: Vesting Storage, Balances Locks, Target Account, [Sender Account]
- *      - Writes: Vesting Storage, Balances Locks, Target Account, [Sender Account]
- *  - Benchmark: 100.3 + .365 * l µs (min square analysis)
- *  - Using 100 µs fixed. Assuming less than 50 locks on any user, else we may want factor in number of locks.
- *  # </weight>
- */
-export interface VestingCall_vested_transfer {
-  __kind: 'vested_transfer'
-  target: Uint8Array
-  schedule: VestingInfo
-}
-
-/**
- *  Force a vested transfer.
- * 
- *  The dispatch origin for this call must be _Root_.
- * 
- *  - `source`: The account whose funds should be transferred.
- *  - `target`: The account that should be transferred the vested funds.
- *  - `amount`: The amount of funds to transfer and will be vested.
- *  - `schedule`: The vesting schedule attached to the transfer.
- * 
- *  Emits `VestingCreated`.
- * 
- *  # <weight>
- *  - `O(1)`.
- *  - DbWeight: 4 Reads, 4 Writes
- *      - Reads: Vesting Storage, Balances Locks, Target Account, Source Account
- *      - Writes: Vesting Storage, Balances Locks, Target Account, Source Account
- *  - Benchmark: 100.3 + .365 * l µs (min square analysis)
- *  - Using 100 µs fixed. Assuming less than 50 locks on any user, else we may want factor in number of locks.
- *  # </weight>
- */
-export interface VestingCall_force_vested_transfer {
-  __kind: 'force_vested_transfer'
-  source: Uint8Array
-  target: Uint8Array
-  schedule: VestingInfo
-}
-
-export type SchedulerCall = SchedulerCall_schedule | SchedulerCall_cancel | SchedulerCall_schedule_named | SchedulerCall_cancel_named
-
-/**
- *  Anonymously schedule a task.
- * 
- *  # <weight>
- *  - S = Number of already scheduled calls
- *  - Base Weight: 22.29 + .126 * S µs
- *  - DB Weight:
- *      - Read: Agenda
- *      - Write: Agenda
- *  - Will use base weight of 25 which should be good for up to 30 scheduled calls
- *  # </weight>
- */
-export interface SchedulerCall_schedule {
-  __kind: 'schedule'
-  when: number
-  maybePeriodic: ([number, number] | undefined)
-  priority: number
-  call: Type_177
-}
-
-/**
- *  Cancel an anonymously scheduled task.
- * 
- *  # <weight>
- *  - S = Number of already scheduled calls
- *  - Base Weight: 22.15 + 2.869 * S µs
- *  - DB Weight:
- *      - Read: Agenda
- *      - Write: Agenda, Lookup
- *  - Will use base weight of 100 which should be good for up to 30 scheduled calls
- *  # </weight>
- */
-export interface SchedulerCall_cancel {
-  __kind: 'cancel'
-  when: number
-  index: number
-}
-
-/**
- *  Schedule a named task.
- * 
- *  # <weight>
- *  - S = Number of already scheduled calls
- *  - Base Weight: 29.6 + .159 * S µs
- *  - DB Weight:
- *      - Read: Agenda, Lookup
- *      - Write: Agenda, Lookup
- *  - Will use base weight of 35 which should be good for more than 30 scheduled calls
- *  # </weight>
- */
-export interface SchedulerCall_schedule_named {
-  __kind: 'schedule_named'
-  id: Uint8Array
-  when: number
-  maybePeriodic: ([number, number] | undefined)
-  priority: number
-  call: Type_177
-}
-
-/**
- *  Cancel a named scheduled task.
- * 
- *  # <weight>
- *  - S = Number of already scheduled calls
- *  - Base Weight: 24.91 + 2.907 * S µs
- *  - DB Weight:
- *      - Read: Agenda, Lookup
- *      - Write: Agenda, Lookup
- *  - Will use base weight of 100 which should be good for up to 30 scheduled calls
- *  # </weight>
- */
-export interface SchedulerCall_cancel_named {
-  __kind: 'cancel_named'
-  id: Uint8Array
-}
-
 export type ProxyCall = ProxyCall_proxy | ProxyCall_add_proxy | ProxyCall_remove_proxy | ProxyCall_remove_proxies | ProxyCall_anonymous | ProxyCall_kill_anonymous
 
 /**
@@ -4137,7 +3561,7 @@ export interface ProxyCall_proxy {
   __kind: 'proxy'
   real: Uint8Array
   forceProxyType: (ProxyType | undefined)
-  call: Type_177
+  call: Type_21
 }
 
 /**
@@ -4263,32 +3687,7 @@ export interface ProxyCall_kill_anonymous {
   extIndex: number
 }
 
-export type MultisigCall = MultisigCall_as_multi_threshold_1 | MultisigCall_as_multi | MultisigCall_approve_as_multi | MultisigCall_cancel_as_multi
-
-/**
- *  Immediately dispatch a multi-signature call using a single approval from the caller.
- * 
- *  The dispatch origin for this call must be _Signed_.
- * 
- *  - `other_signatories`: The accounts (other than the sender) who are part of the
- *  multi-signature, but do not participate in the approval process.
- *  - `call`: The call to be executed.
- * 
- *  Result is equivalent to the dispatched result.
- * 
- *  # <weight>
- *  O(Z + C) where Z is the length of the call and C its execution weight.
- *  -------------------------------
- *  - Base Weight: 33.72 + 0.002 * Z µs
- *  - DB Weight: None
- *  - Plus Call Weight
- *  # </weight>
- */
-export interface MultisigCall_as_multi_threshold_1 {
-  __kind: 'as_multi_threshold_1'
-  otherSignatories: Uint8Array[]
-  call: Type_177
-}
+export type MultisigCall = MultisigCall_as_multi | MultisigCall_approve_as_multi | MultisigCall_cancel_as_multi
 
 /**
  *  Register approval for a dispatch to be made from a deterministic composite account if
@@ -4333,13 +3732,12 @@ export interface MultisigCall_as_multi_threshold_1 {
  *    `DepositBase + threshold * DepositFactor`.
  *  -------------------------------
  *  - Base Weight:
- *      - Create:          41.89 + 0.118 * S + .002 * Z µs
- *      - Create w/ Store: 53.57 + 0.119 * S + .003 * Z µs
- *      - Approve:         31.39 + 0.136 * S + .002 * Z µs
- *      - Complete:        39.94 + 0.26  * S + .002 * Z µs
+ *      - Create: 46.55 + 0.089 * S µs
+ *      - Approve: 34.03 + .112 * S µs
+ *      - Complete: 40.36 + .225 * S µs
  *  - DB Weight:
- *      - Reads: Multisig Storage, [Caller Account], Calls (if `store_call`)
- *      - Writes: Multisig Storage, [Caller Account], Calls (if `store_call`)
+ *      - Reads: Multisig Storage, [Caller Account]
+ *      - Writes: Multisig Storage, [Caller Account]
  *  - Plus Call Weight
  *  # </weight>
  */
@@ -4348,9 +3746,7 @@ export interface MultisigCall_as_multi {
   threshold: number
   otherSignatories: Uint8Array[]
   maybeTimepoint: (Timepoint | undefined)
-  call: Uint8Array
-  storeCall: boolean
-  maxWeight: bigint
+  call: Type_21
 }
 
 /**
@@ -4400,7 +3796,6 @@ export interface MultisigCall_approve_as_multi {
   otherSignatories: Uint8Array[]
   maybeTimepoint: (Timepoint | undefined)
   callHash: Uint8Array
-  maxWeight: bigint
 }
 
 /**
@@ -4426,10 +3821,10 @@ export interface MultisigCall_approve_as_multi {
  *  - I/O: 1 read `O(S)`, one remove.
  *  - Storage: removes one item.
  *  ----------------------------------
- *  - Base Weight: 36.07 + 0.124 * S
+ *  - Base Weight: 37.6 + 0.084 * S
  *  - DB Weight:
- *      - Read: Multisig Storage, [Caller Account], Refund Account, Calls
- *      - Write: Multisig Storage, [Caller Account], Refund Account, Calls
+ *      - Read: Multisig Storage, [Caller Account]
+ *      - Write: Multisig Storage, [Caller Account]
  *  # </weight>
  */
 export interface MultisigCall_cancel_as_multi {
@@ -4443,6 +3838,163 @@ export interface MultisigCall_cancel_as_multi {
 export interface ChangesTrieConfiguration {
   digestInterval: number
   digestLevels: number
+}
+
+export type Type_21 = Type_21_System | Type_21_Scheduler | Type_21_Babe | Type_21_Timestamp | Type_21_Indices | Type_21_Balances | Type_21_Authorship | Type_21_Staking | Type_21_Offences | Type_21_Session | Type_21_FinalityTracker | Type_21_Grandpa | Type_21_ImOnline | Type_21_AuthorityDiscovery | Type_21_Democracy | Type_21_Council | Type_21_TechnicalCommittee | Type_21_ElectionsPhragmen | Type_21_TechnicalMembership | Type_21_Treasury | Type_21_Parachains | Type_21_Attestations | Type_21_Slots | Type_21_Registrar | Type_21_Claims | Type_21_Vesting | Type_21_Utility | Type_21_Sudo | Type_21_Identity | Type_21_Proxy | Type_21_Multisig
+
+export interface Type_21_System {
+  __kind: 'System'
+  value: SystemCall
+}
+
+export interface Type_21_Scheduler {
+  __kind: 'Scheduler'
+  value: SchedulerCall
+}
+
+export interface Type_21_Babe {
+  __kind: 'Babe'
+  value: BabeCall
+}
+
+export interface Type_21_Timestamp {
+  __kind: 'Timestamp'
+  value: TimestampCall
+}
+
+export interface Type_21_Indices {
+  __kind: 'Indices'
+  value: IndicesCall
+}
+
+export interface Type_21_Balances {
+  __kind: 'Balances'
+  value: BalancesCall
+}
+
+export interface Type_21_Authorship {
+  __kind: 'Authorship'
+  value: AuthorshipCall
+}
+
+export interface Type_21_Staking {
+  __kind: 'Staking'
+  value: StakingCall
+}
+
+export interface Type_21_Offences {
+  __kind: 'Offences'
+  value: OffencesCall
+}
+
+export interface Type_21_Session {
+  __kind: 'Session'
+  value: SessionCall
+}
+
+export interface Type_21_FinalityTracker {
+  __kind: 'FinalityTracker'
+  value: FinalityTrackerCall
+}
+
+export interface Type_21_Grandpa {
+  __kind: 'Grandpa'
+  value: GrandpaCall
+}
+
+export interface Type_21_ImOnline {
+  __kind: 'ImOnline'
+  value: ImOnlineCall
+}
+
+export interface Type_21_AuthorityDiscovery {
+  __kind: 'AuthorityDiscovery'
+  value: AuthorityDiscoveryCall
+}
+
+export interface Type_21_Democracy {
+  __kind: 'Democracy'
+  value: DemocracyCall
+}
+
+export interface Type_21_Council {
+  __kind: 'Council'
+  value: CouncilCall
+}
+
+export interface Type_21_TechnicalCommittee {
+  __kind: 'TechnicalCommittee'
+  value: TechnicalCommitteeCall
+}
+
+export interface Type_21_ElectionsPhragmen {
+  __kind: 'ElectionsPhragmen'
+  value: ElectionsPhragmenCall
+}
+
+export interface Type_21_TechnicalMembership {
+  __kind: 'TechnicalMembership'
+  value: TechnicalMembershipCall
+}
+
+export interface Type_21_Treasury {
+  __kind: 'Treasury'
+  value: TreasuryCall
+}
+
+export interface Type_21_Parachains {
+  __kind: 'Parachains'
+  value: ParachainsCall
+}
+
+export interface Type_21_Attestations {
+  __kind: 'Attestations'
+  value: AttestationsCall
+}
+
+export interface Type_21_Slots {
+  __kind: 'Slots'
+  value: SlotsCall
+}
+
+export interface Type_21_Registrar {
+  __kind: 'Registrar'
+  value: RegistrarCall
+}
+
+export interface Type_21_Claims {
+  __kind: 'Claims'
+  value: ClaimsCall
+}
+
+export interface Type_21_Vesting {
+  __kind: 'Vesting'
+  value: VestingCall
+}
+
+export interface Type_21_Utility {
+  __kind: 'Utility'
+  value: UtilityCall
+}
+
+export interface Type_21_Sudo {
+  __kind: 'Sudo'
+  value: SudoCall
+}
+
+export interface Type_21_Identity {
+  __kind: 'Identity'
+  value: IdentityCall
+}
+
+export interface Type_21_Proxy {
+  __kind: 'Proxy'
+  value: ProxyCall
+}
+
+export interface Type_21_Multisig {
+  __kind: 'Multisig'
+  value: MultisigCall
 }
 
 export interface Header {
@@ -4592,16 +4144,6 @@ export interface Renouncing_Candidate {
   value: number
 }
 
-export type StatementKind = StatementKind_Regular | StatementKind_Saft
-
-export interface StatementKind_Regular {
-  __kind: 'Regular'
-}
-
-export interface StatementKind_Saft {
-  __kind: 'Saft'
-}
-
 export interface AttestedCandidate {
   candidate: AbridgedCandidateReceipt
   validityVotes: ValidityAttestation[]
@@ -4624,166 +4166,20 @@ export interface ParaInfo {
   locked: boolean
 }
 
-export type Type_177 = Type_177_System | Type_177_Babe | Type_177_Timestamp | Type_177_Indices | Type_177_Balances | Type_177_Authorship | Type_177_Staking | Type_177_Offences | Type_177_Session | Type_177_FinalityTracker | Type_177_Grandpa | Type_177_ImOnline | Type_177_AuthorityDiscovery | Type_177_Democracy | Type_177_Council | Type_177_TechnicalCommittee | Type_177_ElectionsPhragmen | Type_177_TechnicalMembership | Type_177_Treasury | Type_177_Claims | Type_177_Parachains | Type_177_Attestations | Type_177_Slots | Type_177_Registrar | Type_177_Utility | Type_177_Identity | Type_177_Society | Type_177_Recovery | Type_177_Vesting | Type_177_Scheduler | Type_177_Proxy | Type_177_Multisig
+export type StatementKind = StatementKind_Regular | StatementKind_Saft
 
-export interface Type_177_System {
-  __kind: 'System'
-  value: SystemCall
+export interface StatementKind_Regular {
+  __kind: 'Regular'
 }
 
-export interface Type_177_Babe {
-  __kind: 'Babe'
-  value: BabeCall
+export interface StatementKind_Saft {
+  __kind: 'Saft'
 }
 
-export interface Type_177_Timestamp {
-  __kind: 'Timestamp'
-  value: TimestampCall
-}
-
-export interface Type_177_Indices {
-  __kind: 'Indices'
-  value: IndicesCall
-}
-
-export interface Type_177_Balances {
-  __kind: 'Balances'
-  value: BalancesCall
-}
-
-export interface Type_177_Authorship {
-  __kind: 'Authorship'
-  value: AuthorshipCall
-}
-
-export interface Type_177_Staking {
-  __kind: 'Staking'
-  value: StakingCall
-}
-
-export interface Type_177_Offences {
-  __kind: 'Offences'
-  value: OffencesCall
-}
-
-export interface Type_177_Session {
-  __kind: 'Session'
-  value: SessionCall
-}
-
-export interface Type_177_FinalityTracker {
-  __kind: 'FinalityTracker'
-  value: FinalityTrackerCall
-}
-
-export interface Type_177_Grandpa {
-  __kind: 'Grandpa'
-  value: GrandpaCall
-}
-
-export interface Type_177_ImOnline {
-  __kind: 'ImOnline'
-  value: ImOnlineCall
-}
-
-export interface Type_177_AuthorityDiscovery {
-  __kind: 'AuthorityDiscovery'
-  value: AuthorityDiscoveryCall
-}
-
-export interface Type_177_Democracy {
-  __kind: 'Democracy'
-  value: DemocracyCall
-}
-
-export interface Type_177_Council {
-  __kind: 'Council'
-  value: CouncilCall
-}
-
-export interface Type_177_TechnicalCommittee {
-  __kind: 'TechnicalCommittee'
-  value: TechnicalCommitteeCall
-}
-
-export interface Type_177_ElectionsPhragmen {
-  __kind: 'ElectionsPhragmen'
-  value: ElectionsPhragmenCall
-}
-
-export interface Type_177_TechnicalMembership {
-  __kind: 'TechnicalMembership'
-  value: TechnicalMembershipCall
-}
-
-export interface Type_177_Treasury {
-  __kind: 'Treasury'
-  value: TreasuryCall
-}
-
-export interface Type_177_Claims {
-  __kind: 'Claims'
-  value: ClaimsCall
-}
-
-export interface Type_177_Parachains {
-  __kind: 'Parachains'
-  value: ParachainsCall
-}
-
-export interface Type_177_Attestations {
-  __kind: 'Attestations'
-  value: AttestationsCall
-}
-
-export interface Type_177_Slots {
-  __kind: 'Slots'
-  value: SlotsCall
-}
-
-export interface Type_177_Registrar {
-  __kind: 'Registrar'
-  value: RegistrarCall
-}
-
-export interface Type_177_Utility {
-  __kind: 'Utility'
-  value: UtilityCall
-}
-
-export interface Type_177_Identity {
-  __kind: 'Identity'
-  value: IdentityCall
-}
-
-export interface Type_177_Society {
-  __kind: 'Society'
-  value: SocietyCall
-}
-
-export interface Type_177_Recovery {
-  __kind: 'Recovery'
-  value: RecoveryCall
-}
-
-export interface Type_177_Vesting {
-  __kind: 'Vesting'
-  value: VestingCall
-}
-
-export interface Type_177_Scheduler {
-  __kind: 'Scheduler'
-  value: SchedulerCall
-}
-
-export interface Type_177_Proxy {
-  __kind: 'Proxy'
-  value: ProxyCall
-}
-
-export interface Type_177_Multisig {
-  __kind: 'Multisig'
-  value: MultisigCall
+export interface VestingInfo {
+  locked: bigint
+  perBlock: bigint
+  startingBlock: number
 }
 
 export interface IdentityInfo {
@@ -5027,27 +4423,7 @@ export interface IdentityJudgement_Erroneous {
   value: null
 }
 
-export type SocietyJudgement = SocietyJudgement_Rebid | SocietyJudgement_Reject | SocietyJudgement_Approve
-
-export interface SocietyJudgement_Rebid {
-  __kind: 'Rebid'
-}
-
-export interface SocietyJudgement_Reject {
-  __kind: 'Reject'
-}
-
-export interface SocietyJudgement_Approve {
-  __kind: 'Approve'
-}
-
-export interface VestingInfo {
-  locked: bigint
-  perBlock: bigint
-  startingBlock: number
-}
-
-export type ProxyType = ProxyType_Any | ProxyType_NonTransfer | ProxyType_Governance | ProxyType_Staking | ProxyType_IdentityJudgement | ProxyType_CancelProxy | ProxyType_Auction
+export type ProxyType = ProxyType_Any | ProxyType_NonTransfer | ProxyType_Governance | ProxyType_Staking | ProxyType_UnusedSudoBalances | ProxyType_IdentityJudgement | ProxyType_CancelProxy | ProxyType_Auction
 
 export interface ProxyType_Any {
   __kind: 'Any'
@@ -5063,6 +4439,10 @@ export interface ProxyType_Governance {
 
 export interface ProxyType_Staking {
   __kind: 'Staking'
+}
+
+export interface ProxyType_UnusedSudoBalances {
+  __kind: 'UnusedSudoBalances'
 }
 
 export interface ProxyType_IdentityJudgement {

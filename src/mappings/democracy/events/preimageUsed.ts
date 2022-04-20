@@ -13,15 +13,15 @@ interface PreimageEventData {
 
 function getEventData(ctx: EventContext): PreimageEventData {
     const event = new DemocracyPreimageUsedEvent(ctx)
-    if (event.isV1022) {
-        const [hash, provider, deposit] = event.asV1022
+    if (event.isV0) {
+        const [hash, provider, deposit] = event.asV0
         return {
             hash,
             provider,
             deposit,
         }
-    } else if (event.isV9130) {
-        const { proposalHash: hash, provider, deposit } = event.asV9130
+    } else if (event.isV9140) {
+        const { proposalHash: hash, provider, deposit } = event.asV9140
         return {
             hash,
             provider,
@@ -41,6 +41,6 @@ export async function handlePreimageUsed(ctx: EventHandlerContext) {
         status: ProposalStatus.Used,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height))
+        new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height)
     }
 }

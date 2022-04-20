@@ -13,72 +13,42 @@ async function getInstanceStorageData(
     const storage = new Instance2CollectiveProposalOfStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV1020) {
-        return (await storage.getAsV1020(hash)) as Call
-    } else if (storage.isV1022) {
-        return (await storage.getAsV1022(hash)) as Call
-    } else if (storage.isV1024) {
-        return (await storage.getAsV1024(hash)) as Call
-    } else if (storage.isV1027) {
-        return (await storage.getAsV1027(hash)) as Call
-    } else if (storage.isV1029) {
-        return (await storage.getAsV1029(hash)) as Call
-    } else if (storage.isV1030) {
-        return (await storage.getAsV1030(hash)) as Call
-    } else if (storage.isV1031) {
-        return (await storage.getAsV1031(hash)) as Call
-    } else if (storage.isV1032) {
-        return (await storage.getAsV1032(hash)) as Call
-    } else if (storage.isV1038) {
-        return (await storage.getAsV1038(hash)) as Call
-    } else if (storage.isV1039) {
-        return (await storage.getAsV1039(hash)) as Call
-    } else if (storage.isV1040) {
-        return (await storage.getAsV1040(hash)) as Call
-    } else if (storage.isV1042) {
-        return (await storage.getAsV1042(hash)) as Call
-    } else if (storage.isV1050) {
-        return (await storage.getAsV1050(hash)) as Call
-    } else if (storage.isV1054) {
-        return (await storage.getAsV1054(hash)) as Call
-    } else if (storage.isV1055) {
-        return (await storage.getAsV1055(hash)) as Call
-    } else if (storage.isV1058) {
-        return (await storage.getAsV1058(hash)) as Call
-    } else if (storage.isV1062) {
-        return (await storage.getAsV1062(hash)) as Call
-    } else if (storage.isV2005) {
-        return (await storage.getAsV2005(hash)) as Call
-    } else if (storage.isV2007) {
-        return (await storage.getAsV2007(hash)) as Call
-    } else if (storage.isV2011) {
-        return (await storage.getAsV2011(hash)) as Call
-    } else if (storage.isV2013) {
-        return (await storage.getAsV2013(hash)) as Call
-    } else if (storage.isV2015) {
-        return (await storage.getAsV2015(hash)) as Call
-    } else if (storage.isV2022) {
-        return (await storage.getAsV2022(hash)) as Call
-    } else if (storage.isV2023) {
-        return (await storage.getAsV2023(hash)) as Call
-    } else if (storage.isV2024) {
-        return (await storage.getAsV2024(hash)) as Call
-    } else if (storage.isV2025) {
-        return (await storage.getAsV2025(hash)) as Call
-    } else if (storage.isV2026) {
-        return (await storage.getAsV2026(hash)) as Call
-    } else if (storage.isV2028) {
-        return (await storage.getAsV2028(hash)) as Call
-    } else if (storage.isV2029) {
-        return (await storage.getAsV2029(hash)) as Call
-    } else if (storage.isV2030) {
-        return (await storage.getAsV2030(hash)) as Call
-    } else if (storage.isV9010) {
-        return (await storage.getAsV9010(hash)) as Call
-    } else if (storage.isV9030) {
-        return (await storage.getAsV9030(hash)) as Call
-    } else if (storage.isV9040) {
-        return (await storage.getAsV9040(hash)) as Call
+    if (storage.isV0) {
+        return (await storage.getAsV0(hash)) as Call
+    } else if (storage.isV10) {
+        return (await storage.getAsV10(hash)) as Call
+    } else if (storage.isV11) {
+        return (await storage.getAsV11(hash)) as Call
+    } else if (storage.isV13) {
+        return (await storage.getAsV13(hash)) as Call
+    } else if (storage.isV14) {
+        return (await storage.getAsV14(hash)) as Call
+    } else if (storage.isV15) {
+        return (await storage.getAsV15(hash)) as Call
+    } else if (storage.isV17) {
+        return (await storage.getAsV17(hash)) as Call
+    } else if (storage.isV18) {
+        return (await storage.getAsV18(hash)) as Call
+    } else if (storage.isV23) {
+        return (await storage.getAsV23(hash)) as Call
+    } else if (storage.isV24) {
+        return (await storage.getAsV24(hash)) as Call
+    } else if (storage.isV25) {
+        return (await storage.getAsV25(hash)) as Call
+    } else if (storage.isV26) {
+        return (await storage.getAsV26(hash)) as Call
+    } else if (storage.isV28) {
+        return (await storage.getAsV28(hash)) as Call
+    } else if (storage.isV29) {
+        return (await storage.getAsV29(hash)) as Call
+    } else if (storage.isV5) {
+        return (await storage.getAsV5(hash)) as Call
+    } else if (storage.isV6) {
+        return (await storage.getAsV6(hash)) as Call
+    } else if (storage.isV7) {
+        return (await storage.getAsV7(hash)) as Call
+    } else if (storage.isV9) {
+        return (await storage.getAsV9(hash)) as Call
     } else if (storage.isV9050) {
         return (await storage.getAsV9050(hash)) as Call
     } else if (storage.isV9080) {
@@ -99,14 +69,10 @@ async function getCoucilStorageData(
     const storage = new TechnicalCommitteeProposalOfStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV9111) {
-        return (await storage.getAsV9111(hash)) as Call
-    } else if (storage.isV9122) {
-        return (await storage.getAsV9122(hash)) as Call
-    } else if (storage.isV9130) {
-        return (await storage.getAsV9130(hash)) as Call
-    } else if (storage.isV9160) {
-        return (await storage.getAsV9160(hash)) as Call
+    if (storage.isV9110) {
+        return (await storage.getAsV9110(hash)) as Call
+    } else if (storage.isV9140) {
+        return (await storage.getAsV9140(hash)) as Call
     } else if (storage.isV9170) {
         return (await storage.getAsV9170(hash)) as Call
     } else if (storage.isV9180) {

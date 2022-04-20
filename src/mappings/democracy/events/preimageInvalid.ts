@@ -12,14 +12,14 @@ interface PreimageEventData {
 
 function getEventData(ctx: EventContext): PreimageEventData {
     const event = new DemocracyPreimageInvalidEvent(ctx)
-    if (event.isV1022) {
-        const [hash, index] = event.asV1022
+    if (event.isV0) {
+        const [hash, index] = event.asV0
         return {
             hash,
             index,
         }
-    } else if (event.isV9130) {
-        const { proposalHash: hash, refIndex: index } = event.asV9130
+    } else if (event.isV9140) {
+        const { proposalHash: hash, refIndex: index } = event.asV9140
         return {
             hash,
             index,
@@ -38,6 +38,6 @@ export async function handlePreimageInvalid(ctx: EventHandlerContext) {
         status: ProposalStatus.Invalid,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height))
+        new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height)
     }
 }

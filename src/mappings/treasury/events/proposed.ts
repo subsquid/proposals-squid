@@ -15,13 +15,13 @@ interface TreasuryProposalEventData {
 
 function getEventData(ctx: EventContext): TreasuryProposalEventData {
     const event = new TreasuryProposedEvent(ctx)
-    if (event.isV1020) {
-        const index = event.asV1020
+    if (event.isV0) {
+        const index = event.asV0
         return {
             index,
         }
-    } else if (event.isV9160) {
-        const { proposalIndex: index } = event.asV9160
+    } else if (event.isV9170) {
+        const { proposalIndex: index } = event.asV9170
         return {
             index,
         }
@@ -35,7 +35,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const storageData = await storage.treasury.getProposals(ctx, index)
     if (!storageData) {
-        (new StorageNotExists(ProposalType.TreasuryProposal, index, ctx.block.height))
+        new StorageNotExists(ProposalType.TreasuryProposal, index, ctx.block.height)
         return
     }
 

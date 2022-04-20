@@ -7,10 +7,10 @@ import { CouncilClosedEvent } from '../../../types/events'
 
 function getEventData(ctx: EventContext): Uint8Array {
     const event = new CouncilClosedEvent(ctx)
-    if (event.isV1050) {
-        return event.asV1050[0]
-    } else if (event.isV9130) {
-        return event.asV9130.proposalHash
+    if (event.isV0) {
+        return event.asV0[0]
+    } else if (event.isV9140) {
+        return event.asV9140.proposalHash
     } else {
         throw new UnknownVersionError(event.constructor.name)
     }
@@ -24,6 +24,6 @@ export async function handleClosed(ctx: EventHandlerContext) {
         status: ProposalStatus.Approved,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.CouncilMotion, hexHash, ctx.block.height))
+        new MissingProposalRecord(ProposalType.CouncilMotion, hexHash, ctx.block.height)
     }
 }

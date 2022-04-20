@@ -11,8 +11,8 @@ interface TipEventData {
 
 function getTreasuryEventData(ctx: EventContext): TipEventData {
     const event = new TreasuryTipRetractedEvent(ctx)
-    if (event.isV1038) {
-        const hash = event.asV1038
+    if (event.isV0) {
+        const hash = event.asV0
         return {
             hash,
         }
@@ -23,13 +23,13 @@ function getTreasuryEventData(ctx: EventContext): TipEventData {
 
 function getTipsEventData(ctx: EventContext): TipEventData {
     const event = new TipsTipRetractedEvent(ctx)
-    if (event.isV2028) {
-        const hash = event.asV2028
+    if (event.isV28) {
+        const hash = event.asV28
         return {
             hash,
         }
-    } else if (event.isV9130) {
-        const { tipHash: hash } = event.asV9130
+    } else if (event.isV9140) {
+        const { tipHash: hash } = event.asV9140
         return {
             hash,
         }
@@ -48,6 +48,6 @@ export async function handleRetracted(ctx: EventHandlerContext) {
         isEnded: true,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.Tip, hexHash, ctx.block.height))
+        new MissingProposalRecord(ProposalType.Tip, hexHash, ctx.block.height)
     }
 }
