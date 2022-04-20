@@ -1,28 +1,154 @@
 enum RelayChain {
-  KUSAMA
-  POLKADOT
+  kusama
+  polkadot
 }
 
-type ChainInfo @entity {
+type Chain @entity {
   id: ID!
-  name: String!
   token: Token!
-  paraId: Int!
-  relayChain: RelayChain!
+  paraId: Int
+  relayChain: RelayChain
+  states: [ChainState!] @derivedFrom(field: "chain")
 }
 
 type Token {
-  symbol: String!
-  decimal: Int!
+  symbol: String
+  decimals: Int
 }
 
 type ChainState @entity {
   id: ID!
-  chain: ChainInfo @index
-  timestamp: DateTime @index
-  tokenBalance: BigInt
-  tokenHolders: Int
-  councilMembers: Int
-  democracyProposals: Int
-  councilProposals: Int
+  chain: Chain! @index
+  tokenBalance: BigInt!
+  tokenHolders: Int!
+  councilMembers: Int!
+  democracyProposals: Int!
+  councilProposals: Int!
+  timestamp: DateTime! @index
+}
+
+enum ProposalType {
+  Preimage
+  DemocracyProposal
+  TechCommitteeProposal
+  TreasuryProposal
+  Referendum
+  CouncilMotion
+  Bounty
+  Tip
+}
+
+enum ProposalStatus {
+  Noted
+  Proposed
+  Tabled
+  Started
+  Passed
+  NotPassed
+  Cancelled
+  Executed
+  Used
+  Invalid
+  Missing
+  Reaped
+  Approved
+  Disapproved
+  Closed
+  Awarded
+  Rejected
+  Retracted
+  Slashed
+  Active
+  Extended
+  Claimed
+}
+
+type MotionThreshold {
+  value: Int!
+}
+
+enum ReferendumThresholdType {
+  SuperMajorityApprove
+  SuperMajorityAgainst
+  SimpleMajority
+}
+
+type ReferendumThreshold {
+  type: ReferendumThresholdType!
+}
+
+union Threshold = MotionThreshold | ReferendumThreshold
+
+type Proposal @entity {
+  id: ID!
+  type: ProposalType! @index
+  hash: String
+  index: Int
+  proposer: String
+  deposit: BigInt
+  threshold: Threshold
+  proposedCall: ProposedCall
+  curator: String
+  payee: String
+  reward: BigInt
+  voting: [Vote!] @derivedFrom(field: "proposal")
+  status: ProposalStatus!
+  statusHistory: [StatusHistoryItem!]!
+  createdAtBlock: Int!
+  createdAt: DateTime!
+  endedAtBlock: Int
+  endedAt: DateTime
+  updatedAtBlock: Int!
+  updatedAt: DateTime!
+  group: ProposalGroup
+}
+
+type StatusHistoryItem {
+  status: ProposalStatus!
+  block: Int!
+  timestamp: DateTime!
+}
+
+type ProposedCall {
+  section: String!
+  method: String!
+  args: String
+  description: String!
+}
+
+enum VoteDecision {
+  yes
+  no
+  abstain
+}
+
+type StandardVoteBalance {
+  value: BigInt
+}
+
+type SplitVoteBalance {
+  aye: BigInt
+  nay: BigInt
+}
+
+union VoteBalance = StandardVoteBalance | SplitVoteBalance
+
+type Vote @entity {
+  id: ID!
+  voter: String!
+  proposal: Proposal!
+  createdAt: Int!
+  timestamp: DateTime!
+  decision: VoteDecision
+  balance: VoteBalance
+  lockPeriod: Int
+}
+
+type ProposalGroup @entity {
+  id: ID!
+  preimageHash: String
+  treasuryIndex: Int
+  bountyIndex: Int
+  tipHash: String
+  proposals: [Proposal] @derivedFrom(field: "group")
 }

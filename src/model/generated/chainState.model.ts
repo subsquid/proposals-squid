@@ -1,6 +1,6 @@
 import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, ManyToOne as ManyToOne_, Index as Index_} from "typeorm"
 import * as marshal from "./marshal"
-import {ChainInfo} from "./chainInfo.model"
+import {Chain} from "./chain.model"
 
 @Entity_()
 export class ChainState {
@@ -12,25 +12,25 @@ export class ChainState {
   id!: string
 
   @Index_()
-  @ManyToOne_(() => ChainInfo, {nullable: true})
-  chain!: ChainInfo | undefined | null
+  @ManyToOne_(() => Chain, {nullable: false})
+  chain!: Chain
+
+  @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
+  tokenBalance!: bigint
+
+  @Column_("integer", {nullable: false})
+  tokenHolders!: number
+
+  @Column_("integer", {nullable: false})
+  councilMembers!: number
+
+  @Column_("integer", {nullable: false})
+  democracyProposals!: number
+
+  @Column_("integer", {nullable: false})
+  councilProposals!: number
 
   @Index_()
-  @Column_("timestamp with time zone", {nullable: true})
-  timestamp!: Date | undefined | null
-
-  @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
-  tokenBalance!: bigint | undefined | null
-
-  @Column_("integer", {nullable: true})
-  tokenHolders!: number | undefined | null
-
-  @Column_("integer", {nullable: true})
-  councilMembers!: number | undefined | null
-
-  @Column_("integer", {nullable: true})
-  democracyProposals!: number | undefined | null
-
-  @Column_("integer", {nullable: true})
-  councilProposals!: number | undefined | null
+  @Column_("timestamp with time zone", {nullable: false})
+  timestamp!: Date
 }

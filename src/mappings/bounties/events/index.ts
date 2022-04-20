@@ -1,0 +1,7 @@
+export { handleProposed } from './bountyProposed'
+export { handleAwarded } from './bountyAwarded'
+export { handleRejected } from './bountyRejected'
+export { handleClaimed } from './bountyClaimed'
+export { handleBecameActive } from './bountyBecameActive'
+export { handleCanceled } from './bountyCanceled'
+export { handleExtended } from './bountyExtended'

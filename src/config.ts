@@ -1,20 +1,15 @@
-import { ProcessorConfig } from './common/processorBase'
-import { handleSet } from './handler/extrinsics/timestamp/set'
+import { ProcessorConfig } from './common/processorConfig'
 
 export default {
     chainName: 'kusama',
+    prefix: 'kusama',
     dataSource: {
         archive: 'https://polkadot.indexer.gc.subsquid.io/v4/graphql',
         chain: 'wss://polkadot.api.onfinality.io/public-ws',
     },
     typesBundle: 'kusama',
-    batchSize: 250,
-    eventHandlers: {},
-    extrinsicsHandlers: {
-        timestamp: {
-            set: {
-                handler: handleSet,
-            },
-        },
+    batchSize: 500,
+    blockRange: {
+        from: 0,
     },
 } as ProcessorConfig
