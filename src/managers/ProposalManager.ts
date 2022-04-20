@@ -197,7 +197,8 @@ export class ProposalManager extends Manager<Proposal> {
         )
 
         if (options.isEnded) {
-            proposal.endedAt = ctx.block.height
+            proposal.endedAtBlock = ctx.block.height
+            proposal.endedAt = new Date(ctx.block.timestamp)
         }
 
         return await this.update(ctx, proposal)
@@ -234,12 +235,13 @@ export class ProposalManager extends Manager<Proposal> {
         if (await ctx.store.insert(Proposal, proposal)) {
             return proposal
         } else {
-            throw new Error('Failed to save new proposal')
+            throw new Error('Failed to save new proposal!')
         }
     }
 
     async update(ctx: EventHandlerContext | BlockHandlerContext, item: Proposal): Promise<Proposal> {
-        item.updatedAt = ctx.block.height
+        item.updatedAtBlock = ctx.block.height
+        item.updatedAt = new Date(ctx.block.timestamp)
         return await ctx.store.save(item)
     }
 
@@ -256,7 +258,8 @@ export class ProposalManager extends Manager<Proposal> {
             proposer,
             deposit,
             status,
-            createdAt: ctx.block.height,
+            createdAtBlock: ctx.block.height,
+            createdAt: new Date(ctx.block.timestamp),
             statusHistory: [
                 new StatusHistoryItem({
                     block: ctx.block.height,
@@ -282,7 +285,8 @@ export class ProposalManager extends Manager<Proposal> {
                 type: threshold as ReferendumThresholdType,
             }),
             status,
-            createdAt: ctx.block.height,
+            createdAtBlock: ctx.block.height,
+            createdAt: new Date(ctx.block.timestamp),
             statusHistory: [
                 new StatusHistoryItem({
                     block: ctx.block.height,
@@ -328,7 +332,8 @@ export class ProposalManager extends Manager<Proposal> {
                 description: call.description,
                 args: JSON.stringify(call.args),
             }),
-            createdAt: ctx.block.height,
+            createdAtBlock: ctx.block.height,
+            createdAt: new Date(ctx.block.timestamp),
             statusHistory: [
                 new StatusHistoryItem({
                     block: ctx.block.height,
@@ -351,7 +356,8 @@ export class ProposalManager extends Manager<Proposal> {
             payee,
             deposit,
             status,
-            createdAt: ctx.block.height,
+            createdAtBlock: ctx.block.height,
+            createdAt: new Date(ctx.block.timestamp),
             statusHistory: [
                 new StatusHistoryItem({
                     block: ctx.block.height,
@@ -375,7 +381,8 @@ export class ProposalManager extends Manager<Proposal> {
             deposit,
             reward,
             status,
-            createdAt: ctx.block.height,
+            createdAtBlock: ctx.block.height,
+            createdAt: new Date(ctx.block.timestamp),
             statusHistory: [
                 new StatusHistoryItem({
                     block: ctx.block.height,
@@ -401,7 +408,8 @@ export class ProposalManager extends Manager<Proposal> {
             reward,
             status,
             payee,
-            createdAt: ctx.block.height,
+            createdAtBlock: ctx.block.height,
+            createdAt: new Date(ctx.block.timestamp),
             statusHistory: [
                 new StatusHistoryItem({
                     block: ctx.block.height,
@@ -433,7 +441,8 @@ export class ProposalManager extends Manager<Proposal> {
                       args: JSON.stringify(call.args),
                   })
                 : null,
-            createdAt: ctx.block.height,
+            createdAtBlock: ctx.block.height,
+            createdAt: new Date(ctx.block.timestamp),
             statusHistory: [
                 new StatusHistoryItem({
                     block: ctx.block.height,

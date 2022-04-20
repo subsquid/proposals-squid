@@ -2,15 +2,8 @@ import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { DemocracyStartedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import {
-    Proposal,
-    ProposalStatus,
-    ProposalType,
-    ReferendumThreshold,
-    ReferendumThresholdType,
-    StatusHistoryItem,
-} from '../../../model'
-import { proposalGroupManager, proposalManager } from '../../../managers'
+import { ProposalStatus, ProposalType } from '../../../model'
+import { proposalManager } from '../../../managers'
 import { storage } from '../../../storage'
 import { Threshold } from '../../../common/types'
 
@@ -67,30 +60,6 @@ export async function handleStarted(ctx: EventHandlerContext) {
 
     const { hash } = storageData
     const hexHash = toHex(hash)
-
-    const group = await proposalGroupManager.get(ctx, hexHash, ProposalType.Preimage)
-
-    await proposalManager.update(
-        ctx,
-        new Proposal({
-            id: ctx.event.id,
-            index,
-            type: ProposalType.Referendum,
-            createdAt: ctx.block.height,
-            threshold: new ReferendumThreshold({
-                type: threshold as ReferendumThresholdType,
-            }),
-            status: ProposalStatus.Started,
-            statusHistory: [
-                new StatusHistoryItem({
-                    block: ctx.block.height,
-                    timestamp: new Date(ctx.block.timestamp),
-                    status: ProposalStatus.Started,
-                }),
-            ],
-            group,
-        })
-    )
 
     await proposalManager.create(ctx, {
         index,

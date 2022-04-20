@@ -1,4 +1,4 @@
-import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, OneToMany as OneToMany_, ManyToOne as ManyToOne_, Index as Index_} from "typeorm"
+import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, Index as Index_, OneToMany as OneToMany_, ManyToOne as ManyToOne_} from "typeorm"
 import * as marshal from "./marshal"
 import {ProposalType} from "./_proposalType"
 import {Threshold, fromJsonThreshold} from "./_threshold"
@@ -17,6 +17,7 @@ export class Proposal {
   @PrimaryColumn_()
   id!: string
 
+  @Index_()
   @Column_("varchar", {length: 21, nullable: false})
   type!: ProposalType
 
@@ -57,13 +58,22 @@ export class Proposal {
   statusHistory!: (StatusHistoryItem)[]
 
   @Column_("integer", {nullable: false})
-  createdAt!: number
+  createdAtBlock!: number
+
+  @Column_("timestamp with time zone", {nullable: false})
+  createdAt!: Date
 
   @Column_("integer", {nullable: true})
-  endedAt!: number | undefined | null
+  endedAtBlock!: number | undefined | null
+
+  @Column_("timestamp with time zone", {nullable: true})
+  endedAt!: Date | undefined | null
 
   @Column_("integer", {nullable: false})
-  updatedAt!: number
+  updatedAtBlock!: number
+
+  @Column_("timestamp with time zone", {nullable: false})
+  updatedAt!: Date
 
   @Index_()
   @ManyToOne_(() => ProposalGroup, {nullable: true})
