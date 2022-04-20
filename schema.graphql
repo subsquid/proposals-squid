@@ -98,8 +98,8 @@ type Proposal @entity {
   createdAt: DateTime!
   endedAtBlock: Int
   endedAt: DateTime
-  updatedAtBlock: Int!
-  updatedAt: DateTime!
+  updatedAtBlock: Int
+  updatedAt: DateTime
   group: ProposalGroup
 }
 
