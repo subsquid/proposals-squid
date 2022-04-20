@@ -54,7 +54,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     await proposalManager.create(ctx, {
         index,
-        type: ProposalType.TechCommitteeProposal,
+        type: ProposalType.CouncilMotion,
         hash: toHex(hash),
         proposer: encodeId(proposer, config.prefix),
         status: ProposalStatus.Proposed,
