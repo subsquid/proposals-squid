@@ -5,6 +5,8 @@
   "storage": [
     "Council.Members",
     "Council.ProposalCount",
+    "Instance1Collective.Members",
+    "Instance1Collective.ProposalCount",
     "Democracy.PublicPropCount",
     "Balances.TotalIssuance",
     "Democracy.Preimages",
