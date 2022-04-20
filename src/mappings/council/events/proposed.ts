@@ -44,7 +44,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const storageData = await storage.council.getProposalOf(ctx, hash)
     if (!storageData) {
-        console.warn(new StorageNotExists(ProposalType.CouncilMotion, index, ctx.block.height))
+        new StorageNotExists(ProposalType.CouncilMotion, index, ctx.block.height)
         return
     }
 

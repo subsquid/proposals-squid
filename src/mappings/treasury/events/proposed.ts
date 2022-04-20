@@ -35,7 +35,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const storageData = await storage.treasury.getProposals(ctx, index)
     if (!storageData) {
-        console.warn(new StorageNotExists(ProposalType.TreasuryProposal, index, ctx.block.height))
+        (new StorageNotExists(ProposalType.TreasuryProposal, index, ctx.block.height))
         return
     }
 

@@ -44,7 +44,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const storageData = await storage.techCommittee.getProposalOf(ctx, hash)
     if (!storageData) {
-        console.warn(new StorageNotExists(ProposalType.TechCommitteeProposal, index, ctx.block.height))
+        new StorageNotExists(ProposalType.TechCommitteeProposal, index, ctx.block.height)
         return
     }
 

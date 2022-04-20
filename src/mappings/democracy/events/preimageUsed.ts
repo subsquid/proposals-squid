@@ -41,6 +41,6 @@ export async function handlePreimageUsed(ctx: EventHandlerContext) {
         status: ProposalStatus.Used,
     })
     if (!proposal) {
-        console.warn(new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height))
+        (new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height))
     }
 }

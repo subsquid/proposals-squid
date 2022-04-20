@@ -38,6 +38,6 @@ export async function handlePreimageMissing(ctx: EventHandlerContext) {
         status: ProposalStatus.Missing,
     })
     if (!proposal) {
-        console.warn(new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height))
+        (new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height))
     }
 }

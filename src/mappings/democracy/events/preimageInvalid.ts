@@ -38,6 +38,6 @@ export async function handlePreimageInvalid(ctx: EventHandlerContext) {
         status: ProposalStatus.Invalid,
     })
     if (!proposal) {
-        console.warn(new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height))
+        (new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height))
     }
 }

@@ -32,6 +32,6 @@ export async function handleExecuted(ctx: EventHandlerContext) {
         status: ProposalStatus.Executed,
     })
     if (!proposal) {
-        console.warn(new MissingProposalRecord(ProposalType.TechCommitteeProposal, hexHash, ctx.block.height))
+        (new MissingProposalRecord(ProposalType.TechCommitteeProposal, hexHash, ctx.block.height))
     }
 }

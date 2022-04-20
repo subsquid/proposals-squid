@@ -24,6 +24,6 @@ export async function handleClosed(ctx: EventHandlerContext) {
         status: ProposalStatus.Approved,
     })
     if (!proposal) {
-        console.warn(new MissingProposalRecord(ProposalType.CouncilMotion, hexHash, ctx.block.height))
+        (new MissingProposalRecord(ProposalType.CouncilMotion, hexHash, ctx.block.height))
     }
 }

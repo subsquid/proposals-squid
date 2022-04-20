@@ -46,6 +46,6 @@ export async function handleBecameActive(ctx: EventHandlerContext) {
         status: ProposalStatus.Active,
     })
     if (!proposal) {
-        console.warn(new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height))
+        (new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height))
     }
 }

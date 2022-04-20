@@ -46,6 +46,6 @@ export async function handleExtended(ctx: EventHandlerContext) {
         status: ProposalStatus.Extended,
     })
     if (!proposal) {
-        console.warn(new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height))
+        (new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height))
     }
 }

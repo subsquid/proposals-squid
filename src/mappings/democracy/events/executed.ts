@@ -32,6 +32,6 @@ export async function handleExecuted(ctx: EventHandlerContext) {
         isEnded: true,
     })
     if (!proposal) {
-        console.warn(new MissingProposalRecord(ProposalType.Referendum, index, ctx.block.height))
+        new MissingProposalRecord(ProposalType.Referendum, index, ctx.block.height)
     }
 }

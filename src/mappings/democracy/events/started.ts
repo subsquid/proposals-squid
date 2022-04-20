@@ -49,7 +49,7 @@ export async function handleStarted(ctx: EventHandlerContext) {
 
     const storageData = await storage.democracy.getReferendumInfoOf(ctx, index)
     if (!storageData) {
-        console.warn(new StorageNotExists(ProposalType.Referendum, index, ctx.block.height))
+        new StorageNotExists(ProposalType.Referendum, index, ctx.block.height)
         return
     }
 

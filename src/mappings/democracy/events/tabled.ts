@@ -39,6 +39,6 @@ export async function handleTabled(ctx: EventHandlerContext) {
         status: ProposalStatus.Tabled,
     })
     if (!proposal) {
-        console.warn(new MissingProposalRecord(ProposalType.DemocracyProposal, index, ctx.block.height))
+        (new MissingProposalRecord(ProposalType.DemocracyProposal, index, ctx.block.height))
     }
 }

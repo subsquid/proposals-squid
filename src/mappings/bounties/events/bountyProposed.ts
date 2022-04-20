@@ -48,7 +48,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const storageData = await storage.bounties.getBounties(ctx, index)
     if (!storageData) {
-        console.warn(new StorageNotExists(ProposalType.Bounty, index, ctx.block.height))
+        (new StorageNotExists(ProposalType.Bounty, index, ctx.block.height))
         return
     }
 

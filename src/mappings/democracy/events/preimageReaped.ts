@@ -41,6 +41,6 @@ export async function handlePreimageReaped(ctx: EventHandlerContext) {
         status: ProposalStatus.Reaped,
     })
     if (!proposal) {
-        console.warn(new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height))
+        (new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height))
     }
 }

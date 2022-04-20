@@ -43,7 +43,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const proposalData = storageData.find((prop) => prop.index === index)
     if (!proposalData) {
-        console.warn(new StorageNotExists(ProposalType.DemocracyProposal, index, ctx.block.height))
+        (new StorageNotExists(ProposalType.DemocracyProposal, index, ctx.block.height))
         return
     }
     const { hash, proposer } = proposalData

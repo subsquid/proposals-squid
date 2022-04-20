@@ -52,7 +52,7 @@ export async function handleClosed(ctx: EventHandlerContext) {
         isEnded: true,
     })
     if (!proposal) {
-        console.warn(new MissingProposalRecord(ProposalType.Tip, hexHash, ctx.block.height))
+        (new MissingProposalRecord(ProposalType.Tip, hexHash, ctx.block.height))
         return
     }
 

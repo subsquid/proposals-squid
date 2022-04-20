@@ -47,6 +47,6 @@ export async function handleRejected(ctx: EventHandlerContext) {
         isEnded: true,
     })
     if (!proposal) {
-        console.warn(new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height))
+        (new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height))
     }
 }

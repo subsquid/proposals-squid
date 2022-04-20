@@ -48,7 +48,7 @@ export async function handleNewTip(ctx: EventHandlerContext) {
     const hexHash = toHex(hash)
     const storageData = await storage.tips.getTips(ctx, hash)
     if (!storageData) {
-        console.warn(new StorageNotExists(ProposalType.Tip, hexHash, ctx.block.height))
+        (new StorageNotExists(ProposalType.Tip, hexHash, ctx.block.height))
         return
     }
 

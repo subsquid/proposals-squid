@@ -101,7 +101,7 @@ export async function handlePreimageNoted(ctx: EventHandlerContext) {
 
     const storageData = await getStorageData(ctx, hash)
     if (!storageData) {
-        console.warn(new StorageNotExists(ProposalType.Preimage, hexHash, ctx.block.height))
+        new StorageNotExists(ProposalType.Preimage, hexHash, ctx.block.height)
         return
     }
 
