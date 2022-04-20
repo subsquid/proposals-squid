@@ -91,6 +91,7 @@ export async function handleVote(ctx: ExtrinsicHandlerContext) {
     const { index, vote } = getCallData(ctx)
 
     const proposal = await proposalManager.get(ctx, index, ProposalType.Referendum)
+    if (!proposal) return
 
     let decision: VoteDecision
     switch (vote.type) {
