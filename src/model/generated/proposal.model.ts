@@ -69,11 +69,11 @@ export class Proposal {
   @Column_("timestamp with time zone", {nullable: true})
   endedAt!: Date | undefined | null
 
-  @Column_("integer", {nullable: false})
-  updatedAtBlock!: number
+  @Column_("integer", {nullable: true})
+  updatedAtBlock!: number | undefined | null
 
-  @Column_("timestamp with time zone", {nullable: false})
-  updatedAt!: Date
+  @Column_("timestamp with time zone", {nullable: true})
+  updatedAt!: Date | undefined | null
 
   @Index_()
   @ManyToOne_(() => ProposalGroup, {nullable: true})
