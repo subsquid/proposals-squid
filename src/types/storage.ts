@@ -438,6 +438,58 @@ export class DemocracyReferendumInfoOfStorage {
   }
 }
 
+export class Instance1CollectiveMembersStorage {
+  constructor(private ctx: StorageContext) {}
+
+  /**
+   *  The current members of the collective. This is stored sorted (just by value).
+   */
+  get isV1020() {
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'Members') === 'f5df25eadcdffaa0d2a68b199d671d3921ca36a7b70d22d57506dca52b4b5895'
+  }
+
+  /**
+   *  The current members of the collective. This is stored sorted (just by value).
+   */
+  async getAsV1020(): Promise<Uint8Array[]> {
+    assert(this.isV1020)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'Members')
+  }
+
+  /**
+   * Checks whether the storage item is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'Members') != null
+  }
+}
+
+export class Instance1CollectiveProposalCountStorage {
+  constructor(private ctx: StorageContext) {}
+
+  /**
+   *  Proposals so far.
+   */
+  get isV1020() {
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalCount') === '81bbbe8e62451cbcc227306706c919527aa2538970bd6d67a9969dd52c257d02'
+  }
+
+  /**
+   *  Proposals so far.
+   */
+  async getAsV1020(): Promise<number> {
+    assert(this.isV1020)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalCount')
+  }
+
+  /**
+   * Checks whether the storage item is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalCount') != null
+  }
+}
+
 export class Instance1CollectiveProposalOfStorage {
   constructor(private ctx: StorageContext) {}
 
