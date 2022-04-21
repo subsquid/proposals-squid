@@ -6,8 +6,8 @@ export function encodeId(id: Uint8Array, prefix: string | number): string {
     try {
         return ss58.codec(prefix).encode(id)
     } catch (e) {
-        console.error(`Failed to encode id ${toHex(id)} with prefix ${prefix}`)
-        return 'undefined'
+        console.error(`Failed to encode id ${toHex(id)} with prefix ${prefix}: ${e}`)
+        return toHex(id)
     }
 }
 
