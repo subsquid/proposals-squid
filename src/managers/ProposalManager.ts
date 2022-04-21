@@ -28,6 +28,13 @@ type HashProposal =
     | ProposalType.CouncilMotion
     | ProposalType.TechCommitteeProposal
 
+interface ProposedCallData {
+    section: string
+    method: string
+    description: string
+    args: Record<string, unknown>
+}
+
 interface DemocracyProposalData {
     type: ProposalType.DemocracyProposal
     index: number
@@ -51,12 +58,7 @@ interface CouncilMotionData {
     hash: string
     threshold: number
     proposer: string
-    call: {
-        section: string
-        method: string
-        description: string
-        args: Record<string, unknown>
-    }
+    call: ProposedCallData
     status: ProposalStatus
 }
 
@@ -66,12 +68,7 @@ interface TechCommitteeData {
     hash: string
     threshold: number
     proposer: string
-    call: {
-        section: string
-        method: string
-        description: string
-        args: Record<string, unknown>
-    }
+    call: ProposedCallData
     status: ProposalStatus
 }
 
@@ -109,12 +106,7 @@ interface PreimageData {
     proposer: string
     status: ProposalStatus
     deposit: bigint
-    call?: {
-        section: string
-        method: string
-        description: string
-        args: Record<string, unknown>
-    }
+    call?: ProposedCallData
 }
 
 type ProposalData =
@@ -326,12 +318,7 @@ export class ProposalManager extends Manager<Proposal> {
             threshold: new MotionThreshold({
                 value: threshold,
             }),
-            proposedCall: new ProposedCall({
-                section: call.section,
-                method: call.method,
-                description: call.description,
-                args: JSON.stringify(call.args),
-            }),
+            proposedCall: call ? this.createProposedCall(call) : null,
             createdAtBlock: ctx.block.height,
             createdAt: new Date(ctx.block.timestamp),
             statusHistory: [
@@ -433,14 +420,7 @@ export class ProposalManager extends Manager<Proposal> {
             proposer,
             deposit,
             status,
-            proposedCall: call
-                ? new ProposedCall({
-                      section: call.section,
-                      method: call.method,
-                      description: call.description,
-                      args: JSON.stringify(call.args),
-                  })
-                : null,
+            proposedCall: call ? this.createProposedCall(call) : null,
             createdAtBlock: ctx.block.height,
             createdAt: new Date(ctx.block.timestamp),
             statusHistory: [
@@ -451,6 +431,17 @@ export class ProposalManager extends Manager<Proposal> {
                 }),
             ],
             group,
+        })
+    }
+
+    private createProposedCall(data: ProposedCallData): ProposedCall {
+        return new ProposedCall({
+            section: data.section,
+            method: data.method,
+            description: data.description,
+            args: JSON.stringify(data.args, (key, value) => {
+                return typeof value === 'bigint' ? value.toString() : value
+            }),
         })
     }
 }
