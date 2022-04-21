@@ -330,7 +330,9 @@ export class ProposalManager extends Manager<Proposal> {
                 section: call.section,
                 method: call.method,
                 description: call.description,
-                args: JSON.stringify(call.args),
+                args: JSON.stringify(call.args, (key, value) => {
+                    return typeof value === 'bigint' ? value.toString() : value
+                }),
             }),
             createdAtBlock: ctx.block.height,
             createdAt: new Date(ctx.block.timestamp),

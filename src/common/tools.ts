@@ -50,8 +50,6 @@ function parseObjectArg(arg: any): unknown {
         return toHex(arg)
     } else if (Array.isArray(arg)) {
         return parseArrayArg(arg)
-    } else if (typeof arg === 'bigint') {
-        return arg.toString()
     } else {
         return arg
     }
