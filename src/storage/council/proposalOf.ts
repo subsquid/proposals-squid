@@ -15,6 +15,14 @@ async function getInstanceStorageData(
 
     if (storage.isV0) {
         return (await storage.getAsV0(hash)) as Call
+    } else if (storage.isV5) {
+        return (await storage.getAsV5(hash)) as Call
+    } else if (storage.isV6) {
+        return (await storage.getAsV6(hash)) as Call
+    } else if (storage.isV7) {
+        return (await storage.getAsV7(hash)) as Call
+    } else if (storage.isV9) {
+        return (await storage.getAsV9(hash)) as Call
     } else if (storage.isV10) {
         return (await storage.getAsV10(hash)) as Call
     } else if (storage.isV11) {
@@ -41,14 +49,8 @@ async function getInstanceStorageData(
         return (await storage.getAsV28(hash)) as Call
     } else if (storage.isV29) {
         return (await storage.getAsV29(hash)) as Call
-    } else if (storage.isV5) {
-        return (await storage.getAsV5(hash)) as Call
-    } else if (storage.isV6) {
-        return (await storage.getAsV6(hash)) as Call
-    } else if (storage.isV7) {
-        return (await storage.getAsV7(hash)) as Call
-    } else if (storage.isV9) {
-        return (await storage.getAsV9(hash)) as Call
+    } else if (storage.isV30) {
+        return (await storage.getAsV30(hash)) as Call
     } else if (storage.isV9050) {
         return (await storage.getAsV9050(hash)) as Call
     } else if (storage.isV9080) {
