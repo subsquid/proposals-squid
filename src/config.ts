@@ -1,13 +1,13 @@
 import { ProcessorConfig } from './common/processorConfig'
 
 export default {
-    chainName: 'polkadot',
-    prefix: 'polkadot',
+    chainName: 'hydradx',
+    prefix: 'hydradx',
     dataSource: {
-        archive: 'https://polkadot.indexer.gc.subsquid.io/v4/graphql',
-        chain: 'wss://polkadot.api.onfinality.io/public-ws',
+        archive: 'https://hydradx.indexer.gc.subsquid.io/v4/graphql',
+        chain: 'wss://archive.snakenet.hydradx.io',
     },
-    typesBundle: 'polkadot',
+    typesBundle: 'hydradx',
     batchSize: 500,
     blockRange: {
         from: 0,

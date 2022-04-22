@@ -7,10 +7,10 @@ import { CouncilClosedEvent } from '../../../types/events'
 
 function getEventData(ctx: EventContext): Uint8Array {
     const event = new CouncilClosedEvent(ctx)
-    if (event.isV0) {
-        return event.asV0[0]
-    } else if (event.isV9140) {
-        return event.asV9140.proposalHash
+    if (event.isV13) {
+        return event.asV13[0]
+    } else if (event.isV29) {
+        return event.asV29.proposalHash
     } else {
         throw new UnknownVersionError(event.constructor.name)
     }

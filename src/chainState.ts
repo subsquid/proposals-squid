@@ -89,8 +89,8 @@ async function getCouncilMembers(ctx: StorageContext) {
     const storage = new CouncilMembersStorage(ctx)
     if (!storage.isExists) return await getInstance1Members(ctx)
 
-    if (storage.isV9110) {
-        return await storage.getAsV9110()
+    if (storage.isV29) {
+        return await storage.getAsV29()
     }
 
     throw new UnknownVersionError(storage.constructor.name)
@@ -100,8 +100,8 @@ async function getInstance1Members(ctx: StorageContext) {
     const storage = new Instance1CollectiveMembersStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV1020) {
-        return await storage.getAsV1020()
+    if (storage.isV13) {
+        return await storage.getAsV13()
     }
 
     throw new UnknownVersionError(storage.constructor.name)
@@ -111,8 +111,8 @@ async function getCouncilProposalsCount(ctx: StorageContext) {
     const storage = new CouncilProposalCountStorage(ctx)
     if (!storage.isExists) return await getInstance1ProposalsCount(ctx)
 
-    if (storage.isV9110) {
-        return await storage.getAsV9110()
+    if (storage.isV29) {
+        return await storage.getAsV29()
     }
 
     throw new UnknownVersionError(storage.constructor.name)
@@ -122,8 +122,8 @@ async function getInstance1ProposalsCount(ctx: StorageContext) {
     const storage = new Instance1CollectiveProposalCountStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV1020) {
-        return await storage.getAsV1020()
+    if (storage.isV13) {
+        return await storage.getAsV13()
     }
 
     throw new UnknownVersionError(storage.constructor.name)
@@ -133,8 +133,8 @@ async function getDemocracyProposalsCount(ctx: StorageContext) {
     const storage = new DemocracyPublicPropCountStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV0) {
-        return await storage.getAsV0()
+    if (storage.isV13) {
+        return await storage.getAsV13()
     }
 
     throw new UnknownVersionError(storage.constructor.name)
@@ -144,8 +144,8 @@ async function getTotalIssuance(ctx: StorageContext) {
     const storage = new BalancesTotalIssuanceStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV0) {
-        return await storage.getAsV0()
+    if (storage.isV13) {
+        return await storage.getAsV13()
     }
 
     throw new UnknownVersionError(storage.constructor.name)
@@ -154,8 +154,8 @@ async function getTotalIssuance(ctx: StorageContext) {
 // function getHoldersCount(ctx: EventHandlerContext) {
 //     const storage = new BalancesTotalIssuanceStorage(ctx)
 
-//     if (storage.isV0) {
-//         return await storage.getasV0()
+//     if (storage.isV13) {
+//         return await storage.getasV13()
 //     }
 
 //     return undefined

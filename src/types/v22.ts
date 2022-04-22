@@ -1,158 +1,143 @@
 import type {Result} from './support'
 
-export type Type_232 = Type_232_System | Type_232_RandomnessCollectiveFlip | Type_232_Babe | Type_232_Timestamp | Type_232_Grandpa | Type_232_Balances | Type_232_Sudo | Type_232_Scheduler | Type_232_Identity | Type_232_Authorship | Type_232_Staking | Type_232_Democracy | Type_232_ElectionProviderMultiPhase | Type_232_Treasury | Type_232_Session | Type_232_Elections | Type_232_Council | Type_232_TechnicalCommittee | Type_232_AuthorityDiscovery | Type_232_ImOnline | Type_232_Offences | Type_232_Tips | Type_232_Utility | Type_232_Tokens | Type_232_Currencies | Type_232_AssetRegistry | Type_232_XYK | Type_232_Claims | Type_232_Exchange | Type_232_Faucet | Type_232_MultiTransactionPayment
+export type Type_243 = Type_243_System | Type_243_Babe | Type_243_Timestamp | Type_243_Grandpa | Type_243_Balances | Type_243_Sudo | Type_243_Scheduler | Type_243_Identity | Type_243_Authorship | Type_243_Staking | Type_243_Democracy | Type_243_ElectionProviderMultiPhase | Type_243_Treasury | Type_243_Session | Type_243_Elections | Type_243_Council | Type_243_TechnicalCommittee | Type_243_ImOnline | Type_243_Tips | Type_243_Utility | Type_243_Tokens | Type_243_Currencies | Type_243_AssetRegistry | Type_243_XYK | Type_243_Claims | Type_243_Exchange | Type_243_Faucet | Type_243_MultiTransactionPayment
 
-export interface Type_232_System {
+export interface Type_243_System {
   __kind: 'System'
   value: SystemCall
 }
 
-export interface Type_232_RandomnessCollectiveFlip {
-  __kind: 'RandomnessCollectiveFlip'
-  value: RandomnessCollectiveFlipCall
-}
-
-export interface Type_232_Babe {
+export interface Type_243_Babe {
   __kind: 'Babe'
   value: BabeCall
 }
 
-export interface Type_232_Timestamp {
+export interface Type_243_Timestamp {
   __kind: 'Timestamp'
   value: TimestampCall
 }
 
-export interface Type_232_Grandpa {
+export interface Type_243_Grandpa {
   __kind: 'Grandpa'
   value: GrandpaCall
 }
 
-export interface Type_232_Balances {
+export interface Type_243_Balances {
   __kind: 'Balances'
   value: BalancesCall
 }
 
-export interface Type_232_Sudo {
+export interface Type_243_Sudo {
   __kind: 'Sudo'
   value: SudoCall
 }
 
-export interface Type_232_Scheduler {
+export interface Type_243_Scheduler {
   __kind: 'Scheduler'
   value: SchedulerCall
 }
 
-export interface Type_232_Identity {
+export interface Type_243_Identity {
   __kind: 'Identity'
   value: IdentityCall
 }
 
-export interface Type_232_Authorship {
+export interface Type_243_Authorship {
   __kind: 'Authorship'
   value: AuthorshipCall
 }
 
-export interface Type_232_Staking {
+export interface Type_243_Staking {
   __kind: 'Staking'
   value: StakingCall
 }
 
-export interface Type_232_Democracy {
+export interface Type_243_Democracy {
   __kind: 'Democracy'
   value: DemocracyCall
 }
 
-export interface Type_232_ElectionProviderMultiPhase {
+export interface Type_243_ElectionProviderMultiPhase {
   __kind: 'ElectionProviderMultiPhase'
   value: ElectionProviderMultiPhaseCall
 }
 
-export interface Type_232_Treasury {
+export interface Type_243_Treasury {
   __kind: 'Treasury'
   value: TreasuryCall
 }
 
-export interface Type_232_Session {
+export interface Type_243_Session {
   __kind: 'Session'
   value: SessionCall
 }
 
-export interface Type_232_Elections {
+export interface Type_243_Elections {
   __kind: 'Elections'
   value: ElectionsCall
 }
 
-export interface Type_232_Council {
+export interface Type_243_Council {
   __kind: 'Council'
   value: CouncilCall
 }
 
-export interface Type_232_TechnicalCommittee {
+export interface Type_243_TechnicalCommittee {
   __kind: 'TechnicalCommittee'
   value: TechnicalCommitteeCall
 }
 
-export interface Type_232_AuthorityDiscovery {
-  __kind: 'AuthorityDiscovery'
-  value: AuthorityDiscoveryCall
-}
-
-export interface Type_232_ImOnline {
+export interface Type_243_ImOnline {
   __kind: 'ImOnline'
   value: ImOnlineCall
 }
 
-export interface Type_232_Offences {
-  __kind: 'Offences'
-  value: OffencesCall
-}
-
-export interface Type_232_Tips {
+export interface Type_243_Tips {
   __kind: 'Tips'
   value: TipsCall
 }
 
-export interface Type_232_Utility {
+export interface Type_243_Utility {
   __kind: 'Utility'
   value: UtilityCall
 }
 
-export interface Type_232_Tokens {
+export interface Type_243_Tokens {
   __kind: 'Tokens'
   value: TokensCall
 }
 
-export interface Type_232_Currencies {
+export interface Type_243_Currencies {
   __kind: 'Currencies'
   value: CurrenciesCall
 }
 
-export interface Type_232_AssetRegistry {
+export interface Type_243_AssetRegistry {
   __kind: 'AssetRegistry'
   value: AssetRegistryCall
 }
 
-export interface Type_232_XYK {
+export interface Type_243_XYK {
   __kind: 'XYK'
   value: XYKCall
 }
 
-export interface Type_232_Claims {
+export interface Type_243_Claims {
   __kind: 'Claims'
   value: ClaimsCall
 }
 
-export interface Type_232_Exchange {
+export interface Type_243_Exchange {
   __kind: 'Exchange'
   value: ExchangeCall
 }
 
-export interface Type_232_Faucet {
+export interface Type_243_Faucet {
   __kind: 'Faucet'
   value: FaucetCall
 }
 
-export interface Type_232_MultiTransactionPayment {
+export interface Type_243_MultiTransactionPayment {
   __kind: 'MultiTransactionPayment'
   value: MultiTransactionPaymentCall
 }
@@ -305,8 +290,6 @@ export interface SystemCall_remark_with_event {
   remark: Uint8Array
 }
 
-export type RandomnessCollectiveFlipCall = never
-
 export type BabeCall = BabeCall_report_equivocation | BabeCall_report_equivocation_unsigned | BabeCall_plan_config_change
 
 /**
@@ -418,7 +401,7 @@ export interface GrandpaCall_note_stalled {
   bestFinalizedBlockNumber: number
 }
 
-export type BalancesCall = BalancesCall_transfer | BalancesCall_set_balance | BalancesCall_force_transfer | BalancesCall_transfer_keep_alive
+export type BalancesCall = BalancesCall_transfer | BalancesCall_set_balance | BalancesCall_force_transfer | BalancesCall_transfer_keep_alive | BalancesCall_transfer_all
 
 /**
  *  Transfer some liquid free balance to another account.
@@ -514,6 +497,32 @@ export interface BalancesCall_transfer_keep_alive {
   __kind: 'transfer_keep_alive'
   dest: Uint8Array
   value: bigint
+}
+
+/**
+ *  Transfer the entire transferable balance from the caller account.
+ * 
+ *  NOTE: This function only attempts to transfer _transferable_ balances. This means that
+ *  any locked, reserved, or existential deposits (when `keep_alive` is `true`), will not be
+ *  transferred by this function. To ensure that this function results in a killed account,
+ *  you might need to prepare the account by removing any reference counters, storage
+ *  deposits, etc...
+ * 
+ *  The dispatch origin of this call must be Signed.
+ * 
+ *  - `dest`: The recipient of the transfer.
+ *  - `keep_alive`: A boolean to determine if the `transfer_all` operation should send all
+ *    of the funds the account has, causing the sender account to be killed (false), or
+ *    transfer everything except at least the existential deposit, which will guarantee to
+ *    keep the sender account alive (true).
+ *    # <weight>
+ *  - O(1). Just like transfer, but reading the user's transferable balance first.
+ *    #</weight>
+ */
+export interface BalancesCall_transfer_all {
+  __kind: 'transfer_all'
+  dest: Uint8Array
+  keepAlive: boolean
 }
 
 export type SudoCall = SudoCall_sudo | SudoCall_sudo_unchecked_weight | SudoCall_set_key | SudoCall_sudo_as
@@ -1036,7 +1045,7 @@ export interface AuthorshipCall_set_uncles {
   newUncles: Header[]
 }
 
-export type StakingCall = StakingCall_bond | StakingCall_bond_extra | StakingCall_unbond | StakingCall_withdraw_unbonded | StakingCall_validate | StakingCall_nominate | StakingCall_chill | StakingCall_set_payee | StakingCall_set_controller | StakingCall_set_validator_count | StakingCall_increase_validator_count | StakingCall_scale_validator_count | StakingCall_force_no_eras | StakingCall_force_new_era | StakingCall_set_invulnerables | StakingCall_force_unstake | StakingCall_force_new_era_always | StakingCall_cancel_deferred_slash | StakingCall_payout_stakers | StakingCall_rebond | StakingCall_set_history_depth | StakingCall_reap_stash | StakingCall_kick
+export type StakingCall = StakingCall_bond | StakingCall_bond_extra | StakingCall_unbond | StakingCall_withdraw_unbonded | StakingCall_validate | StakingCall_nominate | StakingCall_chill | StakingCall_set_payee | StakingCall_set_controller | StakingCall_set_validator_count | StakingCall_increase_validator_count | StakingCall_scale_validator_count | StakingCall_force_no_eras | StakingCall_force_new_era | StakingCall_set_invulnerables | StakingCall_force_unstake | StakingCall_force_new_era_always | StakingCall_cancel_deferred_slash | StakingCall_payout_stakers | StakingCall_rebond | StakingCall_set_history_depth | StakingCall_reap_stash | StakingCall_kick | StakingCall_set_staking_limits | StakingCall_chill_other
 
 /**
  *  Take the origin account as a stash and lock up `value` of its balance. `controller` will
@@ -1108,6 +1117,9 @@ export interface StakingCall_bond_extra {
  *  No more than a limited number of unlocking chunks (see `MAX_UNLOCKING_CHUNKS`)
  *  can co-exists at the same time. In that case, [`Call::withdraw_unbonded`] need
  *  to be called first to remove some of the chunks (if possible).
+ * 
+ *  If a user encounters the `InsufficientBond` error when calling this extrinsic,
+ *  they should call `chill` first in order to free up their bonded funds.
  * 
  *  The dispatch origin for this call must be _Signed_ by the controller, not the stash.
  *  And, it can be only called when [`EraElectionStatus`] is `Closed`.
@@ -1341,6 +1353,12 @@ export interface StakingCall_scale_validator_count {
  * 
  *  The dispatch origin must be Root.
  * 
+ *  # Warning
+ * 
+ *  The election process starts multiple blocks before the end of the era.
+ *  Thus the election process may be ongoing when this is called. In this case the
+ *  election will continue until the next era is triggered.
+ * 
  *  # <weight>
  *  - No arguments.
  *  - Weight: O(1)
@@ -1356,6 +1374,12 @@ export interface StakingCall_force_no_eras {
  *  reset to normal (non-forced) behaviour.
  * 
  *  The dispatch origin must be Root.
+ * 
+ *  # Warning
+ * 
+ *  The election process starts multiple blocks before the end of the era.
+ *  If this is called just before a new era is triggered, the election process may not
+ *  have enough blocks to get a result.
  * 
  *  # <weight>
  *  - No arguments.
@@ -1404,6 +1428,12 @@ export interface StakingCall_force_unstake {
  *  Force there to be a new era at the end of sessions indefinitely.
  * 
  *  The dispatch origin must be Root.
+ * 
+ *  # Warning
+ * 
+ *  The election process starts multiple blocks before the end of the era.
+ *  If this is called just before a new era is triggered, the election process may not
+ *  have enough blocks to get a result.
  * 
  *  # <weight>
  *  - Weight: O(1)
@@ -1562,6 +1592,59 @@ export interface StakingCall_reap_stash {
 export interface StakingCall_kick {
   __kind: 'kick'
   who: Uint8Array[]
+}
+
+/**
+ *  Update the various staking limits this pallet.
+ * 
+ *  * `min_nominator_bond`: The minimum active bond needed to be a nominator.
+ *  * `min_validator_bond`: The minimum active bond needed to be a validator.
+ *  * `max_nominator_count`: The max number of users who can be a nominator at once.
+ *    When set to `None`, no limit is enforced.
+ *  * `max_validator_count`: The max number of users who can be a validator at once.
+ *    When set to `None`, no limit is enforced.
+ * 
+ *  Origin must be Root to call this function.
+ * 
+ *  NOTE: Existing nominators and validators will not be affected by this update.
+ *  to kick people under the new limits, `chill_other` should be called.
+ */
+export interface StakingCall_set_staking_limits {
+  __kind: 'set_staking_limits'
+  minNominatorBond: bigint
+  minValidatorBond: bigint
+  maxNominatorCount: (number | undefined)
+  maxValidatorCount: (number | undefined)
+  threshold: (number | undefined)
+}
+
+/**
+ *  Declare a `controller` to stop participating as either a validator or nominator.
+ * 
+ *  Effects will be felt at the beginning of the next era.
+ * 
+ *  The dispatch origin for this call must be _Signed_, but can be called by anyone.
+ * 
+ *  If the caller is the same as the controller being targeted, then no further checks are
+ *  enforced, and this function behaves just like `chill`.
+ * 
+ *  If the caller is different than the controller being targeted, the following conditions
+ *  must be met:
+ *  * A `ChillThreshold` must be set and checked which defines how close to the max
+ *    nominators or validators we must reach before users can start chilling one-another.
+ *  * A `MaxNominatorCount` and `MaxValidatorCount` must be set which is used to determine
+ *    how close we are to the threshold.
+ *  * A `MinNominatorBond` and `MinValidatorBond` must be set and checked, which determines
+ *    if this is a person that should be chilled because they have not met the threshold
+ *    bond required.
+ * 
+ *  This can be helpful if bond requirements are updated, and we need to remove old users
+ *  who do not satisfy these requirements.
+ * 
+ */
+export interface StakingCall_chill_other {
+  __kind: 'chill_other'
+  controller: Uint8Array
 }
 
 export type DemocracyCall = DemocracyCall_propose | DemocracyCall_second | DemocracyCall_vote | DemocracyCall_emergency_cancel | DemocracyCall_external_propose | DemocracyCall_external_propose_majority | DemocracyCall_external_propose_default | DemocracyCall_fast_track | DemocracyCall_veto_external | DemocracyCall_cancel_referendum | DemocracyCall_cancel_queued | DemocracyCall_delegate | DemocracyCall_undelegate | DemocracyCall_clear_public_proposals | DemocracyCall_note_preimage | DemocracyCall_note_preimage_operational | DemocracyCall_note_imminent_preimage | DemocracyCall_note_imminent_preimage_operational | DemocracyCall_reap_preimage | DemocracyCall_unlock | DemocracyCall_remove_vote | DemocracyCall_remove_other_vote | DemocracyCall_enact_proposal | DemocracyCall_blacklist | DemocracyCall_cancel_proposal
@@ -2005,7 +2088,7 @@ export interface DemocracyCall_cancel_proposal {
   propIndex: number
 }
 
-export type ElectionProviderMultiPhaseCall = ElectionProviderMultiPhaseCall_submit_unsigned
+export type ElectionProviderMultiPhaseCall = ElectionProviderMultiPhaseCall_submit_unsigned | ElectionProviderMultiPhaseCall_set_minimum_untrusted_score | ElectionProviderMultiPhaseCall_set_emergency_election_result | ElectionProviderMultiPhaseCall_submit
 
 /**
  *  Submit a solution for the unsigned phase.
@@ -2027,6 +2110,54 @@ export interface ElectionProviderMultiPhaseCall_submit_unsigned {
   __kind: 'submit_unsigned'
   solution: RawSolutionWith16
   witness: SolutionOrSnapshotSize
+}
+
+/**
+ *  Set a new value for `MinimumUntrustedScore`.
+ * 
+ *  Dispatch origin must be aligned with `T::ForceOrigin`.
+ * 
+ *  This check can be turned off by setting the value to `None`.
+ */
+export interface ElectionProviderMultiPhaseCall_set_minimum_untrusted_score {
+  __kind: 'set_minimum_untrusted_score'
+  maybeNextScore: (bigint[] | undefined)
+}
+
+/**
+ *  Set a solution in the queue, to be handed out to the client of this pallet in the next
+ *  call to `ElectionProvider::elect`.
+ * 
+ *  This can only be set by `T::ForceOrigin`, and only when the phase is `Emergency`.
+ * 
+ *  The solution is not checked for any feasibility and is assumed to be trustworthy, as any
+ *  feasibility check itself can in principle cause the election process to fail (due to
+ *  memory/weight constrains).
+ */
+export interface ElectionProviderMultiPhaseCall_set_emergency_election_result {
+  __kind: 'set_emergency_election_result'
+  solution: ReadySolution
+}
+
+/**
+ *  Submit a solution for the signed phase.
+ * 
+ *  The dispatch origin fo this call must be __signed__.
+ * 
+ *  The solution is potentially queued, based on the claimed score and processed at the end
+ *  of the signed phase.
+ * 
+ *  A deposit is reserved and recorded for the solution. Based on the outcome, the solution
+ *  might be rewarded, slashed, or get all or a part of the deposit back.
+ * 
+ *  # <weight>
+ *  Queue size must be provided as witness data.
+ *  # </weight>
+ */
+export interface ElectionProviderMultiPhaseCall_submit {
+  __kind: 'submit'
+  solution: RawSolutionWith16
+  numSignedSubmissions: number
 }
 
 export type TreasuryCall = TreasuryCall_propose_spend | TreasuryCall_reject_proposal | TreasuryCall_approve_proposal
@@ -2116,7 +2247,7 @@ export interface SessionCall_set_keys {
  *    Actual cost depends on the number of length of `T::Keys::key_ids()` which is fixed.
  *  - DbReads: `T::ValidatorIdOf`, `NextKeys`, `origin account`
  *  - DbWrites: `NextKeys`, `origin account`
- *  - DbWrites per key id: `KeyOwnder`
+ *  - DbWrites per key id: `KeyOwner`
  *  # </weight>
  */
 export interface SessionCall_purge_keys {
@@ -2302,7 +2433,7 @@ export interface CouncilCall_set_members {
  */
 export interface CouncilCall_execute {
   __kind: 'execute'
-  proposal: Type_232
+  proposal: Type_243
   lengthBound: number
 }
 
@@ -2338,7 +2469,7 @@ export interface CouncilCall_execute {
 export interface CouncilCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_232
+  proposal: Type_243
   lengthBound: number
 }
 
@@ -2474,7 +2605,7 @@ export interface TechnicalCommitteeCall_set_members {
  */
 export interface TechnicalCommitteeCall_execute {
   __kind: 'execute'
-  proposal: Type_232
+  proposal: Type_243
   lengthBound: number
 }
 
@@ -2510,7 +2641,7 @@ export interface TechnicalCommitteeCall_execute {
 export interface TechnicalCommitteeCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_232
+  proposal: Type_243
   lengthBound: number
 }
 
@@ -2597,8 +2728,6 @@ export interface TechnicalCommitteeCall_disapprove_proposal {
   proposalHash: Uint8Array
 }
 
-export type AuthorityDiscoveryCall = never
-
 export type ImOnlineCall = ImOnlineCall_heartbeat
 
 /**
@@ -2617,8 +2746,6 @@ export interface ImOnlineCall_heartbeat {
   heartbeat: Heartbeat
   signature: Uint8Array
 }
-
-export type OffencesCall = never
 
 export type TipsCall = TipsCall_report_awesome | TipsCall_retract_tip | TipsCall_tip_new | TipsCall_tip | TipsCall_close_tip | TipsCall_slash_tip
 
@@ -2850,13 +2977,22 @@ export interface UtilityCall_batch_all {
   calls: Type_73[]
 }
 
-export type TokensCall = TokensCall_transfer | TokensCall_transfer_all
+export type TokensCall = TokensCall_transfer | TokensCall_transfer_all | TokensCall_transfer_keep_alive | TokensCall_force_transfer | TokensCall_set_balance
 
 /**
- *  Transfer some balance to another account.
+ *  Transfer some liquid free balance to another account.
+ * 
+ *  `transfer` will set the `FreeBalance` of the sender and receiver.
+ *  It will decrease the total issuance of the system by the
+ *  `TransferFee`. If the sender's account is below the existential
+ *  deposit as a result of the transfer, the account will be reaped.
  * 
  *  The dispatch origin for this call must be `Signed` by the
  *  transactor.
+ * 
+ *  - `dest`: The recipient of the transfer.
+ *  - `currency_id`: currency type.
+ *  - `amount`: free balance amount to tranfer.
  */
 export interface TokensCall_transfer {
   __kind: 'transfer'
@@ -2868,13 +3004,86 @@ export interface TokensCall_transfer {
 /**
  *  Transfer all remaining balance to the given account.
  * 
+ *  NOTE: This function only attempts to transfer _transferable_
+ *  balances. This means that any locked, reserved, or existential
+ *  deposits (when `keep_alive` is `true`), will not be transferred by
+ *  this function. To ensure that this function results in a killed
+ *  account, you might need to prepare the account by removing any
+ *  reference counters, storage deposits, etc...
+ * 
  *  The dispatch origin for this call must be `Signed` by the
  *  transactor.
+ * 
+ *  - `dest`: The recipient of the transfer.
+ *  - `currency_id`: currency type.
+ *  - `keep_alive`: A boolean to determine if the `transfer_all`
+ *    operation should send all of the funds the account has, causing
+ *    the sender account to be killed (false), or transfer everything
+ *    except at least the existential deposit, which will guarantee to
+ *    keep the sender account alive (true).
  */
 export interface TokensCall_transfer_all {
   __kind: 'transfer_all'
   dest: Uint8Array
   currencyId: number
+  keepAlive: boolean
+}
+
+/**
+ *  Same as the [`transfer`] call, but with a check that the transfer
+ *  will not kill the origin account.
+ * 
+ *  99% of the time you want [`transfer`] instead.
+ * 
+ *  The dispatch origin for this call must be `Signed` by the
+ *  transactor.
+ * 
+ *  - `dest`: The recipient of the transfer.
+ *  - `currency_id`: currency type.
+ *  - `amount`: free balance amount to tranfer.
+ */
+export interface TokensCall_transfer_keep_alive {
+  __kind: 'transfer_keep_alive'
+  dest: Uint8Array
+  currencyId: number
+  amount: bigint
+}
+
+/**
+ *  Exactly as `transfer`, except the origin must be root and the source
+ *  account may be specified.
+ * 
+ *  The dispatch origin for this call must be _Root_.
+ * 
+ *  - `source`: The sender of the transfer.
+ *  - `dest`: The recipient of the transfer.
+ *  - `currency_id`: currency type.
+ *  - `amount`: free balance amount to tranfer.
+ */
+export interface TokensCall_force_transfer {
+  __kind: 'force_transfer'
+  source: Uint8Array
+  dest: Uint8Array
+  currencyId: number
+  amount: bigint
+}
+
+/**
+ *  Set the balances of a given account.
+ * 
+ *  This will alter `FreeBalance` and `ReservedBalance` in storage. it
+ *  will also decrease the total issuance of the system
+ *  (`TotalIssuance`). If the new free or reserved balance is below the
+ *  existential deposit, it will reap the `AccountInfo`.
+ * 
+ *  The dispatch origin for this call is `root`.
+ */
+export interface TokensCall_set_balance {
+  __kind: 'set_balance'
+  who: Uint8Array
+  currencyId: number
+  newFree: bigint
+  newReserved: bigint
 }
 
 export type CurrenciesCall = CurrenciesCall_transfer | CurrenciesCall_transfer_native_currency | CurrenciesCall_update_balance
@@ -3086,6 +3295,7 @@ export interface MultiTransactionPaymentCall_set_currency {
 export interface MultiTransactionPaymentCall_add_currency {
   __kind: 'add_currency'
   currency: number
+  price: bigint
 }
 
 /**
@@ -3162,16 +3372,11 @@ export interface GrandpaEquivocationProof {
   equivocation: GrandpaEquivocation
 }
 
-export type Type_73 = Type_73_System | Type_73_RandomnessCollectiveFlip | Type_73_Babe | Type_73_Timestamp | Type_73_Grandpa | Type_73_Balances | Type_73_Sudo | Type_73_Scheduler | Type_73_Identity | Type_73_Authorship | Type_73_Staking | Type_73_Democracy | Type_73_ElectionProviderMultiPhase | Type_73_Treasury | Type_73_Session | Type_73_Elections | Type_73_Council | Type_73_TechnicalCommittee | Type_73_AuthorityDiscovery | Type_73_ImOnline | Type_73_Offences | Type_73_Tips | Type_73_Utility | Type_73_Tokens | Type_73_Currencies | Type_73_AssetRegistry | Type_73_XYK | Type_73_Claims | Type_73_Exchange | Type_73_Faucet | Type_73_MultiTransactionPayment
+export type Type_73 = Type_73_System | Type_73_Babe | Type_73_Timestamp | Type_73_Grandpa | Type_73_Balances | Type_73_Sudo | Type_73_Scheduler | Type_73_Identity | Type_73_Authorship | Type_73_Staking | Type_73_Democracy | Type_73_ElectionProviderMultiPhase | Type_73_Treasury | Type_73_Session | Type_73_Elections | Type_73_Council | Type_73_TechnicalCommittee | Type_73_ImOnline | Type_73_Tips | Type_73_Utility | Type_73_Tokens | Type_73_Currencies | Type_73_AssetRegistry | Type_73_XYK | Type_73_Claims | Type_73_Exchange | Type_73_Faucet | Type_73_MultiTransactionPayment
 
 export interface Type_73_System {
   __kind: 'System'
   value: SystemCall
-}
-
-export interface Type_73_RandomnessCollectiveFlip {
-  __kind: 'RandomnessCollectiveFlip'
-  value: RandomnessCollectiveFlipCall
 }
 
 export interface Type_73_Babe {
@@ -3254,19 +3459,9 @@ export interface Type_73_TechnicalCommittee {
   value: TechnicalCommitteeCall
 }
 
-export interface Type_73_AuthorityDiscovery {
-  __kind: 'AuthorityDiscovery'
-  value: AuthorityDiscoveryCall
-}
-
 export interface Type_73_ImOnline {
   __kind: 'ImOnline'
   value: ImOnlineCall
-}
-
-export interface Type_73_Offences {
-  __kind: 'Offences'
-  value: OffencesCall
 }
 
 export interface Type_73_Tips {
@@ -3653,6 +3848,12 @@ export interface SolutionOrSnapshotSize {
   targets: number
 }
 
+export interface ReadySolution {
+  supports: [Uint8Array, SolutionSupport][]
+  score: bigint[]
+  compute: ElectionCompute
+}
+
 export type Renouncing = Renouncing_Member | Renouncing_RunnerUp | Renouncing_Candidate
 
 export interface Renouncing_Member {
@@ -3726,6 +3927,25 @@ export interface CompactAssignmentsWith16 {
   votes14: [number, [number, number][], number][]
   votes15: [number, [number, number][], number][]
   votes16: [number, [number, number][], number][]
+}
+
+export interface SolutionSupport {
+  total: bigint
+  voters: [Uint8Array, bigint][]
+}
+
+export type ElectionCompute = ElectionCompute_OnChain | ElectionCompute_Signed | ElectionCompute_Unsigned
+
+export interface ElectionCompute_OnChain {
+  __kind: 'OnChain'
+}
+
+export interface ElectionCompute_Signed {
+  __kind: 'Signed'
+}
+
+export interface ElectionCompute_Unsigned {
+  __kind: 'Unsigned'
 }
 
 export interface OpaqueNetworkState {
