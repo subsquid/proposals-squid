@@ -3,33 +3,16 @@ import { MissingProposalRecord, UnknownVersionError } from '../../../common/erro
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
-import { TipsTipRetractedEvent, TreasuryTipRetractedEvent } from '../../../types/events'
+import { TipsTipRetractedEvent } from '../../../types/events'
 
 interface TipEventData {
     hash: Uint8Array
 }
 
-function getTreasuryEventData(ctx: EventContext): TipEventData {
-    const event = new TreasuryTipRetractedEvent(ctx)
-    if (event.isV0) {
-        const hash = event.asV0
-        return {
-            hash,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
-}
-
-function getTipsEventData(ctx: EventContext): TipEventData {
+function getEventData(ctx: EventContext): TipEventData {
     const event = new TipsTipRetractedEvent(ctx)
-    if (event.isV28) {
-        const hash = event.asV28
-        return {
-            hash,
-        }
-    } else if (event.isV9140) {
-        const { tipHash: hash } = event.asV9140
+    if (event.isV15) {
+        const hash = event.asV15
         return {
             hash,
         }
@@ -39,7 +22,6 @@ function getTipsEventData(ctx: EventContext): TipEventData {
 }
 
 export async function handleRetracted(ctx: EventHandlerContext) {
-    const getEventData = ctx.event.section === 'tips' ? getTipsEventData : getTreasuryEventData
     const { hash } = getEventData(ctx)
 
     const hexHash = toHex(hash)

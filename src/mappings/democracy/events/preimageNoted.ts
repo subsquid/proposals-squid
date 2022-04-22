@@ -8,10 +8,10 @@ import { ProposalStatus, ProposalType } from '../../../model'
 import { encodeId, parseProposalCall } from '../../../common/tools'
 import config from '../../../config'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
-import { Call } from '../../../types/v9180'
+import { Type_103 } from '../../../types/v18'
 import { proposalManager } from '../../../managers'
 
-type ProposalCall = Call
+type ProposalCall = Type_103
 
 interface PreimageEventData {
     hash: Uint8Array
@@ -28,15 +28,8 @@ interface PreimageStorageData {
 
 function getEventData(ctx: EventContext): PreimageEventData {
     const event = new DemocracyPreimageNotedEvent(ctx)
-    if (event.isV0) {
-        const [hash, provider, deposit] = event.asV0
-        return {
-            hash,
-            provider,
-            deposit,
-        }
-    } else if (event.isV9140) {
-        const { proposalHash: hash, who: provider, deposit } = event.asV9140
+    if (event.isV15) {
+        const [hash, provider, deposit] = event.asV15
         return {
             hash,
             provider,
@@ -55,23 +48,11 @@ function decodeProposal(chain: Chain, data: Uint8Array): ProposalCall {
 async function getStorageData(ctx: StorageContext, hash: Uint8Array): Promise<PreimageStorageData | undefined> {
     const storage = new DemocracyPreimagesStorage(ctx)
 
-    if (storage.isV0) {
-        const storageData = await storage.getAsV0(hash)
+    if (storage.isV15) {
+        const storageData = await storage.getAsV15(hash)
         if (!storageData || storageData.__kind === 'Missing') return undefined
 
         const { provider, deposit, since, data } = storageData.value
-
-        return {
-            data,
-            provider,
-            deposit,
-            block: since,
-        }
-    } else if (storage.isV9110) {
-        const storageData = await storage.getAsV9110(hash)
-        if (!storageData || storageData.__kind === 'Missing') return undefined
-
-        const { provider, deposit, since, data } = storageData
 
         return {
             data,

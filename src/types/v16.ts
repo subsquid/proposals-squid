@@ -2955,7 +2955,7 @@ export interface SworkCall_set_punishment {
   isEnabled: boolean
 }
 
-export type MarketCall = MarketCall_place_storage_order | MarketCall_add_prepaid | MarketCall_calculate_reward | MarketCall_reward_merchant | MarketCall_set_enable_market | MarketCall_set_base_fee | MarketCall_set_byte_fee | MarketCall_set_key_count_fee | MarketCall_set_min_base_fee | MarketCall_set_min_byte_fee | MarketCall_set_min_key_count_fee
+export type MarketCall = MarketCall_place_storage_order | MarketCall_add_prepaid | MarketCall_calculate_reward | MarketCall_reward_merchant | MarketCall_set_enable_market | MarketCall_set_base_fee
 
 /**
  *  Place a storage order. The cid and file_size of this file should be provided. Extra tips is accepted.
@@ -3011,56 +3011,6 @@ export interface MarketCall_set_enable_market {
 export interface MarketCall_set_base_fee {
   __kind: 'set_base_fee'
   baseFee: bigint
-}
-
-/**
- *  Set the file byte fee
- * 
- *  The dispatch origin for this call must be _Root_.
- */
-export interface MarketCall_set_byte_fee {
-  __kind: 'set_byte_fee'
-  byteFee: bigint
-}
-
-/**
- *  Set the file key count fee
- * 
- *  The dispatch origin for this call must be _Root_.
- */
-export interface MarketCall_set_key_count_fee {
-  __kind: 'set_key_count_fee'
-  keyCountFee: bigint
-}
-
-/**
- *  Set the mininal file base fee
- * 
- *  The dispatch origin for this call must be _Root_.
- */
-export interface MarketCall_set_min_base_fee {
-  __kind: 'set_min_base_fee'
-  minBaseFee: bigint
-}
-
-/**
- *  Set the minimal file byte fee
- * 
- *  The dispatch origin for this call must be _Root_.
- */
-export interface MarketCall_set_min_byte_fee {
-  __kind: 'set_min_byte_fee'
-  minByteFee: bigint
-}
-
-/**
- *  Set the minimal file key count fee
- * 
- *  The dispatch origin for this call must be _Root_.
- */
-export interface MarketCall_set_min_key_count_fee {
-  __kind: 'set_min_key_count_fee'
-  minKeyCountFee: bigint
 }
 
 export type ClaimsCall = ClaimsCall_change_superior | ClaimsCall_change_miner | ClaimsCall_set_claim_limit | ClaimsCall_mint_claim | ClaimsCall_claim | ClaimsCall_claim_cru18

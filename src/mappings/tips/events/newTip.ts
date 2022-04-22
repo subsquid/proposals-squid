@@ -1,5 +1,5 @@
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
-import { TipsNewTipEvent, TreasuryNewTipEvent } from '../../../types/events'
+import { TipsNewTipEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
@@ -12,27 +12,10 @@ interface TipEventData {
     hash: Uint8Array
 }
 
-function getTreasuryEventData(ctx: EventContext): TipEventData {
-    const event = new TreasuryNewTipEvent(ctx)
-    if (event.isV0) {
-        const hash = event.asV0
-        return {
-            hash,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
-}
-
-function getTipsEventData(ctx: EventContext): TipEventData {
+function getEventData(ctx: EventContext): TipEventData {
     const event = new TipsNewTipEvent(ctx)
-    if (event.isV28) {
-        const hash = event.asV28
-        return {
-            hash,
-        }
-    } else if (event.isV9140) {
-        const { tipHash: hash } = event.asV9140
+    if (event.isV15) {
+        const hash = event.asV15
         return {
             hash,
         }
@@ -42,7 +25,6 @@ function getTipsEventData(ctx: EventContext): TipEventData {
 }
 
 export async function handleNewTip(ctx: EventHandlerContext) {
-    const getEventData = ctx.event.section === 'tips' ? getTipsEventData : getTreasuryEventData
     const { hash } = getEventData(ctx)
 
     const hexHash = toHex(hash)

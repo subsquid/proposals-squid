@@ -7,14 +7,8 @@ import { TechnicalCommitteeExecutedEvent } from '../../../types/events'
 
 function getEventData(ctx: EventContext): Uint8Array {
     const event = new TechnicalCommitteeExecutedEvent(ctx)
-    if (event.isV0) {
-        return event.asV0[0]
-    } else if (event.isV9110) {
-        return event.asV9110[0]
-    } else if (event.isV9140) {
-        return event.asV9140.proposalHash
-    } else if (event.isV9170) {
-        return event.asV9170.proposalHash
+    if (event.isV15) {
+        return event.asV15[0]
     } else {
         throw new UnknownVersionError(event.constructor.name)
     }

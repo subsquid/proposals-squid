@@ -13,15 +13,8 @@ interface TabledEventData {
 
 function getEventData(ctx: EventContext): TabledEventData {
     const event = new DemocracyTabledEvent(ctx)
-    if (event.isV0) {
-        const [index, deposit, depositors] = event.asV0
-        return {
-            index,
-            deposit,
-            depositors,
-        }
-    } else if (event.isV9140) {
-        const { proposalIndex: index, deposit, depositors } = event.asV9140
+    if (event.isV15) {
+        const [index, deposit, depositors] = event.asV15
         return {
             index,
             deposit,
@@ -39,6 +32,6 @@ export async function handleTabled(ctx: EventHandlerContext) {
         status: ProposalStatus.Tabled,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.DemocracyProposal, index, ctx.block.height))
+        new MissingProposalRecord(ProposalType.DemocracyProposal, index, ctx.block.height)
     }
 }

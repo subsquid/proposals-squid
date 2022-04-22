@@ -1,13 +1,13 @@
 import { ProcessorConfig } from './common/processorConfig'
 
 export default {
-    chainName: 'polkadot',
-    prefix: 'polkadot',
+    chainName: 'crust',
+    prefix: 'crust',
     dataSource: {
-        archive: 'https://polkadot.indexer.gc.subsquid.io/v4/graphql',
-        chain: 'wss://polkadot.api.onfinality.io/public-ws',
+        archive: 'https://crust.indexer.gc.subsquid.io/v4/graphql',
+        chain: 'wss://rpc.crust.network',
     },
-    typesBundle: 'polkadot',
+    typesBundle: 'crust',
     batchSize: 500,
     blockRange: {
         from: 0,

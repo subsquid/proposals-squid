@@ -3,36 +3,17 @@ import { MissingProposalRecord, UnknownVersionError } from '../../../common/erro
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
-import { TipsTipClosedEvent, TreasuryTipClosedEvent } from '../../../types/events'
+import { TipsTipClosedEvent } from '../../../types/events'
 
 interface TipEventData {
     hash: Uint8Array
     reward: bigint
 }
 
-function getTreasuryEventData(ctx: EventContext): TipEventData {
-    const event = new TreasuryTipClosedEvent(ctx)
-    if (event.isV0) {
-        const [hash, , reward] = event.asV0
-        return {
-            hash,
-            reward,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
-}
-
-function getTipsEventData(ctx: EventContext): TipEventData {
+function getEventData(ctx: EventContext): TipEventData {
     const event = new TipsTipClosedEvent(ctx)
-    if (event.isV28) {
-        const [hash, , reward] = event.asV28
-        return {
-            hash,
-            reward,
-        }
-    } else if (event.isV9140) {
-        const { tipHash: hash, payout: reward } = event.asV9140
+    if (event.isV15) {
+        const [hash, , reward] = event.asV15
         return {
             hash,
             reward,
@@ -43,7 +24,6 @@ function getTipsEventData(ctx: EventContext): TipEventData {
 }
 
 export async function handleClosed(ctx: EventHandlerContext) {
-    const getEventData = ctx.event.section === 'tips' ? getTipsEventData : getTreasuryEventData
     const { hash, reward } = getEventData(ctx)
 
     const hexHash = toHex(hash)

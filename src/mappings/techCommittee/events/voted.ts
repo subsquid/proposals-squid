@@ -15,19 +15,12 @@ interface TechnicalCommitteeVoteEventData {
 
 function getEventData(ctx: EventContext): TechnicalCommitteeVoteEventData {
     const event = new TechnicalCommitteeVotedEvent(ctx)
-    if (event.isV0) {
-        const [voter, hash, decision] = event.asV0
+    if (event.isV15) {
+        const [voter, hash, decision] = event.asV15
         return {
             voter,
             hash,
             decision,
-        }
-    } else if (event.isV9140) {
-        const { account, proposalHash, voted } = event.asV9140
-        return {
-            voter: account,
-            hash: proposalHash,
-            decision: voted,
         }
     } else {
         throw new UnknownVersionError(event.constructor.name)

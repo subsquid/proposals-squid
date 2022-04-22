@@ -1,5 +1,5 @@
 import { UnknownVersionError } from '../../common/errors'
-import { TipsTipsStorage, TreasuryTipsStorage } from '../../types/storage'
+import { TreasuryTipsStorage } from '../../types/storage'
 import { StorageContext } from '../../types/support'
 
 interface TipStorageData {
@@ -8,38 +8,17 @@ interface TipStorageData {
     deposit?: bigint
 }
 
-async function getTipsStorageData(ctx: StorageContext, hash: Uint8Array): Promise<TipStorageData | undefined> {
-    const storage = new TipsTipsStorage(ctx)
-    if (!storage.isExists) return undefined
-
-    if (storage.isV9110) {
-        return await storage.getAsV9110(hash)
-    } else {
-        throw new UnknownVersionError(storage.constructor.name)
-    }
-}
-
 async function getTreasuryStorageData(ctx: StorageContext, hash: Uint8Array): Promise<TipStorageData | undefined> {
     const storage = new TreasuryTipsStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV0) {
-        const storageData = await storage.getAsV0(hash)
-        if (!storageData) return undefined
-
-        const { who, finder } = storageData
-        return {
-            who,
-            finder: finder?.[0],
-            deposit: finder?.[1],
-        }
-    } else if (storage.isV13) {
-        return await storage.getAsV13(hash)
+    if (storage.isV15) {
+        return await storage.getAsV15(hash)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
 }
 
 export async function getTips(ctx: StorageContext, hash: Uint8Array) {
-    return (await getTipsStorageData(ctx, hash)) || (await getTreasuryStorageData(ctx, hash))
+    return await getTreasuryStorageData(ctx, hash)
 }
