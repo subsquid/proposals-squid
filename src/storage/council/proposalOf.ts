@@ -111,6 +111,8 @@ async function getCoucilStorageData(
         return (await storage.getAsV9170(hash)) as Call
     } else if (storage.isV9180) {
         return (await storage.getAsV9180(hash)) as Call
+    } else if (storage.isV9190) {
+        return (await storage.getAsV9190(hash)) as Call
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }

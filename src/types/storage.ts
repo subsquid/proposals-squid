@@ -43,6 +43,7 @@ import * as v9130 from './v9130'
 import * as v9160 from './v9160'
 import * as v9170 from './v9170'
 import * as v9180 from './v9180'
+import * as v9190 from './v9190'
 
 export class BalancesTotalIssuanceStorage {
   constructor(private ctx: StorageContext) {}
@@ -238,6 +239,21 @@ export class CouncilProposalOfStorage {
    */
   async getAsV9180(key: v9180.H256): Promise<v9180.Call | undefined> {
     assert(this.isV9180)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'Council', 'ProposalOf', key)
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9190() {
+    return this.ctx._chain.getStorageItemTypeHash('Council', 'ProposalOf') === '81b65eb804da3365d8cdd24c14cfc9e7b042151c9f94f42b7210ef3337145243'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9190(key: v9190.H256): Promise<v9190.Call | undefined> {
+    assert(this.isV9190)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Council', 'ProposalOf', key)
   }
 
@@ -1712,6 +1728,21 @@ export class TechnicalCommitteeProposalOfStorage {
    */
   async getAsV9180(key: v9180.H256): Promise<v9180.Call | undefined> {
     assert(this.isV9180)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', key)
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9190() {
+    return this.ctx._chain.getStorageItemTypeHash('TechnicalCommittee', 'ProposalOf') === '81b65eb804da3365d8cdd24c14cfc9e7b042151c9f94f42b7210ef3337145243'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9190(key: v9190.H256): Promise<v9190.Call | undefined> {
+    assert(this.isV9190)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', key)
   }
 

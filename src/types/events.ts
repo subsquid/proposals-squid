@@ -7,6 +7,7 @@ import * as v9111 from './v9111'
 import * as v9130 from './v9130'
 import * as v9160 from './v9160'
 import * as v9170 from './v9170'
+import * as v9190 from './v9190'
 
 export class BountiesBountyAwardedEvent {
   constructor(private ctx: EventContext) {
@@ -565,14 +566,29 @@ export class CouncilExecutedEvent {
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
 
-  get isLatest(): boolean {
-    deprecateLatest()
-    return this.isV9170
+  /**
+   * A motion was executed; result will be `Ok` if it returned without error.
+   */
+  get isV9190(): boolean {
+    return this.ctx._chain.getEventHash('council.Executed') === '891fd2ad27e5f8bc799d45bb765ef77383902fd4e1cc4c6981cba99123803ac7'
   }
 
-  get asLatest(): {proposalHash: v9170.H256, result: Result<null, v9170.DispatchError>} {
+  /**
+   * A motion was executed; result will be `Ok` if it returned without error.
+   */
+  get asV9190(): {proposalHash: v9190.H256, result: Result<null, v9190.DispatchError>} {
+    assert(this.isV9190)
+    return this.ctx._chain.decodeEvent(this.ctx.event)
+  }
+
+  get isLatest(): boolean {
     deprecateLatest()
-    return this.asV9170
+    return this.isV9190
+  }
+
+  get asLatest(): {proposalHash: v9190.H256, result: Result<null, v9190.DispatchError>} {
+    deprecateLatest()
+    return this.asV9190
   }
 }
 
@@ -805,14 +821,29 @@ export class DemocracyExecutedEvent {
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
 
-  get isLatest(): boolean {
-    deprecateLatest()
-    return this.isV9170
+  /**
+   * A proposal has been enacted.
+   */
+  get isV9190(): boolean {
+    return this.ctx._chain.getEventHash('democracy.Executed') === '2abe2e7ca2af8b119eb4f3a1f669843943049e3f4e2f613fc3b077115902ca2b'
   }
 
-  get asLatest(): {refIndex: number, result: Result<null, v9170.DispatchError>} {
+  /**
+   * A proposal has been enacted.
+   */
+  get asV9190(): {refIndex: number, result: Result<null, v9190.DispatchError>} {
+    assert(this.isV9190)
+    return this.ctx._chain.decodeEvent(this.ctx.event)
+  }
+
+  get isLatest(): boolean {
     deprecateLatest()
-    return this.asV9170
+    return this.isV9190
+  }
+
+  get asLatest(): {refIndex: number, result: Result<null, v9190.DispatchError>} {
+    deprecateLatest()
+    return this.asV9190
   }
 }
 
@@ -1481,14 +1512,29 @@ export class TechnicalCommitteeExecutedEvent {
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
 
-  get isLatest(): boolean {
-    deprecateLatest()
-    return this.isV9170
+  /**
+   * A motion was executed; result will be `Ok` if it returned without error.
+   */
+  get isV9190(): boolean {
+    return this.ctx._chain.getEventHash('technicalCommittee.Executed') === '891fd2ad27e5f8bc799d45bb765ef77383902fd4e1cc4c6981cba99123803ac7'
   }
 
-  get asLatest(): {proposalHash: v9170.H256, result: Result<null, v9170.DispatchError>} {
+  /**
+   * A motion was executed; result will be `Ok` if it returned without error.
+   */
+  get asV9190(): {proposalHash: v9190.H256, result: Result<null, v9190.DispatchError>} {
+    assert(this.isV9190)
+    return this.ctx._chain.decodeEvent(this.ctx.event)
+  }
+
+  get isLatest(): boolean {
     deprecateLatest()
-    return this.asV9170
+    return this.isV9190
+  }
+
+  get asLatest(): {proposalHash: v9190.H256, result: Result<null, v9190.DispatchError>} {
+    deprecateLatest()
+    return this.asV9190
   }
 }
 
