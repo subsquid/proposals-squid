@@ -11,9 +11,15 @@ export function encodeId(id: Uint8Array, prefix: string | number): string {
     }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function parseProposalCall(call: any) {
-    const section = (call.__kind[0].toLowerCase() + call.__kind.slice(1)) as string
+interface Call {
+    __kind: string
+    value: any
+}
+
+// type Value = string | number | boolean | bigint | Array<Value> | Uint8Array
+
+export function parseProposalCall(call: Call) {
+    const section = call.__kind as string
     const method = call.value.__kind as string
 
     const args = parseValue(call.value)

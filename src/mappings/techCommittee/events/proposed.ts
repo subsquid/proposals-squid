@@ -8,6 +8,7 @@ import { proposalManager } from '../../../managers'
 import { encodeId, parseProposalCall } from '../../../common/tools'
 import config from '../../../config'
 import { storage } from '../../../storage'
+import { toCamelCase } from '@subsquid/util'
 
 interface TechnicalCommitteeProposalEventData {
     proposer: Uint8Array
@@ -49,8 +50,8 @@ export async function handleProposed(ctx: EventHandlerContext) {
     }
 
     const { section, method, args } = parseProposalCall(storageData)
-    // @ts-ignore
-    const description = (ctx._chain.calls.get(`${section}.${method}`).docs as string[]).join('\n')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const description = ((ctx._chain as any).calls.get(`${toCamelCase(section)}.${method}`).docs as string[]).join('\n')
 
     await proposalManager.create(ctx, {
         index,
