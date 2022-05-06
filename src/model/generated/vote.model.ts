@@ -20,7 +20,7 @@ export class Vote {
   @ManyToOne_(() => Proposal, {nullable: false})
   proposal!: Proposal
 
-  @Column_("integer", {nullable: false})
+  @Column_("int4", {nullable: false})
   createdAt!: number
 
   @Column_("timestamp with time zone", {nullable: false})
@@ -32,6 +32,6 @@ export class Vote {
   @Column_("jsonb", {transformer: {to: obj => obj == null ? undefined : obj.toJSON(), from: obj => obj == null ? undefined : fromJsonVoteBalance(obj)}, nullable: true})
   balance!: VoteBalance | undefined | null
 
-  @Column_("integer", {nullable: true})
+  @Column_("int4", {nullable: true})
   lockPeriod!: number | undefined | null
 }

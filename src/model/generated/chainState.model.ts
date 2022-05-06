@@ -18,16 +18,16 @@ export class ChainState {
   @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
   tokenBalance!: bigint
 
-  @Column_("integer", {nullable: false})
+  @Column_("int4", {nullable: false})
   tokenHolders!: number
 
-  @Column_("integer", {nullable: false})
+  @Column_("int4", {nullable: false})
   councilMembers!: number
 
-  @Column_("integer", {nullable: false})
+  @Column_("int4", {nullable: false})
   democracyProposals!: number
 
-  @Column_("integer", {nullable: false})
+  @Column_("int4", {nullable: false})
   councilProposals!: number
 
   @Index_()
