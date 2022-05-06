@@ -1,18 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as ss58 from '@subsquid/ss58'
-import { toHex } from '@subsquid/substrate-processor'
 import { toCamelCase } from '@subsquid/util'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
 import { Parser } from './parser'
 import { Codec } from '@subsquid/scale-codec'
+import config from '../config'
 
-export function encodeId(id: Uint8Array, prefix: string | number): string {
-    try {
-        return ss58.codec(prefix).encode(id)
-    } catch (e) {
-        console.error(`Failed to encode id ${toHex(id)} with prefix ${prefix}: ${e}`)
-        return toHex(id)
-    }
-}
+export const ss58codec = ss58.codec(config.prefix)
 
 interface Call {
     __kind: string
