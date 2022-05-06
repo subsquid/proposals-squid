@@ -1,6 +1,6 @@
 import { EventHandlerContext, ExtrinsicHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
-import { encodeId } from '../../../common/tools'
+import { ss58codec } from '../../../common/tools'
 import config from '../../../config'
 import { proposalManager, voteManager } from '../../../managers'
 import { ProposalType, SplitVoteBalance, StandardVoteBalance, Vote, VoteBalance, VoteDecision } from '../../../model'
