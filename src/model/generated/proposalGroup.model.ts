@@ -13,10 +13,10 @@ export class ProposalGroup {
   @Column_("text", {nullable: true})
   preimageHash!: string | undefined | null
 
-  @Column_("integer", {nullable: true})
+  @Column_("int4", {nullable: true})
   treasuryIndex!: number | undefined | null
 
-  @Column_("integer", {nullable: true})
+  @Column_("int4", {nullable: true})
   bountyIndex!: number | undefined | null
 
   @Column_("text", {nullable: true})

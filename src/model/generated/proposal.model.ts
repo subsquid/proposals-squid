@@ -24,7 +24,7 @@ export class Proposal {
   @Column_("text", {nullable: true})
   hash!: string | undefined | null
 
-  @Column_("integer", {nullable: true})
+  @Column_("int4", {nullable: true})
   index!: number | undefined | null
 
   @Column_("text", {nullable: true})
@@ -57,19 +57,19 @@ export class Proposal {
   @Column_("jsonb", {transformer: {to: obj => obj.map((val: any) => val.toJSON()), from: obj => marshal.fromList(obj, val => new StatusHistoryItem(undefined, marshal.nonNull(val)))}, nullable: false})
   statusHistory!: (StatusHistoryItem)[]
 
-  @Column_("integer", {nullable: false})
+  @Column_("int4", {nullable: false})
   createdAtBlock!: number
 
   @Column_("timestamp with time zone", {nullable: false})
   createdAt!: Date
 
-  @Column_("integer", {nullable: true})
+  @Column_("int4", {nullable: true})
   endedAtBlock!: number | undefined | null
 
   @Column_("timestamp with time zone", {nullable: true})
   endedAt!: Date | undefined | null
 
-  @Column_("integer", {nullable: true})
+  @Column_("int4", {nullable: true})
   updatedAtBlock!: number | undefined | null
 
   @Column_("timestamp with time zone", {nullable: true})

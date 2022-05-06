@@ -4,7 +4,7 @@ import * as marshal from "./marshal"
 export class ProposedCall {
   private _section!: string
   private _method!: string
-  private _args!: string | undefined | null
+  private _args!: unknown | undefined | null
   private _description!: string
 
   constructor(props?: Partial<Omit<ProposedCall, 'toJSON'>>, json?: any) {
@@ -12,7 +12,7 @@ export class ProposedCall {
     if (json != null) {
       this._section = marshal.string.fromJSON(json.section)
       this._method = marshal.string.fromJSON(json.method)
-      this._args = json.args == null ? undefined : marshal.string.fromJSON(json.args)
+      this._args = json.args
       this._description = marshal.string.fromJSON(json.description)
     }
   }
@@ -35,11 +35,11 @@ export class ProposedCall {
     this._method = value
   }
 
-  get args(): string | undefined | null {
+  get args(): unknown | undefined | null {
     return this._args
   }
 
-  set args(value: string | undefined | null) {
+  set args(value: unknown | undefined | null) {
     this._args = value
   }
 
