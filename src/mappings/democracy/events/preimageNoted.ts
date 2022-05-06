@@ -117,19 +117,16 @@ export async function handlePreimageNoted(ctx: EventHandlerContext) {
     try {
         const proposal = decodeProposal(ctx._chain as Chain, storageData.data)
 
-        const { section, method, args } = parseProposalCall(proposal)
-        // @ts-ignore
-        const meta = ctx._chain.calls.get(`${section}.${method}`)
-        const description = (meta.docs as string[]).join('\n')
+        const { section, method, args, description } = parseProposalCall(ctx._chain, proposal)
 
         decodedCall = {
             section,
             method,
             description,
-            args,
+            args: args as Record<string, unknown>,
         }
     } catch (e) {
-        console.warn(`Failed to decode ProposedCall of Preimage ${hash} at block ${ctx.block.height}`)
+        console.warn(`Failed to decode ProposedCall of Preimage ${hexHash} at block ${ctx.block.height}:\n ${e}`)
     }
 
     const proposer = encodeId(provider, config.prefix)
