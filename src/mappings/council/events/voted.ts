@@ -1,6 +1,6 @@
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
-import { encodeId } from '../../../common/tools'
+import { ss58codec } from '../../../common/tools'
 import config from '../../../config'
 import { proposalManager, voteManager } from '../../../managers'
 import { ProposalType, Vote, VoteDecision } from '../../../model'
@@ -44,7 +44,7 @@ export async function handleVoted(ctx: EventHandlerContext) {
         ctx,
         new Vote({
             id: ctx.event.id,
-            voter: encodeId(voter, config.prefix),
+            voter: ss58codec.encode(voter),
             createdAt: ctx.block.height,
             decision: decision ? VoteDecision.yes : VoteDecision.no,
             proposal,

@@ -5,7 +5,7 @@ import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import config from '../../../config'
-import { encodeId } from '../../../common/tools'
+import { ss58codec } from '../../../common/tools'
 import { storage } from '../../../storage'
 
 interface TipEventData {
@@ -57,8 +57,8 @@ export async function handleNewTip(ctx: EventHandlerContext) {
     await proposalManager.create(ctx, {
         type: ProposalType.Tip,
         hash: hexHash,
-        proposer: finder ? encodeId(finder, config.prefix) : undefined,
-        payee: encodeId(who, config.prefix),
+        proposer: finder ? ss58codec.encode(finder) : undefined,
+        payee: ss58codec.encode(who),
         deposit,
         status: ProposalStatus.Proposed,
     })

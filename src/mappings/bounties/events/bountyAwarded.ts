@@ -4,7 +4,7 @@ import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { BountiesBountyAwardedEvent, TreasuryBountyAwardedEvent } from '../../../types/events'
-import { encodeId } from '../../../common/tools'
+import { ss58codec } from '../../../common/tools'
 import config from '../../../config'
 
 interface BountyEventData {
@@ -57,6 +57,6 @@ export async function handleAwarded(ctx: EventHandlerContext) {
         return
     }
 
-    proposal.payee = encodeId(beneficiary, config.prefix)
+    proposal.payee = ss58codec.encode(beneficiary)
     await proposalManager.update(ctx, proposal)
 }
