@@ -7,8 +7,6 @@ import {
 } from '@subsquid/scale-codec/src/types-codec'
 import { toHex } from '@subsquid/substrate-processor'
 import assert from 'assert'
-import * as ss58 from '@subsquid/ss58'
-import config from '../config'
 
 export class Parser {
     private types: CodecType[]
@@ -17,7 +15,7 @@ export class Parser {
         this.types = types
     }
 
-    parse(type: Ti, val: any): unknown {
+    parse(type: Ti, val: unknown): unknown {
         const def = this.types[type]
         switch (def.kind) {
             case TypeKind.Primitive:
@@ -85,6 +83,7 @@ export class Parser {
         return result
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private parseStruct(def: CodecStructType, val: any): Record<string, unknown> {
         const result: Record<string, unknown> = {}
         for (let i = 0; i < def.fields.length; i++) {
@@ -95,6 +94,7 @@ export class Parser {
         return result
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private parseVariant(def: CodecVariantType, val: any): unknown {
         assert(typeof val?.__kind == 'string', 'not a variant type value')
         const variant = def.variantsByName[val.__kind]
@@ -143,7 +143,7 @@ export class Parser {
         return toHex(val)
     }
 
-    private parsePrimitive(type: Primitive, val: any): unknown {
+    private parsePrimitive(type: Primitive, val: unknown): unknown {
         return val
     }
 }

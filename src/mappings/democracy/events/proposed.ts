@@ -4,7 +4,7 @@ import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
-import { encodeId } from '../../../common/tools'
+import { ss58codec } from '../../../common/tools'
 import config from '../../../config'
 import { storage } from '../../../storage'
 
@@ -46,7 +46,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
     await proposalManager.create(ctx, {
         hash: hexHash,
         index,
-        proposer: encodeId(proposer, config.prefix),
+        proposer: ss58codec.encode(proposer),
         type: ProposalType.DemocracyProposal,
         status: ProposalStatus.Proposed,
         deposit,

@@ -5,10 +5,8 @@ import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
-import { encodeId, parseProposalCall } from '../../../common/tools'
-import config from '../../../config'
+import { ss58codec, parseProposalCall } from '../../../common/tools'
 import { storage } from '../../../storage'
-import { toCamelCase } from '@subsquid/util'
 
 interface CouncilProposalEventData {
     proposer: Uint8Array
@@ -42,13 +40,12 @@ export async function handleProposed(ctx: EventHandlerContext) {
     }
 
     const { section, method, args, description } = parseProposalCall(ctx._chain, storageData)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
     await proposalManager.create(ctx, {
         index,
         type: ProposalType.CouncilMotion,
         hash: toHex(hash),
-        proposer: encodeId(proposer, config.prefix),
+        proposer: ss58codec.encode(proposer),
         status: ProposalStatus.Proposed,
         threshold,
         call: {

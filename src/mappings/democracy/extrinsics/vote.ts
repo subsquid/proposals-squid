@@ -1,5 +1,7 @@
 import { ExtrinsicHandlerContext } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
+import { ss58codec } from '../../../common/tools'
+import config from '../../../config'
 import { proposalManager, voteManager } from '../../../managers'
 import { ProposalType, SplitVoteBalance, StandardVoteBalance, Vote, VoteBalance, VoteDecision } from '../../../model'
 import { DemocracyVoteCall } from '../../../types/calls'

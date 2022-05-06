@@ -6,7 +6,7 @@ import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import config from '../../../config'
-import { encodeId } from '../../../common/tools'
+import { ss58codec } from '../../../common/tools'
 import { storage } from '../../../storage'
 
 interface TreasuryProposalEventData {
@@ -39,10 +39,10 @@ export async function handleProposed(ctx: EventHandlerContext) {
     await proposalManager.create(ctx, {
         index,
         type: ProposalType.TreasuryProposal,
-        proposer: encodeId(proposer, config.prefix),
+        proposer: ss58codec.encode(proposer),
         status: ProposalStatus.Proposed,
         reward: value,
         deposit: bond,
-        payee: encodeId(beneficiary, config.prefix),
+        payee: ss58codec.encode(beneficiary),
     })
 }

@@ -5,8 +5,7 @@ import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext, StorageContext } from '../../../types/support'
 import { DemocracyPreimagesStorage } from '../../../types/storage'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { encodeId, parseProposalCall } from '../../../common/tools'
-import config from '../../../config'
+import { ss58codec, parseProposalCall } from '../../../common/tools'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
 import { Type_103 } from '../../../types/v18'
 import { proposalManager } from '../../../managers'
@@ -99,7 +98,7 @@ export async function handlePreimageNoted(ctx: EventHandlerContext) {
         console.warn(`Failed to decode ProposedCall of Preimage ${hexHash} at block ${ctx.block.height}:\n ${e}`)
     }
 
-    const proposer = encodeId(provider, config.prefix)
+    const proposer = ss58codec.encode(provider)
 
     await proposalManager.create(ctx, {
         hash: hexHash,
