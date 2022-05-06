@@ -224,11 +224,9 @@ export class ProposalManager extends Manager<Proposal> {
                 break
         }
 
-        if (await ctx.store.insert(Proposal, proposal)) {
-            return proposal
-        } else {
-            throw new Error('Failed to save new proposal!')
-        }
+        await ctx.store.save(Proposal, proposal)
+
+        return proposal
     }
 
     async update(ctx: EventHandlerContext | BlockHandlerContext, item: Proposal): Promise<Proposal> {
@@ -435,14 +433,7 @@ export class ProposalManager extends Manager<Proposal> {
     }
 
     private createProposedCall(data: ProposedCallData): ProposedCall {
-        return new ProposedCall({
-            section: data.section,
-            method: data.method,
-            description: data.description,
-            args: JSON.stringify(data.args, (key, value) => {
-                return typeof value === 'bigint' ? value.toString() : value
-            }),
-        })
+        return new ProposedCall(data)
     }
 }
 
