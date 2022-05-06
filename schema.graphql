@@ -112,7 +112,7 @@ type StatusHistoryItem {
 type ProposedCall {
   section: String!
   method: String!
-  args: String
+  args: JSON
   description: String!
 }
 
