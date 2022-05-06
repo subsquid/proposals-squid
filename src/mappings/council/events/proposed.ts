@@ -49,9 +49,8 @@ export async function handleProposed(ctx: EventHandlerContext) {
         return
     }
 
-    const { section, method, args } = parseProposalCall(storageData)
+    const { section, method, args, description } = parseProposalCall(ctx._chain, storageData)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const description = ((ctx._chain as any).calls.get(`${toCamelCase(section)}.${method}`).docs as string[]).join('\n')
 
     await proposalManager.create(ctx, {
         index,
@@ -64,7 +63,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
             section,
             method,
             description,
-            args,
+            args: args as Record<string, unknown>,
         },
     })
 }
