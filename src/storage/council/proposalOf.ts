@@ -1,4 +1,3 @@
-import { UnknownVersionError } from '../../common/errors'
 import { CouncilProposalOfStorage, Instance1CollectiveProposalOfStorage } from '../../types/storage'
 import { StorageContext } from '../../types/support'
 import { Call } from '../../types/v29'
@@ -13,15 +12,7 @@ async function getInstanceStorageData(
     const storage = new Instance1CollectiveProposalOfStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV13) {
-        return (await storage.getAsV13(hash)) as Call
-    } else if (storage.isV14) {
-        return (await storage.getAsV14(hash)) as Call
-    } else if (storage.isV22) {
-        return (await storage.getAsV22(hash)) as Call
-    } else {
-        throw new UnknownVersionError(storage.constructor.name)
-    }
+    return ctx._chain.getStorage(ctx.block.hash, 'Instance1Collective', 'ProposalOf', hash)
 }
 
 async function getCoucilStorageData(
@@ -31,11 +22,7 @@ async function getCoucilStorageData(
     const storage = new CouncilProposalOfStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV29) {
-        return (await storage.getAsV29(hash)) as Call
-    } else {
-        throw new UnknownVersionError(storage.constructor.name)
-    }
+    return ctx._chain.getStorage(ctx.block.hash, 'Council', 'ProposalOf', hash)
 }
 
 export async function getProposalOf(
