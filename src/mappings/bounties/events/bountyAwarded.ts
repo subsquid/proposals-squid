@@ -53,7 +53,7 @@ export async function handleAwarded(ctx: EventHandlerContext) {
         isEnded: true,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height))
+        new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height)
         return
     }
 
