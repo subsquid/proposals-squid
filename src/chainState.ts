@@ -11,7 +11,6 @@ import {
     SystemAccountNonceStorage,
     SystemAccountStorage,
 } from './types/storage'
-import { getApi } from './common/api'
 import { PERIOD } from './consts/consts'
 import { StorageContext } from './types/support'
 import chains from './consts/chains'
