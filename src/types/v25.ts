@@ -132,6 +132,12 @@ export interface Type_187_Multisig {
   value: MultisigCall
 }
 
+export interface AccountInfoWithRefCount {
+  nonce: number
+  refcount: number
+  data: AccountData
+}
+
 export interface Bounty {
   proposer: Uint8Array
   value: bigint
@@ -3844,6 +3850,13 @@ export interface MultisigCall_cancel_as_multi {
   otherSignatories: Uint8Array[]
   timepoint: Timepoint
   callHash: Uint8Array
+}
+
+export interface AccountData {
+  free: bigint
+  reserved: bigint
+  miscFrozen: bigint
+  feeFrozen: bigint
 }
 
 export type BountyStatus = BountyStatus_Proposed | BountyStatus_Approved | BountyStatus_Funded | BountyStatus_CuratorProposed | BountyStatus_Active | BountyStatus_PendingPayout

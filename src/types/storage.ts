@@ -28,6 +28,42 @@ import * as v9140 from './v9140'
 import * as v9170 from './v9170'
 import * as v9180 from './v9180'
 
+export class BalancesAccountStorage {
+  constructor(private ctx: StorageContext) {}
+
+  /**
+   *  The balance of an account.
+   * 
+   *  NOTE: THIS MAY NEVER BE IN EXISTENCE AND YET HAVE A `total().is_zero()`. If the total
+   *  is ever zero, then the entry *MUST* be removed.
+   * 
+   *  NOTE: This is only used in the case that this module is used to store balances.
+   */
+  get isV0() {
+    return this.ctx._chain.getStorageItemTypeHash('Balances', 'Account') === '0b3b4bf0dd7388459eba461bc7c3226bf58608c941710a714e02f33ec0f91e78'
+  }
+
+  /**
+   *  The balance of an account.
+   * 
+   *  NOTE: THIS MAY NEVER BE IN EXISTENCE AND YET HAVE A `total().is_zero()`. If the total
+   *  is ever zero, then the entry *MUST* be removed.
+   * 
+   *  NOTE: This is only used in the case that this module is used to store balances.
+   */
+  async getAsV0(key: Uint8Array): Promise<v0.AccountData> {
+    assert(this.isV0)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'Balances', 'Account', key)
+  }
+
+  /**
+   * Checks whether the storage item is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this.ctx._chain.getStorageItemTypeHash('Balances', 'Account') != null
+  }
+}
+
 export class BalancesTotalIssuanceStorage {
   constructor(private ctx: StorageContext) {}
 
@@ -355,15 +391,15 @@ export class Instance1CollectiveMembersStorage {
   /**
    *  The current members of the collective. This is stored sorted (just by value).
    */
-  get isV1020() {
+  get isV0() {
     return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'Members') === 'f5df25eadcdffaa0d2a68b199d671d3921ca36a7b70d22d57506dca52b4b5895'
   }
 
   /**
    *  The current members of the collective. This is stored sorted (just by value).
    */
-  async getAsV1020(): Promise<Uint8Array[]> {
-    assert(this.isV1020)
+  async getAsV0(): Promise<Uint8Array[]> {
+    assert(this.isV0)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'Members')
   }
 
@@ -381,15 +417,15 @@ export class Instance1CollectiveProposalCountStorage {
   /**
    *  Proposals so far.
    */
-  get isV1020() {
+  get isV0() {
     return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalCount') === '81bbbe8e62451cbcc227306706c919527aa2538970bd6d67a9969dd52c257d02'
   }
 
   /**
    *  Proposals so far.
    */
-  async getAsV1020(): Promise<number> {
-    assert(this.isV1020)
+  async getAsV0(): Promise<number> {
+    assert(this.isV0)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalCount')
   }
 
@@ -1110,6 +1146,77 @@ export class Instance2CollectiveProposalOfStorage {
    */
   get isExists(): boolean {
     return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') != null
+  }
+}
+
+export class SystemAccountStorage {
+  constructor(private ctx: StorageContext) {}
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  get isV0() {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'Account') === '2208f857b7cd6fecf78ca393cf3d17ec424773727d0028f07c9f0dc608fc1b7a'
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  async getAsV0(key: Uint8Array): Promise<v0.AccountInfoWithRefCount> {
+    assert(this.isV0)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'System', 'Account', key)
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  get isV25() {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'Account') === 'eb40f1d91f26d72e29c60e034d53a72b9b529014c7e108f422d8ad5f03f0c902'
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  async getAsV25(key: Uint8Array): Promise<v25.AccountInfoWithRefCount> {
+    assert(this.isV25)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'System', 'Account', key)
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  get isV28() {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'Account') === '73070b537f1805475b37167271b33ac7fd6ffad8ba62da08bc14937a017b8bb2'
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  async getAsV28(key: Uint8Array): Promise<v28.AccountInfoWithDualRefCount> {
+    assert(this.isV28)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'System', 'Account', key)
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  get isV30() {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'Account') === '1ddc7ade926221442c388ee4405a71c9428e548fab037445aaf4b3a78f4735c1'
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  async getAsV30(key: Uint8Array): Promise<v30.AccountInfoWithTripleRefCount> {
+    assert(this.isV30)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'System', 'Account', key)
+  }
+
+  /**
+   * Checks whether the storage item is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'Account') != null
   }
 }
 

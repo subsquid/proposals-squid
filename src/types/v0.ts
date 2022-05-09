@@ -68,6 +68,13 @@ export interface AccountVote_Split {
   value: AccountVoteSplit
 }
 
+export interface AccountData {
+  free: bigint
+  reserved: bigint
+  miscFrozen: bigint
+  feeFrozen: bigint
+}
+
 export type PreimageStatus = PreimageStatus_Missing | PreimageStatus_Available
 
 export interface PreimageStatus_Missing {
@@ -232,6 +239,12 @@ export interface Type_182_Utility {
 export interface Type_182_Sudo {
   __kind: 'Sudo'
   value: SudoCall
+}
+
+export interface AccountInfoWithRefCount {
+  nonce: number
+  refcount: number
+  data: AccountData
 }
 
 export interface TreasuryProposal {
