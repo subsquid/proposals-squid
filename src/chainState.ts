@@ -1,20 +1,24 @@
 import { BlockHandlerContext, Store } from '@subsquid/substrate-processor'
 import { Chain, ChainState, RelayChain, Token } from './model'
 import {
+    BalancesAccountStorage,
     BalancesTotalIssuanceStorage,
     CouncilMembersStorage,
     CouncilProposalCountStorage,
     DemocracyPublicPropCountStorage,
     Instance1CollectiveMembersStorage,
     Instance1CollectiveProposalCountStorage,
+    SystemAccountStorage,
 } from './types/storage'
-import { getApi } from './common/api'
 import { PERIOD } from './consts/consts'
 import { StorageContext } from './types/support'
 import chains from './consts/chains'
 import config from './config'
 import { UnknownVersionError } from './common/errors'
 import { ChainInfo } from './common/types'
+import { Chain as ProcessorChain } from '@subsquid/substrate-processor/lib/chain'
+import { ResilientRpcClient } from '@subsquid/rpc-client/lib/resilient'
+import * as sto from '@subsquid/substrate-processor/lib/util/storage'
 
 let lastStateTimestamp = 0
 
@@ -41,8 +45,7 @@ async function saveChainState(ctx: BlockHandlerContext) {
     state.democracyProposals = (await getDemocracyProposalsCount(ctx)) || 0
     state.tokenBalance = (await getTotalIssuance(ctx)) || 0n
 
-    const api = await getApi()
-    state.tokenHolders = await api.getHoldersCount(ctx.block.hash)
+    state.tokenHolders = (await getHoldersCount(ctx)) || 0
 
     await ctx.store.save(state)
 }
@@ -151,12 +154,44 @@ async function getTotalIssuance(ctx: StorageContext) {
     throw new UnknownVersionError(storage.constructor.name)
 }
 
-// function getHoldersCount(ctx: EventHandlerContext) {
-//     const storage = new BalancesTotalIssuanceStorage(ctx)
+async function getHoldersCount(ctx: StorageContext) {
+    return (await getSystemAccountKeysCount(ctx)) || (await getBalancesAccountKeysCount(ctx))
+}
 
-//     if (storage.isV13) {
-//         return await storage.getasV13()
-//     }
+async function getSystemAccountKeysCount(ctx: StorageContext): Promise<number | undefined> {
+    const storage = new SystemAccountStorage(ctx)
+    if (!storage.isExists) return undefined
 
-//     return undefined
-// }
+    return await countKeys(ctx, 'System', 'Account')
+}
+
+async function getBalancesAccountKeysCount(ctx: StorageContext): Promise<number | undefined> {
+    const storage = new BalancesAccountStorage(ctx)
+    if (!storage.isExists) return undefined
+
+    return await countKeys(ctx, 'Balances', 'Account')
+}
+
+async function countKeys(ctx: StorageContext, prefix: string, name: string) {
+    const chain = ctx._chain as ProcessorChain
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const client = (chain as any).client as ResilientRpcClient
+
+    const req = sto.getNameHash(prefix) + sto.getNameHash(name).slice(2)
+    const size = 100
+    let lastKey = ''
+
+    let count = 0
+
+    while (true) {
+        const res = (await client.call('state_getKeysPagedAt', [req, size, lastKey, ctx.block.hash])) as string[]
+
+        lastKey = res[res.length - 1]
+        count += res.length
+
+        if (count < size) break
+    }
+
+    return count
+}

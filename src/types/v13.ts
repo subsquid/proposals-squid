@@ -68,6 +68,13 @@ export interface AccountVote_Split {
   value: AccountVoteSplit
 }
 
+export interface AccountData {
+  free: bigint
+  reserved: bigint
+  miscFrozen: bigint
+  feeFrozen: bigint
+}
+
 export type PreimageStatus = PreimageStatus_Missing | PreimageStatus_Available
 
 export interface PreimageStatus_Missing {
@@ -242,6 +249,14 @@ export interface Type_232_Faucet {
 export interface Type_232_MultiTransactionPayment {
   __kind: 'MultiTransactionPayment'
   value: MultiTransactionPaymentCall
+}
+
+export interface AccountInfoWithTripleRefCount {
+  nonce: number
+  consumers: number
+  providers: number
+  sufficients: number
+  data: AccountData
 }
 
 export interface TreasuryProposal {
