@@ -6,6 +6,36 @@ import * as v16 from './v16'
 import * as v17 from './v17'
 import * as v18 from './v18'
 
+export class BalancesAccountStorage {
+  constructor(private ctx: StorageContext) {}
+
+  /**
+   *  The balance of an account.
+   * 
+   *  NOTE: This is only used in the case that this pallet is used to store balances.
+   */
+  get isV1() {
+    return this.ctx._chain.getStorageItemTypeHash('Balances', 'Account') === '0b3b4bf0dd7388459eba461bc7c3226bf58608c941710a714e02f33ec0f91e78'
+  }
+
+  /**
+   *  The balance of an account.
+   * 
+   *  NOTE: This is only used in the case that this pallet is used to store balances.
+   */
+  async getAsV1(key: Uint8Array): Promise<v1.AccountData> {
+    assert(this.isV1)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'Balances', 'Account', key)
+  }
+
+  /**
+   * Checks whether the storage item is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this.ctx._chain.getStorageItemTypeHash('Balances', 'Account') != null
+  }
+}
+
 export class BalancesTotalIssuanceStorage {
   constructor(private ctx: StorageContext) {}
 
@@ -333,6 +363,32 @@ export class Instance2CollectiveProposalOfStorage {
    */
   get isExists(): boolean {
     return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') != null
+  }
+}
+
+export class SystemAccountStorage {
+  constructor(private ctx: StorageContext) {}
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  get isV1() {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'Account') === '73070b537f1805475b37167271b33ac7fd6ffad8ba62da08bc14937a017b8bb2'
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  async getAsV1(key: Uint8Array): Promise<v1.AccountInfoWithDualRefCount> {
+    assert(this.isV1)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'System', 'Account', key)
+  }
+
+  /**
+   * Checks whether the storage item is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'Account') != null
   }
 }
 

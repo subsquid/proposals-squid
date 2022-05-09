@@ -13,7 +13,9 @@
     "Instance1Collective.ProposalOf",
     "Treasury.Proposals",
     "Treasury.Tips",
-    "Instance2Collective.ProposalOf"
+    "Instance2Collective.ProposalOf",
+    "System.Account",
+    "Balances.Account"
   ],
   "events": [
     "democracy.Proposed",
