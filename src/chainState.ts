@@ -192,7 +192,7 @@ async function countKeys(ctx: StorageContext, prefix: string, name: string) {
 
     const req = sto.getNameHash(prefix) + sto.getNameHash(name).slice(2)
     const size = 100
-    let lastKey = ''
+    let lastKey = null
 
     let count = 0
 
