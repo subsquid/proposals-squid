@@ -45,6 +45,42 @@ import * as v9170 from './v9170'
 import * as v9180 from './v9180'
 import * as v9190 from './v9190'
 
+export class BalancesAccountStorage {
+  constructor(private ctx: StorageContext) {}
+
+  /**
+   *  The balance of an account.
+   * 
+   *  NOTE: THIS MAY NEVER BE IN EXISTENCE AND YET HAVE A `total().is_zero()`. If the total
+   *  is ever zero, then the entry *MUST* be removed.
+   * 
+   *  NOTE: This is only used in the case that this module is used to store balances.
+   */
+  get isV1050() {
+    return this.ctx._chain.getStorageItemTypeHash('Balances', 'Account') === '0b3b4bf0dd7388459eba461bc7c3226bf58608c941710a714e02f33ec0f91e78'
+  }
+
+  /**
+   *  The balance of an account.
+   * 
+   *  NOTE: THIS MAY NEVER BE IN EXISTENCE AND YET HAVE A `total().is_zero()`. If the total
+   *  is ever zero, then the entry *MUST* be removed.
+   * 
+   *  NOTE: This is only used in the case that this module is used to store balances.
+   */
+  async getAsV1050(key: Uint8Array): Promise<v1050.AccountData> {
+    assert(this.isV1050)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'Balances', 'Account', key)
+  }
+
+  /**
+   * Checks whether the storage item is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this.ctx._chain.getStorageItemTypeHash('Balances', 'Account') != null
+  }
+}
+
 export class BalancesTotalIssuanceStorage {
   constructor(private ctx: StorageContext) {}
 
@@ -1635,6 +1671,103 @@ export class Instance2CollectiveProposalOfStorage {
    */
   get isExists(): boolean {
     return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') != null
+  }
+}
+
+export class SystemAccountStorage {
+  constructor(private ctx: StorageContext) {}
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  get isV1050() {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'Account') === '2208f857b7cd6fecf78ca393cf3d17ec424773727d0028f07c9f0dc608fc1b7a'
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  async getAsV1050(key: Uint8Array): Promise<v1050.AccountInfoWithRefCount> {
+    assert(this.isV1050)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'System', 'Account', key)
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  get isV2025() {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'Account') === 'eb40f1d91f26d72e29c60e034d53a72b9b529014c7e108f422d8ad5f03f0c902'
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  async getAsV2025(key: Uint8Array): Promise<v2025.AccountInfoWithRefCount> {
+    assert(this.isV2025)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'System', 'Account', key)
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  get isV2028() {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'Account') === '73070b537f1805475b37167271b33ac7fd6ffad8ba62da08bc14937a017b8bb2'
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  async getAsV2028(key: Uint8Array): Promise<v2028.AccountInfoWithDualRefCount> {
+    assert(this.isV2028)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'System', 'Account', key)
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  get isV2030() {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'Account') === '1ddc7ade926221442c388ee4405a71c9428e548fab037445aaf4b3a78f4735c1'
+  }
+
+  /**
+   *  The full account information for a particular account ID.
+   */
+  async getAsV2030(key: Uint8Array): Promise<v2030.AccountInfoWithTripleRefCount> {
+    assert(this.isV2030)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'System', 'Account', key)
+  }
+
+  /**
+   * Checks whether the storage item is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'Account') != null
+  }
+}
+
+export class SystemAccountNonceStorage {
+  constructor(private ctx: StorageContext) {}
+
+  /**
+   *  Extrinsics nonce for accounts.
+   */
+  get isV1020() {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'AccountNonce') === '25f0d63900988134e6767c7fe398885c0448fd3bd7a0d8ff90cf6b33a482cebd'
+  }
+
+  /**
+   *  Extrinsics nonce for accounts.
+   */
+  async getAsV1020(key: Uint8Array): Promise<number> {
+    assert(this.isV1020)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'System', 'AccountNonce', key)
+  }
+
+  /**
+   * Checks whether the storage item is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this.ctx._chain.getStorageItemTypeHash('System', 'AccountNonce') != null
   }
 }
 

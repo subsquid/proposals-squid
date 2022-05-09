@@ -20,7 +20,10 @@
     "Treasury.Bounties",
     "Bounties.Bounties",
     "TechnicalCommittee.ProposalOf",
-    "Instance2Collective.ProposalOf"
+    "Instance2Collective.ProposalOf",
+    "System.Account",
+    "System.AccountNonce",
+    "Balances.Account"
   ],
   "events": [
     "democracy.Proposed",
