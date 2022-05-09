@@ -135,7 +135,7 @@ export class Parser {
     }
 
     private parseBytesArray(def: CodecBytesArrayType, val: unknown): string {
-        assert(val instanceof Uint8Array && val.length == def.len)
+        assert(val instanceof Uint8Array /*&& val.length == def.len*/)
         return toHex(val)
     }
 
