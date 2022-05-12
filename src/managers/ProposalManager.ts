@@ -58,7 +58,7 @@ interface CouncilMotionData {
     hash: string
     threshold: number
     proposer: string
-    call: ProposedCallData
+    call: ProposedCallData | undefined
     status: ProposalStatus
 }
 
@@ -68,7 +68,7 @@ interface TechCommitteeData {
     hash: string
     threshold: number
     proposer: string
-    call: ProposedCallData
+    call: ProposedCallData | undefined
     status: ProposalStatus
 }
 
@@ -106,7 +106,7 @@ interface PreimageData {
     proposer: string
     status: ProposalStatus
     deposit: bigint
-    call?: ProposedCallData
+    call: ProposedCallData | undefined
 }
 
 type ProposalData =
@@ -295,15 +295,18 @@ export class ProposalManager extends Manager<Proposal> {
         const { index, type, status, threshold, hash, call, proposer } = data
 
         let group: ProposalGroup | undefined
-        if (call.args['proposalHash']) {
-            const hexHash = call.args['proposalHash'] as string
-            group = await proposalGroupManager.get(ctx, hexHash, ProposalType.Preimage)
-        } else if (call.args['bountyId']) {
-            const index = call.args['bountyId'] as number
-            group = await proposalGroupManager.get(ctx, index, ProposalType.Bounty)
-        } else if (call.args['proposalId']) {
-            const index = call.args['proposalId'] as number
-            group = await proposalGroupManager.get(ctx, index, ProposalType.TreasuryProposal)
+
+        if (call?.args) {
+            if (call.args['proposalHash']) {
+                const hexHash = call.args['proposalHash'] as string
+                group = await proposalGroupManager.get(ctx, hexHash, ProposalType.Preimage)
+            } else if (call.args['bountyId']) {
+                const index = call.args['bountyId'] as number
+                group = await proposalGroupManager.get(ctx, index, ProposalType.Bounty)
+            } else if (call.args['proposalId']) {
+                const index = call.args['proposalId'] as number
+                group = await proposalGroupManager.get(ctx, index, ProposalType.TreasuryProposal)
+            }
         }
 
         return new Proposal({
