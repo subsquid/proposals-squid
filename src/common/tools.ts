@@ -13,9 +13,9 @@ interface Call {
     value: any
 }
 
-export function parseProposalCall(chain: Chain, call: Call) {
-    const section = call.__kind as string
-    const method = call.value.__kind as string
+export function parseProposalCall(chain: Chain, data: Call) {
+    const section = data.__kind as string
+    const method = data.value.__kind as string
 
     const name = `${toCamelCase(section)}.${method}`
 
@@ -23,7 +23,7 @@ export function parseProposalCall(chain: Chain, call: Call) {
 
     const codec = (chain as any).scaleCodec as Codec
 
-    const args = new Parser((codec as any).types).parse(0, call)
+    const args = new Parser((codec as any).types).parse(chain.description.call, data)
 
     return {
         section,
