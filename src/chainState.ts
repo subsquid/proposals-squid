@@ -190,7 +190,7 @@ async function countKeys(ctx: StorageContext, prefix: string, name: string) {
         lastKey = res[res.length - 1]
         count += res.length
 
-        if (count < size) break
+        if (res.length < size) break
     }
 
     return count
