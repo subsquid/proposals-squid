@@ -1,4 +1,4 @@
-import { BlockHandlerContext, EventHandlerContext } from '@subsquid/substrate-processor'
+import { BlockHandlerContext, EventHandlerContext, toHex } from '@subsquid/substrate-processor'
 import { Threshold } from '../common/types'
 import {
     MotionThreshold,
@@ -433,8 +433,50 @@ export class ProposalManager extends Manager<Proposal> {
     }
 
     private createProposedCall(data: ProposedCallData): ProposedCall {
-        return new ProposedCall(data)
+        return new ProposedCall({
+            ...data,
+            args: toJSON(data.args),
+        })
     }
+}
+
+export function toJSON(val: unknown): any {
+    switch (typeof val) {
+        case 'bigint':
+            return val.toString()
+        case 'object':
+            if (Array.isArray(val)) {
+                return toJsonArray(val)
+            } else if (val instanceof Uint8Array) {
+                return toHex(val)
+            } else if (val instanceof Date) {
+                return val.toISOString()
+            } else {
+                return toJsonObject(val)
+            }
+        default:
+            return val
+    }
+}
+
+function toJsonArray(val: unknown[]): any[] {
+    const arr = new Array(val.length)
+    for (let i = 0; i < val.length; i++) {
+        arr[i] = toJSON(val[i])
+    }
+    return arr
+}
+
+function toJsonObject(val: any): any {
+    const result: any = {}
+    for (const key in val) {
+        result[key] = toJSON(val[key])
+    }
+    return result
+}
+
+export function isObject(value: unknown): boolean {
+    return value != null && typeof value == 'object'
 }
 
 export const proposalManager = new ProposalManager()
