@@ -1,9 +1,10 @@
 import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
-import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
+import { MissingProposalRecord } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { CouncilExecutedEvent } from '../../../types/events'
+import assert from 'assert'
 
 function getEventData(ctx: EventContext): Uint8Array {
     const event = new CouncilExecutedEvent(ctx)
@@ -13,14 +14,10 @@ function getEventData(ctx: EventContext): Uint8Array {
         return event.asV2005[0]
     } else if (event.isV9111) {
         return event.asV9111[0]
-    } else if (event.isV9130) {
-        return event.asV9130.proposalHash
-    } else if (event.isV9160) {
-        return event.asV9160.proposalHash
-    } else if (event.isV9170) {
-        return event.asV9170.proposalHash
     } else {
-        throw new UnknownVersionError(event.constructor.name)
+        const data = ctx._chain.decodeEvent(ctx.event)
+        assert(Buffer.isBuffer(data.proposalHash))
+        return data.proposalHash
     }
 }
 

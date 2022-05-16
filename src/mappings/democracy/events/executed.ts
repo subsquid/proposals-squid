@@ -1,9 +1,10 @@
 import { EventHandlerContext } from '@subsquid/substrate-processor'
-import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
+import { MissingProposalRecord } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { DemocracyExecutedEvent } from '../../../types/events'
+import assert from 'assert'
 
 function getEventData(ctx: EventContext): number {
     const event = new DemocracyExecutedEvent(ctx)
@@ -13,14 +14,10 @@ function getEventData(ctx: EventContext): number {
         return event.asV9090[0]
     } else if (event.isV9111) {
         return event.asV9111[0]
-    } else if (event.isV9130) {
-        return event.asV9130.refIndex
-    } else if (event.isV9160) {
-        return event.asV9160.refIndex
-    } else if (event.isV9170) {
-        return event.asV9170.refIndex
     } else {
-        throw new UnknownVersionError(event.constructor.name)
+        const data = ctx._chain.decodeEvent(ctx.event)
+        assert(typeof data.refIndex === 'number')
+        return data.refIndex
     }
 }
 
