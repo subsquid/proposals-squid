@@ -21,9 +21,11 @@ export class Proposal {
   @Column_("varchar", {length: 21, nullable: false})
   type!: ProposalType
 
+  @Index_()
   @Column_("text", {nullable: true})
   hash!: string | undefined | null
 
+  @Index_()
   @Column_("int4", {nullable: true})
   index!: number | undefined | null
 
@@ -57,9 +59,11 @@ export class Proposal {
   @Column_("jsonb", {transformer: {to: obj => obj.map((val: any) => val.toJSON()), from: obj => marshal.fromList(obj, val => new StatusHistoryItem(undefined, marshal.nonNull(val)))}, nullable: false})
   statusHistory!: (StatusHistoryItem)[]
 
+  @Index_()
   @Column_("int4", {nullable: false})
   createdAtBlock!: number
 
+  @Index_()
   @Column_("timestamp with time zone", {nullable: false})
   createdAt!: Date
 
