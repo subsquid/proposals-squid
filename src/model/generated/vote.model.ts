@@ -20,9 +20,11 @@ export class Vote {
   @ManyToOne_(() => Proposal, {nullable: false})
   proposal!: Proposal
 
+  @Index_()
   @Column_("int4", {nullable: false})
   createdAt!: number
 
+  @Index_()
   @Column_("timestamp with time zone", {nullable: false})
   timestamp!: Date
 

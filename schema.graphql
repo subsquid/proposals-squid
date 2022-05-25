@@ -82,8 +82,8 @@ union Threshold = MotionThreshold | ReferendumThreshold
 type Proposal @entity {
   id: ID!
   type: ProposalType! @index
-  hash: String
-  index: Int
+  hash: String @index
+  index: Int @index
   proposer: String
   deposit: BigInt
   threshold: Threshold
@@ -94,8 +94,8 @@ type Proposal @entity {
   voting: [Vote!] @derivedFrom(field: "proposal")
   status: ProposalStatus!
   statusHistory: [StatusHistoryItem!]!
-  createdAtBlock: Int!
-  createdAt: DateTime!
+  createdAtBlock: Int! @index
+  createdAt: DateTime! @index
   endedAtBlock: Int
   endedAt: DateTime
   updatedAtBlock: Int
@@ -137,8 +137,8 @@ type Vote @entity {
   id: ID!
   voter: String!
   proposal: Proposal!
-  createdAt: Int!
-  timestamp: DateTime!
+  createdAt: Int! @index
+  timestamp: DateTime! @index
   decision: VoteDecision
   balance: VoteBalance
   lockPeriod: Int
@@ -146,9 +146,9 @@ type Vote @entity {
 
 type ProposalGroup @entity {
   id: ID!
-  preimageHash: String
-  treasuryIndex: Int
-  bountyIndex: Int
-  tipHash: String
+  preimageHash: String @index
+  treasuryIndex: Int @index
+  bountyIndex: Int @index
+  tipHash: String @index
   proposals: [Proposal] @derivedFrom(field: "group")
 }
