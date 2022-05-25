@@ -11,7 +11,7 @@ migrate:
 
 
 migration:
-	@npx sqd db:create-migration Data
+	@npx sqd db:create-migration
 
 
 build:
