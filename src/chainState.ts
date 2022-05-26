@@ -163,19 +163,13 @@ async function countKeys(ctx: StorageContext, prefix: string, name: string) {
     const client = (chain as any).client as ResilientRpcClient
 
     const req = sto.getNameHash(prefix) + sto.getNameHash(name).slice(2)
-    const size = 100
-    let lastKey = null
 
-    let count = 0
+    const totalSize = (await client.call('state_getStorageSizeAt', [req, ctx.block.hash])) as number
+    if (totalSize === 0 || !totalSize) return 0
 
-    while (true) {
-        const res = (await client.call('state_getKeysPagedAt', [req, size, lastKey, ctx.block.hash])) as string[]
+    const keys = (await client.call('state_getKeysPagedAt', [req, 1, null, ctx.block.hash])) as string[]
 
-        lastKey = res[res.length - 1]
-        count += res.length
+    const keySize = (await client.call('state_getStorageSizeAt', [keys[0], ctx.block.hash])) as number
 
-        if (res.length < size) break
-    }
-
-    return count
+    return totalSize / keySize
 }
