@@ -1,16 +1,20 @@
-import { BlockHandlerContext, EventHandlerContext } from '@subsquid/substrate-processor'
+import { Store } from '@subsquid/typeorm-store'
 import { ProposalGroup, ProposalType } from '../model'
 import { Manager } from './Manager'
 
 export class ProposalGroupManager extends Manager<ProposalGroup> {
-    async get(ctx: EventHandlerContext, hash: string, type: ProposalType.Preimage): Promise<ProposalGroup>
+    private async getId(store: Store) {
+        return (await store.count(ProposalGroup)).toString()
+    }
+
+    async get(store: Store, hash: string, type: ProposalType.Preimage): Promise<ProposalGroup>
     async get(
-        ctx: EventHandlerContext,
+        store: Store,
         index: number,
         type: ProposalType.TreasuryProposal | ProposalType.Bounty
     ): Promise<ProposalGroup>
     async get(
-        ctx: EventHandlerContext,
+        store: Store,
         indexOrHash: number | string,
         type: ProposalType.TreasuryProposal | ProposalType.Bounty | ProposalType.Preimage
     ): Promise<ProposalGroup | undefined> {
@@ -30,12 +34,13 @@ export class ProposalGroupManager extends Manager<ProposalGroup> {
                 return undefined
         }
 
-        let link = await ctx.store.findOne<ProposalGroup>(ProposalGroup, condition, { cache: true })
+        let link = await store.findOne<ProposalGroup>(ProposalGroup, condition, { cache: true })
         if (!link) {
+            const id = await this.getId(store)
             link = await this.save(
-                ctx,
+                store,
                 new ProposalGroup({
-                    id: ctx.event.id,
+                    id,
                     ...condition,
                 })
             )
@@ -44,8 +49,8 @@ export class ProposalGroupManager extends Manager<ProposalGroup> {
         return link
     }
 
-    async save(ctx: EventHandlerContext | BlockHandlerContext, item: ProposalGroup): Promise<ProposalGroup> {
-        return await ctx.store.save(item)
+    async save(store: Store, item: ProposalGroup): Promise<ProposalGroup> {
+        return await store.save(item)
     }
 }
 
