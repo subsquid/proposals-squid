@@ -1,153 +1,153 @@
 import type {Result} from './support'
 
-export type Type_161 = Type_161_System | Type_161_Babe | Type_161_Timestamp | Type_161_Indices | Type_161_Balances | Type_161_Authorship | Type_161_Staking | Type_161_Offences | Type_161_Session | Type_161_FinalityTracker | Type_161_Grandpa | Type_161_ImOnline | Type_161_AuthorityDiscovery | Type_161_Democracy | Type_161_Council | Type_161_TechnicalCommittee | Type_161_ElectionsPhragmen | Type_161_TechnicalMembership | Type_161_Treasury | Type_161_Claims | Type_161_Parachains | Type_161_Attestations | Type_161_Slots | Type_161_Registrar | Type_161_Utility | Type_161_Identity | Type_161_Society | Type_161_Recovery | Type_161_Vesting | Type_161_Scheduler
+export type Type_174 = Type_174_System | Type_174_Babe | Type_174_Timestamp | Type_174_Indices | Type_174_Balances | Type_174_Authorship | Type_174_Staking | Type_174_Offences | Type_174_Session | Type_174_FinalityTracker | Type_174_Grandpa | Type_174_ImOnline | Type_174_AuthorityDiscovery | Type_174_Democracy | Type_174_Council | Type_174_TechnicalCommittee | Type_174_ElectionsPhragmen | Type_174_TechnicalMembership | Type_174_Treasury | Type_174_Claims | Type_174_Parachains | Type_174_Attestations | Type_174_Slots | Type_174_Registrar | Type_174_Utility | Type_174_Identity | Type_174_Society | Type_174_Recovery | Type_174_Vesting | Type_174_Scheduler
 
-export interface Type_161_System {
+export interface Type_174_System {
   __kind: 'System'
   value: SystemCall
 }
 
-export interface Type_161_Babe {
+export interface Type_174_Babe {
   __kind: 'Babe'
   value: BabeCall
 }
 
-export interface Type_161_Timestamp {
+export interface Type_174_Timestamp {
   __kind: 'Timestamp'
   value: TimestampCall
 }
 
-export interface Type_161_Indices {
+export interface Type_174_Indices {
   __kind: 'Indices'
   value: IndicesCall
 }
 
-export interface Type_161_Balances {
+export interface Type_174_Balances {
   __kind: 'Balances'
   value: BalancesCall
 }
 
-export interface Type_161_Authorship {
+export interface Type_174_Authorship {
   __kind: 'Authorship'
   value: AuthorshipCall
 }
 
-export interface Type_161_Staking {
+export interface Type_174_Staking {
   __kind: 'Staking'
   value: StakingCall
 }
 
-export interface Type_161_Offences {
+export interface Type_174_Offences {
   __kind: 'Offences'
   value: OffencesCall
 }
 
-export interface Type_161_Session {
+export interface Type_174_Session {
   __kind: 'Session'
   value: SessionCall
 }
 
-export interface Type_161_FinalityTracker {
+export interface Type_174_FinalityTracker {
   __kind: 'FinalityTracker'
   value: FinalityTrackerCall
 }
 
-export interface Type_161_Grandpa {
+export interface Type_174_Grandpa {
   __kind: 'Grandpa'
   value: GrandpaCall
 }
 
-export interface Type_161_ImOnline {
+export interface Type_174_ImOnline {
   __kind: 'ImOnline'
   value: ImOnlineCall
 }
 
-export interface Type_161_AuthorityDiscovery {
+export interface Type_174_AuthorityDiscovery {
   __kind: 'AuthorityDiscovery'
   value: AuthorityDiscoveryCall
 }
 
-export interface Type_161_Democracy {
+export interface Type_174_Democracy {
   __kind: 'Democracy'
   value: DemocracyCall
 }
 
-export interface Type_161_Council {
+export interface Type_174_Council {
   __kind: 'Council'
   value: CouncilCall
 }
 
-export interface Type_161_TechnicalCommittee {
+export interface Type_174_TechnicalCommittee {
   __kind: 'TechnicalCommittee'
   value: TechnicalCommitteeCall
 }
 
-export interface Type_161_ElectionsPhragmen {
+export interface Type_174_ElectionsPhragmen {
   __kind: 'ElectionsPhragmen'
   value: ElectionsPhragmenCall
 }
 
-export interface Type_161_TechnicalMembership {
+export interface Type_174_TechnicalMembership {
   __kind: 'TechnicalMembership'
   value: TechnicalMembershipCall
 }
 
-export interface Type_161_Treasury {
+export interface Type_174_Treasury {
   __kind: 'Treasury'
   value: TreasuryCall
 }
 
-export interface Type_161_Claims {
+export interface Type_174_Claims {
   __kind: 'Claims'
   value: ClaimsCall
 }
 
-export interface Type_161_Parachains {
+export interface Type_174_Parachains {
   __kind: 'Parachains'
   value: ParachainsCall
 }
 
-export interface Type_161_Attestations {
+export interface Type_174_Attestations {
   __kind: 'Attestations'
   value: AttestationsCall
 }
 
-export interface Type_161_Slots {
+export interface Type_174_Slots {
   __kind: 'Slots'
   value: SlotsCall
 }
 
-export interface Type_161_Registrar {
+export interface Type_174_Registrar {
   __kind: 'Registrar'
   value: RegistrarCall
 }
 
-export interface Type_161_Utility {
+export interface Type_174_Utility {
   __kind: 'Utility'
   value: UtilityCall
 }
 
-export interface Type_161_Identity {
+export interface Type_174_Identity {
   __kind: 'Identity'
   value: IdentityCall
 }
 
-export interface Type_161_Society {
+export interface Type_174_Society {
   __kind: 'Society'
   value: SocietyCall
 }
 
-export interface Type_161_Recovery {
+export interface Type_174_Recovery {
   __kind: 'Recovery'
   value: RecoveryCall
 }
 
-export interface Type_161_Vesting {
+export interface Type_174_Vesting {
   __kind: 'Vesting'
   value: VestingCall
 }
 
-export interface Type_161_Scheduler {
+export interface Type_174_Scheduler {
   __kind: 'Scheduler'
   value: SchedulerCall
 }
@@ -1724,7 +1724,7 @@ export interface CouncilCall_set_members {
  */
 export interface CouncilCall_execute {
   __kind: 'execute'
-  proposal: Type_161
+  proposal: Type_174
 }
 
 /**
@@ -1736,7 +1736,7 @@ export interface CouncilCall_execute {
 export interface CouncilCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_161
+  proposal: Type_174
 }
 
 /**
@@ -1796,7 +1796,7 @@ export interface TechnicalCommitteeCall_set_members {
  */
 export interface TechnicalCommitteeCall_execute {
   __kind: 'execute'
-  proposal: Type_161
+  proposal: Type_174
 }
 
 /**
@@ -1808,7 +1808,7 @@ export interface TechnicalCommitteeCall_execute {
 export interface TechnicalCommitteeCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_161
+  proposal: Type_174
 }
 
 /**
@@ -2325,7 +2325,6 @@ export type AttestationsCall = AttestationsCall_more_attestations
  */
 export interface AttestationsCall_more_attestations {
   __kind: 'more_attestations'
-  more: MoreAttestations
 }
 
 export type SlotsCall = SlotsCall_new_auction | SlotsCall_bid | SlotsCall_bid_renew | SlotsCall_set_offboarding | SlotsCall_fix_deploy_data | SlotsCall_elaborate_deploy_data
@@ -2565,7 +2564,7 @@ export type UtilityCall = UtilityCall_batch | UtilityCall_as_sub | UtilityCall_a
  */
 export interface UtilityCall_batch {
   __kind: 'batch'
-  calls: Type_162[]
+  calls: Type_175[]
 }
 
 /**
@@ -2581,7 +2580,7 @@ export interface UtilityCall_batch {
 export interface UtilityCall_as_sub {
   __kind: 'as_sub'
   index: number
-  call: Type_162
+  call: Type_175
 }
 
 /**
@@ -2641,7 +2640,7 @@ export interface UtilityCall_as_multi {
   threshold: number
   otherSignatories: Uint8Array[]
   maybeTimepoint: (Timepoint | undefined)
-  call: Type_162
+  call: Type_175
 }
 
 /**
@@ -3404,7 +3403,7 @@ export type RecoveryCall = RecoveryCall_as_recovered | RecoveryCall_set_recovere
 export interface RecoveryCall_as_recovered {
   __kind: 'as_recovered'
   account: Uint8Array
-  call: Type_162
+  call: Type_175
 }
 
 /**
@@ -3831,162 +3830,160 @@ export interface DoubleVoteReport {
   signingContext: SigningContext
 }
 
-export type MoreAttestations = null
-
 export interface ParaInfo {
   manager: Uint8Array
   deposit: bigint
   locked: boolean
 }
 
-export type Type_162 = Type_162_System | Type_162_Babe | Type_162_Timestamp | Type_162_Indices | Type_162_Balances | Type_162_Authorship | Type_162_Staking | Type_162_Offences | Type_162_Session | Type_162_FinalityTracker | Type_162_Grandpa | Type_162_ImOnline | Type_162_AuthorityDiscovery | Type_162_Democracy | Type_162_Council | Type_162_TechnicalCommittee | Type_162_ElectionsPhragmen | Type_162_TechnicalMembership | Type_162_Treasury | Type_162_Claims | Type_162_Parachains | Type_162_Attestations | Type_162_Slots | Type_162_Registrar | Type_162_Utility | Type_162_Identity | Type_162_Society | Type_162_Recovery | Type_162_Vesting | Type_162_Scheduler
+export type Type_175 = Type_175_System | Type_175_Babe | Type_175_Timestamp | Type_175_Indices | Type_175_Balances | Type_175_Authorship | Type_175_Staking | Type_175_Offences | Type_175_Session | Type_175_FinalityTracker | Type_175_Grandpa | Type_175_ImOnline | Type_175_AuthorityDiscovery | Type_175_Democracy | Type_175_Council | Type_175_TechnicalCommittee | Type_175_ElectionsPhragmen | Type_175_TechnicalMembership | Type_175_Treasury | Type_175_Claims | Type_175_Parachains | Type_175_Attestations | Type_175_Slots | Type_175_Registrar | Type_175_Utility | Type_175_Identity | Type_175_Society | Type_175_Recovery | Type_175_Vesting | Type_175_Scheduler
 
-export interface Type_162_System {
+export interface Type_175_System {
   __kind: 'System'
   value: SystemCall
 }
 
-export interface Type_162_Babe {
+export interface Type_175_Babe {
   __kind: 'Babe'
   value: BabeCall
 }
 
-export interface Type_162_Timestamp {
+export interface Type_175_Timestamp {
   __kind: 'Timestamp'
   value: TimestampCall
 }
 
-export interface Type_162_Indices {
+export interface Type_175_Indices {
   __kind: 'Indices'
   value: IndicesCall
 }
 
-export interface Type_162_Balances {
+export interface Type_175_Balances {
   __kind: 'Balances'
   value: BalancesCall
 }
 
-export interface Type_162_Authorship {
+export interface Type_175_Authorship {
   __kind: 'Authorship'
   value: AuthorshipCall
 }
 
-export interface Type_162_Staking {
+export interface Type_175_Staking {
   __kind: 'Staking'
   value: StakingCall
 }
 
-export interface Type_162_Offences {
+export interface Type_175_Offences {
   __kind: 'Offences'
   value: OffencesCall
 }
 
-export interface Type_162_Session {
+export interface Type_175_Session {
   __kind: 'Session'
   value: SessionCall
 }
 
-export interface Type_162_FinalityTracker {
+export interface Type_175_FinalityTracker {
   __kind: 'FinalityTracker'
   value: FinalityTrackerCall
 }
 
-export interface Type_162_Grandpa {
+export interface Type_175_Grandpa {
   __kind: 'Grandpa'
   value: GrandpaCall
 }
 
-export interface Type_162_ImOnline {
+export interface Type_175_ImOnline {
   __kind: 'ImOnline'
   value: ImOnlineCall
 }
 
-export interface Type_162_AuthorityDiscovery {
+export interface Type_175_AuthorityDiscovery {
   __kind: 'AuthorityDiscovery'
   value: AuthorityDiscoveryCall
 }
 
-export interface Type_162_Democracy {
+export interface Type_175_Democracy {
   __kind: 'Democracy'
   value: DemocracyCall
 }
 
-export interface Type_162_Council {
+export interface Type_175_Council {
   __kind: 'Council'
   value: CouncilCall
 }
 
-export interface Type_162_TechnicalCommittee {
+export interface Type_175_TechnicalCommittee {
   __kind: 'TechnicalCommittee'
   value: TechnicalCommitteeCall
 }
 
-export interface Type_162_ElectionsPhragmen {
+export interface Type_175_ElectionsPhragmen {
   __kind: 'ElectionsPhragmen'
   value: ElectionsPhragmenCall
 }
 
-export interface Type_162_TechnicalMembership {
+export interface Type_175_TechnicalMembership {
   __kind: 'TechnicalMembership'
   value: TechnicalMembershipCall
 }
 
-export interface Type_162_Treasury {
+export interface Type_175_Treasury {
   __kind: 'Treasury'
   value: TreasuryCall
 }
 
-export interface Type_162_Claims {
+export interface Type_175_Claims {
   __kind: 'Claims'
   value: ClaimsCall
 }
 
-export interface Type_162_Parachains {
+export interface Type_175_Parachains {
   __kind: 'Parachains'
   value: ParachainsCall
 }
 
-export interface Type_162_Attestations {
+export interface Type_175_Attestations {
   __kind: 'Attestations'
   value: AttestationsCall
 }
 
-export interface Type_162_Slots {
+export interface Type_175_Slots {
   __kind: 'Slots'
   value: SlotsCall
 }
 
-export interface Type_162_Registrar {
+export interface Type_175_Registrar {
   __kind: 'Registrar'
   value: RegistrarCall
 }
 
-export interface Type_162_Utility {
+export interface Type_175_Utility {
   __kind: 'Utility'
   value: UtilityCall
 }
 
-export interface Type_162_Identity {
+export interface Type_175_Identity {
   __kind: 'Identity'
   value: IdentityCall
 }
 
-export interface Type_162_Society {
+export interface Type_175_Society {
   __kind: 'Society'
   value: SocietyCall
 }
 
-export interface Type_162_Recovery {
+export interface Type_175_Recovery {
   __kind: 'Recovery'
   value: RecoveryCall
 }
 
-export interface Type_162_Vesting {
+export interface Type_175_Vesting {
   __kind: 'Vesting'
   value: VestingCall
 }
 
-export interface Type_162_Scheduler {
+export interface Type_175_Scheduler {
   __kind: 'Scheduler'
   value: SchedulerCall
 }

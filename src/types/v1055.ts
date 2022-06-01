@@ -24,149 +24,149 @@ export interface ReferendumInfo_Finished {
   value: ReferendumInfoFinished
 }
 
-export type Type_102 = Type_102_System | Type_102_Babe | Type_102_Timestamp | Type_102_Indices | Type_102_Balances | Type_102_Authorship | Type_102_Staking | Type_102_Offences | Type_102_Session | Type_102_FinalityTracker | Type_102_Grandpa | Type_102_ImOnline | Type_102_AuthorityDiscovery | Type_102_Democracy | Type_102_Council | Type_102_TechnicalCommittee | Type_102_ElectionsPhragmen | Type_102_TechnicalMembership | Type_102_Treasury | Type_102_Claims | Type_102_Parachains | Type_102_Attestations | Type_102_Slots | Type_102_Registrar | Type_102_Utility | Type_102_Identity | Type_102_Society | Type_102_Recovery | Type_102_Vesting
+export type Type_115 = Type_115_System | Type_115_Babe | Type_115_Timestamp | Type_115_Indices | Type_115_Balances | Type_115_Authorship | Type_115_Staking | Type_115_Offences | Type_115_Session | Type_115_FinalityTracker | Type_115_Grandpa | Type_115_ImOnline | Type_115_AuthorityDiscovery | Type_115_Democracy | Type_115_Council | Type_115_TechnicalCommittee | Type_115_ElectionsPhragmen | Type_115_TechnicalMembership | Type_115_Treasury | Type_115_Claims | Type_115_Parachains | Type_115_Attestations | Type_115_Slots | Type_115_Registrar | Type_115_Utility | Type_115_Identity | Type_115_Society | Type_115_Recovery | Type_115_Vesting
 
-export interface Type_102_System {
+export interface Type_115_System {
   __kind: 'System'
   value: SystemCall
 }
 
-export interface Type_102_Babe {
+export interface Type_115_Babe {
   __kind: 'Babe'
   value: BabeCall
 }
 
-export interface Type_102_Timestamp {
+export interface Type_115_Timestamp {
   __kind: 'Timestamp'
   value: TimestampCall
 }
 
-export interface Type_102_Indices {
+export interface Type_115_Indices {
   __kind: 'Indices'
   value: IndicesCall
 }
 
-export interface Type_102_Balances {
+export interface Type_115_Balances {
   __kind: 'Balances'
   value: BalancesCall
 }
 
-export interface Type_102_Authorship {
+export interface Type_115_Authorship {
   __kind: 'Authorship'
   value: AuthorshipCall
 }
 
-export interface Type_102_Staking {
+export interface Type_115_Staking {
   __kind: 'Staking'
   value: StakingCall
 }
 
-export interface Type_102_Offences {
+export interface Type_115_Offences {
   __kind: 'Offences'
   value: OffencesCall
 }
 
-export interface Type_102_Session {
+export interface Type_115_Session {
   __kind: 'Session'
   value: SessionCall
 }
 
-export interface Type_102_FinalityTracker {
+export interface Type_115_FinalityTracker {
   __kind: 'FinalityTracker'
   value: FinalityTrackerCall
 }
 
-export interface Type_102_Grandpa {
+export interface Type_115_Grandpa {
   __kind: 'Grandpa'
   value: GrandpaCall
 }
 
-export interface Type_102_ImOnline {
+export interface Type_115_ImOnline {
   __kind: 'ImOnline'
   value: ImOnlineCall
 }
 
-export interface Type_102_AuthorityDiscovery {
+export interface Type_115_AuthorityDiscovery {
   __kind: 'AuthorityDiscovery'
   value: AuthorityDiscoveryCall
 }
 
-export interface Type_102_Democracy {
+export interface Type_115_Democracy {
   __kind: 'Democracy'
   value: DemocracyCall
 }
 
-export interface Type_102_Council {
+export interface Type_115_Council {
   __kind: 'Council'
   value: CouncilCall
 }
 
-export interface Type_102_TechnicalCommittee {
+export interface Type_115_TechnicalCommittee {
   __kind: 'TechnicalCommittee'
   value: TechnicalCommitteeCall
 }
 
-export interface Type_102_ElectionsPhragmen {
+export interface Type_115_ElectionsPhragmen {
   __kind: 'ElectionsPhragmen'
   value: ElectionsPhragmenCall
 }
 
-export interface Type_102_TechnicalMembership {
+export interface Type_115_TechnicalMembership {
   __kind: 'TechnicalMembership'
   value: TechnicalMembershipCall
 }
 
-export interface Type_102_Treasury {
+export interface Type_115_Treasury {
   __kind: 'Treasury'
   value: TreasuryCall
 }
 
-export interface Type_102_Claims {
+export interface Type_115_Claims {
   __kind: 'Claims'
   value: ClaimsCall
 }
 
-export interface Type_102_Parachains {
+export interface Type_115_Parachains {
   __kind: 'Parachains'
   value: ParachainsCall
 }
 
-export interface Type_102_Attestations {
+export interface Type_115_Attestations {
   __kind: 'Attestations'
   value: AttestationsCall
 }
 
-export interface Type_102_Slots {
+export interface Type_115_Slots {
   __kind: 'Slots'
   value: SlotsCall
 }
 
-export interface Type_102_Registrar {
+export interface Type_115_Registrar {
   __kind: 'Registrar'
   value: RegistrarCall
 }
 
-export interface Type_102_Utility {
+export interface Type_115_Utility {
   __kind: 'Utility'
   value: UtilityCall
 }
 
-export interface Type_102_Identity {
+export interface Type_115_Identity {
   __kind: 'Identity'
   value: IdentityCall
 }
 
-export interface Type_102_Society {
+export interface Type_115_Society {
   __kind: 'Society'
   value: SocietyCall
 }
 
-export interface Type_102_Recovery {
+export interface Type_115_Recovery {
   __kind: 'Recovery'
   value: RecoveryCall
 }
 
-export interface Type_102_Vesting {
+export interface Type_115_Vesting {
   __kind: 'Vesting'
   value: VestingCall
 }
@@ -1522,7 +1522,7 @@ export interface CouncilCall_set_members {
  */
 export interface CouncilCall_execute {
   __kind: 'execute'
-  proposal: Type_102
+  proposal: Type_115
 }
 
 /**
@@ -1534,7 +1534,7 @@ export interface CouncilCall_execute {
 export interface CouncilCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_102
+  proposal: Type_115
 }
 
 /**
@@ -1594,7 +1594,7 @@ export interface TechnicalCommitteeCall_set_members {
  */
 export interface TechnicalCommitteeCall_execute {
   __kind: 'execute'
-  proposal: Type_102
+  proposal: Type_115
 }
 
 /**
@@ -1606,7 +1606,7 @@ export interface TechnicalCommitteeCall_execute {
 export interface TechnicalCommitteeCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_102
+  proposal: Type_115
 }
 
 /**
@@ -2090,7 +2090,6 @@ export type AttestationsCall = AttestationsCall_more_attestations
  */
 export interface AttestationsCall_more_attestations {
   __kind: 'more_attestations'
-  more: MoreAttestations
 }
 
 export type SlotsCall = SlotsCall_new_auction | SlotsCall_bid | SlotsCall_bid_renew | SlotsCall_set_offboarding | SlotsCall_fix_deploy_data | SlotsCall_elaborate_deploy_data
@@ -2329,7 +2328,7 @@ export type UtilityCall = UtilityCall_batch | UtilityCall_as_sub | UtilityCall_a
  */
 export interface UtilityCall_batch {
   __kind: 'batch'
-  calls: Type_103[]
+  calls: Type_116[]
 }
 
 /**
@@ -2344,7 +2343,7 @@ export interface UtilityCall_batch {
 export interface UtilityCall_as_sub {
   __kind: 'as_sub'
   index: number
-  call: Type_103
+  call: Type_116
 }
 
 /**
@@ -2395,7 +2394,7 @@ export interface UtilityCall_as_multi {
   threshold: number
   otherSignatories: Uint8Array[]
   maybeTimepoint: (Timepoint | undefined)
-  call: Type_103
+  call: Type_116
 }
 
 /**
@@ -3124,7 +3123,7 @@ export type RecoveryCall = RecoveryCall_as_recovered | RecoveryCall_set_recovere
 export interface RecoveryCall_as_recovered {
   __kind: 'as_recovered'
   account: Uint8Array
-  call: Type_103
+  call: Type_116
 }
 
 /**
@@ -3518,157 +3517,155 @@ export interface AttestedCandidate {
   validatorIndices: Uint8Array
 }
 
-export type MoreAttestations = null
-
 export interface ParaInfo {
   manager: Uint8Array
   deposit: bigint
   locked: boolean
 }
 
-export type Type_103 = Type_103_System | Type_103_Babe | Type_103_Timestamp | Type_103_Indices | Type_103_Balances | Type_103_Authorship | Type_103_Staking | Type_103_Offences | Type_103_Session | Type_103_FinalityTracker | Type_103_Grandpa | Type_103_ImOnline | Type_103_AuthorityDiscovery | Type_103_Democracy | Type_103_Council | Type_103_TechnicalCommittee | Type_103_ElectionsPhragmen | Type_103_TechnicalMembership | Type_103_Treasury | Type_103_Claims | Type_103_Parachains | Type_103_Attestations | Type_103_Slots | Type_103_Registrar | Type_103_Utility | Type_103_Identity | Type_103_Society | Type_103_Recovery | Type_103_Vesting
+export type Type_116 = Type_116_System | Type_116_Babe | Type_116_Timestamp | Type_116_Indices | Type_116_Balances | Type_116_Authorship | Type_116_Staking | Type_116_Offences | Type_116_Session | Type_116_FinalityTracker | Type_116_Grandpa | Type_116_ImOnline | Type_116_AuthorityDiscovery | Type_116_Democracy | Type_116_Council | Type_116_TechnicalCommittee | Type_116_ElectionsPhragmen | Type_116_TechnicalMembership | Type_116_Treasury | Type_116_Claims | Type_116_Parachains | Type_116_Attestations | Type_116_Slots | Type_116_Registrar | Type_116_Utility | Type_116_Identity | Type_116_Society | Type_116_Recovery | Type_116_Vesting
 
-export interface Type_103_System {
+export interface Type_116_System {
   __kind: 'System'
   value: SystemCall
 }
 
-export interface Type_103_Babe {
+export interface Type_116_Babe {
   __kind: 'Babe'
   value: BabeCall
 }
 
-export interface Type_103_Timestamp {
+export interface Type_116_Timestamp {
   __kind: 'Timestamp'
   value: TimestampCall
 }
 
-export interface Type_103_Indices {
+export interface Type_116_Indices {
   __kind: 'Indices'
   value: IndicesCall
 }
 
-export interface Type_103_Balances {
+export interface Type_116_Balances {
   __kind: 'Balances'
   value: BalancesCall
 }
 
-export interface Type_103_Authorship {
+export interface Type_116_Authorship {
   __kind: 'Authorship'
   value: AuthorshipCall
 }
 
-export interface Type_103_Staking {
+export interface Type_116_Staking {
   __kind: 'Staking'
   value: StakingCall
 }
 
-export interface Type_103_Offences {
+export interface Type_116_Offences {
   __kind: 'Offences'
   value: OffencesCall
 }
 
-export interface Type_103_Session {
+export interface Type_116_Session {
   __kind: 'Session'
   value: SessionCall
 }
 
-export interface Type_103_FinalityTracker {
+export interface Type_116_FinalityTracker {
   __kind: 'FinalityTracker'
   value: FinalityTrackerCall
 }
 
-export interface Type_103_Grandpa {
+export interface Type_116_Grandpa {
   __kind: 'Grandpa'
   value: GrandpaCall
 }
 
-export interface Type_103_ImOnline {
+export interface Type_116_ImOnline {
   __kind: 'ImOnline'
   value: ImOnlineCall
 }
 
-export interface Type_103_AuthorityDiscovery {
+export interface Type_116_AuthorityDiscovery {
   __kind: 'AuthorityDiscovery'
   value: AuthorityDiscoveryCall
 }
 
-export interface Type_103_Democracy {
+export interface Type_116_Democracy {
   __kind: 'Democracy'
   value: DemocracyCall
 }
 
-export interface Type_103_Council {
+export interface Type_116_Council {
   __kind: 'Council'
   value: CouncilCall
 }
 
-export interface Type_103_TechnicalCommittee {
+export interface Type_116_TechnicalCommittee {
   __kind: 'TechnicalCommittee'
   value: TechnicalCommitteeCall
 }
 
-export interface Type_103_ElectionsPhragmen {
+export interface Type_116_ElectionsPhragmen {
   __kind: 'ElectionsPhragmen'
   value: ElectionsPhragmenCall
 }
 
-export interface Type_103_TechnicalMembership {
+export interface Type_116_TechnicalMembership {
   __kind: 'TechnicalMembership'
   value: TechnicalMembershipCall
 }
 
-export interface Type_103_Treasury {
+export interface Type_116_Treasury {
   __kind: 'Treasury'
   value: TreasuryCall
 }
 
-export interface Type_103_Claims {
+export interface Type_116_Claims {
   __kind: 'Claims'
   value: ClaimsCall
 }
 
-export interface Type_103_Parachains {
+export interface Type_116_Parachains {
   __kind: 'Parachains'
   value: ParachainsCall
 }
 
-export interface Type_103_Attestations {
+export interface Type_116_Attestations {
   __kind: 'Attestations'
   value: AttestationsCall
 }
 
-export interface Type_103_Slots {
+export interface Type_116_Slots {
   __kind: 'Slots'
   value: SlotsCall
 }
 
-export interface Type_103_Registrar {
+export interface Type_116_Registrar {
   __kind: 'Registrar'
   value: RegistrarCall
 }
 
-export interface Type_103_Utility {
+export interface Type_116_Utility {
   __kind: 'Utility'
   value: UtilityCall
 }
 
-export interface Type_103_Identity {
+export interface Type_116_Identity {
   __kind: 'Identity'
   value: IdentityCall
 }
 
-export interface Type_103_Society {
+export interface Type_116_Society {
   __kind: 'Society'
   value: SocietyCall
 }
 
-export interface Type_103_Recovery {
+export interface Type_116_Recovery {
   __kind: 'Recovery'
   value: RecoveryCall
 }
 
-export interface Type_103_Vesting {
+export interface Type_116_Vesting {
   __kind: 'Vesting'
   value: VestingCall
 }

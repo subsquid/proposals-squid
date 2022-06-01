@@ -11,14 +11,14 @@ import * as v9190 from './v9190'
 
 export class BountiesBountyAwardedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'bounties.BountyAwarded')
+    assert(this.ctx.event.name === 'Bounties.BountyAwarded')
   }
 
   /**
    *  A bounty is awarded to a beneficiary. \[index, beneficiary\]
    */
   get isV2028(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyAwarded') === '0379562584d6426ccff49705dfa9dba95ad94215b772fd97d0ad0c4ca0001c12'
+    return this.ctx._chain.getEventHash('Bounties.BountyAwarded') === '0379562584d6426ccff49705dfa9dba95ad94215b772fd97d0ad0c4ca0001c12'
   }
 
   /**
@@ -33,7 +33,7 @@ export class BountiesBountyAwardedEvent {
    * A bounty is awarded to a beneficiary.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyAwarded') === '5314a4c20f133eee477b8b4ce9998238defda69cb2db9344567309c8e6badd90'
+    return this.ctx._chain.getEventHash('Bounties.BountyAwarded') === '5314a4c20f133eee477b8b4ce9998238defda69cb2db9344567309c8e6badd90'
   }
 
   /**
@@ -57,14 +57,14 @@ export class BountiesBountyAwardedEvent {
 
 export class BountiesBountyBecameActiveEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'bounties.BountyBecameActive')
+    assert(this.ctx.event.name === 'Bounties.BountyBecameActive')
   }
 
   /**
    *  A bounty proposal is funded and became active. \[index\]
    */
   get isV2028(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyBecameActive') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
+    return this.ctx._chain.getEventHash('Bounties.BountyBecameActive') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
   /**
@@ -79,7 +79,7 @@ export class BountiesBountyBecameActiveEvent {
    * A bounty proposal is funded and became active.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyBecameActive') === '25a99cc820e15400356f62165725d9d84847d859e62ca1e5fd6eb340dc5c217e'
+    return this.ctx._chain.getEventHash('Bounties.BountyBecameActive') === '25a99cc820e15400356f62165725d9d84847d859e62ca1e5fd6eb340dc5c217e'
   }
 
   /**
@@ -103,14 +103,14 @@ export class BountiesBountyBecameActiveEvent {
 
 export class BountiesBountyCanceledEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'bounties.BountyCanceled')
+    assert(this.ctx.event.name === 'Bounties.BountyCanceled')
   }
 
   /**
    *  A bounty is cancelled. \[index\]
    */
   get isV2028(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyCanceled') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
+    return this.ctx._chain.getEventHash('Bounties.BountyCanceled') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
   /**
@@ -125,7 +125,7 @@ export class BountiesBountyCanceledEvent {
    * A bounty is cancelled.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyCanceled') === '25a99cc820e15400356f62165725d9d84847d859e62ca1e5fd6eb340dc5c217e'
+    return this.ctx._chain.getEventHash('Bounties.BountyCanceled') === '25a99cc820e15400356f62165725d9d84847d859e62ca1e5fd6eb340dc5c217e'
   }
 
   /**
@@ -149,14 +149,14 @@ export class BountiesBountyCanceledEvent {
 
 export class BountiesBountyClaimedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'bounties.BountyClaimed')
+    assert(this.ctx.event.name === 'Bounties.BountyClaimed')
   }
 
   /**
    *  A bounty is claimed by beneficiary. \[index, payout, beneficiary\]
    */
   get isV2028(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyClaimed') === '86708250ac506876b8d63d9c97b4ca0fa73f0199c633da6fb2a8956aaab8c743'
+    return this.ctx._chain.getEventHash('Bounties.BountyClaimed') === '86708250ac506876b8d63d9c97b4ca0fa73f0199c633da6fb2a8956aaab8c743'
   }
 
   /**
@@ -171,7 +171,7 @@ export class BountiesBountyClaimedEvent {
    * A bounty is claimed by beneficiary.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyClaimed') === 'fb4b26ccfabe9f649bfadde9c0bbee0816e9cf32c7384f2f21c03a852ec23f77'
+    return this.ctx._chain.getEventHash('Bounties.BountyClaimed') === 'fb4b26ccfabe9f649bfadde9c0bbee0816e9cf32c7384f2f21c03a852ec23f77'
   }
 
   /**
@@ -195,14 +195,14 @@ export class BountiesBountyClaimedEvent {
 
 export class BountiesBountyExtendedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'bounties.BountyExtended')
+    assert(this.ctx.event.name === 'Bounties.BountyExtended')
   }
 
   /**
    *  A bounty expiry is extended. \[index\]
    */
   get isV2028(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyExtended') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
+    return this.ctx._chain.getEventHash('Bounties.BountyExtended') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
   /**
@@ -217,7 +217,7 @@ export class BountiesBountyExtendedEvent {
    * A bounty expiry is extended.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyExtended') === '25a99cc820e15400356f62165725d9d84847d859e62ca1e5fd6eb340dc5c217e'
+    return this.ctx._chain.getEventHash('Bounties.BountyExtended') === '25a99cc820e15400356f62165725d9d84847d859e62ca1e5fd6eb340dc5c217e'
   }
 
   /**
@@ -241,14 +241,14 @@ export class BountiesBountyExtendedEvent {
 
 export class BountiesBountyProposedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'bounties.BountyProposed')
+    assert(this.ctx.event.name === 'Bounties.BountyProposed')
   }
 
   /**
    *  New bounty proposal. \[index\]
    */
   get isV2028(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyProposed') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
+    return this.ctx._chain.getEventHash('Bounties.BountyProposed') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
   /**
@@ -263,7 +263,7 @@ export class BountiesBountyProposedEvent {
    * New bounty proposal.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyProposed') === '25a99cc820e15400356f62165725d9d84847d859e62ca1e5fd6eb340dc5c217e'
+    return this.ctx._chain.getEventHash('Bounties.BountyProposed') === '25a99cc820e15400356f62165725d9d84847d859e62ca1e5fd6eb340dc5c217e'
   }
 
   /**
@@ -287,14 +287,14 @@ export class BountiesBountyProposedEvent {
 
 export class BountiesBountyRejectedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'bounties.BountyRejected')
+    assert(this.ctx.event.name === 'Bounties.BountyRejected')
   }
 
   /**
    *  A bounty proposal was rejected; funds were slashed. \[index, bond\]
    */
   get isV2028(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyRejected') === 'a0e51e81445baa317309351746e010ed2435e30ff7e53fbb2cf59283f3b9c536'
+    return this.ctx._chain.getEventHash('Bounties.BountyRejected') === 'a0e51e81445baa317309351746e010ed2435e30ff7e53fbb2cf59283f3b9c536'
   }
 
   /**
@@ -309,7 +309,7 @@ export class BountiesBountyRejectedEvent {
    * A bounty proposal was rejected; funds were slashed.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('bounties.BountyRejected') === 'dc987b921ffaf859792cab48c45dff837e0f100cb2deeb83c24a11b61e50082e'
+    return this.ctx._chain.getEventHash('Bounties.BountyRejected') === 'dc987b921ffaf859792cab48c45dff837e0f100cb2deeb83c24a11b61e50082e'
   }
 
   /**
@@ -333,14 +333,14 @@ export class BountiesBountyRejectedEvent {
 
 export class CouncilApprovedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'council.Approved')
+    assert(this.ctx.event.name === 'Council.Approved')
   }
 
   /**
    *  A motion was approved by the required threshold.
    */
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('council.Approved') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
+    return this.ctx._chain.getEventHash('Council.Approved') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
   }
 
   /**
@@ -355,7 +355,7 @@ export class CouncilApprovedEvent {
    * A motion was approved by the required threshold.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('council.Approved') === 'b8668610145a6851ad2d5b7dd4bfc15e29402d9a8558401ab955896007f866a5'
+    return this.ctx._chain.getEventHash('Council.Approved') === 'b8668610145a6851ad2d5b7dd4bfc15e29402d9a8558401ab955896007f866a5'
   }
 
   /**
@@ -379,14 +379,14 @@ export class CouncilApprovedEvent {
 
 export class CouncilClosedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'council.Closed')
+    assert(this.ctx.event.name === 'Council.Closed')
   }
 
   /**
    *  A proposal was closed after its duration was up.
    */
   get isV1050(): boolean {
-    return this.ctx._chain.getEventHash('council.Closed') === '7d509ca6ee36d401f2d5410aa32038550c256cc3ce4b34cdfe1f8adea0e1679c'
+    return this.ctx._chain.getEventHash('Council.Closed') === '7d509ca6ee36d401f2d5410aa32038550c256cc3ce4b34cdfe1f8adea0e1679c'
   }
 
   /**
@@ -401,7 +401,7 @@ export class CouncilClosedEvent {
    * A proposal was closed because its threshold was reached or after its duration was up.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('council.Closed') === '084e73926c22836c888c17e49053d3b72e2feaa904b8f0175d21fb5b800542f9'
+    return this.ctx._chain.getEventHash('Council.Closed') === '084e73926c22836c888c17e49053d3b72e2feaa904b8f0175d21fb5b800542f9'
   }
 
   /**
@@ -425,14 +425,14 @@ export class CouncilClosedEvent {
 
 export class CouncilDisapprovedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'council.Disapproved')
+    assert(this.ctx.event.name === 'Council.Disapproved')
   }
 
   /**
    *  A motion was not approved by the required threshold.
    */
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('council.Disapproved') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
+    return this.ctx._chain.getEventHash('Council.Disapproved') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
   }
 
   /**
@@ -447,7 +447,7 @@ export class CouncilDisapprovedEvent {
    * A motion was not approved by the required threshold.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('council.Disapproved') === 'b8668610145a6851ad2d5b7dd4bfc15e29402d9a8558401ab955896007f866a5'
+    return this.ctx._chain.getEventHash('Council.Disapproved') === 'b8668610145a6851ad2d5b7dd4bfc15e29402d9a8558401ab955896007f866a5'
   }
 
   /**
@@ -471,14 +471,14 @@ export class CouncilDisapprovedEvent {
 
 export class CouncilExecutedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'council.Executed')
+    assert(this.ctx.event.name === 'Council.Executed')
   }
 
   /**
    *  A motion was executed; `bool` is true if returned without error.
    */
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('council.Executed') === '3e84284a56e2d90e928c790a4788cf7ee237d5a6d76716a3e8584e3dcc0319a0'
+    return this.ctx._chain.getEventHash('Council.Executed') === '3e84284a56e2d90e928c790a4788cf7ee237d5a6d76716a3e8584e3dcc0319a0'
   }
 
   /**
@@ -493,7 +493,7 @@ export class CouncilExecutedEvent {
    *  A motion was executed; `bool` is true if returned without error.
    */
   get isV2005(): boolean {
-    return this.ctx._chain.getEventHash('council.Executed') === 'f98b87482f886396f52d6875083e9b201ac0e3f97d718c37613afad51e85a9b7'
+    return this.ctx._chain.getEventHash('Council.Executed') === 'f98b87482f886396f52d6875083e9b201ac0e3f97d718c37613afad51e85a9b7'
   }
 
   /**
@@ -509,7 +509,7 @@ export class CouncilExecutedEvent {
    * \[proposal_hash, result\]
    */
   get isV9111(): boolean {
-    return this.ctx._chain.getEventHash('council.Executed') === '019142f0bd31225b17a5d98473d6ee9928b1e71bb401e1e42248abdb9dca92c7'
+    return this.ctx._chain.getEventHash('Council.Executed') === '019142f0bd31225b17a5d98473d6ee9928b1e71bb401e1e42248abdb9dca92c7'
   }
 
   /**
@@ -525,7 +525,7 @@ export class CouncilExecutedEvent {
    * A motion was executed; result will be `Ok` if it returned without error.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('council.Executed') === '5b848c4d2e38fbfb6752ba650f8662bd0df106f400d22ae305ed497d7574ee03'
+    return this.ctx._chain.getEventHash('Council.Executed') === '5b848c4d2e38fbfb6752ba650f8662bd0df106f400d22ae305ed497d7574ee03'
   }
 
   /**
@@ -540,7 +540,7 @@ export class CouncilExecutedEvent {
    * A motion was executed; result will be `Ok` if it returned without error.
    */
   get isV9160(): boolean {
-    return this.ctx._chain.getEventHash('council.Executed') === '3f97432326c1bc7a1d2b8f8e2b864f870aa8a7a926361a7af32c8e5c45ed9c5e'
+    return this.ctx._chain.getEventHash('Council.Executed') === '3f97432326c1bc7a1d2b8f8e2b864f870aa8a7a926361a7af32c8e5c45ed9c5e'
   }
 
   /**
@@ -555,7 +555,7 @@ export class CouncilExecutedEvent {
    * A motion was executed; result will be `Ok` if it returned without error.
    */
   get isV9170(): boolean {
-    return this.ctx._chain.getEventHash('council.Executed') === 'e7bba992b17737087cf79037068ecde07b0ef6afb29be3ddbe1d7afe57e365aa'
+    return this.ctx._chain.getEventHash('Council.Executed') === 'e7bba992b17737087cf79037068ecde07b0ef6afb29be3ddbe1d7afe57e365aa'
   }
 
   /**
@@ -570,7 +570,7 @@ export class CouncilExecutedEvent {
    * A motion was executed; result will be `Ok` if it returned without error.
    */
   get isV9190(): boolean {
-    return this.ctx._chain.getEventHash('council.Executed') === '891fd2ad27e5f8bc799d45bb765ef77383902fd4e1cc4c6981cba99123803ac7'
+    return this.ctx._chain.getEventHash('Council.Executed') === '891fd2ad27e5f8bc799d45bb765ef77383902fd4e1cc4c6981cba99123803ac7'
   }
 
   /**
@@ -594,7 +594,7 @@ export class CouncilExecutedEvent {
 
 export class CouncilProposedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'council.Proposed')
+    assert(this.ctx.event.name === 'Council.Proposed')
   }
 
   /**
@@ -602,7 +602,7 @@ export class CouncilProposedEvent {
    *  `MemberCount`).
    */
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('council.Proposed') === '8d3dc2ef388c0264b2a1bd5e18788f415f4c08186c50dbbee2c60e61d81cb025'
+    return this.ctx._chain.getEventHash('Council.Proposed') === '8d3dc2ef388c0264b2a1bd5e18788f415f4c08186c50dbbee2c60e61d81cb025'
   }
 
   /**
@@ -619,7 +619,7 @@ export class CouncilProposedEvent {
    * `MemberCount`).
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('council.Proposed') === '63978c884e95719fd416c8a38a2ec2ec5a691a58a28349d62b0173643f0d8262'
+    return this.ctx._chain.getEventHash('Council.Proposed') === '63978c884e95719fd416c8a38a2ec2ec5a691a58a28349d62b0173643f0d8262'
   }
 
   /**
@@ -644,7 +644,7 @@ export class CouncilProposedEvent {
 
 export class CouncilVotedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'council.Voted')
+    assert(this.ctx.event.name === 'Council.Voted')
   }
 
   /**
@@ -652,7 +652,7 @@ export class CouncilVotedEvent {
    *  a tally (yes votes and no votes given respectively as `MemberCount`).
    */
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('council.Voted') === '5693223b18444daea47c5d959a8026ce5084d3e9c76fe5a2be5ef93f3526e0ac'
+    return this.ctx._chain.getEventHash('Council.Voted') === '5693223b18444daea47c5d959a8026ce5084d3e9c76fe5a2be5ef93f3526e0ac'
   }
 
   /**
@@ -669,7 +669,7 @@ export class CouncilVotedEvent {
    * a tally (yes votes and no votes given respectively as `MemberCount`).
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('council.Voted') === 'b69e97272b7c060192bbc1a5e91692b0a8b905727af6d9eb5627b7857ede0846'
+    return this.ctx._chain.getEventHash('Council.Voted') === 'b69e97272b7c060192bbc1a5e91692b0a8b905727af6d9eb5627b7857ede0846'
   }
 
   /**
@@ -694,11 +694,11 @@ export class CouncilVotedEvent {
 
 export class DemocracyCancelledEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'democracy.Cancelled')
+    assert(this.ctx.event.name === 'Democracy.Cancelled')
   }
 
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Cancelled') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
+    return this.ctx._chain.getEventHash('Democracy.Cancelled') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
   get asV1020(): number {
@@ -710,7 +710,7 @@ export class DemocracyCancelledEvent {
    * A referendum has been cancelled.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Cancelled') === '8a84371403a09e2f8fc2aac80f5a8a53229b346c4b3859069867b8e656b13450'
+    return this.ctx._chain.getEventHash('Democracy.Cancelled') === '8a84371403a09e2f8fc2aac80f5a8a53229b346c4b3859069867b8e656b13450'
   }
 
   /**
@@ -734,11 +734,11 @@ export class DemocracyCancelledEvent {
 
 export class DemocracyExecutedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'democracy.Executed')
+    assert(this.ctx.event.name === 'Democracy.Executed')
   }
 
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Executed') === 'f267e1fa04f32dd15473e3a6d2514ae684bd7ba5516d192ba70e4d49211868aa'
+    return this.ctx._chain.getEventHash('Democracy.Executed') === 'f267e1fa04f32dd15473e3a6d2514ae684bd7ba5516d192ba70e4d49211868aa'
   }
 
   get asV1020(): [number, boolean] {
@@ -750,7 +750,7 @@ export class DemocracyExecutedEvent {
    *  A proposal has been enacted. \[ref_index, result\]
    */
   get isV9090(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Executed') === '8d7c54bbac5b548a558504b413146fe5bff0b9275a2e7f4c831a148273ee173a'
+    return this.ctx._chain.getEventHash('Democracy.Executed') === '8d7c54bbac5b548a558504b413146fe5bff0b9275a2e7f4c831a148273ee173a'
   }
 
   /**
@@ -765,7 +765,7 @@ export class DemocracyExecutedEvent {
    * A proposal has been enacted. \[ref_index, result\]
    */
   get isV9111(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Executed') === '4569400573983e7dffe031a303e5028518f139390f47223a097cb35de3005258'
+    return this.ctx._chain.getEventHash('Democracy.Executed') === '4569400573983e7dffe031a303e5028518f139390f47223a097cb35de3005258'
   }
 
   /**
@@ -780,7 +780,7 @@ export class DemocracyExecutedEvent {
    * A proposal has been enacted.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Executed') === '1f0fb32f2f0aaba231b69023c5858e85b8bfd660b5ce8c47d1b99b39602e4963'
+    return this.ctx._chain.getEventHash('Democracy.Executed') === '1f0fb32f2f0aaba231b69023c5858e85b8bfd660b5ce8c47d1b99b39602e4963'
   }
 
   /**
@@ -795,7 +795,7 @@ export class DemocracyExecutedEvent {
    * A proposal has been enacted.
    */
   get isV9160(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Executed') === 'fe9cbb2e8fcebf406053419831a31120f211751f75230bfefe38454cc691c00a'
+    return this.ctx._chain.getEventHash('Democracy.Executed') === 'fe9cbb2e8fcebf406053419831a31120f211751f75230bfefe38454cc691c00a'
   }
 
   /**
@@ -810,7 +810,7 @@ export class DemocracyExecutedEvent {
    * A proposal has been enacted.
    */
   get isV9170(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Executed') === '98c3caaef1b84143deea16c761096200c5e0e631c6a3776ed012edc9788cf6e2'
+    return this.ctx._chain.getEventHash('Democracy.Executed') === '98c3caaef1b84143deea16c761096200c5e0e631c6a3776ed012edc9788cf6e2'
   }
 
   /**
@@ -825,7 +825,7 @@ export class DemocracyExecutedEvent {
    * A proposal has been enacted.
    */
   get isV9190(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Executed') === '2abe2e7ca2af8b119eb4f3a1f669843943049e3f4e2f613fc3b077115902ca2b'
+    return this.ctx._chain.getEventHash('Democracy.Executed') === '2abe2e7ca2af8b119eb4f3a1f669843943049e3f4e2f613fc3b077115902ca2b'
   }
 
   /**
@@ -849,11 +849,11 @@ export class DemocracyExecutedEvent {
 
 export class DemocracyNotPassedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'democracy.NotPassed')
+    assert(this.ctx.event.name === 'Democracy.NotPassed')
   }
 
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('democracy.NotPassed') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
+    return this.ctx._chain.getEventHash('Democracy.NotPassed') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
   get asV1020(): number {
@@ -865,7 +865,7 @@ export class DemocracyNotPassedEvent {
    * A proposal has been rejected by referendum.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('democracy.NotPassed') === '8a84371403a09e2f8fc2aac80f5a8a53229b346c4b3859069867b8e656b13450'
+    return this.ctx._chain.getEventHash('Democracy.NotPassed') === '8a84371403a09e2f8fc2aac80f5a8a53229b346c4b3859069867b8e656b13450'
   }
 
   /**
@@ -889,11 +889,11 @@ export class DemocracyNotPassedEvent {
 
 export class DemocracyPassedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'democracy.Passed')
+    assert(this.ctx.event.name === 'Democracy.Passed')
   }
 
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Passed') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
+    return this.ctx._chain.getEventHash('Democracy.Passed') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
   get asV1020(): number {
@@ -905,7 +905,7 @@ export class DemocracyPassedEvent {
    * A proposal has been approved by referendum.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Passed') === '8a84371403a09e2f8fc2aac80f5a8a53229b346c4b3859069867b8e656b13450'
+    return this.ctx._chain.getEventHash('Democracy.Passed') === '8a84371403a09e2f8fc2aac80f5a8a53229b346c4b3859069867b8e656b13450'
   }
 
   /**
@@ -929,14 +929,14 @@ export class DemocracyPassedEvent {
 
 export class DemocracyPreimageInvalidEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'democracy.PreimageInvalid')
+    assert(this.ctx.event.name === 'Democracy.PreimageInvalid')
   }
 
   /**
    *  A proposal could not be executed because its preimage was invalid.
    */
   get isV1022(): boolean {
-    return this.ctx._chain.getEventHash('democracy.PreimageInvalid') === 'a86a85822cc09ae7b3b9587f12944d2954476832a499d679c195ffaa86c16212'
+    return this.ctx._chain.getEventHash('Democracy.PreimageInvalid') === 'a86a85822cc09ae7b3b9587f12944d2954476832a499d679c195ffaa86c16212'
   }
 
   /**
@@ -951,7 +951,7 @@ export class DemocracyPreimageInvalidEvent {
    * A proposal could not be executed because its preimage was invalid.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('democracy.PreimageInvalid') === 'd21a40db31aa35f736256c62aed3838360364afbf5d732372a68110d811862d6'
+    return this.ctx._chain.getEventHash('Democracy.PreimageInvalid') === 'd21a40db31aa35f736256c62aed3838360364afbf5d732372a68110d811862d6'
   }
 
   /**
@@ -975,14 +975,14 @@ export class DemocracyPreimageInvalidEvent {
 
 export class DemocracyPreimageMissingEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'democracy.PreimageMissing')
+    assert(this.ctx.event.name === 'Democracy.PreimageMissing')
   }
 
   /**
    *  A proposal could not be executed because its preimage was missing.
    */
   get isV1022(): boolean {
-    return this.ctx._chain.getEventHash('democracy.PreimageMissing') === 'a86a85822cc09ae7b3b9587f12944d2954476832a499d679c195ffaa86c16212'
+    return this.ctx._chain.getEventHash('Democracy.PreimageMissing') === 'a86a85822cc09ae7b3b9587f12944d2954476832a499d679c195ffaa86c16212'
   }
 
   /**
@@ -997,7 +997,7 @@ export class DemocracyPreimageMissingEvent {
    * A proposal could not be executed because its preimage was missing.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('democracy.PreimageMissing') === 'd21a40db31aa35f736256c62aed3838360364afbf5d732372a68110d811862d6'
+    return this.ctx._chain.getEventHash('Democracy.PreimageMissing') === 'd21a40db31aa35f736256c62aed3838360364afbf5d732372a68110d811862d6'
   }
 
   /**
@@ -1021,14 +1021,14 @@ export class DemocracyPreimageMissingEvent {
 
 export class DemocracyPreimageNotedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'democracy.PreimageNoted')
+    assert(this.ctx.event.name === 'Democracy.PreimageNoted')
   }
 
   /**
    *  A proposal's preimage was noted, and the deposit taken.
    */
   get isV1022(): boolean {
-    return this.ctx._chain.getEventHash('democracy.PreimageNoted') === 'dad2bcdca357505fa3c7832085d0db53ce6f902bd9f5b52823ee8791d351872c'
+    return this.ctx._chain.getEventHash('Democracy.PreimageNoted') === 'dad2bcdca357505fa3c7832085d0db53ce6f902bd9f5b52823ee8791d351872c'
   }
 
   /**
@@ -1043,7 +1043,7 @@ export class DemocracyPreimageNotedEvent {
    * A proposal's preimage was noted, and the deposit taken.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('democracy.PreimageNoted') === 'd070eaca902e57d242e4f2fcf32e1044fe909d807ce0a0303e2bb45499fc9748'
+    return this.ctx._chain.getEventHash('Democracy.PreimageNoted') === 'd070eaca902e57d242e4f2fcf32e1044fe909d807ce0a0303e2bb45499fc9748'
   }
 
   /**
@@ -1067,14 +1067,14 @@ export class DemocracyPreimageNotedEvent {
 
 export class DemocracyPreimageReapedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'democracy.PreimageReaped')
+    assert(this.ctx.event.name === 'Democracy.PreimageReaped')
   }
 
   /**
    *  A registered preimage was removed and the deposit collected by the reaper (last item).
    */
   get isV1022(): boolean {
-    return this.ctx._chain.getEventHash('democracy.PreimageReaped') === 'b60e8c24758d2dae6f1d75c508a3141a304f756181262747ee8d704bd555ac86'
+    return this.ctx._chain.getEventHash('Democracy.PreimageReaped') === 'b60e8c24758d2dae6f1d75c508a3141a304f756181262747ee8d704bd555ac86'
   }
 
   /**
@@ -1089,7 +1089,7 @@ export class DemocracyPreimageReapedEvent {
    * A registered preimage was removed and the deposit collected by the reaper.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('democracy.PreimageReaped') === '3140454b0dfcc8f9c1ccda6a2fe7f5153f3d34c52e1e5bb1d954b96b8f5dd4a5'
+    return this.ctx._chain.getEventHash('Democracy.PreimageReaped') === '3140454b0dfcc8f9c1ccda6a2fe7f5153f3d34c52e1e5bb1d954b96b8f5dd4a5'
   }
 
   /**
@@ -1113,14 +1113,14 @@ export class DemocracyPreimageReapedEvent {
 
 export class DemocracyPreimageUsedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'democracy.PreimageUsed')
+    assert(this.ctx.event.name === 'Democracy.PreimageUsed')
   }
 
   /**
    *  A proposal preimage was removed and used (the deposit was returned).
    */
   get isV1022(): boolean {
-    return this.ctx._chain.getEventHash('democracy.PreimageUsed') === 'dad2bcdca357505fa3c7832085d0db53ce6f902bd9f5b52823ee8791d351872c'
+    return this.ctx._chain.getEventHash('Democracy.PreimageUsed') === 'dad2bcdca357505fa3c7832085d0db53ce6f902bd9f5b52823ee8791d351872c'
   }
 
   /**
@@ -1135,7 +1135,7 @@ export class DemocracyPreimageUsedEvent {
    * A proposal preimage was removed and used (the deposit was returned).
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('democracy.PreimageUsed') === '7b28a71d659ed286affdbc9e835b253b80485e4b3be08d04bfb153f8f8cc5241'
+    return this.ctx._chain.getEventHash('Democracy.PreimageUsed') === '7b28a71d659ed286affdbc9e835b253b80485e4b3be08d04bfb153f8f8cc5241'
   }
 
   /**
@@ -1159,11 +1159,11 @@ export class DemocracyPreimageUsedEvent {
 
 export class DemocracyProposedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'democracy.Proposed')
+    assert(this.ctx.event.name === 'Democracy.Proposed')
   }
 
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Proposed') === 'a0e51e81445baa317309351746e010ed2435e30ff7e53fbb2cf59283f3b9c536'
+    return this.ctx._chain.getEventHash('Democracy.Proposed') === 'a0e51e81445baa317309351746e010ed2435e30ff7e53fbb2cf59283f3b9c536'
   }
 
   get asV1020(): [number, bigint] {
@@ -1175,7 +1175,7 @@ export class DemocracyProposedEvent {
    * A motion has been proposed by a public account.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Proposed') === '02ae149915d453560f4d12074a380744b3bbb2fe4c235e963f440e2d79243477'
+    return this.ctx._chain.getEventHash('Democracy.Proposed') === '02ae149915d453560f4d12074a380744b3bbb2fe4c235e963f440e2d79243477'
   }
 
   /**
@@ -1199,11 +1199,11 @@ export class DemocracyProposedEvent {
 
 export class DemocracyStartedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'democracy.Started')
+    assert(this.ctx.event.name === 'Democracy.Started')
   }
 
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Started') === '31dcae10175d30392db6fc8a872e963baae4bcf3ee28dfd38b1653a0751c031f'
+    return this.ctx._chain.getEventHash('Democracy.Started') === '31dcae10175d30392db6fc8a872e963baae4bcf3ee28dfd38b1653a0751c031f'
   }
 
   get asV1020(): [number, v1020.VoteThreshold] {
@@ -1215,7 +1215,7 @@ export class DemocracyStartedEvent {
    * A referendum has begun.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Started') === '663653944bacc0e562b015a412877b12c32bc62814b673192c550438bf618ab4'
+    return this.ctx._chain.getEventHash('Democracy.Started') === '663653944bacc0e562b015a412877b12c32bc62814b673192c550438bf618ab4'
   }
 
   /**
@@ -1239,11 +1239,11 @@ export class DemocracyStartedEvent {
 
 export class DemocracyTabledEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'democracy.Tabled')
+    assert(this.ctx.event.name === 'Democracy.Tabled')
   }
 
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Tabled') === '21f3d10122d183ae1df61d3456ae07c362a2e0cdffab1829f4febb4f7b53f6bd'
+    return this.ctx._chain.getEventHash('Democracy.Tabled') === '21f3d10122d183ae1df61d3456ae07c362a2e0cdffab1829f4febb4f7b53f6bd'
   }
 
   get asV1020(): [number, bigint, Uint8Array[]] {
@@ -1255,7 +1255,7 @@ export class DemocracyTabledEvent {
    * A public proposal has been tabled for referendum vote.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('democracy.Tabled') === 'a13f0b4abdda616a48f0910930f31ca5c2a2a8068c5289a35d395475289bd1e0'
+    return this.ctx._chain.getEventHash('Democracy.Tabled') === 'a13f0b4abdda616a48f0910930f31ca5c2a2a8068c5289a35d395475289bd1e0'
   }
 
   /**
@@ -1279,14 +1279,14 @@ export class DemocracyTabledEvent {
 
 export class TechnicalCommitteeApprovedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'technicalCommittee.Approved')
+    assert(this.ctx.event.name === 'TechnicalCommittee.Approved')
   }
 
   /**
    *  A motion was approved by the required threshold.
    */
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Approved') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Approved') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
   }
 
   /**
@@ -1301,7 +1301,7 @@ export class TechnicalCommitteeApprovedEvent {
    * A motion was approved by the required threshold.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Approved') === 'b8668610145a6851ad2d5b7dd4bfc15e29402d9a8558401ab955896007f866a5'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Approved') === 'b8668610145a6851ad2d5b7dd4bfc15e29402d9a8558401ab955896007f866a5'
   }
 
   /**
@@ -1325,14 +1325,14 @@ export class TechnicalCommitteeApprovedEvent {
 
 export class TechnicalCommitteeClosedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'technicalCommittee.Closed')
+    assert(this.ctx.event.name === 'TechnicalCommittee.Closed')
   }
 
   /**
    *  A proposal was closed after its duration was up.
    */
   get isV1050(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Closed') === '7d509ca6ee36d401f2d5410aa32038550c256cc3ce4b34cdfe1f8adea0e1679c'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Closed') === '7d509ca6ee36d401f2d5410aa32038550c256cc3ce4b34cdfe1f8adea0e1679c'
   }
 
   /**
@@ -1347,7 +1347,7 @@ export class TechnicalCommitteeClosedEvent {
    * A proposal was closed because its threshold was reached or after its duration was up.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Closed') === '084e73926c22836c888c17e49053d3b72e2feaa904b8f0175d21fb5b800542f9'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Closed') === '084e73926c22836c888c17e49053d3b72e2feaa904b8f0175d21fb5b800542f9'
   }
 
   /**
@@ -1371,14 +1371,14 @@ export class TechnicalCommitteeClosedEvent {
 
 export class TechnicalCommitteeDisapprovedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'technicalCommittee.Disapproved')
+    assert(this.ctx.event.name === 'TechnicalCommittee.Disapproved')
   }
 
   /**
    *  A motion was not approved by the required threshold.
    */
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Disapproved') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Disapproved') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
   }
 
   /**
@@ -1393,7 +1393,7 @@ export class TechnicalCommitteeDisapprovedEvent {
    * A motion was not approved by the required threshold.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Disapproved') === 'b8668610145a6851ad2d5b7dd4bfc15e29402d9a8558401ab955896007f866a5'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Disapproved') === 'b8668610145a6851ad2d5b7dd4bfc15e29402d9a8558401ab955896007f866a5'
   }
 
   /**
@@ -1417,14 +1417,14 @@ export class TechnicalCommitteeDisapprovedEvent {
 
 export class TechnicalCommitteeExecutedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'technicalCommittee.Executed')
+    assert(this.ctx.event.name === 'TechnicalCommittee.Executed')
   }
 
   /**
    *  A motion was executed; `bool` is true if returned without error.
    */
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Executed') === '3e84284a56e2d90e928c790a4788cf7ee237d5a6d76716a3e8584e3dcc0319a0'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Executed') === '3e84284a56e2d90e928c790a4788cf7ee237d5a6d76716a3e8584e3dcc0319a0'
   }
 
   /**
@@ -1439,7 +1439,7 @@ export class TechnicalCommitteeExecutedEvent {
    *  A motion was executed; `bool` is true if returned without error.
    */
   get isV2005(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Executed') === 'f98b87482f886396f52d6875083e9b201ac0e3f97d718c37613afad51e85a9b7'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Executed') === 'f98b87482f886396f52d6875083e9b201ac0e3f97d718c37613afad51e85a9b7'
   }
 
   /**
@@ -1455,7 +1455,7 @@ export class TechnicalCommitteeExecutedEvent {
    * \[proposal_hash, result\]
    */
   get isV9111(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Executed') === '019142f0bd31225b17a5d98473d6ee9928b1e71bb401e1e42248abdb9dca92c7'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Executed') === '019142f0bd31225b17a5d98473d6ee9928b1e71bb401e1e42248abdb9dca92c7'
   }
 
   /**
@@ -1471,7 +1471,7 @@ export class TechnicalCommitteeExecutedEvent {
    * A motion was executed; result will be `Ok` if it returned without error.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Executed') === '5b848c4d2e38fbfb6752ba650f8662bd0df106f400d22ae305ed497d7574ee03'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Executed') === '5b848c4d2e38fbfb6752ba650f8662bd0df106f400d22ae305ed497d7574ee03'
   }
 
   /**
@@ -1486,7 +1486,7 @@ export class TechnicalCommitteeExecutedEvent {
    * A motion was executed; result will be `Ok` if it returned without error.
    */
   get isV9160(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Executed') === '3f97432326c1bc7a1d2b8f8e2b864f870aa8a7a926361a7af32c8e5c45ed9c5e'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Executed') === '3f97432326c1bc7a1d2b8f8e2b864f870aa8a7a926361a7af32c8e5c45ed9c5e'
   }
 
   /**
@@ -1501,7 +1501,7 @@ export class TechnicalCommitteeExecutedEvent {
    * A motion was executed; result will be `Ok` if it returned without error.
    */
   get isV9170(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Executed') === 'e7bba992b17737087cf79037068ecde07b0ef6afb29be3ddbe1d7afe57e365aa'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Executed') === 'e7bba992b17737087cf79037068ecde07b0ef6afb29be3ddbe1d7afe57e365aa'
   }
 
   /**
@@ -1516,7 +1516,7 @@ export class TechnicalCommitteeExecutedEvent {
    * A motion was executed; result will be `Ok` if it returned without error.
    */
   get isV9190(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Executed') === '891fd2ad27e5f8bc799d45bb765ef77383902fd4e1cc4c6981cba99123803ac7'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Executed') === '891fd2ad27e5f8bc799d45bb765ef77383902fd4e1cc4c6981cba99123803ac7'
   }
 
   /**
@@ -1540,7 +1540,7 @@ export class TechnicalCommitteeExecutedEvent {
 
 export class TechnicalCommitteeProposedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'technicalCommittee.Proposed')
+    assert(this.ctx.event.name === 'TechnicalCommittee.Proposed')
   }
 
   /**
@@ -1548,7 +1548,7 @@ export class TechnicalCommitteeProposedEvent {
    *  `MemberCount`).
    */
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Proposed') === '8d3dc2ef388c0264b2a1bd5e18788f415f4c08186c50dbbee2c60e61d81cb025'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Proposed') === '8d3dc2ef388c0264b2a1bd5e18788f415f4c08186c50dbbee2c60e61d81cb025'
   }
 
   /**
@@ -1565,7 +1565,7 @@ export class TechnicalCommitteeProposedEvent {
    * `MemberCount`).
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Proposed') === '63978c884e95719fd416c8a38a2ec2ec5a691a58a28349d62b0173643f0d8262'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Proposed') === '63978c884e95719fd416c8a38a2ec2ec5a691a58a28349d62b0173643f0d8262'
   }
 
   /**
@@ -1590,7 +1590,7 @@ export class TechnicalCommitteeProposedEvent {
 
 export class TechnicalCommitteeVotedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'technicalCommittee.Voted')
+    assert(this.ctx.event.name === 'TechnicalCommittee.Voted')
   }
 
   /**
@@ -1598,7 +1598,7 @@ export class TechnicalCommitteeVotedEvent {
    *  a tally (yes votes and no votes given respectively as `MemberCount`).
    */
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Voted') === '5693223b18444daea47c5d959a8026ce5084d3e9c76fe5a2be5ef93f3526e0ac'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Voted') === '5693223b18444daea47c5d959a8026ce5084d3e9c76fe5a2be5ef93f3526e0ac'
   }
 
   /**
@@ -1615,7 +1615,7 @@ export class TechnicalCommitteeVotedEvent {
    * a tally (yes votes and no votes given respectively as `MemberCount`).
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('technicalCommittee.Voted') === 'b69e97272b7c060192bbc1a5e91692b0a8b905727af6d9eb5627b7857ede0846'
+    return this.ctx._chain.getEventHash('TechnicalCommittee.Voted') === 'b69e97272b7c060192bbc1a5e91692b0a8b905727af6d9eb5627b7857ede0846'
   }
 
   /**
@@ -1640,14 +1640,14 @@ export class TechnicalCommitteeVotedEvent {
 
 export class TipsNewTipEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'tips.NewTip')
+    assert(this.ctx.event.name === 'Tips.NewTip')
   }
 
   /**
    *  A new tip suggestion has been opened. \[tip_hash\]
    */
   get isV2028(): boolean {
-    return this.ctx._chain.getEventHash('tips.NewTip') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
+    return this.ctx._chain.getEventHash('Tips.NewTip') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
   }
 
   /**
@@ -1662,7 +1662,7 @@ export class TipsNewTipEvent {
    * A new tip suggestion has been opened.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('tips.NewTip') === '8b10779b3fb5da73b64cdc34a9dd34ca7332ab5d36faafcef88747835b895945'
+    return this.ctx._chain.getEventHash('Tips.NewTip') === '8b10779b3fb5da73b64cdc34a9dd34ca7332ab5d36faafcef88747835b895945'
   }
 
   /**
@@ -1686,14 +1686,14 @@ export class TipsNewTipEvent {
 
 export class TipsTipClosedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'tips.TipClosed')
+    assert(this.ctx.event.name === 'Tips.TipClosed')
   }
 
   /**
    *  A tip suggestion has been closed. \[tip_hash, who, payout\]
    */
   get isV2028(): boolean {
-    return this.ctx._chain.getEventHash('tips.TipClosed') === 'dad2bcdca357505fa3c7832085d0db53ce6f902bd9f5b52823ee8791d351872c'
+    return this.ctx._chain.getEventHash('Tips.TipClosed') === 'dad2bcdca357505fa3c7832085d0db53ce6f902bd9f5b52823ee8791d351872c'
   }
 
   /**
@@ -1708,7 +1708,7 @@ export class TipsTipClosedEvent {
    * A tip suggestion has been closed.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('tips.TipClosed') === '788934ef84a9cf41376f9a41333ed4129722ae02b069eb169dcd9a50e4eb300f'
+    return this.ctx._chain.getEventHash('Tips.TipClosed') === '788934ef84a9cf41376f9a41333ed4129722ae02b069eb169dcd9a50e4eb300f'
   }
 
   /**
@@ -1732,14 +1732,14 @@ export class TipsTipClosedEvent {
 
 export class TipsTipRetractedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'tips.TipRetracted')
+    assert(this.ctx.event.name === 'Tips.TipRetracted')
   }
 
   /**
    *  A tip suggestion has been retracted. \[tip_hash\]
    */
   get isV2028(): boolean {
-    return this.ctx._chain.getEventHash('tips.TipRetracted') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
+    return this.ctx._chain.getEventHash('Tips.TipRetracted') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
   }
 
   /**
@@ -1754,7 +1754,7 @@ export class TipsTipRetractedEvent {
    * A tip suggestion has been retracted.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('tips.TipRetracted') === '8b10779b3fb5da73b64cdc34a9dd34ca7332ab5d36faafcef88747835b895945'
+    return this.ctx._chain.getEventHash('Tips.TipRetracted') === '8b10779b3fb5da73b64cdc34a9dd34ca7332ab5d36faafcef88747835b895945'
   }
 
   /**
@@ -1778,14 +1778,14 @@ export class TipsTipRetractedEvent {
 
 export class TipsTipSlashedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'tips.TipSlashed')
+    assert(this.ctx.event.name === 'Tips.TipSlashed')
   }
 
   /**
    *  A tip suggestion has been slashed. \[tip_hash, finder, deposit\]
    */
   get isV2028(): boolean {
-    return this.ctx._chain.getEventHash('tips.TipSlashed') === 'dad2bcdca357505fa3c7832085d0db53ce6f902bd9f5b52823ee8791d351872c'
+    return this.ctx._chain.getEventHash('Tips.TipSlashed') === 'dad2bcdca357505fa3c7832085d0db53ce6f902bd9f5b52823ee8791d351872c'
   }
 
   /**
@@ -1800,7 +1800,7 @@ export class TipsTipSlashedEvent {
    * A tip suggestion has been slashed.
    */
   get isV9130(): boolean {
-    return this.ctx._chain.getEventHash('tips.TipSlashed') === 'bbbf33d69edf4cf82e85596453190f61c96067be0ca329ff7dcf6cd4ea9313a3'
+    return this.ctx._chain.getEventHash('Tips.TipSlashed') === 'bbbf33d69edf4cf82e85596453190f61c96067be0ca329ff7dcf6cd4ea9313a3'
   }
 
   /**
@@ -1824,14 +1824,14 @@ export class TipsTipSlashedEvent {
 
 export class TreasuryAwardedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.Awarded')
+    assert(this.ctx.event.name === 'Treasury.Awarded')
   }
 
   /**
    *  Some funds have been allocated.
    */
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('treasury.Awarded') === '86708250ac506876b8d63d9c97b4ca0fa73f0199c633da6fb2a8956aaab8c743'
+    return this.ctx._chain.getEventHash('Treasury.Awarded') === '86708250ac506876b8d63d9c97b4ca0fa73f0199c633da6fb2a8956aaab8c743'
   }
 
   /**
@@ -1846,7 +1846,7 @@ export class TreasuryAwardedEvent {
    * Some funds have been allocated.
    */
   get isV9160(): boolean {
-    return this.ctx._chain.getEventHash('treasury.Awarded') === '998b846fdf605dfbbe27d46b36b246537b990ed6d4deb2f0177d539b9dab3878'
+    return this.ctx._chain.getEventHash('Treasury.Awarded') === '998b846fdf605dfbbe27d46b36b246537b990ed6d4deb2f0177d539b9dab3878'
   }
 
   /**
@@ -1870,14 +1870,14 @@ export class TreasuryAwardedEvent {
 
 export class TreasuryBountyAwardedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.BountyAwarded')
+    assert(this.ctx.event.name === 'Treasury.BountyAwarded')
   }
 
   /**
    *  A bounty is awarded to a beneficiary. [index, beneficiary]
    */
   get isV2025(): boolean {
-    return this.ctx._chain.getEventHash('treasury.BountyAwarded') === '0379562584d6426ccff49705dfa9dba95ad94215b772fd97d0ad0c4ca0001c12'
+    return this.ctx._chain.getEventHash('Treasury.BountyAwarded') === '0379562584d6426ccff49705dfa9dba95ad94215b772fd97d0ad0c4ca0001c12'
   }
 
   /**
@@ -1901,14 +1901,14 @@ export class TreasuryBountyAwardedEvent {
 
 export class TreasuryBountyBecameActiveEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.BountyBecameActive')
+    assert(this.ctx.event.name === 'Treasury.BountyBecameActive')
   }
 
   /**
    *  A bounty proposal is funded and became active. [index]
    */
   get isV2025(): boolean {
-    return this.ctx._chain.getEventHash('treasury.BountyBecameActive') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
+    return this.ctx._chain.getEventHash('Treasury.BountyBecameActive') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
   /**
@@ -1932,14 +1932,14 @@ export class TreasuryBountyBecameActiveEvent {
 
 export class TreasuryBountyCanceledEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.BountyCanceled')
+    assert(this.ctx.event.name === 'Treasury.BountyCanceled')
   }
 
   /**
    *  A bounty is cancelled. [index]
    */
   get isV2025(): boolean {
-    return this.ctx._chain.getEventHash('treasury.BountyCanceled') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
+    return this.ctx._chain.getEventHash('Treasury.BountyCanceled') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
   /**
@@ -1963,14 +1963,14 @@ export class TreasuryBountyCanceledEvent {
 
 export class TreasuryBountyClaimedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.BountyClaimed')
+    assert(this.ctx.event.name === 'Treasury.BountyClaimed')
   }
 
   /**
    *  A bounty is claimed by beneficiary. [index, payout, beneficiary]
    */
   get isV2025(): boolean {
-    return this.ctx._chain.getEventHash('treasury.BountyClaimed') === '86708250ac506876b8d63d9c97b4ca0fa73f0199c633da6fb2a8956aaab8c743'
+    return this.ctx._chain.getEventHash('Treasury.BountyClaimed') === '86708250ac506876b8d63d9c97b4ca0fa73f0199c633da6fb2a8956aaab8c743'
   }
 
   /**
@@ -1994,14 +1994,14 @@ export class TreasuryBountyClaimedEvent {
 
 export class TreasuryBountyExtendedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.BountyExtended')
+    assert(this.ctx.event.name === 'Treasury.BountyExtended')
   }
 
   /**
    *  A bounty expiry is extended. [index]
    */
   get isV2025(): boolean {
-    return this.ctx._chain.getEventHash('treasury.BountyExtended') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
+    return this.ctx._chain.getEventHash('Treasury.BountyExtended') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
   /**
@@ -2025,14 +2025,14 @@ export class TreasuryBountyExtendedEvent {
 
 export class TreasuryBountyProposedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.BountyProposed')
+    assert(this.ctx.event.name === 'Treasury.BountyProposed')
   }
 
   /**
    *  New bounty proposal. [index]
    */
   get isV2025(): boolean {
-    return this.ctx._chain.getEventHash('treasury.BountyProposed') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
+    return this.ctx._chain.getEventHash('Treasury.BountyProposed') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
   /**
@@ -2056,14 +2056,14 @@ export class TreasuryBountyProposedEvent {
 
 export class TreasuryBountyRejectedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.BountyRejected')
+    assert(this.ctx.event.name === 'Treasury.BountyRejected')
   }
 
   /**
    *  A bounty proposal was rejected; funds were slashed. [index, bond]
    */
   get isV2025(): boolean {
-    return this.ctx._chain.getEventHash('treasury.BountyRejected') === 'a0e51e81445baa317309351746e010ed2435e30ff7e53fbb2cf59283f3b9c536'
+    return this.ctx._chain.getEventHash('Treasury.BountyRejected') === 'a0e51e81445baa317309351746e010ed2435e30ff7e53fbb2cf59283f3b9c536'
   }
 
   /**
@@ -2087,14 +2087,14 @@ export class TreasuryBountyRejectedEvent {
 
 export class TreasuryNewTipEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.NewTip')
+    assert(this.ctx.event.name === 'Treasury.NewTip')
   }
 
   /**
    *  A new tip suggestion has been opened.
    */
   get isV1038(): boolean {
-    return this.ctx._chain.getEventHash('treasury.NewTip') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
+    return this.ctx._chain.getEventHash('Treasury.NewTip') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
   }
 
   /**
@@ -2118,14 +2118,14 @@ export class TreasuryNewTipEvent {
 
 export class TreasuryProposedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.Proposed')
+    assert(this.ctx.event.name === 'Treasury.Proposed')
   }
 
   /**
    *  New proposal.
    */
   get isV1020(): boolean {
-    return this.ctx._chain.getEventHash('treasury.Proposed') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
+    return this.ctx._chain.getEventHash('Treasury.Proposed') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
   /**
@@ -2140,7 +2140,7 @@ export class TreasuryProposedEvent {
    * New proposal.
    */
   get isV9160(): boolean {
-    return this.ctx._chain.getEventHash('treasury.Proposed') === 'e9ffb62c9cf38a8abb0e419c0655e66f4415cc9c0faa1066316d07cb033b8ff6'
+    return this.ctx._chain.getEventHash('Treasury.Proposed') === 'e9ffb62c9cf38a8abb0e419c0655e66f4415cc9c0faa1066316d07cb033b8ff6'
   }
 
   /**
@@ -2164,14 +2164,14 @@ export class TreasuryProposedEvent {
 
 export class TreasuryRejectedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.Rejected')
+    assert(this.ctx.event.name === 'Treasury.Rejected')
   }
 
   /**
    *  A proposal was rejected; funds were slashed.
    */
   get isV1032(): boolean {
-    return this.ctx._chain.getEventHash('treasury.Rejected') === 'a0e51e81445baa317309351746e010ed2435e30ff7e53fbb2cf59283f3b9c536'
+    return this.ctx._chain.getEventHash('Treasury.Rejected') === 'a0e51e81445baa317309351746e010ed2435e30ff7e53fbb2cf59283f3b9c536'
   }
 
   /**
@@ -2186,7 +2186,7 @@ export class TreasuryRejectedEvent {
    * A proposal was rejected; funds were slashed.
    */
   get isV9160(): boolean {
-    return this.ctx._chain.getEventHash('treasury.Rejected') === 'f9b7fb646bc37c38ad87edfaa08a0ca293b38294934c1114934c7a8fe00b6b79'
+    return this.ctx._chain.getEventHash('Treasury.Rejected') === 'f9b7fb646bc37c38ad87edfaa08a0ca293b38294934c1114934c7a8fe00b6b79'
   }
 
   /**
@@ -2210,14 +2210,14 @@ export class TreasuryRejectedEvent {
 
 export class TreasuryTipClosedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.TipClosed')
+    assert(this.ctx.event.name === 'Treasury.TipClosed')
   }
 
   /**
    *  A tip suggestion has been closed.
    */
   get isV1038(): boolean {
-    return this.ctx._chain.getEventHash('treasury.TipClosed') === 'dad2bcdca357505fa3c7832085d0db53ce6f902bd9f5b52823ee8791d351872c'
+    return this.ctx._chain.getEventHash('Treasury.TipClosed') === 'dad2bcdca357505fa3c7832085d0db53ce6f902bd9f5b52823ee8791d351872c'
   }
 
   /**
@@ -2241,14 +2241,14 @@ export class TreasuryTipClosedEvent {
 
 export class TreasuryTipRetractedEvent {
   constructor(private ctx: EventContext) {
-    assert(this.ctx.event.name === 'treasury.TipRetracted')
+    assert(this.ctx.event.name === 'Treasury.TipRetracted')
   }
 
   /**
    *  A tip suggestion has been retracted.
    */
   get isV1038(): boolean {
-    return this.ctx._chain.getEventHash('treasury.TipRetracted') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
+    return this.ctx._chain.getEventHash('Treasury.TipRetracted') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
   }
 
   /**

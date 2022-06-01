@@ -42,219 +42,219 @@ export interface DispatchError_Arithmetic {
   value: ArithmeticError
 }
 
-export type Type_124 = Type_124_System | Type_124_Babe | Type_124_Timestamp | Type_124_Indices | Type_124_Balances | Type_124_Authorship | Type_124_Staking | Type_124_Session | Type_124_Grandpa | Type_124_ImOnline | Type_124_Democracy | Type_124_Council | Type_124_TechnicalCommittee | Type_124_PhragmenElection | Type_124_TechnicalMembership | Type_124_Treasury | Type_124_Claims | Type_124_Utility | Type_124_Identity | Type_124_Society | Type_124_Recovery | Type_124_Vesting | Type_124_Scheduler | Type_124_Proxy | Type_124_Multisig | Type_124_Bounties | Type_124_Tips | Type_124_ElectionProviderMultiPhase | Type_124_Gilt | Type_124_Configuration | Type_124_ParasShared | Type_124_ParaInclusion | Type_124_ParaInherent | Type_124_Paras | Type_124_Initializer | Type_124_Dmp | Type_124_Ump | Type_124_Hrmp | Type_124_Registrar | Type_124_Slots | Type_124_Auctions | Type_124_Crowdloan | Type_124_XcmPallet
+export type Type_137 = Type_137_System | Type_137_Babe | Type_137_Timestamp | Type_137_Indices | Type_137_Balances | Type_137_Authorship | Type_137_Staking | Type_137_Session | Type_137_Grandpa | Type_137_ImOnline | Type_137_Democracy | Type_137_Council | Type_137_TechnicalCommittee | Type_137_PhragmenElection | Type_137_TechnicalMembership | Type_137_Treasury | Type_137_Claims | Type_137_Utility | Type_137_Identity | Type_137_Society | Type_137_Recovery | Type_137_Vesting | Type_137_Scheduler | Type_137_Proxy | Type_137_Multisig | Type_137_Bounties | Type_137_Tips | Type_137_ElectionProviderMultiPhase | Type_137_Gilt | Type_137_Configuration | Type_137_ParasShared | Type_137_ParaInclusion | Type_137_ParaInherent | Type_137_Paras | Type_137_Initializer | Type_137_Dmp | Type_137_Ump | Type_137_Hrmp | Type_137_Registrar | Type_137_Slots | Type_137_Auctions | Type_137_Crowdloan | Type_137_XcmPallet
 
-export interface Type_124_System {
+export interface Type_137_System {
   __kind: 'System'
   value: SystemCall
 }
 
-export interface Type_124_Babe {
+export interface Type_137_Babe {
   __kind: 'Babe'
   value: BabeCall
 }
 
-export interface Type_124_Timestamp {
+export interface Type_137_Timestamp {
   __kind: 'Timestamp'
   value: TimestampCall
 }
 
-export interface Type_124_Indices {
+export interface Type_137_Indices {
   __kind: 'Indices'
   value: IndicesCall
 }
 
-export interface Type_124_Balances {
+export interface Type_137_Balances {
   __kind: 'Balances'
   value: BalancesCall
 }
 
-export interface Type_124_Authorship {
+export interface Type_137_Authorship {
   __kind: 'Authorship'
   value: AuthorshipCall
 }
 
-export interface Type_124_Staking {
+export interface Type_137_Staking {
   __kind: 'Staking'
   value: StakingCall
 }
 
-export interface Type_124_Session {
+export interface Type_137_Session {
   __kind: 'Session'
   value: SessionCall
 }
 
-export interface Type_124_Grandpa {
+export interface Type_137_Grandpa {
   __kind: 'Grandpa'
   value: GrandpaCall
 }
 
-export interface Type_124_ImOnline {
+export interface Type_137_ImOnline {
   __kind: 'ImOnline'
   value: ImOnlineCall
 }
 
-export interface Type_124_Democracy {
+export interface Type_137_Democracy {
   __kind: 'Democracy'
   value: DemocracyCall
 }
 
-export interface Type_124_Council {
+export interface Type_137_Council {
   __kind: 'Council'
   value: CouncilCall
 }
 
-export interface Type_124_TechnicalCommittee {
+export interface Type_137_TechnicalCommittee {
   __kind: 'TechnicalCommittee'
   value: TechnicalCommitteeCall
 }
 
-export interface Type_124_PhragmenElection {
+export interface Type_137_PhragmenElection {
   __kind: 'PhragmenElection'
   value: PhragmenElectionCall
 }
 
-export interface Type_124_TechnicalMembership {
+export interface Type_137_TechnicalMembership {
   __kind: 'TechnicalMembership'
   value: TechnicalMembershipCall
 }
 
-export interface Type_124_Treasury {
+export interface Type_137_Treasury {
   __kind: 'Treasury'
   value: TreasuryCall
 }
 
-export interface Type_124_Claims {
+export interface Type_137_Claims {
   __kind: 'Claims'
   value: ClaimsCall
 }
 
-export interface Type_124_Utility {
+export interface Type_137_Utility {
   __kind: 'Utility'
   value: UtilityCall
 }
 
-export interface Type_124_Identity {
+export interface Type_137_Identity {
   __kind: 'Identity'
   value: IdentityCall
 }
 
-export interface Type_124_Society {
+export interface Type_137_Society {
   __kind: 'Society'
   value: SocietyCall
 }
 
-export interface Type_124_Recovery {
+export interface Type_137_Recovery {
   __kind: 'Recovery'
   value: RecoveryCall
 }
 
-export interface Type_124_Vesting {
+export interface Type_137_Vesting {
   __kind: 'Vesting'
   value: VestingCall
 }
 
-export interface Type_124_Scheduler {
+export interface Type_137_Scheduler {
   __kind: 'Scheduler'
   value: SchedulerCall
 }
 
-export interface Type_124_Proxy {
+export interface Type_137_Proxy {
   __kind: 'Proxy'
   value: ProxyCall
 }
 
-export interface Type_124_Multisig {
+export interface Type_137_Multisig {
   __kind: 'Multisig'
   value: MultisigCall
 }
 
-export interface Type_124_Bounties {
+export interface Type_137_Bounties {
   __kind: 'Bounties'
   value: BountiesCall
 }
 
-export interface Type_124_Tips {
+export interface Type_137_Tips {
   __kind: 'Tips'
   value: TipsCall
 }
 
-export interface Type_124_ElectionProviderMultiPhase {
+export interface Type_137_ElectionProviderMultiPhase {
   __kind: 'ElectionProviderMultiPhase'
   value: ElectionProviderMultiPhaseCall
 }
 
-export interface Type_124_Gilt {
+export interface Type_137_Gilt {
   __kind: 'Gilt'
   value: GiltCall
 }
 
-export interface Type_124_Configuration {
+export interface Type_137_Configuration {
   __kind: 'Configuration'
   value: ConfigurationCall
 }
 
-export interface Type_124_ParasShared {
+export interface Type_137_ParasShared {
   __kind: 'ParasShared'
   value: ParasSharedCall
 }
 
-export interface Type_124_ParaInclusion {
+export interface Type_137_ParaInclusion {
   __kind: 'ParaInclusion'
   value: ParaInclusionCall
 }
 
-export interface Type_124_ParaInherent {
+export interface Type_137_ParaInherent {
   __kind: 'ParaInherent'
   value: ParaInherentCall
 }
 
-export interface Type_124_Paras {
+export interface Type_137_Paras {
   __kind: 'Paras'
   value: ParasCall
 }
 
-export interface Type_124_Initializer {
+export interface Type_137_Initializer {
   __kind: 'Initializer'
   value: InitializerCall
 }
 
-export interface Type_124_Dmp {
+export interface Type_137_Dmp {
   __kind: 'Dmp'
   value: DmpCall
 }
 
-export interface Type_124_Ump {
+export interface Type_137_Ump {
   __kind: 'Ump'
   value: UmpCall
 }
 
-export interface Type_124_Hrmp {
+export interface Type_137_Hrmp {
   __kind: 'Hrmp'
   value: HrmpCall
 }
 
-export interface Type_124_Registrar {
+export interface Type_137_Registrar {
   __kind: 'Registrar'
   value: RegistrarCall
 }
 
-export interface Type_124_Slots {
+export interface Type_137_Slots {
   __kind: 'Slots'
   value: SlotsCall
 }
 
-export interface Type_124_Auctions {
+export interface Type_137_Auctions {
   __kind: 'Auctions'
   value: AuctionsCall
 }
 
-export interface Type_124_Crowdloan {
+export interface Type_137_Crowdloan {
   __kind: 'Crowdloan'
   value: CrowdloanCall
 }
 
-export interface Type_124_XcmPallet {
+export interface Type_137_XcmPallet {
   __kind: 'XcmPallet'
   value: XcmPalletCall
 }
@@ -1908,7 +1908,7 @@ export interface CouncilCall_set_members {
  */
 export interface CouncilCall_execute {
   __kind: 'execute'
-  proposal: Type_124
+  proposal: Type_137
   lengthBound: number
 }
 
@@ -1944,7 +1944,7 @@ export interface CouncilCall_execute {
 export interface CouncilCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_124
+  proposal: Type_137
   lengthBound: number
 }
 
@@ -2080,7 +2080,7 @@ export interface TechnicalCommitteeCall_set_members {
  */
 export interface TechnicalCommitteeCall_execute {
   __kind: 'execute'
-  proposal: Type_124
+  proposal: Type_137
   lengthBound: number
 }
 
@@ -2116,7 +2116,7 @@ export interface TechnicalCommitteeCall_execute {
 export interface TechnicalCommitteeCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_124
+  proposal: Type_137
   lengthBound: number
 }
 
@@ -2613,7 +2613,7 @@ export type UtilityCall = UtilityCall_batch | UtilityCall_as_derivative | Utilit
  */
 export interface UtilityCall_batch {
   __kind: 'batch'
-  calls: Type_125[]
+  calls: Type_138[]
 }
 
 /**
@@ -2634,7 +2634,7 @@ export interface UtilityCall_batch {
 export interface UtilityCall_as_derivative {
   __kind: 'as_derivative'
   index: number
-  call: Type_125
+  call: Type_138
 }
 
 /**
@@ -2655,7 +2655,7 @@ export interface UtilityCall_as_derivative {
  */
 export interface UtilityCall_batch_all {
   __kind: 'batch_all'
-  calls: Type_125[]
+  calls: Type_138[]
 }
 
 export type IdentityCall = IdentityCall_add_registrar | IdentityCall_set_identity | IdentityCall_set_subs | IdentityCall_clear_identity | IdentityCall_request_judgement | IdentityCall_cancel_request | IdentityCall_set_fee | IdentityCall_set_account_id | IdentityCall_set_fields | IdentityCall_provide_judgement | IdentityCall_kill_identity | IdentityCall_add_sub | IdentityCall_rename_sub | IdentityCall_remove_sub | IdentityCall_quit_sub
@@ -3379,7 +3379,7 @@ export type RecoveryCall = RecoveryCall_as_recovered | RecoveryCall_set_recovere
 export interface RecoveryCall_as_recovered {
   __kind: 'as_recovered'
   account: Uint8Array
-  call: Type_125
+  call: Type_138
 }
 
 /**
@@ -3712,7 +3712,7 @@ export interface SchedulerCall_schedule {
   when: number
   maybePeriodic: ([number, number] | undefined)
   priority: number
-  call: Type_125
+  call: Type_138
 }
 
 /**
@@ -3751,7 +3751,7 @@ export interface SchedulerCall_schedule_named {
   when: number
   maybePeriodic: ([number, number] | undefined)
   priority: number
-  call: Type_125
+  call: Type_138
 }
 
 /**
@@ -3783,7 +3783,7 @@ export interface SchedulerCall_schedule_after {
   after: number
   maybePeriodic: ([number, number] | undefined)
   priority: number
-  call: Type_125
+  call: Type_138
 }
 
 /**
@@ -3799,7 +3799,7 @@ export interface SchedulerCall_schedule_named_after {
   after: number
   maybePeriodic: ([number, number] | undefined)
   priority: number
-  call: Type_125
+  call: Type_138
 }
 
 export type ProxyCall = ProxyCall_proxy | ProxyCall_add_proxy | ProxyCall_remove_proxy | ProxyCall_remove_proxies | ProxyCall_anonymous | ProxyCall_kill_anonymous | ProxyCall_announce | ProxyCall_remove_announcement | ProxyCall_reject_announcement | ProxyCall_proxy_announced
@@ -3825,7 +3825,7 @@ export interface ProxyCall_proxy {
   __kind: 'proxy'
   real: Uint8Array
   forceProxyType: (ProxyType | undefined)
-  call: Type_125
+  call: Type_138
 }
 
 /**
@@ -4050,7 +4050,7 @@ export interface ProxyCall_proxy_announced {
   delegate: Uint8Array
   real: Uint8Array
   forceProxyType: (ProxyType | undefined)
-  call: Type_125
+  call: Type_138
 }
 
 export type MultisigCall = MultisigCall_as_multi_threshold_1 | MultisigCall_as_multi | MultisigCall_approve_as_multi | MultisigCall_cancel_as_multi
@@ -4076,7 +4076,7 @@ export type MultisigCall = MultisigCall_as_multi_threshold_1 | MultisigCall_as_m
 export interface MultisigCall_as_multi_threshold_1 {
   __kind: 'as_multi_threshold_1'
   otherSignatories: Uint8Array[]
-  call: Type_125
+  call: Type_138
 }
 
 /**
@@ -5467,7 +5467,7 @@ export type XcmPalletCall = XcmPalletCall_send | XcmPalletCall_teleport_assets |
 export interface XcmPalletCall_send {
   __kind: 'send'
   dest: MultiLocationV0
-  message: XcmV0_394
+  message: XcmV0_402
 }
 
 /**
@@ -5532,7 +5532,7 @@ export interface XcmPalletCall_reserve_transfer_assets {
  */
 export interface XcmPalletCall_execute {
   __kind: 'execute'
-  message: XcmV0_394
+  message: XcmV0_402
   maxWeight: bigint
 }
 
@@ -5715,219 +5715,219 @@ export interface StatementKind_Saft {
   __kind: 'Saft'
 }
 
-export type Type_125 = Type_125_System | Type_125_Babe | Type_125_Timestamp | Type_125_Indices | Type_125_Balances | Type_125_Authorship | Type_125_Staking | Type_125_Session | Type_125_Grandpa | Type_125_ImOnline | Type_125_Democracy | Type_125_Council | Type_125_TechnicalCommittee | Type_125_PhragmenElection | Type_125_TechnicalMembership | Type_125_Treasury | Type_125_Claims | Type_125_Utility | Type_125_Identity | Type_125_Society | Type_125_Recovery | Type_125_Vesting | Type_125_Scheduler | Type_125_Proxy | Type_125_Multisig | Type_125_Bounties | Type_125_Tips | Type_125_ElectionProviderMultiPhase | Type_125_Gilt | Type_125_Configuration | Type_125_ParasShared | Type_125_ParaInclusion | Type_125_ParaInherent | Type_125_Paras | Type_125_Initializer | Type_125_Dmp | Type_125_Ump | Type_125_Hrmp | Type_125_Registrar | Type_125_Slots | Type_125_Auctions | Type_125_Crowdloan | Type_125_XcmPallet
+export type Type_138 = Type_138_System | Type_138_Babe | Type_138_Timestamp | Type_138_Indices | Type_138_Balances | Type_138_Authorship | Type_138_Staking | Type_138_Session | Type_138_Grandpa | Type_138_ImOnline | Type_138_Democracy | Type_138_Council | Type_138_TechnicalCommittee | Type_138_PhragmenElection | Type_138_TechnicalMembership | Type_138_Treasury | Type_138_Claims | Type_138_Utility | Type_138_Identity | Type_138_Society | Type_138_Recovery | Type_138_Vesting | Type_138_Scheduler | Type_138_Proxy | Type_138_Multisig | Type_138_Bounties | Type_138_Tips | Type_138_ElectionProviderMultiPhase | Type_138_Gilt | Type_138_Configuration | Type_138_ParasShared | Type_138_ParaInclusion | Type_138_ParaInherent | Type_138_Paras | Type_138_Initializer | Type_138_Dmp | Type_138_Ump | Type_138_Hrmp | Type_138_Registrar | Type_138_Slots | Type_138_Auctions | Type_138_Crowdloan | Type_138_XcmPallet
 
-export interface Type_125_System {
+export interface Type_138_System {
   __kind: 'System'
   value: SystemCall
 }
 
-export interface Type_125_Babe {
+export interface Type_138_Babe {
   __kind: 'Babe'
   value: BabeCall
 }
 
-export interface Type_125_Timestamp {
+export interface Type_138_Timestamp {
   __kind: 'Timestamp'
   value: TimestampCall
 }
 
-export interface Type_125_Indices {
+export interface Type_138_Indices {
   __kind: 'Indices'
   value: IndicesCall
 }
 
-export interface Type_125_Balances {
+export interface Type_138_Balances {
   __kind: 'Balances'
   value: BalancesCall
 }
 
-export interface Type_125_Authorship {
+export interface Type_138_Authorship {
   __kind: 'Authorship'
   value: AuthorshipCall
 }
 
-export interface Type_125_Staking {
+export interface Type_138_Staking {
   __kind: 'Staking'
   value: StakingCall
 }
 
-export interface Type_125_Session {
+export interface Type_138_Session {
   __kind: 'Session'
   value: SessionCall
 }
 
-export interface Type_125_Grandpa {
+export interface Type_138_Grandpa {
   __kind: 'Grandpa'
   value: GrandpaCall
 }
 
-export interface Type_125_ImOnline {
+export interface Type_138_ImOnline {
   __kind: 'ImOnline'
   value: ImOnlineCall
 }
 
-export interface Type_125_Democracy {
+export interface Type_138_Democracy {
   __kind: 'Democracy'
   value: DemocracyCall
 }
 
-export interface Type_125_Council {
+export interface Type_138_Council {
   __kind: 'Council'
   value: CouncilCall
 }
 
-export interface Type_125_TechnicalCommittee {
+export interface Type_138_TechnicalCommittee {
   __kind: 'TechnicalCommittee'
   value: TechnicalCommitteeCall
 }
 
-export interface Type_125_PhragmenElection {
+export interface Type_138_PhragmenElection {
   __kind: 'PhragmenElection'
   value: PhragmenElectionCall
 }
 
-export interface Type_125_TechnicalMembership {
+export interface Type_138_TechnicalMembership {
   __kind: 'TechnicalMembership'
   value: TechnicalMembershipCall
 }
 
-export interface Type_125_Treasury {
+export interface Type_138_Treasury {
   __kind: 'Treasury'
   value: TreasuryCall
 }
 
-export interface Type_125_Claims {
+export interface Type_138_Claims {
   __kind: 'Claims'
   value: ClaimsCall
 }
 
-export interface Type_125_Utility {
+export interface Type_138_Utility {
   __kind: 'Utility'
   value: UtilityCall
 }
 
-export interface Type_125_Identity {
+export interface Type_138_Identity {
   __kind: 'Identity'
   value: IdentityCall
 }
 
-export interface Type_125_Society {
+export interface Type_138_Society {
   __kind: 'Society'
   value: SocietyCall
 }
 
-export interface Type_125_Recovery {
+export interface Type_138_Recovery {
   __kind: 'Recovery'
   value: RecoveryCall
 }
 
-export interface Type_125_Vesting {
+export interface Type_138_Vesting {
   __kind: 'Vesting'
   value: VestingCall
 }
 
-export interface Type_125_Scheduler {
+export interface Type_138_Scheduler {
   __kind: 'Scheduler'
   value: SchedulerCall
 }
 
-export interface Type_125_Proxy {
+export interface Type_138_Proxy {
   __kind: 'Proxy'
   value: ProxyCall
 }
 
-export interface Type_125_Multisig {
+export interface Type_138_Multisig {
   __kind: 'Multisig'
   value: MultisigCall
 }
 
-export interface Type_125_Bounties {
+export interface Type_138_Bounties {
   __kind: 'Bounties'
   value: BountiesCall
 }
 
-export interface Type_125_Tips {
+export interface Type_138_Tips {
   __kind: 'Tips'
   value: TipsCall
 }
 
-export interface Type_125_ElectionProviderMultiPhase {
+export interface Type_138_ElectionProviderMultiPhase {
   __kind: 'ElectionProviderMultiPhase'
   value: ElectionProviderMultiPhaseCall
 }
 
-export interface Type_125_Gilt {
+export interface Type_138_Gilt {
   __kind: 'Gilt'
   value: GiltCall
 }
 
-export interface Type_125_Configuration {
+export interface Type_138_Configuration {
   __kind: 'Configuration'
   value: ConfigurationCall
 }
 
-export interface Type_125_ParasShared {
+export interface Type_138_ParasShared {
   __kind: 'ParasShared'
   value: ParasSharedCall
 }
 
-export interface Type_125_ParaInclusion {
+export interface Type_138_ParaInclusion {
   __kind: 'ParaInclusion'
   value: ParaInclusionCall
 }
 
-export interface Type_125_ParaInherent {
+export interface Type_138_ParaInherent {
   __kind: 'ParaInherent'
   value: ParaInherentCall
 }
 
-export interface Type_125_Paras {
+export interface Type_138_Paras {
   __kind: 'Paras'
   value: ParasCall
 }
 
-export interface Type_125_Initializer {
+export interface Type_138_Initializer {
   __kind: 'Initializer'
   value: InitializerCall
 }
 
-export interface Type_125_Dmp {
+export interface Type_138_Dmp {
   __kind: 'Dmp'
   value: DmpCall
 }
 
-export interface Type_125_Ump {
+export interface Type_138_Ump {
   __kind: 'Ump'
   value: UmpCall
 }
 
-export interface Type_125_Hrmp {
+export interface Type_138_Hrmp {
   __kind: 'Hrmp'
   value: HrmpCall
 }
 
-export interface Type_125_Registrar {
+export interface Type_138_Registrar {
   __kind: 'Registrar'
   value: RegistrarCall
 }
 
-export interface Type_125_Slots {
+export interface Type_138_Slots {
   __kind: 'Slots'
   value: SlotsCall
 }
 
-export interface Type_125_Auctions {
+export interface Type_138_Auctions {
   __kind: 'Auctions'
   value: AuctionsCall
 }
 
-export interface Type_125_Crowdloan {
+export interface Type_138_Crowdloan {
   __kind: 'Crowdloan'
   value: CrowdloanCall
 }
 
-export interface Type_125_XcmPallet {
+export interface Type_138_XcmPallet {
   __kind: 'XcmPallet'
   value: XcmPalletCall
 }
@@ -6337,75 +6337,75 @@ export interface MultiLocationV0_X8 {
   value: [JunctionV0, JunctionV0, JunctionV0, JunctionV0, JunctionV0, JunctionV0, JunctionV0, JunctionV0]
 }
 
-export type XcmV0_394 = XcmV0_394_WithdrawAsset | XcmV0_394_ReserveAssetDeposit | XcmV0_394_ReceiveTeleportedAsset | XcmV0_394_QueryResponse | XcmV0_394_TransferAsset | XcmV0_394_TransferReserveAsset | XcmV0_394_Transact | XcmV0_394_HrmpNewChannelOpenRequest | XcmV0_394_HrmpChannelAccepted | XcmV0_394_HrmpChannelClosing | XcmV0_394_RelayedFrom
+export type XcmV0_402 = XcmV0_402_WithdrawAsset | XcmV0_402_ReserveAssetDeposit | XcmV0_402_ReceiveTeleportedAsset | XcmV0_402_QueryResponse | XcmV0_402_TransferAsset | XcmV0_402_TransferReserveAsset | XcmV0_402_Transact | XcmV0_402_HrmpNewChannelOpenRequest | XcmV0_402_HrmpChannelAccepted | XcmV0_402_HrmpChannelClosing | XcmV0_402_RelayedFrom
 
-export interface XcmV0_394_WithdrawAsset {
+export interface XcmV0_402_WithdrawAsset {
   __kind: 'WithdrawAsset'
   assets: MultiAssetV0[]
   effects: XcmOrderV0[]
 }
 
-export interface XcmV0_394_ReserveAssetDeposit {
+export interface XcmV0_402_ReserveAssetDeposit {
   __kind: 'ReserveAssetDeposit'
   assets: MultiAssetV0[]
   effects: XcmOrderV0[]
 }
 
-export interface XcmV0_394_ReceiveTeleportedAsset {
+export interface XcmV0_402_ReceiveTeleportedAsset {
   __kind: 'ReceiveTeleportedAsset'
   assets: MultiAssetV0[]
   effects: XcmOrderV0[]
 }
 
-export interface XcmV0_394_QueryResponse {
+export interface XcmV0_402_QueryResponse {
   __kind: 'QueryResponse'
   queryId: bigint
   response: ResponseV0
 }
 
-export interface XcmV0_394_TransferAsset {
+export interface XcmV0_402_TransferAsset {
   __kind: 'TransferAsset'
   assets: MultiAssetV0[]
   dest: MultiLocationV0
 }
 
-export interface XcmV0_394_TransferReserveAsset {
+export interface XcmV0_402_TransferReserveAsset {
   __kind: 'TransferReserveAsset'
   assets: MultiAssetV0[]
   dest: MultiLocationV0
   effects: XcmOrderV0[]
 }
 
-export interface XcmV0_394_Transact {
+export interface XcmV0_402_Transact {
   __kind: 'Transact'
   originType: XcmOriginKind
   requireWeightAtMost: bigint
   call: DoubleEncodedCall
 }
 
-export interface XcmV0_394_HrmpNewChannelOpenRequest {
+export interface XcmV0_402_HrmpNewChannelOpenRequest {
   __kind: 'HrmpNewChannelOpenRequest'
   sender: number
   maxMessageSize: number
   maxCapacity: number
 }
 
-export interface XcmV0_394_HrmpChannelAccepted {
+export interface XcmV0_402_HrmpChannelAccepted {
   __kind: 'HrmpChannelAccepted'
   recipient: number
 }
 
-export interface XcmV0_394_HrmpChannelClosing {
+export interface XcmV0_402_HrmpChannelClosing {
   __kind: 'HrmpChannelClosing'
   initiator: number
   sender: number
   recipient: number
 }
 
-export interface XcmV0_394_RelayedFrom {
+export interface XcmV0_402_RelayedFrom {
   __kind: 'RelayedFrom'
   who: MultiLocationV0
-  message: XcmV0_395
+  message: XcmV0_403
 }
 
 export type MultiAssetV0 = MultiAssetV0_None | MultiAssetV0_All | MultiAssetV0_AllFungible | MultiAssetV0_AllNonFungible | MultiAssetV0_AllAbstractFungible | MultiAssetV0_AllAbstractNonFungible | MultiAssetV0_AllConcreteFungible | MultiAssetV0_AllConcreteNonFungible | MultiAssetV0_AbstractFungible | MultiAssetV0_AbstractNonFungible | MultiAssetV0_ConcreteFungible | MultiAssetV0_ConcreteNonFungible
@@ -6664,7 +6664,7 @@ export interface XcmOrderV0_BuyExecution {
   weight: bigint
   debt: bigint
   haltOnError: boolean
-  xcm: XcmV0_395[]
+  xcm: XcmV0_403[]
 }
 
 export type ResponseV0 = ResponseV0_Assets
@@ -6696,75 +6696,75 @@ export interface DoubleEncodedCall {
   encoded: Uint8Array
 }
 
-export type XcmV0_395 = XcmV0_395_WithdrawAsset | XcmV0_395_ReserveAssetDeposit | XcmV0_395_ReceiveTeleportedAsset | XcmV0_395_QueryResponse | XcmV0_395_TransferAsset | XcmV0_395_TransferReserveAsset | XcmV0_395_Transact | XcmV0_395_HrmpNewChannelOpenRequest | XcmV0_395_HrmpChannelAccepted | XcmV0_395_HrmpChannelClosing | XcmV0_395_RelayedFrom
+export type XcmV0_403 = XcmV0_403_WithdrawAsset | XcmV0_403_ReserveAssetDeposit | XcmV0_403_ReceiveTeleportedAsset | XcmV0_403_QueryResponse | XcmV0_403_TransferAsset | XcmV0_403_TransferReserveAsset | XcmV0_403_Transact | XcmV0_403_HrmpNewChannelOpenRequest | XcmV0_403_HrmpChannelAccepted | XcmV0_403_HrmpChannelClosing | XcmV0_403_RelayedFrom
 
-export interface XcmV0_395_WithdrawAsset {
+export interface XcmV0_403_WithdrawAsset {
   __kind: 'WithdrawAsset'
   assets: MultiAssetV0[]
   effects: XcmOrderV0[]
 }
 
-export interface XcmV0_395_ReserveAssetDeposit {
+export interface XcmV0_403_ReserveAssetDeposit {
   __kind: 'ReserveAssetDeposit'
   assets: MultiAssetV0[]
   effects: XcmOrderV0[]
 }
 
-export interface XcmV0_395_ReceiveTeleportedAsset {
+export interface XcmV0_403_ReceiveTeleportedAsset {
   __kind: 'ReceiveTeleportedAsset'
   assets: MultiAssetV0[]
   effects: XcmOrderV0[]
 }
 
-export interface XcmV0_395_QueryResponse {
+export interface XcmV0_403_QueryResponse {
   __kind: 'QueryResponse'
   queryId: bigint
   response: ResponseV0
 }
 
-export interface XcmV0_395_TransferAsset {
+export interface XcmV0_403_TransferAsset {
   __kind: 'TransferAsset'
   assets: MultiAssetV0[]
   dest: MultiLocationV0
 }
 
-export interface XcmV0_395_TransferReserveAsset {
+export interface XcmV0_403_TransferReserveAsset {
   __kind: 'TransferReserveAsset'
   assets: MultiAssetV0[]
   dest: MultiLocationV0
   effects: XcmOrderV0[]
 }
 
-export interface XcmV0_395_Transact {
+export interface XcmV0_403_Transact {
   __kind: 'Transact'
   originType: XcmOriginKind
   requireWeightAtMost: bigint
   call: DoubleEncodedCall
 }
 
-export interface XcmV0_395_HrmpNewChannelOpenRequest {
+export interface XcmV0_403_HrmpNewChannelOpenRequest {
   __kind: 'HrmpNewChannelOpenRequest'
   sender: number
   maxMessageSize: number
   maxCapacity: number
 }
 
-export interface XcmV0_395_HrmpChannelAccepted {
+export interface XcmV0_403_HrmpChannelAccepted {
   __kind: 'HrmpChannelAccepted'
   recipient: number
 }
 
-export interface XcmV0_395_HrmpChannelClosing {
+export interface XcmV0_403_HrmpChannelClosing {
   __kind: 'HrmpChannelClosing'
   initiator: number
   sender: number
   recipient: number
 }
 
-export interface XcmV0_395_RelayedFrom {
+export interface XcmV0_403_RelayedFrom {
   __kind: 'RelayedFrom'
   who: MultiLocationV0
-  message: XcmV0_395
+  message: XcmV0_403
 }
 
 export type AssetInstanceV0 = AssetInstanceV0_Undefined | AssetInstanceV0_Index8 | AssetInstanceV0_Index16 | AssetInstanceV0_Index32 | AssetInstanceV0_Index64 | AssetInstanceV0_Index128 | AssetInstanceV0_Array4 | AssetInstanceV0_Array8 | AssetInstanceV0_Array16 | AssetInstanceV0_Array32 | AssetInstanceV0_Blob

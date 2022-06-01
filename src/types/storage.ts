@@ -44,6 +44,7 @@ import * as v9160 from './v9160'
 import * as v9170 from './v9170'
 import * as v9180 from './v9180'
 import * as v9190 from './v9190'
+import * as v9220 from './v9220'
 
 export class BalancesTotalIssuanceStorage {
   constructor(private ctx: StorageContext) {}
@@ -87,6 +88,11 @@ export class BountiesBountiesStorage {
   async getAsV9111(key: number): Promise<v9111.Bounty | undefined> {
     assert(this.isV9111)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Bounties', 'Bounties', key)
+  }
+
+  async getManyAsV9111(keys: number[]): Promise<(v9111.Bounty | undefined)[]> {
+    assert(this.isV9111)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Bounties', 'Bounties', keys.map(k => [k]))
   }
 
   /**
@@ -167,6 +173,11 @@ export class CouncilProposalOfStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Council', 'ProposalOf', key)
   }
 
+  async getManyAsV9111(keys: v9111.H256[]): Promise<(v9111.Call | undefined)[]> {
+    assert(this.isV9111)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Council', 'ProposalOf', keys.map(k => [k]))
+  }
+
   /**
    *  Actual proposal for a given hash, if it's current.
    */
@@ -180,6 +191,11 @@ export class CouncilProposalOfStorage {
   async getAsV9122(key: v9122.H256): Promise<v9122.Call | undefined> {
     assert(this.isV9122)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Council', 'ProposalOf', key)
+  }
+
+  async getManyAsV9122(keys: v9122.H256[]): Promise<(v9122.Call | undefined)[]> {
+    assert(this.isV9122)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Council', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -197,6 +213,11 @@ export class CouncilProposalOfStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Council', 'ProposalOf', key)
   }
 
+  async getManyAsV9130(keys: v9130.H256[]): Promise<(v9130.Call | undefined)[]> {
+    assert(this.isV9130)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Council', 'ProposalOf', keys.map(k => [k]))
+  }
+
   /**
    *  Actual proposal for a given hash, if it's current.
    */
@@ -210,6 +231,11 @@ export class CouncilProposalOfStorage {
   async getAsV9160(key: v9160.H256): Promise<v9160.Call | undefined> {
     assert(this.isV9160)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Council', 'ProposalOf', key)
+  }
+
+  async getManyAsV9160(keys: v9160.H256[]): Promise<(v9160.Call | undefined)[]> {
+    assert(this.isV9160)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Council', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -227,6 +253,11 @@ export class CouncilProposalOfStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Council', 'ProposalOf', key)
   }
 
+  async getManyAsV9170(keys: v9170.H256[]): Promise<(v9170.Call | undefined)[]> {
+    assert(this.isV9170)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Council', 'ProposalOf', keys.map(k => [k]))
+  }
+
   /**
    *  Actual proposal for a given hash, if it's current.
    */
@@ -242,6 +273,11 @@ export class CouncilProposalOfStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Council', 'ProposalOf', key)
   }
 
+  async getManyAsV9180(keys: v9180.H256[]): Promise<(v9180.Call | undefined)[]> {
+    assert(this.isV9180)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Council', 'ProposalOf', keys.map(k => [k]))
+  }
+
   /**
    *  Actual proposal for a given hash, if it's current.
    */
@@ -255,6 +291,31 @@ export class CouncilProposalOfStorage {
   async getAsV9190(key: v9190.H256): Promise<v9190.Call | undefined> {
     assert(this.isV9190)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Council', 'ProposalOf', key)
+  }
+
+  async getManyAsV9190(keys: v9190.H256[]): Promise<(v9190.Call | undefined)[]> {
+    assert(this.isV9190)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Council', 'ProposalOf', keys.map(k => [k]))
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9220() {
+    return this.ctx._chain.getStorageItemTypeHash('Council', 'ProposalOf') === '4498453a1226fec5bf63af9bd29732d3c48e950007698929b56326f760588995'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9220(key: v9220.H256): Promise<v9220.Call | undefined> {
+    assert(this.isV9220)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'Council', 'ProposalOf', key)
+  }
+
+  async getManyAsV9220(keys: v9220.H256[]): Promise<(v9220.Call | undefined)[]> {
+    assert(this.isV9220)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Council', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -285,6 +346,11 @@ export class DemocracyPreimagesStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Democracy', 'Preimages', key)
   }
 
+  async getManyAsV1022(keys: Uint8Array[]): Promise<([Uint8Array, Uint8Array, bigint, number] | undefined)[]> {
+    assert(this.isV1022)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Democracy', 'Preimages', keys.map(k => [k]))
+  }
+
   /**
    *  Map of hashes to the proposal preimage, along with who registered it and their deposit.
    *  The block number is the block at which it was deposited.
@@ -302,6 +368,11 @@ export class DemocracyPreimagesStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Democracy', 'Preimages', key)
   }
 
+  async getManyAsV1058(keys: Uint8Array[]): Promise<(v1058.PreimageStatus | undefined)[]> {
+    assert(this.isV1058)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Democracy', 'Preimages', keys.map(k => [k]))
+  }
+
   /**
    *  Map of hashes to the proposal preimage, along with who registered it and their deposit.
    *  The block number is the block at which it was deposited.
@@ -317,6 +388,11 @@ export class DemocracyPreimagesStorage {
   async getAsV9111(key: v9111.H256): Promise<v9111.PreimageStatus | undefined> {
     assert(this.isV9111)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Democracy', 'Preimages', key)
+  }
+
+  async getManyAsV9111(keys: v9111.H256[]): Promise<(v9111.PreimageStatus | undefined)[]> {
+    assert(this.isV9111)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Democracy', 'Preimages', keys.map(k => [k]))
   }
 
   /**
@@ -360,13 +436,13 @@ export class DemocracyPublicPropsStorage {
    *  The public proposals. Unsorted.
    */
   get isV1020() {
-    return this.ctx._chain.getStorageItemTypeHash('Democracy', 'PublicProps') === '122caf335a68e3eddbffd464850dbfe993ebed62828c44065c82ac05fe1b211f'
+    return this.ctx._chain.getStorageItemTypeHash('Democracy', 'PublicProps') === '73cb1a7c4424f713001c8416e3f33d8a4cff058377ae880f2cae103ae0ffec18'
   }
 
   /**
    *  The public proposals. Unsorted.
    */
-  async getAsV1020(): Promise<[number, v1020.Type_88, Uint8Array][]> {
+  async getAsV1020(): Promise<[number, v1020.Type_101, Uint8Array][]> {
     assert(this.isV1020)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Democracy', 'PublicProps')
   }
@@ -407,9 +483,14 @@ export class DemocracyReferendumInfoOfStorage {
   /**
    *  Information concerning any given referendum.
    */
-  async getAsV1020(key: number): Promise<v1020.Type_273 | undefined> {
+  async getAsV1020(key: number): Promise<v1020.Type_283 | undefined> {
     assert(this.isV1020)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Democracy', 'ReferendumInfoOf', key)
+  }
+
+  async getManyAsV1020(keys: number[]): Promise<(v1020.Type_283 | undefined)[]> {
+    assert(this.isV1020)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Democracy', 'ReferendumInfoOf', keys.map(k => [k]))
   }
 
   /**
@@ -425,6 +506,11 @@ export class DemocracyReferendumInfoOfStorage {
   async getAsV1055(key: number): Promise<v1055.ReferendumInfo | undefined> {
     assert(this.isV1055)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Democracy', 'ReferendumInfoOf', key)
+  }
+
+  async getManyAsV1055(keys: number[]): Promise<(v1055.ReferendumInfo | undefined)[]> {
+    assert(this.isV1055)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Democracy', 'ReferendumInfoOf', keys.map(k => [k]))
   }
 
   /**
@@ -444,6 +530,11 @@ export class DemocracyReferendumInfoOfStorage {
   async getAsV9111(key: number): Promise<v9111.ReferendumInfo | undefined> {
     assert(this.isV9111)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Democracy', 'ReferendumInfoOf', key)
+  }
+
+  async getManyAsV9111(keys: number[]): Promise<(v9111.ReferendumInfo | undefined)[]> {
+    assert(this.isV9111)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Democracy', 'ReferendumInfoOf', keys.map(k => [k]))
   }
 
   /**
@@ -513,345 +604,460 @@ export class Instance1CollectiveProposalOfStorage {
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1020() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '734cb82f65ce49357861d4fac0afaa7783ab0fa388ea82b9bae26f325fdbaf3a'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '988b54a69200501d1caa21231c09e8d115ce376b26e5cfe53b9efe6d1aa2353f'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1020(key: Uint8Array): Promise<v1020.Type_88 | undefined> {
+  async getAsV1020(key: Uint8Array): Promise<v1020.Type_101 | undefined> {
     assert(this.isV1020)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1020(keys: Uint8Array[]): Promise<(v1020.Type_101 | undefined)[]> {
+    assert(this.isV1020)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1022() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '2f845f504652aa9a4dbed577436a564b6aa7e0878f0c77c1bbec8f2c228b6887'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'dd07ea6860eb31afbcf979619a9f751f46be77411e9c22ab6d968f1cbb826975'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1022(key: Uint8Array): Promise<v1022.Type_96 | undefined> {
+  async getAsV1022(key: Uint8Array): Promise<v1022.Type_109 | undefined> {
     assert(this.isV1022)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1022(keys: Uint8Array[]): Promise<(v1022.Type_109 | undefined)[]> {
+    assert(this.isV1022)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1024() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'd237c4ceb71b076111adad357bd8b1ba6755c161482c1470cdb175883e53bc57'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'd1057f90e4da1f4375c8e1942f93abac694f8f1e3eb41ae19b49794a3cd7754c'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1024(key: Uint8Array): Promise<v1024.Type_96 | undefined> {
+  async getAsV1024(key: Uint8Array): Promise<v1024.Type_109 | undefined> {
     assert(this.isV1024)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1024(keys: Uint8Array[]): Promise<(v1024.Type_109 | undefined)[]> {
+    assert(this.isV1024)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1027() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'f1d854821a0f6967dcc795dcfe69dbd42bad6bdd397a27b85983226bdac10b17'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '952306cf3b40b722e8a89f97348456e7288504655b1fef8f8848728064e020d6'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1027(key: Uint8Array): Promise<v1027.Type_96 | undefined> {
+  async getAsV1027(key: Uint8Array): Promise<v1027.Type_109 | undefined> {
     assert(this.isV1027)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1027(keys: Uint8Array[]): Promise<(v1027.Type_109 | undefined)[]> {
+    assert(this.isV1027)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1029() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '6581c961890f55a85c44104096219cb91ae2fcab378d3b21acff5f8d54ab8608'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'c684ff44da66806df8f7b0311e8b461bcd53a6438c7321d8065c89376d754173'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1029(key: Uint8Array): Promise<v1029.Type_96 | undefined> {
+  async getAsV1029(key: Uint8Array): Promise<v1029.Type_109 | undefined> {
     assert(this.isV1029)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1029(keys: Uint8Array[]): Promise<(v1029.Type_109 | undefined)[]> {
+    assert(this.isV1029)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1030() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '0b3600d629ff77ec095f7772155565c63fde27af54304a55403d042b140ec7f5'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'a5dece5dab1ee986977b4658ed7c0dcc0ead6936604d3359ae5d56497127c435'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1030(key: Uint8Array): Promise<v1030.Type_96 | undefined> {
+  async getAsV1030(key: Uint8Array): Promise<v1030.Type_109 | undefined> {
     assert(this.isV1030)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1030(keys: Uint8Array[]): Promise<(v1030.Type_109 | undefined)[]> {
+    assert(this.isV1030)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1031() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'be130898e048e44587d4c5ed6d2c54a2e37786a305323cb80081d08abf87700c'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '491d769f67c8b91e6c1892535c8a0d6726eac1c321ce672b23b722cea1b1ab46'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1031(key: Uint8Array): Promise<v1031.Type_96 | undefined> {
+  async getAsV1031(key: Uint8Array): Promise<v1031.Type_109 | undefined> {
     assert(this.isV1031)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1031(keys: Uint8Array[]): Promise<(v1031.Type_109 | undefined)[]> {
+    assert(this.isV1031)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1032() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'acc7397fb726869e20cfca9368f836337e5a4d33e86436e82d82f0953c326b97'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '3cec838f63976aa29bba710d21944d10bd6aaf418ca780e11fe2c2d0e628d629'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1032(key: Uint8Array): Promise<v1032.Type_96 | undefined> {
+  async getAsV1032(key: Uint8Array): Promise<v1032.Type_109 | undefined> {
     assert(this.isV1032)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1032(keys: Uint8Array[]): Promise<(v1032.Type_109 | undefined)[]> {
+    assert(this.isV1032)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1038() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '6cbae638b09571065cd37dd4c7f849dbbe227b4c042f88dc7b5dada4dc1a0bac'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '6f242fd68c6cf6b13795cb7c87e22bc4d5cb344260c9c4976f712b389f1a72e5'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1038(key: Uint8Array): Promise<v1038.Type_96 | undefined> {
+  async getAsV1038(key: Uint8Array): Promise<v1038.Type_109 | undefined> {
     assert(this.isV1038)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1038(keys: Uint8Array[]): Promise<(v1038.Type_109 | undefined)[]> {
+    assert(this.isV1038)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1039() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '90ef1909b19f79bc67f4ad4cb000034ec5c1f64258b8402a82385329b7ce185a'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '46ed4057a9e44696c823f53a2afcf45ec0e1319fff4b984ff2a78dac066632b7'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1039(key: Uint8Array): Promise<v1039.Type_96 | undefined> {
+  async getAsV1039(key: Uint8Array): Promise<v1039.Type_109 | undefined> {
     assert(this.isV1039)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1039(keys: Uint8Array[]): Promise<(v1039.Type_109 | undefined)[]> {
+    assert(this.isV1039)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1040() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '606333b698c6d83708bc3693069fecb27c614328e40974f449aff7323bd9c434'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '09964938a6344ce4017f443d37b809998da5205b97ba32089dc34e25517d8727'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1040(key: Uint8Array): Promise<v1040.Type_96 | undefined> {
+  async getAsV1040(key: Uint8Array): Promise<v1040.Type_109 | undefined> {
     assert(this.isV1040)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1040(keys: Uint8Array[]): Promise<(v1040.Type_109 | undefined)[]> {
+    assert(this.isV1040)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1042() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '289628d9ffef7d37a802e58b6536a3d01da6021d0a4c5dfc12cba1299dfa1d93'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'c5be77395b90894b0b9d89a8bfd40c3969fd90f48d12a513d31f62f19ba198b2'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1042(key: Uint8Array): Promise<v1042.Type_96 | undefined> {
+  async getAsV1042(key: Uint8Array): Promise<v1042.Type_109 | undefined> {
     assert(this.isV1042)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1042(keys: Uint8Array[]): Promise<(v1042.Type_109 | undefined)[]> {
+    assert(this.isV1042)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1050() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '3748fc31dec3ff97c3a4382666883b4d0164591adb135c9606f27464e6390e9b'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '75a26ba5a11378b5ec0d7e80a5150e53f1723bf825534c48ac8df88d46f8ad11'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1050(key: Uint8Array): Promise<v1050.Type_99 | undefined> {
+  async getAsV1050(key: Uint8Array): Promise<v1050.Type_112 | undefined> {
     assert(this.isV1050)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1050(keys: Uint8Array[]): Promise<(v1050.Type_112 | undefined)[]> {
+    assert(this.isV1050)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1054() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '7389e6d7a1767d2c61c135dbf147bca82754cc34012faf67d89cefe50059d442'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'ecb491dab152e949512780951867e171f6a72abd7ec8510103dcec7c8482218c'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1054(key: Uint8Array): Promise<v1054.Type_99 | undefined> {
+  async getAsV1054(key: Uint8Array): Promise<v1054.Type_112 | undefined> {
     assert(this.isV1054)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1054(keys: Uint8Array[]): Promise<(v1054.Type_112 | undefined)[]> {
+    assert(this.isV1054)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1055() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '7e347f2a5184c19e99f1844d452f0c7a84c9340138fb27ff24f18b5f03970c2d'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'f76941917fe1c97effc3b54c45775b17c3dd7b8644e859888214965a3d2c1915'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1055(key: Uint8Array): Promise<v1055.Type_102 | undefined> {
+  async getAsV1055(key: Uint8Array): Promise<v1055.Type_115 | undefined> {
     assert(this.isV1055)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1055(keys: Uint8Array[]): Promise<(v1055.Type_115 | undefined)[]> {
+    assert(this.isV1055)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1058() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'fe7db31682cb6c482f40e99863ee72c56368678c84e7d337f0ed371264b4003d'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'a40aebf7430950292287f9ba1ac41514aec633d7ce9c595b51922b2d00f766c4'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1058(key: Uint8Array): Promise<v1058.Type_162 | undefined> {
+  async getAsV1058(key: Uint8Array): Promise<v1058.Type_175 | undefined> {
     assert(this.isV1058)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1058(keys: Uint8Array[]): Promise<(v1058.Type_175 | undefined)[]> {
+    assert(this.isV1058)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1062() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '7476450e6d8e4e4ad9791c14c52fbc024c26d82bd9bc3216fd0551291a0f7a7b'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'f1964574c2acdf7657cebbec13992465e146c9c1d70a9ebfe5cb2c849e33a8fb'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1062(key: Uint8Array): Promise<v1062.Type_161 | undefined> {
+  async getAsV1062(key: Uint8Array): Promise<v1062.Type_174 | undefined> {
     assert(this.isV1062)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1062(keys: Uint8Array[]): Promise<(v1062.Type_174 | undefined)[]> {
+    assert(this.isV1062)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV2005() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'ae3a0cda1f7d5ce44093e4881826f153ade69580ca6a8f545c049288639190bf'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '59d62f9580ec29b948bb61b54782d0eb894f759082f4cd66b3d721cd51fc6eab'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2005(key: Uint8Array): Promise<v2005.Type_174 | undefined> {
+  async getAsV2005(key: Uint8Array): Promise<v2005.Type_187 | undefined> {
     assert(this.isV2005)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2005(keys: Uint8Array[]): Promise<(v2005.Type_187 | undefined)[]> {
+    assert(this.isV2005)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV2007() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'a19d56cbac5bc5d8271a0386d2ec4737556c2ccd14bd734a49cd6b44cf669e19'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '9b8403a58da018e039e7d02e03c58751e5f3966f734c0a805247c8f819ebe6e6'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2007(key: Uint8Array): Promise<v2007.Type_175 | undefined> {
+  async getAsV2007(key: Uint8Array): Promise<v2007.Type_188 | undefined> {
     assert(this.isV2007)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2007(keys: Uint8Array[]): Promise<(v2007.Type_188 | undefined)[]> {
+    assert(this.isV2007)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV2011() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'a1bad54afef22e91c8437cc5e49ccd48eaf734135b5d57ecdae6b31037b516b6'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '72ae96a40c2e115fd196fda8aba62965500743102911195e5db6bffe5c730a89'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2011(key: Uint8Array): Promise<v2011.Type_176 | undefined> {
+  async getAsV2011(key: Uint8Array): Promise<v2011.Type_189 | undefined> {
     assert(this.isV2011)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2011(keys: Uint8Array[]): Promise<(v2011.Type_189 | undefined)[]> {
+    assert(this.isV2011)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV2013() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'fd10882c553c6c13d6c2c999c8c906ff9bd8b96c668ee3693a60c2b9d16b6c3d'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '646a7b14d2d0c7e0302ab7e697eb7a22ce351bc30f8ed014a36febdee8fd066c'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2013(key: Uint8Array): Promise<v2013.Type_176 | undefined> {
+  async getAsV2013(key: Uint8Array): Promise<v2013.Type_189 | undefined> {
     assert(this.isV2013)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2013(keys: Uint8Array[]): Promise<(v2013.Type_189 | undefined)[]> {
+    assert(this.isV2013)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV2015() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '6026bea5884a6f5dae6c50dbbeabdda4972a59604ffa9384b56db7984b084830'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '49cb7fd61e09b6e09885d9254e3179527de1bb56a3bac4e41806540efa177504'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2015(key: Uint8Array): Promise<v2015.Type_178 | undefined> {
+  async getAsV2015(key: Uint8Array): Promise<v2015.Type_191 | undefined> {
     assert(this.isV2015)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2015(keys: Uint8Array[]): Promise<(v2015.Type_191 | undefined)[]> {
+    assert(this.isV2015)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV2022() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === '15084b5f90884c9eb88947d09da6acc8f67964bd9fefc92e8b61044f0d1e7e95'
+    return this.ctx._chain.getStorageItemTypeHash('Instance1Collective', 'ProposalOf') === 'e940a02bab509e8f3c662c3743d99681461dc41eb7807d9f724137541d6d6888'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2022(key: Uint8Array): Promise<v2022.Type_178 | undefined> {
+  async getAsV2022(key: Uint8Array): Promise<v2022.Type_191 | undefined> {
     assert(this.isV2022)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2022(keys: Uint8Array[]): Promise<(v2022.Type_191 | undefined)[]> {
+    assert(this.isV2022)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -864,9 +1070,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2023(key: Uint8Array): Promise<v2023.Type_180 | undefined> {
+  async getAsV2023(key: Uint8Array): Promise<v2023.Type_193 | undefined> {
     assert(this.isV2023)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2023(keys: Uint8Array[]): Promise<(v2023.Type_193 | undefined)[]> {
+    assert(this.isV2023)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -879,9 +1090,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2024(key: Uint8Array): Promise<v2024.Type_180 | undefined> {
+  async getAsV2024(key: Uint8Array): Promise<v2024.Type_193 | undefined> {
     assert(this.isV2024)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2024(keys: Uint8Array[]): Promise<(v2024.Type_193 | undefined)[]> {
+    assert(this.isV2024)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -894,9 +1110,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2025(key: Uint8Array): Promise<v2025.Type_181 | undefined> {
+  async getAsV2025(key: Uint8Array): Promise<v2025.Type_194 | undefined> {
     assert(this.isV2025)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2025(keys: Uint8Array[]): Promise<(v2025.Type_194 | undefined)[]> {
+    assert(this.isV2025)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -909,9 +1130,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2026(key: Uint8Array): Promise<v2026.Type_180 | undefined> {
+  async getAsV2026(key: Uint8Array): Promise<v2026.Type_193 | undefined> {
     assert(this.isV2026)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2026(keys: Uint8Array[]): Promise<(v2026.Type_193 | undefined)[]> {
+    assert(this.isV2026)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -924,9 +1150,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2028(key: Uint8Array): Promise<v2028.Type_185 | undefined> {
+  async getAsV2028(key: Uint8Array): Promise<v2028.Type_198 | undefined> {
     assert(this.isV2028)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2028(keys: Uint8Array[]): Promise<(v2028.Type_198 | undefined)[]> {
+    assert(this.isV2028)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -939,9 +1170,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2029(key: Uint8Array): Promise<v2029.Type_185 | undefined> {
+  async getAsV2029(key: Uint8Array): Promise<v2029.Type_198 | undefined> {
     assert(this.isV2029)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2029(keys: Uint8Array[]): Promise<(v2029.Type_198 | undefined)[]> {
+    assert(this.isV2029)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -954,9 +1190,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2030(key: Uint8Array): Promise<v2030.Type_124 | undefined> {
+  async getAsV2030(key: Uint8Array): Promise<v2030.Type_137 | undefined> {
     assert(this.isV2030)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2030(keys: Uint8Array[]): Promise<(v2030.Type_137 | undefined)[]> {
+    assert(this.isV2030)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -969,9 +1210,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9010(key: Uint8Array): Promise<v9010.Type_124 | undefined> {
+  async getAsV9010(key: Uint8Array): Promise<v9010.Type_137 | undefined> {
     assert(this.isV9010)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9010(keys: Uint8Array[]): Promise<(v9010.Type_137 | undefined)[]> {
+    assert(this.isV9010)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -984,9 +1230,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9030(key: Uint8Array): Promise<v9030.Type_124 | undefined> {
+  async getAsV9030(key: Uint8Array): Promise<v9030.Type_137 | undefined> {
     assert(this.isV9030)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9030(keys: Uint8Array[]): Promise<(v9030.Type_137 | undefined)[]> {
+    assert(this.isV9030)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -999,9 +1250,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9040(key: Uint8Array): Promise<v9040.Type_124 | undefined> {
+  async getAsV9040(key: Uint8Array): Promise<v9040.Type_137 | undefined> {
     assert(this.isV9040)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9040(keys: Uint8Array[]): Promise<(v9040.Type_137 | undefined)[]> {
+    assert(this.isV9040)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1014,9 +1270,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9050(key: Uint8Array): Promise<v9050.Type_125 | undefined> {
+  async getAsV9050(key: Uint8Array): Promise<v9050.Type_138 | undefined> {
     assert(this.isV9050)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9050(keys: Uint8Array[]): Promise<(v9050.Type_138 | undefined)[]> {
+    assert(this.isV9050)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1029,9 +1290,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9080(key: Uint8Array): Promise<v9080.Type_124 | undefined> {
+  async getAsV9080(key: Uint8Array): Promise<v9080.Type_137 | undefined> {
     assert(this.isV9080)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9080(keys: Uint8Array[]): Promise<(v9080.Type_137 | undefined)[]> {
+    assert(this.isV9080)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1044,9 +1310,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9090(key: Uint8Array): Promise<v9090.Type_124 | undefined> {
+  async getAsV9090(key: Uint8Array): Promise<v9090.Type_137 | undefined> {
     assert(this.isV9090)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9090(keys: Uint8Array[]): Promise<(v9090.Type_137 | undefined)[]> {
+    assert(this.isV9090)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1059,9 +1330,14 @@ export class Instance1CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9100(key: Uint8Array): Promise<v9100.Type_124 | undefined> {
+  async getAsV9100(key: Uint8Array): Promise<v9100.Type_137 | undefined> {
     assert(this.isV9100)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9100(keys: Uint8Array[]): Promise<(v9100.Type_137 | undefined)[]> {
+    assert(this.isV9100)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance1Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1079,345 +1355,460 @@ export class Instance2CollectiveProposalOfStorage {
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1020() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '734cb82f65ce49357861d4fac0afaa7783ab0fa388ea82b9bae26f325fdbaf3a'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '988b54a69200501d1caa21231c09e8d115ce376b26e5cfe53b9efe6d1aa2353f'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1020(key: Uint8Array): Promise<v1020.Type_88 | undefined> {
+  async getAsV1020(key: Uint8Array): Promise<v1020.Type_101 | undefined> {
     assert(this.isV1020)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1020(keys: Uint8Array[]): Promise<(v1020.Type_101 | undefined)[]> {
+    assert(this.isV1020)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1022() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '2f845f504652aa9a4dbed577436a564b6aa7e0878f0c77c1bbec8f2c228b6887'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'dd07ea6860eb31afbcf979619a9f751f46be77411e9c22ab6d968f1cbb826975'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1022(key: Uint8Array): Promise<v1022.Type_96 | undefined> {
+  async getAsV1022(key: Uint8Array): Promise<v1022.Type_109 | undefined> {
     assert(this.isV1022)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1022(keys: Uint8Array[]): Promise<(v1022.Type_109 | undefined)[]> {
+    assert(this.isV1022)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1024() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'd237c4ceb71b076111adad357bd8b1ba6755c161482c1470cdb175883e53bc57'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'd1057f90e4da1f4375c8e1942f93abac694f8f1e3eb41ae19b49794a3cd7754c'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1024(key: Uint8Array): Promise<v1024.Type_96 | undefined> {
+  async getAsV1024(key: Uint8Array): Promise<v1024.Type_109 | undefined> {
     assert(this.isV1024)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1024(keys: Uint8Array[]): Promise<(v1024.Type_109 | undefined)[]> {
+    assert(this.isV1024)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1027() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'f1d854821a0f6967dcc795dcfe69dbd42bad6bdd397a27b85983226bdac10b17'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '952306cf3b40b722e8a89f97348456e7288504655b1fef8f8848728064e020d6'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1027(key: Uint8Array): Promise<v1027.Type_96 | undefined> {
+  async getAsV1027(key: Uint8Array): Promise<v1027.Type_109 | undefined> {
     assert(this.isV1027)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1027(keys: Uint8Array[]): Promise<(v1027.Type_109 | undefined)[]> {
+    assert(this.isV1027)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1029() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '6581c961890f55a85c44104096219cb91ae2fcab378d3b21acff5f8d54ab8608'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'c684ff44da66806df8f7b0311e8b461bcd53a6438c7321d8065c89376d754173'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1029(key: Uint8Array): Promise<v1029.Type_96 | undefined> {
+  async getAsV1029(key: Uint8Array): Promise<v1029.Type_109 | undefined> {
     assert(this.isV1029)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1029(keys: Uint8Array[]): Promise<(v1029.Type_109 | undefined)[]> {
+    assert(this.isV1029)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1030() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '0b3600d629ff77ec095f7772155565c63fde27af54304a55403d042b140ec7f5'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'a5dece5dab1ee986977b4658ed7c0dcc0ead6936604d3359ae5d56497127c435'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1030(key: Uint8Array): Promise<v1030.Type_96 | undefined> {
+  async getAsV1030(key: Uint8Array): Promise<v1030.Type_109 | undefined> {
     assert(this.isV1030)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1030(keys: Uint8Array[]): Promise<(v1030.Type_109 | undefined)[]> {
+    assert(this.isV1030)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1031() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'be130898e048e44587d4c5ed6d2c54a2e37786a305323cb80081d08abf87700c'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '491d769f67c8b91e6c1892535c8a0d6726eac1c321ce672b23b722cea1b1ab46'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1031(key: Uint8Array): Promise<v1031.Type_96 | undefined> {
+  async getAsV1031(key: Uint8Array): Promise<v1031.Type_109 | undefined> {
     assert(this.isV1031)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1031(keys: Uint8Array[]): Promise<(v1031.Type_109 | undefined)[]> {
+    assert(this.isV1031)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1032() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'acc7397fb726869e20cfca9368f836337e5a4d33e86436e82d82f0953c326b97'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '3cec838f63976aa29bba710d21944d10bd6aaf418ca780e11fe2c2d0e628d629'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1032(key: Uint8Array): Promise<v1032.Type_96 | undefined> {
+  async getAsV1032(key: Uint8Array): Promise<v1032.Type_109 | undefined> {
     assert(this.isV1032)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1032(keys: Uint8Array[]): Promise<(v1032.Type_109 | undefined)[]> {
+    assert(this.isV1032)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1038() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '6cbae638b09571065cd37dd4c7f849dbbe227b4c042f88dc7b5dada4dc1a0bac'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '6f242fd68c6cf6b13795cb7c87e22bc4d5cb344260c9c4976f712b389f1a72e5'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1038(key: Uint8Array): Promise<v1038.Type_96 | undefined> {
+  async getAsV1038(key: Uint8Array): Promise<v1038.Type_109 | undefined> {
     assert(this.isV1038)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1038(keys: Uint8Array[]): Promise<(v1038.Type_109 | undefined)[]> {
+    assert(this.isV1038)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1039() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '90ef1909b19f79bc67f4ad4cb000034ec5c1f64258b8402a82385329b7ce185a'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '46ed4057a9e44696c823f53a2afcf45ec0e1319fff4b984ff2a78dac066632b7'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1039(key: Uint8Array): Promise<v1039.Type_96 | undefined> {
+  async getAsV1039(key: Uint8Array): Promise<v1039.Type_109 | undefined> {
     assert(this.isV1039)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1039(keys: Uint8Array[]): Promise<(v1039.Type_109 | undefined)[]> {
+    assert(this.isV1039)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1040() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '606333b698c6d83708bc3693069fecb27c614328e40974f449aff7323bd9c434'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '09964938a6344ce4017f443d37b809998da5205b97ba32089dc34e25517d8727'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1040(key: Uint8Array): Promise<v1040.Type_96 | undefined> {
+  async getAsV1040(key: Uint8Array): Promise<v1040.Type_109 | undefined> {
     assert(this.isV1040)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1040(keys: Uint8Array[]): Promise<(v1040.Type_109 | undefined)[]> {
+    assert(this.isV1040)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1042() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '289628d9ffef7d37a802e58b6536a3d01da6021d0a4c5dfc12cba1299dfa1d93'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'c5be77395b90894b0b9d89a8bfd40c3969fd90f48d12a513d31f62f19ba198b2'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1042(key: Uint8Array): Promise<v1042.Type_96 | undefined> {
+  async getAsV1042(key: Uint8Array): Promise<v1042.Type_109 | undefined> {
     assert(this.isV1042)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1042(keys: Uint8Array[]): Promise<(v1042.Type_109 | undefined)[]> {
+    assert(this.isV1042)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1050() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '3748fc31dec3ff97c3a4382666883b4d0164591adb135c9606f27464e6390e9b'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '75a26ba5a11378b5ec0d7e80a5150e53f1723bf825534c48ac8df88d46f8ad11'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1050(key: Uint8Array): Promise<v1050.Type_99 | undefined> {
+  async getAsV1050(key: Uint8Array): Promise<v1050.Type_112 | undefined> {
     assert(this.isV1050)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1050(keys: Uint8Array[]): Promise<(v1050.Type_112 | undefined)[]> {
+    assert(this.isV1050)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1054() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '7389e6d7a1767d2c61c135dbf147bca82754cc34012faf67d89cefe50059d442'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'ecb491dab152e949512780951867e171f6a72abd7ec8510103dcec7c8482218c'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1054(key: Uint8Array): Promise<v1054.Type_99 | undefined> {
+  async getAsV1054(key: Uint8Array): Promise<v1054.Type_112 | undefined> {
     assert(this.isV1054)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1054(keys: Uint8Array[]): Promise<(v1054.Type_112 | undefined)[]> {
+    assert(this.isV1054)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1055() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '7e347f2a5184c19e99f1844d452f0c7a84c9340138fb27ff24f18b5f03970c2d'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'f76941917fe1c97effc3b54c45775b17c3dd7b8644e859888214965a3d2c1915'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1055(key: Uint8Array): Promise<v1055.Type_102 | undefined> {
+  async getAsV1055(key: Uint8Array): Promise<v1055.Type_115 | undefined> {
     assert(this.isV1055)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1055(keys: Uint8Array[]): Promise<(v1055.Type_115 | undefined)[]> {
+    assert(this.isV1055)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1058() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'fe7db31682cb6c482f40e99863ee72c56368678c84e7d337f0ed371264b4003d'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'a40aebf7430950292287f9ba1ac41514aec633d7ce9c595b51922b2d00f766c4'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1058(key: Uint8Array): Promise<v1058.Type_162 | undefined> {
+  async getAsV1058(key: Uint8Array): Promise<v1058.Type_175 | undefined> {
     assert(this.isV1058)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1058(keys: Uint8Array[]): Promise<(v1058.Type_175 | undefined)[]> {
+    assert(this.isV1058)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV1062() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '7476450e6d8e4e4ad9791c14c52fbc024c26d82bd9bc3216fd0551291a0f7a7b'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'f1964574c2acdf7657cebbec13992465e146c9c1d70a9ebfe5cb2c849e33a8fb'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV1062(key: Uint8Array): Promise<v1062.Type_161 | undefined> {
+  async getAsV1062(key: Uint8Array): Promise<v1062.Type_174 | undefined> {
     assert(this.isV1062)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV1062(keys: Uint8Array[]): Promise<(v1062.Type_174 | undefined)[]> {
+    assert(this.isV1062)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV2005() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'ae3a0cda1f7d5ce44093e4881826f153ade69580ca6a8f545c049288639190bf'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '59d62f9580ec29b948bb61b54782d0eb894f759082f4cd66b3d721cd51fc6eab'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2005(key: Uint8Array): Promise<v2005.Type_174 | undefined> {
+  async getAsV2005(key: Uint8Array): Promise<v2005.Type_187 | undefined> {
     assert(this.isV2005)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2005(keys: Uint8Array[]): Promise<(v2005.Type_187 | undefined)[]> {
+    assert(this.isV2005)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV2007() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'a19d56cbac5bc5d8271a0386d2ec4737556c2ccd14bd734a49cd6b44cf669e19'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '9b8403a58da018e039e7d02e03c58751e5f3966f734c0a805247c8f819ebe6e6'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2007(key: Uint8Array): Promise<v2007.Type_175 | undefined> {
+  async getAsV2007(key: Uint8Array): Promise<v2007.Type_188 | undefined> {
     assert(this.isV2007)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2007(keys: Uint8Array[]): Promise<(v2007.Type_188 | undefined)[]> {
+    assert(this.isV2007)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV2011() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'a1bad54afef22e91c8437cc5e49ccd48eaf734135b5d57ecdae6b31037b516b6'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '72ae96a40c2e115fd196fda8aba62965500743102911195e5db6bffe5c730a89'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2011(key: Uint8Array): Promise<v2011.Type_176 | undefined> {
+  async getAsV2011(key: Uint8Array): Promise<v2011.Type_189 | undefined> {
     assert(this.isV2011)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2011(keys: Uint8Array[]): Promise<(v2011.Type_189 | undefined)[]> {
+    assert(this.isV2011)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV2013() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'fd10882c553c6c13d6c2c999c8c906ff9bd8b96c668ee3693a60c2b9d16b6c3d'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '646a7b14d2d0c7e0302ab7e697eb7a22ce351bc30f8ed014a36febdee8fd066c'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2013(key: Uint8Array): Promise<v2013.Type_176 | undefined> {
+  async getAsV2013(key: Uint8Array): Promise<v2013.Type_189 | undefined> {
     assert(this.isV2013)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2013(keys: Uint8Array[]): Promise<(v2013.Type_189 | undefined)[]> {
+    assert(this.isV2013)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV2015() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '6026bea5884a6f5dae6c50dbbeabdda4972a59604ffa9384b56db7984b084830'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '49cb7fd61e09b6e09885d9254e3179527de1bb56a3bac4e41806540efa177504'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2015(key: Uint8Array): Promise<v2015.Type_178 | undefined> {
+  async getAsV2015(key: Uint8Array): Promise<v2015.Type_191 | undefined> {
     assert(this.isV2015)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2015(keys: Uint8Array[]): Promise<(v2015.Type_191 | undefined)[]> {
+    assert(this.isV2015)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
   get isV2022() {
-    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === '15084b5f90884c9eb88947d09da6acc8f67964bd9fefc92e8b61044f0d1e7e95'
+    return this.ctx._chain.getStorageItemTypeHash('Instance2Collective', 'ProposalOf') === 'e940a02bab509e8f3c662c3743d99681461dc41eb7807d9f724137541d6d6888'
   }
 
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2022(key: Uint8Array): Promise<v2022.Type_178 | undefined> {
+  async getAsV2022(key: Uint8Array): Promise<v2022.Type_191 | undefined> {
     assert(this.isV2022)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2022(keys: Uint8Array[]): Promise<(v2022.Type_191 | undefined)[]> {
+    assert(this.isV2022)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1430,9 +1821,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2023(key: Uint8Array): Promise<v2023.Type_180 | undefined> {
+  async getAsV2023(key: Uint8Array): Promise<v2023.Type_193 | undefined> {
     assert(this.isV2023)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2023(keys: Uint8Array[]): Promise<(v2023.Type_193 | undefined)[]> {
+    assert(this.isV2023)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1445,9 +1841,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2024(key: Uint8Array): Promise<v2024.Type_180 | undefined> {
+  async getAsV2024(key: Uint8Array): Promise<v2024.Type_193 | undefined> {
     assert(this.isV2024)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2024(keys: Uint8Array[]): Promise<(v2024.Type_193 | undefined)[]> {
+    assert(this.isV2024)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1460,9 +1861,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2025(key: Uint8Array): Promise<v2025.Type_181 | undefined> {
+  async getAsV2025(key: Uint8Array): Promise<v2025.Type_194 | undefined> {
     assert(this.isV2025)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2025(keys: Uint8Array[]): Promise<(v2025.Type_194 | undefined)[]> {
+    assert(this.isV2025)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1475,9 +1881,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2026(key: Uint8Array): Promise<v2026.Type_180 | undefined> {
+  async getAsV2026(key: Uint8Array): Promise<v2026.Type_193 | undefined> {
     assert(this.isV2026)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2026(keys: Uint8Array[]): Promise<(v2026.Type_193 | undefined)[]> {
+    assert(this.isV2026)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1490,9 +1901,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2028(key: Uint8Array): Promise<v2028.Type_185 | undefined> {
+  async getAsV2028(key: Uint8Array): Promise<v2028.Type_198 | undefined> {
     assert(this.isV2028)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2028(keys: Uint8Array[]): Promise<(v2028.Type_198 | undefined)[]> {
+    assert(this.isV2028)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1505,9 +1921,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2029(key: Uint8Array): Promise<v2029.Type_185 | undefined> {
+  async getAsV2029(key: Uint8Array): Promise<v2029.Type_198 | undefined> {
     assert(this.isV2029)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2029(keys: Uint8Array[]): Promise<(v2029.Type_198 | undefined)[]> {
+    assert(this.isV2029)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1520,9 +1941,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV2030(key: Uint8Array): Promise<v2030.Type_124 | undefined> {
+  async getAsV2030(key: Uint8Array): Promise<v2030.Type_137 | undefined> {
     assert(this.isV2030)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV2030(keys: Uint8Array[]): Promise<(v2030.Type_137 | undefined)[]> {
+    assert(this.isV2030)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1535,9 +1961,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9010(key: Uint8Array): Promise<v9010.Type_124 | undefined> {
+  async getAsV9010(key: Uint8Array): Promise<v9010.Type_137 | undefined> {
     assert(this.isV9010)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9010(keys: Uint8Array[]): Promise<(v9010.Type_137 | undefined)[]> {
+    assert(this.isV9010)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1550,9 +1981,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9030(key: Uint8Array): Promise<v9030.Type_124 | undefined> {
+  async getAsV9030(key: Uint8Array): Promise<v9030.Type_137 | undefined> {
     assert(this.isV9030)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9030(keys: Uint8Array[]): Promise<(v9030.Type_137 | undefined)[]> {
+    assert(this.isV9030)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1565,9 +2001,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9040(key: Uint8Array): Promise<v9040.Type_124 | undefined> {
+  async getAsV9040(key: Uint8Array): Promise<v9040.Type_137 | undefined> {
     assert(this.isV9040)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9040(keys: Uint8Array[]): Promise<(v9040.Type_137 | undefined)[]> {
+    assert(this.isV9040)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1580,9 +2021,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9050(key: Uint8Array): Promise<v9050.Type_125 | undefined> {
+  async getAsV9050(key: Uint8Array): Promise<v9050.Type_138 | undefined> {
     assert(this.isV9050)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9050(keys: Uint8Array[]): Promise<(v9050.Type_138 | undefined)[]> {
+    assert(this.isV9050)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1595,9 +2041,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9080(key: Uint8Array): Promise<v9080.Type_124 | undefined> {
+  async getAsV9080(key: Uint8Array): Promise<v9080.Type_137 | undefined> {
     assert(this.isV9080)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9080(keys: Uint8Array[]): Promise<(v9080.Type_137 | undefined)[]> {
+    assert(this.isV9080)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1610,9 +2061,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9090(key: Uint8Array): Promise<v9090.Type_124 | undefined> {
+  async getAsV9090(key: Uint8Array): Promise<v9090.Type_137 | undefined> {
     assert(this.isV9090)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9090(keys: Uint8Array[]): Promise<(v9090.Type_137 | undefined)[]> {
+    assert(this.isV9090)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1625,9 +2081,14 @@ export class Instance2CollectiveProposalOfStorage {
   /**
    *  Actual proposal for a given hash, if it's current.
    */
-  async getAsV9100(key: Uint8Array): Promise<v9100.Type_124 | undefined> {
+  async getAsV9100(key: Uint8Array): Promise<v9100.Type_137 | undefined> {
     assert(this.isV9100)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', key)
+  }
+
+  async getManyAsV9100(keys: Uint8Array[]): Promise<(v9100.Type_137 | undefined)[]> {
+    assert(this.isV9100)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Instance2Collective', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1656,6 +2117,11 @@ export class TechnicalCommitteeProposalOfStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', key)
   }
 
+  async getManyAsV9111(keys: v9111.H256[]): Promise<(v9111.Call | undefined)[]> {
+    assert(this.isV9111)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
+  }
+
   /**
    *  Actual proposal for a given hash, if it's current.
    */
@@ -1669,6 +2135,11 @@ export class TechnicalCommitteeProposalOfStorage {
   async getAsV9122(key: v9122.H256): Promise<v9122.Call | undefined> {
     assert(this.isV9122)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', key)
+  }
+
+  async getManyAsV9122(keys: v9122.H256[]): Promise<(v9122.Call | undefined)[]> {
+    assert(this.isV9122)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1686,6 +2157,11 @@ export class TechnicalCommitteeProposalOfStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', key)
   }
 
+  async getManyAsV9130(keys: v9130.H256[]): Promise<(v9130.Call | undefined)[]> {
+    assert(this.isV9130)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
+  }
+
   /**
    *  Actual proposal for a given hash, if it's current.
    */
@@ -1699,6 +2175,11 @@ export class TechnicalCommitteeProposalOfStorage {
   async getAsV9160(key: v9160.H256): Promise<v9160.Call | undefined> {
     assert(this.isV9160)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', key)
+  }
+
+  async getManyAsV9160(keys: v9160.H256[]): Promise<(v9160.Call | undefined)[]> {
+    assert(this.isV9160)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1716,6 +2197,11 @@ export class TechnicalCommitteeProposalOfStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', key)
   }
 
+  async getManyAsV9170(keys: v9170.H256[]): Promise<(v9170.Call | undefined)[]> {
+    assert(this.isV9170)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
+  }
+
   /**
    *  Actual proposal for a given hash, if it's current.
    */
@@ -1731,6 +2217,11 @@ export class TechnicalCommitteeProposalOfStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', key)
   }
 
+  async getManyAsV9180(keys: v9180.H256[]): Promise<(v9180.Call | undefined)[]> {
+    assert(this.isV9180)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
+  }
+
   /**
    *  Actual proposal for a given hash, if it's current.
    */
@@ -1744,6 +2235,31 @@ export class TechnicalCommitteeProposalOfStorage {
   async getAsV9190(key: v9190.H256): Promise<v9190.Call | undefined> {
     assert(this.isV9190)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', key)
+  }
+
+  async getManyAsV9190(keys: v9190.H256[]): Promise<(v9190.Call | undefined)[]> {
+    assert(this.isV9190)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9220() {
+    return this.ctx._chain.getStorageItemTypeHash('TechnicalCommittee', 'ProposalOf') === '4498453a1226fec5bf63af9bd29732d3c48e950007698929b56326f760588995'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9220(key: v9220.H256): Promise<v9220.Call | undefined> {
+    assert(this.isV9220)
+    return this.ctx._chain.getStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', key)
+  }
+
+  async getManyAsV9220(keys: v9220.H256[]): Promise<(v9220.Call | undefined)[]> {
+    assert(this.isV9220)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
   }
 
   /**
@@ -1776,6 +2292,11 @@ export class TipsTipsStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Tips', 'Tips', key)
   }
 
+  async getManyAsV9111(keys: v9111.H256[]): Promise<(v9111.OpenTip | undefined)[]> {
+    assert(this.isV9111)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Tips', 'Tips', keys.map(k => [k]))
+  }
+
   /**
    * Checks whether the storage item is defined for the current chain version.
    */
@@ -1802,6 +2323,11 @@ export class TreasuryBountiesStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Treasury', 'Bounties', key)
   }
 
+  async getManyAsV2025(keys: number[]): Promise<(v2025.Bounty | undefined)[]> {
+    assert(this.isV2025)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Treasury', 'Bounties', keys.map(k => [k]))
+  }
+
   /**
    * Checks whether the storage item is defined for the current chain version.
    */
@@ -1826,6 +2352,11 @@ export class TreasuryProposalsStorage {
   async getAsV1020(key: number): Promise<v1020.TreasuryProposal | undefined> {
     assert(this.isV1020)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Treasury', 'Proposals', key)
+  }
+
+  async getManyAsV1020(keys: number[]): Promise<(v1020.TreasuryProposal | undefined)[]> {
+    assert(this.isV1020)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Treasury', 'Proposals', keys.map(k => [k]))
   }
 
   /**
@@ -1858,6 +2389,11 @@ export class TreasuryTipsStorage {
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Treasury', 'Tips', key)
   }
 
+  async getManyAsV1038(keys: Uint8Array[]): Promise<(v1038.OpenTipTo225 | undefined)[]> {
+    assert(this.isV1038)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Treasury', 'Tips', keys.map(k => [k]))
+  }
+
   /**
    *  Tips that are not yet completed. Keyed by the hash of `(reason, who)` from the value.
    *  This has the insecure enumerable hash function since the key itself is already
@@ -1875,6 +2411,11 @@ export class TreasuryTipsStorage {
   async getAsV2013(key: Uint8Array): Promise<v2013.OpenTip | undefined> {
     assert(this.isV2013)
     return this.ctx._chain.getStorage(this.ctx.block.hash, 'Treasury', 'Tips', key)
+  }
+
+  async getManyAsV2013(keys: Uint8Array[]): Promise<(v2013.OpenTip | undefined)[]> {
+    assert(this.isV2013)
+    return this.ctx._chain.queryStorage(this.ctx.block.hash, 'Treasury', 'Tips', keys.map(k => [k]))
   }
 
   /**
