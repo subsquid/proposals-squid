@@ -3,7 +3,7 @@ import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { DemocracyCancelledEvent } from '../../../types/events'
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 
 function getEventData(ctx: EventContext): number {
     const event = new DemocracyCancelledEvent(ctx)
@@ -16,11 +16,19 @@ function getEventData(ctx: EventContext): number {
     }
 }
 
-export async function handleCancelled(ctx: EventHandlerContext) {
+export async function handleCancelled(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
     const index = getEventData(ctx)
 
     const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.Referendum, {
-        status: ProposalStatus.Cancelled,
+        block: ctx.block,
+        status: ProposalStatus.Cancelled,       
         isEnded: true,
     })
     if (!proposal) {

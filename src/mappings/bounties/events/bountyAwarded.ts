@@ -1,11 +1,10 @@
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { BountiesBountyAwardedEvent, TreasuryBountyAwardedEvent } from '../../../types/events'
 import { ss58codec } from '../../../common/tools'
-import config from '../../../config'
 
 interface BountyEventData {
     index: number
@@ -44,11 +43,20 @@ function getBountyEventData(ctx: EventContext): BountyEventData {
     }
 }
 
-export async function handleAwarded(ctx: EventHandlerContext) {
-    const getEventData = ctx.event.section === 'bounties' ? getBountyEventData : getTreasuryEventData
+export async function handleAwarded(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
+    const section = ctx.event.name.split('.')[0]
+    const getEventData = section === 'Bounties' ? getBountyEventData : getTreasuryEventData
     const { index, beneficiary } = getEventData(ctx)
 
     const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.Bounty, {
+        block: ctx.block,
         status: ProposalStatus.Awarded,
         isEnded: true,
     })
@@ -58,5 +66,5 @@ export async function handleAwarded(ctx: EventHandlerContext) {
     }
 
     proposal.payee = ss58codec.encode(beneficiary)
-    await proposalManager.update(ctx, proposal)
+    await proposalManager.update(ctx.store, proposal, { block: ctx.block })
 }

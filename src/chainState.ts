@@ -1,4 +1,4 @@
-import { BlockHandlerContext, Store } from '@subsquid/substrate-processor'
+import { BlockHandlerContext } from '@subsquid/substrate-processor'
 import { Chain, ChainState, RelayChain, Token } from './model'
 import {
     BalancesAccountStorage,
@@ -20,10 +20,11 @@ import { ChainInfo } from './common/types'
 import { Chain as ProcessorChain } from '@subsquid/substrate-processor/lib/chain'
 import { ResilientRpcClient } from '@subsquid/rpc-client/lib/resilient'
 import * as sto from '@subsquid/substrate-processor/lib/util/storage'
+import { Store } from '@subsquid/typeorm-store'
 
 let lastStateTimestamp = 0
 
-export async function handleChainState(ctx: BlockHandlerContext) {
+export async function handleChainState(ctx: BlockHandlerContext<Store>) {
     if (!lastStateTimestamp) {
         const lastChainState = await getLastChainState(ctx.store)
         if (lastChainState) lastStateTimestamp = lastChainState.timestamp?.getTime() || 0
@@ -36,7 +37,7 @@ export async function handleChainState(ctx: BlockHandlerContext) {
     }
 }
 
-async function saveChainState(ctx: BlockHandlerContext) {
+async function saveChainState(ctx: BlockHandlerContext<Store>) {
     const state = new ChainState({ id: ctx.block.id })
 
     state.chain = await getChainInfo(ctx.store)
@@ -52,7 +53,7 @@ async function saveChainState(ctx: BlockHandlerContext) {
 }
 
 async function getChainInfo(store: Store) {
-    const id = config.chainName
+    const id = config.chain.name
 
     let chain = await store.findOne(Chain, id, { cache: true })
 
@@ -71,7 +72,7 @@ async function getChainInfo(store: Store) {
                 : null,
         })
 
-        await store.insert(Chain, chain)
+        await store.save(chain)
     }
 
     return chain

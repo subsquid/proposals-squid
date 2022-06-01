@@ -1,4 +1,4 @@
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
@@ -16,10 +16,18 @@ function getEventData(ctx: EventContext): number {
     }
 }
 
-export async function handleNotPassed(ctx: EventHandlerContext) {
+export async function handleNotPassed(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
     const index = getEventData(ctx)
 
     const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.Referendum, {
+        block: ctx.block,
         status: ProposalStatus.NotPassed,
         isEnded: true,
     })

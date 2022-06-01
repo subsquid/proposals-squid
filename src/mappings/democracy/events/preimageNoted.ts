@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { toHex } from '@subsquid/substrate-processor'
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 import { DemocracyPreimageNotedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext, StorageContext } from '../../../types/support'
@@ -95,7 +95,14 @@ async function getStorageData(ctx: StorageContext, hash: Uint8Array): Promise<Pr
     }
 }
 
-export async function handlePreimageNoted(ctx: EventHandlerContext) {
+export async function handlePreimageNoted(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
     const { hash, provider, deposit } = getEventData(ctx)
     const hexHash = toHex(hash)
 

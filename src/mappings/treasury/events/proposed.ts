@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 import { TreasuryProposedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
-import config from '../../../config'
 import { ss58codec } from '../../../common/tools'
 import { storage } from '../../../storage'
 
@@ -30,18 +29,26 @@ function getEventData(ctx: EventContext): TreasuryProposalEventData {
     }
 }
 
-export async function handleProposed(ctx: EventHandlerContext) {
+export async function handleProposed(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
     const { index } = getEventData(ctx)
 
     const storageData = await storage.treasury.getProposals(ctx, index)
     if (!storageData) {
-        (new StorageNotExists(ProposalType.TreasuryProposal, index, ctx.block.height))
+        new StorageNotExists(ProposalType.TreasuryProposal, index, ctx.block.height)
         return
     }
 
     const { proposer, beneficiary, value, bond } = storageData
 
-    await proposalManager.create(ctx, {
+    await proposalManager.create(ctx.store, {
+        id: ctx.event.id,
         index,
         type: ProposalType.TreasuryProposal,
         proposer: ss58codec.encode(proposer),
@@ -49,5 +56,6 @@ export async function handleProposed(ctx: EventHandlerContext) {
         reward: value,
         deposit: bond,
         payee: ss58codec.encode(beneficiary),
+        block: ctx.block,
     })
 }

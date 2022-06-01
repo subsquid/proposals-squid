@@ -1,11 +1,10 @@
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { BountiesBountyClaimedEvent, TreasuryBountyClaimedEvent } from '../../../types/events'
 import { ss58codec } from '../../../common/tools'
-import config from '../../../config'
 
 interface BountyEventData {
     index: number
@@ -48,20 +47,29 @@ function getBountyEventData(ctx: EventContext): BountyEventData {
     }
 }
 
-export async function handleClaimed(ctx: EventHandlerContext) {
-    const getEventData = ctx.event.section === 'bounties' ? getBountyEventData : getTreasuryEventData
+export async function handleClaimed(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
+    const section = ctx.event.name.split('.')[0]
+    const getEventData = section === 'Bounties' ? getBountyEventData : getTreasuryEventData
     const { index, payout, beneficiary } = getEventData(ctx)
 
     const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.Bounty, {
+        block: ctx.block,
         status: ProposalStatus.Claimed,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height))
+        new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height)
         return
     }
 
     proposal.payee = ss58codec.encode(beneficiary)
     proposal.reward = payout
 
-    await proposalManager.update(ctx, proposal)
+    await proposalManager.update(ctx.store, proposal, { block: ctx.block })
 }

@@ -139,6 +139,7 @@ export class ProposalManager extends Manager<Proposal> {
         index: number,
         type: IndexProposal,
         options: {
+            block: SubstrateBlock
             status: ProposalStatus
             isEnded?: boolean
         }
@@ -148,6 +149,7 @@ export class ProposalManager extends Manager<Proposal> {
         hash: string,
         type: HashProposal,
         options: {
+            block: SubstrateBlock
             status: ProposalStatus
             isEnded?: boolean
         }

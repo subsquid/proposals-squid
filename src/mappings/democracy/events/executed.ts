@@ -3,7 +3,7 @@ import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { DemocracyExecutedEvent } from '../../../types/events'
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 
 function getEventData(ctx: EventContext): number {
     const event = new DemocracyExecutedEvent(ctx)
@@ -24,10 +24,18 @@ function getEventData(ctx: EventContext): number {
     }
 }
 
-export async function handleExecuted(ctx: EventHandlerContext) {
+export async function handleExecuted(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
     const index = getEventData(ctx)
 
     const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.Referendum, {
+        block: ctx.block,
         status: ProposalStatus.Executed,
         isEnded: true,
     })

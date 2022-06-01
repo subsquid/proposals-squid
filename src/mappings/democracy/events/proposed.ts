@@ -6,7 +6,7 @@ import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { ss58codec } from '../../../common/tools'
 import { storage } from '../../../storage'
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 
 interface DemocracyProposalEventData {
     index: number
@@ -32,7 +32,14 @@ function getEventData(ctx: EventContext): DemocracyProposalEventData {
     }
 }
 
-export async function handleProposed(ctx: EventHandlerContext) {
+export async function handleProposed(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
     const { index, deposit } = getEventData(ctx)
 
     const storageData = await storage.democracy.getProposals(ctx)

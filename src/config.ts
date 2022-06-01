@@ -1,12 +1,13 @@
 import { ProcessorConfig } from './common/processorConfig'
+import { Store } from '@subsquid/typeorm-store'
 
-export default {
+const config: ProcessorConfig<Store> = {
     chain: {
         name: 'kusama',
         prefix: 'kusama',
     },
     dataSource: {
-        archive: 'https://kusama.indexer.gc.subsquid.io/v4/graphql',
+        archive: 'https://kusama.archive.subsquid.io/graphql',
         chain: 'wss://kusama.api.onfinality.io/public-ws',
     },
     typesBundle: 'kusama',
@@ -14,4 +15,6 @@ export default {
     blockRange: {
         from: 0,
     },
-} as ProcessorConfig
+}
+
+export default config

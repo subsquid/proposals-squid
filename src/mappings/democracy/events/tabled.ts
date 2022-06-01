@@ -1,4 +1,4 @@
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 import { DemocracyTabledEvent } from '../../../types/events'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
@@ -32,12 +32,18 @@ function getEventData(ctx: EventContext): TabledEventData {
     }
 }
 
-
-
-export async function handleTabled(ctx: EventHandlerContext) {
+export async function handleTabled(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
     const { index } = getEventData(ctx)
 
     const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.DemocracyProposal, {
+        block: ctx.block,
         status: ProposalStatus.Tabled,
     })
     if (!proposal) {

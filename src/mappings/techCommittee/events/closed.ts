@@ -1,5 +1,5 @@
 import { toHex } from '@subsquid/substrate-processor'
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
@@ -17,14 +17,22 @@ function getEventData(ctx: EventContext): Uint8Array {
     }
 }
 
-export async function handleClosed(ctx: EventHandlerContext) {
+export async function handleClosed(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
     const hash = getEventData(ctx)
 
     const hexHash = toHex(hash)
     const proposal = await proposalManager.updateStatus(ctx.store, hexHash, ProposalType.TechCommitteeProposal, {
+        block: ctx.block,
         status: ProposalStatus.Closed,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.TechCommitteeProposal, hexHash, ctx.block.height))
+        new MissingProposalRecord(ProposalType.TechCommitteeProposal, hexHash, ctx.block.height)
     }
 }

@@ -1,14 +1,14 @@
-import { BlockHandlerContext, EventHandlerContext } from '@subsquid/substrate-processor'
+import { Store } from '@subsquid/typeorm-store'
 import { Vote } from '../model'
 import { Manager } from './Manager'
 
 export class VoteManager extends Manager<Vote> {
-    async get(ctx: EventHandlerContext | BlockHandlerContext, id: string): Promise<Vote | undefined> {
-        return await ctx.store.findOne(Vote, id, { cache: true })
+    async get(store: Store, id: string): Promise<Vote | undefined> {
+        return await store.findOne(Vote, id, { cache: true })
     }
 
-    async save(ctx: EventHandlerContext | BlockHandlerContext, item: Vote): Promise<Vote> {
-        return await ctx.store.save(item)
+    async save(store: Store, item: Vote): Promise<Vote> {
+        return await store.save(item)
     }
 }
 

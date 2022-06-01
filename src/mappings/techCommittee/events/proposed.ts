@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { toHex } from '@subsquid/substrate-processor'
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 import { TechnicalCommitteeProposedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
@@ -39,7 +39,14 @@ function getEventData(ctx: EventContext): TechnicalCommitteeProposalEventData {
     }
 }
 
-export async function handleProposed(ctx: EventHandlerContext) {
+export async function handleProposed(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
     const { index, proposer, hash, threshold } = getEventData(ctx)
 
     const storageData = await storage.techCommittee.getProposalOf(ctx, hash)
@@ -51,7 +58,8 @@ export async function handleProposed(ctx: EventHandlerContext) {
     const { section, method, args, description } = parseProposalCall(ctx._chain, storageData)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
-    await proposalManager.create(ctx, {
+    await proposalManager.create(ctx.store, {
+        id: ctx.event.id,
         index,
         type: ProposalType.TechCommitteeProposal,
         hash: toHex(hash),
@@ -64,5 +72,6 @@ export async function handleProposed(ctx: EventHandlerContext) {
             description,
             args: args as Record<string, unknown>,
         },
+        block: ctx.block,
     })
 }

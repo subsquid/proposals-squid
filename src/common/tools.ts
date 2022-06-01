@@ -5,7 +5,7 @@ import { Parser } from './parser'
 import { Codec } from '@subsquid/scale-codec'
 import config from '../config'
 
-export const ss58codec = ss58.codec(config.prefix)
+export const ss58codec = ss58.codec(config.chain.prefix)
 
 interface Call {
     __kind: string

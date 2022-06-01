@@ -1,5 +1,5 @@
 import { toHex } from '@subsquid/substrate-processor'
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 import { DemocracyStartedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
@@ -32,7 +32,14 @@ function getEventData(ctx: EventContext): ReferendumEventData {
     }
 }
 
-export async function handleStarted(ctx: EventHandlerContext) {
+export async function handleStarted(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
     const { index, threshold } = getEventData(ctx)
 
     const storageData = await storage.democracy.getReferendumInfoOf(ctx, index)

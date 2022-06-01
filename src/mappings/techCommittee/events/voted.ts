@@ -1,8 +1,7 @@
 import { toHex } from '@subsquid/substrate-processor'
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 import { UnknownVersionError } from '../../../common/errors'
 import { ss58codec } from '../../../common/tools'
-import config from '../../../config'
 import { proposalManager, voteManager } from '../../../managers'
 import { ProposalType, Vote, VoteDecision } from '../../../model'
 import { TechnicalCommitteeVotedEvent } from '../../../types/events'
@@ -35,14 +34,21 @@ function getEventData(ctx: EventContext): TechnicalCommitteeVoteEventData {
     }
 }
 
-export async function handleVoted(ctx: EventHandlerContext) {
+export async function handleVoted(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
     const { voter, hash, decision } = getEventData(ctx)
 
     const hexHash = toHex(hash)
-    const proposal = await proposalManager.get(ctx, hexHash, ProposalType.TechCommitteeProposal)
+    const proposal = await proposalManager.get(ctx.store, hexHash, ProposalType.TechCommitteeProposal)
 
     await voteManager.save(
-        ctx,
+        ctx.store,
         new Vote({
             id: ctx.event.id,
             voter: ss58codec.encode(voter),

@@ -1,4 +1,4 @@
-import { EventHandlerContext } from '../../../common/contexts'
+import { EventHandlerContext } from '../../contexts'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
@@ -26,14 +26,22 @@ function getEventData(ctx: EventContext): TreasuryEventData {
     }
 }
 
-export async function handleAwarded(ctx: EventHandlerContext) {
+export async function handleAwarded(
+    ctx: EventHandlerContext<{
+        event: {
+            name: true
+            args: true
+        }
+    }>
+) {
     const { index } = getEventData(ctx)
 
     const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.TreasuryProposal, {
+        block: ctx.block,
         status: ProposalStatus.Awarded,
         isEnded: true,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.TreasuryProposal, index, ctx.block.height))
+        new MissingProposalRecord(ProposalType.TreasuryProposal, index, ctx.block.height)
     }
 }
