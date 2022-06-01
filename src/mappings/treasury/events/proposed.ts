@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { EventHandlerContext } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../../common/contexts'
 import { TreasuryProposedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'

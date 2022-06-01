@@ -1,4 +1,5 @@
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../../common/contexts'
 import { TipsNewTipEvent, TreasuryNewTipEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'

@@ -1,9 +1,9 @@
-import { EventHandlerContext } from '@subsquid/substrate-processor'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { proposalManager } from '../../../managers'
 import { DemocracyExecutedEvent } from '../../../types/events'
+import { EventHandlerContext } from '../../../common/contexts'
 
 function getEventData(ctx: EventContext): number {
     const event = new DemocracyExecutedEvent(ctx)
@@ -27,7 +27,7 @@ function getEventData(ctx: EventContext): number {
 export async function handleExecuted(ctx: EventHandlerContext) {
     const index = getEventData(ctx)
 
-    const proposal = await proposalManager.updateStatus(ctx, index, ProposalType.Referendum, {
+    const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.Referendum, {
         status: ProposalStatus.Executed,
         isEnded: true,
     })

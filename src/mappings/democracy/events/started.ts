@@ -1,4 +1,5 @@
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../../common/contexts'
 import { DemocracyStartedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
@@ -10,17 +11,6 @@ import { Threshold } from '../../../common/types'
 interface ReferendumEventData {
     index: number
     threshold: Threshold
-}
-
-function fixThreshold(ctx: EventHandlerContext) {
-    const threshold = ctx.event.params[1].value as string
-    if (threshold.toLowerCase() === 'simplemajority') {
-        ctx.event.params[1].value = 'SimpleMajority'
-    } else if (threshold.toLowerCase() === 'supermajorityapproval') {
-        ctx.event.params[1].value = 'SuperMajorityApprove'
-    } else {
-        ctx.event.params[1].value = 'SuperMajorityAgainst'
-    }
 }
 
 function getEventData(ctx: EventContext): ReferendumEventData {
@@ -43,8 +33,6 @@ function getEventData(ctx: EventContext): ReferendumEventData {
 }
 
 export async function handleStarted(ctx: EventHandlerContext) {
-    fixThreshold(ctx)
-
     const { index, threshold } = getEventData(ctx)
 
     const storageData = await storage.democracy.getReferendumInfoOf(ctx, index)
@@ -54,18 +42,20 @@ export async function handleStarted(ctx: EventHandlerContext) {
     }
 
     if (storageData.status === 'Finished') {
-        console.warn(`Referendum with index ${index} has already finished at block ${ctx.block.height}`)
+        ctx.log.warn(`Referendum with index ${index} has already finished at block ${ctx.block.height}`)
         return
     }
 
     const { hash } = storageData
     const hexHash = toHex(hash)
 
-    await proposalManager.create(ctx, {
+    await proposalManager.create(ctx.store, {
+        id: ctx.event.id,
         index,
         type: ProposalType.Referendum,
         threshold,
         status: ProposalStatus.Started,
         hash: hexHash,
+        block: ctx.block,
     })
 }

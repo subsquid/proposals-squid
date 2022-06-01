@@ -1,4 +1,5 @@
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../../common/contexts'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
@@ -37,10 +38,10 @@ export async function handlePreimageUsed(ctx: EventHandlerContext) {
 
     const hexHash = toHex(hash)
 
-    const proposal = await proposalManager.updateStatus(ctx, hexHash, ProposalType.Preimage, {
+    const proposal = await proposalManager.updateStatus(ctx.store, hexHash, ProposalType.Preimage, {
         status: ProposalStatus.Used,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height))
+        new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height)
     }
 }

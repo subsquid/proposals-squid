@@ -1,12 +1,8 @@
-import { EventHandlerContext, ExtrinsicHandlerContext, toHex } from '@subsquid/substrate-processor'
+import { CallHandlerContext } from '../../../common/contexts'
 import { UnknownVersionError } from '../../../common/errors'
-import { ss58codec } from '../../../common/tools'
-import config from '../../../config'
 import { proposalManager, voteManager } from '../../../managers'
 import { ProposalType, SplitVoteBalance, StandardVoteBalance, Vote, VoteBalance, VoteDecision } from '../../../model'
 import { DemocracyVoteCall } from '../../../types/calls'
-import { CouncilVotedEvent } from '../../../types/events'
-import { EventContext } from '../../../types/support'
 
 type DemocracyVote =
     | {
@@ -29,7 +25,7 @@ interface DemocracyVoteCallData {
     vote: DemocracyVote
 }
 
-function getCallData(ctx: ExtrinsicHandlerContext): DemocracyVoteCallData {
+function getCallData(ctx: CallHandlerContext): DemocracyVoteCallData {
     const event = new DemocracyVoteCall(ctx)
     if (event.isV1020) {
         const { refIndex, vote } = event.asV1020
@@ -87,10 +83,10 @@ function getCallData(ctx: ExtrinsicHandlerContext): DemocracyVoteCallData {
     }
 }
 
-export async function handleVote(ctx: ExtrinsicHandlerContext) {
+export async function handleVote(ctx: CallHandlerContext) {
     const { index, vote } = getCallData(ctx)
 
-    const proposal = await proposalManager.get(ctx, index, ProposalType.Referendum)
+    const proposal = await proposalManager.get(ctx.store, index, ProposalType.Referendum)
     if (!proposal) return
 
     let decision: VoteDecision
@@ -124,8 +120,8 @@ export async function handleVote(ctx: ExtrinsicHandlerContext) {
     await voteManager.save(
         ctx,
         new Vote({
-            id: ctx.event.id,
-            voter: ctx.extrinsic.signer,
+            id: ctx.call.id,
+            voter: ctx.extrinsic.signature?.address,
             createdAt: ctx.block.height,
             decision,
             lockPeriod,

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as ss58 from '@subsquid/ss58'
-import { toCamelCase } from '@subsquid/util'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
 import { Parser } from './parser'
 import { Codec } from '@subsquid/scale-codec'
@@ -17,7 +16,7 @@ export function parseProposalCall(chain: Chain, call: Call) {
     const section = call.__kind as string
     const method = call.value.__kind as string
 
-    const name = `${toCamelCase(section)}.${method}`
+    const name = `${section}.${method}`
 
     const description = ((chain as any).calls.get(name).docs as string[]).join('\n')
 

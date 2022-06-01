@@ -1,15 +1,20 @@
 import { SubstrateProcessor } from '@subsquid/substrate-processor'
 import { handleChainState } from './chainState'
+import { TypeormDatabase } from '@subsquid/typeorm-store'
 import config from './config'
 import * as modules from './mappings'
 
-const processor = new SubstrateProcessor(`${config.chainName}-processor`)
+const db = new TypeormDatabase(`${config.chainName}-processor`)
+
+const processor = new SubstrateProcessor(db)
 
 processor.setTypesBundle(config.typesBundle)
 processor.setBatchSize(config.batchSize || 100)
 processor.setDataSource(config.dataSource)
 processor.setPrometheusPort(config.port || 3000)
 processor.setBlockRange(config.blockRange || { from: 0 })
+
+modules.democracy.events.handleTabled.call(processor)
 
 processor.addEventHandler('democracy.Proposed', modules.democracy.events.handleProposed)
 processor.addEventHandler('democracy.Tabled', modules.democracy.events.handleTabled)
@@ -18,7 +23,7 @@ processor.addEventHandler('democracy.Passed', modules.democracy.events.handlePas
 processor.addEventHandler('democracy.NotPassed', modules.democracy.events.handleNotPassed)
 processor.addEventHandler('democracy.Cancelled', modules.democracy.events.handleCancelled)
 processor.addEventHandler('democracy.Executed', modules.democracy.events.handleExecuted)
-processor.addExtrinsicHandler('democracy.vote', modules.democracy.extrinsics.handleVote)
+processor.addCallHandler('democracy.vote', modules.democracy.extrinsics.handleVote)
 
 processor.addEventHandler('democracy.PreimageNoted', modules.democracy.events.handlePreimageNoted)
 processor.addEventHandler('democracy.PreimageUsed', modules.democracy.events.handlePreimageUsed)

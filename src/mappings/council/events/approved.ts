@@ -1,4 +1,5 @@
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../../common/contexts'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
@@ -20,7 +21,7 @@ export async function handleApproved(ctx: EventHandlerContext) {
     const hash = getEventData(ctx)
 
     const hexHash = toHex(hash)
-    const proposal = await proposalManager.updateStatus(ctx, hexHash, ProposalType.CouncilMotion, {
+    const proposal = await proposalManager.updateStatus(ctx.store, hexHash, ProposalType.CouncilMotion, {
         status: ProposalStatus.Approved,
         isEnded: true,
     })

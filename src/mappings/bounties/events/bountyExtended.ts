@@ -1,4 +1,4 @@
-import { EventHandlerContext } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../../common/contexts'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
@@ -42,7 +42,7 @@ export async function handleExtended(ctx: EventHandlerContext) {
     const getEventData = ctx.event.section === 'bounties' ? getBountyEventData : getTreasuryEventData
     const { index } = getEventData(ctx)
 
-    const proposal = await proposalManager.updateStatus(ctx, index, ProposalType.Bounty, {
+    const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.Bounty, {
         status: ProposalStatus.Extended,
     })
     if (!proposal) {

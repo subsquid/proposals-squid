@@ -1,4 +1,4 @@
-import { EventHandlerContext } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../../common/contexts'
 import { DemocracyTabledEvent } from '../../../types/events'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
@@ -32,13 +32,15 @@ function getEventData(ctx: EventContext): TabledEventData {
     }
 }
 
+
+
 export async function handleTabled(ctx: EventHandlerContext) {
     const { index } = getEventData(ctx)
 
-    const proposal = await proposalManager.updateStatus(ctx, index, ProposalType.DemocracyProposal, {
+    const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.DemocracyProposal, {
         status: ProposalStatus.Tabled,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.DemocracyProposal, index, ctx.block.height))
+        new MissingProposalRecord(ProposalType.DemocracyProposal, index, ctx.block.height)
     }
 }

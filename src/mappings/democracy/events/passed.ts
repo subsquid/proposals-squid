@@ -1,4 +1,4 @@
-import { EventHandlerContext } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../../common/contexts'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
@@ -19,11 +19,11 @@ function getEventData(ctx: EventContext): number {
 export async function handlePassed(ctx: EventHandlerContext) {
     const index = getEventData(ctx)
 
-    const proposal = await proposalManager.updateStatus(ctx, index, ProposalType.Referendum, {
+    const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.Referendum, {
         status: ProposalStatus.Passed,
         isEnded: true,
     })
     if (!proposal) {
-        (new MissingProposalRecord(ProposalType.Referendum, index, ctx.block.height))
+        new MissingProposalRecord(ProposalType.Referendum, index, ctx.block.height)
     }
 }

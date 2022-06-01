@@ -1,4 +1,5 @@
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../../common/contexts'
 import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
@@ -47,7 +48,7 @@ export async function handleClosed(ctx: EventHandlerContext) {
     const { hash, reward } = getEventData(ctx)
 
     const hexHash = toHex(hash)
-    const proposal = await proposalManager.updateStatus(ctx, hexHash, ProposalType.Tip, {
+    const proposal = await proposalManager.updateStatus(ctx.store, hexHash, ProposalType.Tip, {
         status: ProposalStatus.Closed,
         isEnded: true,
     })

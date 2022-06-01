@@ -1,4 +1,5 @@
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../../common/contexts'
 import { UnknownVersionError } from '../../../common/errors'
 import { ss58codec } from '../../../common/tools'
 import config from '../../../config'

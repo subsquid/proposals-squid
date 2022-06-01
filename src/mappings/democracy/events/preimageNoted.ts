@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../../common/contexts'
 import { DemocracyPreimageNotedEvent } from '../../../types/events'
 import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
 import { EventContext, StorageContext } from '../../../types/support'
@@ -125,17 +126,19 @@ export async function handlePreimageNoted(ctx: EventHandlerContext) {
             args: args as Record<string, unknown>,
         }
     } catch (e) {
-        console.warn(`Failed to decode ProposedCall of Preimage ${hexHash} at block ${ctx.block.height}:\n ${e}`)
+        ctx.log.warn(`Failed to decode ProposedCall of Preimage ${hexHash} at block ${ctx.block.height}:\n ${e}`)
     }
 
     const proposer = ss58codec.encode(provider)
 
-    await proposalManager.create(ctx, {
+    await proposalManager.create(ctx.store, {
+        id: ctx.event.id,
         hash: hexHash,
         type: ProposalType.Preimage,
         proposer,
         deposit,
         call: decodedCall,
         status: ProposalStatus.Noted,
+        block: ctx.block,
     })
 }
