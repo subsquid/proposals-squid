@@ -147,6 +147,13 @@ export interface Type_198_Tips {
   value: TipsCall
 }
 
+export interface AccountInfoWithDualRefCount {
+  nonce: number
+  consumers: number
+  providers: number
+  data: AccountData
+}
+
 export type SystemCall = SystemCall_fill_block | SystemCall_remark | SystemCall_set_heap_pages | SystemCall_set_code | SystemCall_set_code_without_checks | SystemCall_set_changes_trie_config | SystemCall_set_storage | SystemCall_kill_storage | SystemCall_kill_prefix
 
 /**
@@ -4420,6 +4427,13 @@ export interface TipsCall_close_tip {
 export interface TipsCall_slash_tip {
   __kind: 'slash_tip'
   hash: Uint8Array
+}
+
+export interface AccountData {
+  free: bigint
+  reserved: bigint
+  miscFrozen: bigint
+  feeFrozen: bigint
 }
 
 export interface ChangesTrieConfiguration {

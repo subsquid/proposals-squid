@@ -1,5 +1,12 @@
 import type {Result} from './support'
 
+export interface AccountData {
+  free: bigint
+  reserved: bigint
+  miscFrozen: bigint
+  feeFrozen: bigint
+}
+
 export type Type_112 = Type_112_System | Type_112_Babe | Type_112_Timestamp | Type_112_Indices | Type_112_Balances | Type_112_Authorship | Type_112_Staking | Type_112_Offences | Type_112_Session | Type_112_FinalityTracker | Type_112_Grandpa | Type_112_ImOnline | Type_112_AuthorityDiscovery | Type_112_Democracy | Type_112_Council | Type_112_TechnicalCommittee | Type_112_ElectionsPhragmen | Type_112_TechnicalMembership | Type_112_Treasury | Type_112_Claims | Type_112_Parachains | Type_112_Attestations | Type_112_Slots | Type_112_Registrar | Type_112_Utility | Type_112_Identity | Type_112_Society | Type_112_Recovery | Type_112_Vesting
 
 export interface Type_112_System {
@@ -145,6 +152,12 @@ export interface Type_112_Recovery {
 export interface Type_112_Vesting {
   __kind: 'Vesting'
   value: VestingCall
+}
+
+export interface AccountInfoWithRefCount {
+  nonce: number
+  refcount: number
+  data: AccountData
 }
 
 export type SystemCall = SystemCall_fill_block | SystemCall_remark | SystemCall_set_heap_pages | SystemCall_set_code | SystemCall_set_code_without_checks | SystemCall_set_changes_trie_config | SystemCall_set_storage | SystemCall_kill_storage | SystemCall_kill_prefix | SystemCall_suicide
