@@ -1,5 +1,6 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { Store } from '@subsquid/typeorm-store'
+import { toJSON } from '@subsquid/util-internal-json'
 import { Threshold } from '../common/types'
 import {
     MotionThreshold,
@@ -33,7 +34,7 @@ interface ProposedCallData {
     section: string
     method: string
     description: string
-    args: Record<string, unknown>
+    args?: Record<string, unknown>
 }
 
 interface BaseProposalData {
@@ -288,15 +289,18 @@ export class ProposalManager extends Manager<Proposal> {
         const { id, index, type, status, threshold, hash, call, proposer, block } = data
 
         let group: ProposalGroup | undefined
-        if (call.args['proposalHash']) {
-            const hexHash = call.args['proposalHash'] as string
-            group = await proposalGroupManager.get(store, hexHash, ProposalType.Preimage)
-        } else if (call.args['bountyId']) {
-            const index = call.args['bountyId'] as number
-            group = await proposalGroupManager.get(store, index, ProposalType.Bounty)
-        } else if (call.args['proposalId']) {
-            const index = call.args['proposalId'] as number
-            group = await proposalGroupManager.get(store, index, ProposalType.TreasuryProposal)
+
+        if (call.args) {
+            if (call.args['proposalHash']) {
+                const hexHash = call.args['proposalHash'] as string
+                group = await proposalGroupManager.get(store, hexHash, ProposalType.Preimage)
+            } else if (call.args['bountyId']) {
+                const index = call.args['bountyId'] as number
+                group = await proposalGroupManager.get(store, index, ProposalType.Bounty)
+            } else if (call.args['proposalId']) {
+                const index = call.args['proposalId'] as number
+                group = await proposalGroupManager.get(store, index, ProposalType.TreasuryProposal)
+            }
         }
 
         return new Proposal({
@@ -426,7 +430,7 @@ export class ProposalManager extends Manager<Proposal> {
     }
 
     private createProposedCall(data: ProposedCallData): ProposedCall {
-        return new ProposedCall(data)
+        return new ProposedCall(toJSON(data))
     }
 }
 
