@@ -57,6 +57,7 @@ processor.addEventHandler('Treasury.NewTip', modules.tips.events.handleNewTip)
 processor.addEventHandler('Treasury.TipsClosed', modules.tips.events.handleClosed)
 processor.addEventHandler('Treasury.TipsRetracted', modules.tips.events.handleRetracted)
 processor.addEventHandler('Treasury.TipsSlashed', modules.tips.events.handleSlashed)
+processor.addCallHandler('Treasury.accept_curator', modules.bounties.extrinsic.handleAcceptCurator)
 
 processor.addEventHandler('Tips.NewTip', modules.tips.events.handleNewTip)
 processor.addEventHandler('Tips.TipsClosed', modules.tips.events.handleClosed)
@@ -70,6 +71,7 @@ processor.addEventHandler('Bounties.BountyAwarded', modules.bounties.events.hand
 processor.addEventHandler('Bounties.BountyClaimed', modules.bounties.events.handleClaimed)
 processor.addEventHandler('Bounties.BountyCanceled', modules.bounties.events.handleCanceled)
 processor.addEventHandler('Bounties.BountyExtended', modules.bounties.events.handleExtended)
+processor.addCallHandler('Bounties.accept_curator', modules.bounties.extrinsic.handleAcceptCurator)
 
 // processor.addPostHook(handleChainState)
 
