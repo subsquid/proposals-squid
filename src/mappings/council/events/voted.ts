@@ -3,7 +3,7 @@ import { EventHandlerContext } from '../../contexts'
 import { UnknownVersionError } from '../../../common/errors'
 import { ss58codec } from '../../../common/tools'
 import { proposalManager, voteManager } from '../../../managers'
-import { ProposalType, Vote, VoteDecision } from '../../../model'
+import { ProposalType, Vote, VoteDecision, VoteType } from '../../../model'
 import { CouncilVotedEvent } from '../../../types/events'
 import { EventContext } from '../../../types/support'
 
@@ -56,6 +56,7 @@ export async function handleVoted(
             decision: decision ? VoteDecision.yes : VoteDecision.no,
             proposal,
             timestamp: new Date(ctx.block.timestamp),
+            type: VoteType.Motion,
         })
     )
 }

@@ -133,6 +133,11 @@ type SplitVoteBalance {
 
 union VoteBalance = StandardVoteBalance | SplitVoteBalance
 
+enum VoteType {
+  Referendum
+  Motion
+}
+
 type Vote @entity {
   id: ID!
   voter: String
@@ -142,6 +147,7 @@ type Vote @entity {
   decision: VoteDecision
   balance: VoteBalance
   lockPeriod: Int
+  type: VoteType
 }
 
 type ProposalGroup @entity {

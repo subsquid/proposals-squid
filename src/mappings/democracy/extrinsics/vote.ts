@@ -1,7 +1,15 @@
 import { CallHandlerContext } from '../../contexts'
 import { UnknownVersionError } from '../../../common/errors'
 import { proposalManager, voteManager } from '../../../managers'
-import { ProposalType, SplitVoteBalance, StandardVoteBalance, Vote, VoteBalance, VoteDecision } from '../../../model'
+import {
+    ProposalType,
+    SplitVoteBalance,
+    StandardVoteBalance,
+    Vote,
+    VoteBalance,
+    VoteDecision,
+    VoteType,
+} from '../../../model'
 import { DemocracyVoteCall } from '../../../types/calls'
 import { CallContext } from '../../../types/support'
 import { getOriginAccountId } from '../../../common/tools'
@@ -131,6 +139,7 @@ export async function handleVote(
             proposal,
             balance,
             timestamp: new Date(ctx.block.timestamp),
+            type: VoteType.Referendum,
         })
     )
 }
