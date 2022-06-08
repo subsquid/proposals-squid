@@ -55,11 +55,11 @@ async function saveChainState(ctx: BlockHandlerContext<Store>) {
 async function getChainInfo(store: Store) {
     const id = config.chain.name
 
-    let chain = await store.findOne(Chain, id, { cache: true })
+    let chain = await store.findOne(Chain, id)
 
     if (!chain) {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const chainInfo = chains.find((ch: ChainInfo) => ch.name === id)!
+        const chainInfo = chains.find((ch: ChainInfo) => ch.name === id)
+        if (!chainInfo) throw new Error(`Unknown chain ${config.chain.name}`)
 
         chain = new Chain({
             id,

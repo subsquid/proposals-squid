@@ -4,11 +4,12 @@ import { Manager } from './Manager'
 
 export class VoteManager extends Manager<Vote> {
     async get(store: Store, id: string): Promise<Vote | undefined> {
-        return await store.findOne(Vote, id, { cache: true })
+        return await store.findOne(Vote, id)
     }
 
     async save(store: Store, item: Vote): Promise<Vote> {
-        return await store.save(item)
+        await store.save(item)
+        return item
     }
 }
 

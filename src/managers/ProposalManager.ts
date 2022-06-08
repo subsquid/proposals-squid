@@ -127,7 +127,7 @@ export class ProposalManager extends Manager<Proposal> {
     async get(store: Store, hashOrIndex: string | number, type: ProposalType): Promise<Proposal | undefined> {
         const condition = typeof hashOrIndex === 'string' ? { hash: hashOrIndex } : { index: hashOrIndex }
 
-        return await store.findOne(Proposal, { type, ...condition }, { cache: true })
+        return await store.findOne(Proposal, { type, ...condition })
     }
 
     async getLast(store: Store, type: ProposalType): Promise<Proposal | undefined> {
@@ -227,7 +227,8 @@ export class ProposalManager extends Manager<Proposal> {
     async update(store: Store, item: Proposal, options: { block: SubstrateBlock }): Promise<Proposal> {
         item.updatedAtBlock = options.block.height
         item.updatedAt = new Date(options.block.timestamp)
-        return await store.save(item)
+        await store.save(item)
+        return item
     }
 
     private async createDemocracyProposal(store: Store, data: DemocracyProposalData): Promise<Proposal> {

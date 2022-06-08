@@ -34,7 +34,7 @@ export class ProposalGroupManager extends Manager<ProposalGroup> {
                 return undefined
         }
 
-        let link = await store.findOne<ProposalGroup>(ProposalGroup, condition, { cache: true })
+        let link = await store.findOne<ProposalGroup>(ProposalGroup, condition)
         if (!link) {
             const id = await this.getId(store)
             link = await this.save(
@@ -50,7 +50,8 @@ export class ProposalGroupManager extends Manager<ProposalGroup> {
     }
 
     async save(store: Store, item: ProposalGroup): Promise<ProposalGroup> {
-        return await store.save(item)
+        await store.save(item)
+        return item
     }
 }
 
