@@ -1,7 +1,13 @@
 import assert from 'assert'
 import {EventContext, Result, deprecateLatest} from './support'
 import * as v1020 from './v1020'
+import * as v1022 from './v1022'
+import * as v1032 from './v1032'
+import * as v1038 from './v1038'
+import * as v1050 from './v1050'
 import * as v2005 from './v2005'
+import * as v2025 from './v2025'
+import * as v2028 from './v2028'
 import * as v9090 from './v9090'
 import * as v9111 from './v9111'
 import * as v9130 from './v9130'
@@ -24,7 +30,7 @@ export class BountiesBountyAwardedEvent {
   /**
    *  A bounty is awarded to a beneficiary. \[index, beneficiary\]
    */
-  get asV2028(): [number, Uint8Array] {
+  get asV2028(): [v2028.BountyIndex, v2028.AccountId] {
     assert(this.isV2028)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -70,7 +76,7 @@ export class BountiesBountyBecameActiveEvent {
   /**
    *  A bounty proposal is funded and became active. \[index\]
    */
-  get asV2028(): number {
+  get asV2028(): v2028.BountyIndex {
     assert(this.isV2028)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -116,7 +122,7 @@ export class BountiesBountyCanceledEvent {
   /**
    *  A bounty is cancelled. \[index\]
    */
-  get asV2028(): number {
+  get asV2028(): v2028.BountyIndex {
     assert(this.isV2028)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -162,7 +168,7 @@ export class BountiesBountyClaimedEvent {
   /**
    *  A bounty is claimed by beneficiary. \[index, payout, beneficiary\]
    */
-  get asV2028(): [number, bigint, Uint8Array] {
+  get asV2028(): [v2028.BountyIndex, v2028.Balance, v2028.AccountId] {
     assert(this.isV2028)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -208,7 +214,7 @@ export class BountiesBountyExtendedEvent {
   /**
    *  A bounty expiry is extended. \[index\]
    */
-  get asV2028(): number {
+  get asV2028(): v2028.BountyIndex {
     assert(this.isV2028)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -254,7 +260,7 @@ export class BountiesBountyProposedEvent {
   /**
    *  New bounty proposal. \[index\]
    */
-  get asV2028(): number {
+  get asV2028(): v2028.BountyIndex {
     assert(this.isV2028)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -300,7 +306,7 @@ export class BountiesBountyRejectedEvent {
   /**
    *  A bounty proposal was rejected; funds were slashed. \[index, bond\]
    */
-  get asV2028(): [number, bigint] {
+  get asV2028(): [v2028.BountyIndex, v2028.Balance] {
     assert(this.isV2028)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -346,7 +352,7 @@ export class CouncilApprovedEvent {
   /**
    *  A motion was approved by the required threshold.
    */
-  get asV1020(): Uint8Array {
+  get asV1020(): v1020.Hash {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -392,7 +398,7 @@ export class CouncilClosedEvent {
   /**
    *  A proposal was closed after its duration was up.
    */
-  get asV1050(): [Uint8Array, number, number] {
+  get asV1050(): [v1050.Hash, v1050.MemberCount, v1050.MemberCount] {
     assert(this.isV1050)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -438,7 +444,7 @@ export class CouncilDisapprovedEvent {
   /**
    *  A motion was not approved by the required threshold.
    */
-  get asV1020(): Uint8Array {
+  get asV1020(): v1020.Hash {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -484,7 +490,7 @@ export class CouncilExecutedEvent {
   /**
    *  A motion was executed; `bool` is true if returned without error.
    */
-  get asV1020(): [Uint8Array, boolean] {
+  get asV1020(): [v1020.Hash, boolean] {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -499,7 +505,7 @@ export class CouncilExecutedEvent {
   /**
    *  A motion was executed; `bool` is true if returned without error.
    */
-  get asV2005(): [Uint8Array, Result<null, v2005.DispatchError>] {
+  get asV2005(): [v2005.Hash, v2005.DispatchResult] {
     assert(this.isV2005)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -609,7 +615,7 @@ export class CouncilProposedEvent {
    *  A motion (given hash) has been proposed (by given account) with a threshold (given
    *  `MemberCount`).
    */
-  get asV1020(): [Uint8Array, number, Uint8Array, number] {
+  get asV1020(): [v1020.AccountId, v1020.ProposalIndex, v1020.Hash, v1020.MemberCount] {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -659,7 +665,7 @@ export class CouncilVotedEvent {
    *  A motion (given hash) has been voted on by given account, leaving
    *  a tally (yes votes and no votes given respectively as `MemberCount`).
    */
-  get asV1020(): [Uint8Array, Uint8Array, boolean, number, number] {
+  get asV1020(): [v1020.AccountId, v1020.Hash, boolean, v1020.MemberCount, v1020.MemberCount] {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -701,7 +707,7 @@ export class DemocracyCancelledEvent {
     return this.ctx._chain.getEventHash('Democracy.Cancelled') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
-  get asV1020(): number {
+  get asV1020(): v1020.ReferendumIndex {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -741,7 +747,7 @@ export class DemocracyExecutedEvent {
     return this.ctx._chain.getEventHash('Democracy.Executed') === 'f267e1fa04f32dd15473e3a6d2514ae684bd7ba5516d192ba70e4d49211868aa'
   }
 
-  get asV1020(): [number, boolean] {
+  get asV1020(): [v1020.ReferendumIndex, boolean] {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -756,7 +762,7 @@ export class DemocracyExecutedEvent {
   /**
    *  A proposal has been enacted. \[ref_index, result\]
    */
-  get asV9090(): [number, Result<null, v9090.DispatchError>] {
+  get asV9090(): [v9090.ReferendumIndex, v9090.DispatchResult] {
     assert(this.isV9090)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -856,7 +862,7 @@ export class DemocracyNotPassedEvent {
     return this.ctx._chain.getEventHash('Democracy.NotPassed') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
-  get asV1020(): number {
+  get asV1020(): v1020.ReferendumIndex {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -896,7 +902,7 @@ export class DemocracyPassedEvent {
     return this.ctx._chain.getEventHash('Democracy.Passed') === '0a0f30b1ade5af5fade6413c605719d59be71340cf4884f65ee9858eb1c38f6c'
   }
 
-  get asV1020(): number {
+  get asV1020(): v1020.ReferendumIndex {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -942,7 +948,7 @@ export class DemocracyPreimageInvalidEvent {
   /**
    *  A proposal could not be executed because its preimage was invalid.
    */
-  get asV1022(): [Uint8Array, number] {
+  get asV1022(): [v1022.Hash, v1022.ReferendumIndex] {
     assert(this.isV1022)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -988,7 +994,7 @@ export class DemocracyPreimageMissingEvent {
   /**
    *  A proposal could not be executed because its preimage was missing.
    */
-  get asV1022(): [Uint8Array, number] {
+  get asV1022(): [v1022.Hash, v1022.ReferendumIndex] {
     assert(this.isV1022)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1034,7 +1040,7 @@ export class DemocracyPreimageNotedEvent {
   /**
    *  A proposal's preimage was noted, and the deposit taken.
    */
-  get asV1022(): [Uint8Array, Uint8Array, bigint] {
+  get asV1022(): [v1022.Hash, v1022.AccountId, v1022.Balance] {
     assert(this.isV1022)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1080,7 +1086,7 @@ export class DemocracyPreimageReapedEvent {
   /**
    *  A registered preimage was removed and the deposit collected by the reaper (last item).
    */
-  get asV1022(): [Uint8Array, Uint8Array, bigint, Uint8Array] {
+  get asV1022(): [v1022.Hash, v1022.AccountId, v1022.Balance, v1022.AccountId] {
     assert(this.isV1022)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1126,7 +1132,7 @@ export class DemocracyPreimageUsedEvent {
   /**
    *  A proposal preimage was removed and used (the deposit was returned).
    */
-  get asV1022(): [Uint8Array, Uint8Array, bigint] {
+  get asV1022(): [v1022.Hash, v1022.AccountId, v1022.Balance] {
     assert(this.isV1022)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1166,7 +1172,7 @@ export class DemocracyProposedEvent {
     return this.ctx._chain.getEventHash('Democracy.Proposed') === 'a0e51e81445baa317309351746e010ed2435e30ff7e53fbb2cf59283f3b9c536'
   }
 
-  get asV1020(): [number, bigint] {
+  get asV1020(): [v1020.PropIndex, v1020.Balance] {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1206,7 +1212,7 @@ export class DemocracyStartedEvent {
     return this.ctx._chain.getEventHash('Democracy.Started') === '31dcae10175d30392db6fc8a872e963baae4bcf3ee28dfd38b1653a0751c031f'
   }
 
-  get asV1020(): [number, v1020.VoteThreshold] {
+  get asV1020(): [v1020.ReferendumIndex, v1020.VoteThreshold] {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1246,7 +1252,7 @@ export class DemocracyTabledEvent {
     return this.ctx._chain.getEventHash('Democracy.Tabled') === '21f3d10122d183ae1df61d3456ae07c362a2e0cdffab1829f4febb4f7b53f6bd'
   }
 
-  get asV1020(): [number, bigint, Uint8Array[]] {
+  get asV1020(): [v1020.PropIndex, v1020.Balance, v1020.AccountId[]] {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1292,7 +1298,7 @@ export class TechnicalCommitteeApprovedEvent {
   /**
    *  A motion was approved by the required threshold.
    */
-  get asV1020(): Uint8Array {
+  get asV1020(): v1020.Hash {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1338,7 +1344,7 @@ export class TechnicalCommitteeClosedEvent {
   /**
    *  A proposal was closed after its duration was up.
    */
-  get asV1050(): [Uint8Array, number, number] {
+  get asV1050(): [v1050.Hash, v1050.MemberCount, v1050.MemberCount] {
     assert(this.isV1050)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1384,7 +1390,7 @@ export class TechnicalCommitteeDisapprovedEvent {
   /**
    *  A motion was not approved by the required threshold.
    */
-  get asV1020(): Uint8Array {
+  get asV1020(): v1020.Hash {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1430,7 +1436,7 @@ export class TechnicalCommitteeExecutedEvent {
   /**
    *  A motion was executed; `bool` is true if returned without error.
    */
-  get asV1020(): [Uint8Array, boolean] {
+  get asV1020(): [v1020.Hash, boolean] {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1445,7 +1451,7 @@ export class TechnicalCommitteeExecutedEvent {
   /**
    *  A motion was executed; `bool` is true if returned without error.
    */
-  get asV2005(): [Uint8Array, Result<null, v2005.DispatchError>] {
+  get asV2005(): [v2005.Hash, v2005.DispatchResult] {
     assert(this.isV2005)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1555,7 +1561,7 @@ export class TechnicalCommitteeProposedEvent {
    *  A motion (given hash) has been proposed (by given account) with a threshold (given
    *  `MemberCount`).
    */
-  get asV1020(): [Uint8Array, number, Uint8Array, number] {
+  get asV1020(): [v1020.AccountId, v1020.ProposalIndex, v1020.Hash, v1020.MemberCount] {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1605,7 +1611,7 @@ export class TechnicalCommitteeVotedEvent {
    *  A motion (given hash) has been voted on by given account, leaving
    *  a tally (yes votes and no votes given respectively as `MemberCount`).
    */
-  get asV1020(): [Uint8Array, Uint8Array, boolean, number, number] {
+  get asV1020(): [v1020.AccountId, v1020.Hash, boolean, v1020.MemberCount, v1020.MemberCount] {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1653,7 +1659,7 @@ export class TipsNewTipEvent {
   /**
    *  A new tip suggestion has been opened. \[tip_hash\]
    */
-  get asV2028(): Uint8Array {
+  get asV2028(): v2028.Hash {
     assert(this.isV2028)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1699,7 +1705,7 @@ export class TipsTipClosedEvent {
   /**
    *  A tip suggestion has been closed. \[tip_hash, who, payout\]
    */
-  get asV2028(): [Uint8Array, Uint8Array, bigint] {
+  get asV2028(): [v2028.Hash, v2028.AccountId, v2028.Balance] {
     assert(this.isV2028)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1745,7 +1751,7 @@ export class TipsTipRetractedEvent {
   /**
    *  A tip suggestion has been retracted. \[tip_hash\]
    */
-  get asV2028(): Uint8Array {
+  get asV2028(): v2028.Hash {
     assert(this.isV2028)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1791,7 +1797,7 @@ export class TipsTipSlashedEvent {
   /**
    *  A tip suggestion has been slashed. \[tip_hash, finder, deposit\]
    */
-  get asV2028(): [Uint8Array, Uint8Array, bigint] {
+  get asV2028(): [v2028.Hash, v2028.AccountId, v2028.Balance] {
     assert(this.isV2028)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1837,7 +1843,7 @@ export class TreasuryAwardedEvent {
   /**
    *  Some funds have been allocated.
    */
-  get asV1020(): [number, bigint, Uint8Array] {
+  get asV1020(): [v1020.ProposalIndex, v1020.Balance, v1020.AccountId] {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1883,7 +1889,7 @@ export class TreasuryBountyAwardedEvent {
   /**
    *  A bounty is awarded to a beneficiary. [index, beneficiary]
    */
-  get asV2025(): [number, Uint8Array] {
+  get asV2025(): [v2025.BountyIndex, v2025.AccountId] {
     assert(this.isV2025)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1893,7 +1899,7 @@ export class TreasuryBountyAwardedEvent {
     return this.isV2025
   }
 
-  get asLatest(): [number, Uint8Array] {
+  get asLatest(): [v2025.BountyIndex, v2025.AccountId] {
     deprecateLatest()
     return this.asV2025
   }
@@ -1914,7 +1920,7 @@ export class TreasuryBountyBecameActiveEvent {
   /**
    *  A bounty proposal is funded and became active. [index]
    */
-  get asV2025(): number {
+  get asV2025(): v2025.BountyIndex {
     assert(this.isV2025)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1924,7 +1930,7 @@ export class TreasuryBountyBecameActiveEvent {
     return this.isV2025
   }
 
-  get asLatest(): number {
+  get asLatest(): v2025.BountyIndex {
     deprecateLatest()
     return this.asV2025
   }
@@ -1945,7 +1951,7 @@ export class TreasuryBountyCanceledEvent {
   /**
    *  A bounty is cancelled. [index]
    */
-  get asV2025(): number {
+  get asV2025(): v2025.BountyIndex {
     assert(this.isV2025)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1955,7 +1961,7 @@ export class TreasuryBountyCanceledEvent {
     return this.isV2025
   }
 
-  get asLatest(): number {
+  get asLatest(): v2025.BountyIndex {
     deprecateLatest()
     return this.asV2025
   }
@@ -1976,7 +1982,7 @@ export class TreasuryBountyClaimedEvent {
   /**
    *  A bounty is claimed by beneficiary. [index, payout, beneficiary]
    */
-  get asV2025(): [number, bigint, Uint8Array] {
+  get asV2025(): [v2025.BountyIndex, v2025.Balance, v2025.AccountId] {
     assert(this.isV2025)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -1986,7 +1992,7 @@ export class TreasuryBountyClaimedEvent {
     return this.isV2025
   }
 
-  get asLatest(): [number, bigint, Uint8Array] {
+  get asLatest(): [v2025.BountyIndex, v2025.Balance, v2025.AccountId] {
     deprecateLatest()
     return this.asV2025
   }
@@ -2007,7 +2013,7 @@ export class TreasuryBountyExtendedEvent {
   /**
    *  A bounty expiry is extended. [index]
    */
-  get asV2025(): number {
+  get asV2025(): v2025.BountyIndex {
     assert(this.isV2025)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -2017,7 +2023,7 @@ export class TreasuryBountyExtendedEvent {
     return this.isV2025
   }
 
-  get asLatest(): number {
+  get asLatest(): v2025.BountyIndex {
     deprecateLatest()
     return this.asV2025
   }
@@ -2038,7 +2044,7 @@ export class TreasuryBountyProposedEvent {
   /**
    *  New bounty proposal. [index]
    */
-  get asV2025(): number {
+  get asV2025(): v2025.BountyIndex {
     assert(this.isV2025)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -2048,7 +2054,7 @@ export class TreasuryBountyProposedEvent {
     return this.isV2025
   }
 
-  get asLatest(): number {
+  get asLatest(): v2025.BountyIndex {
     deprecateLatest()
     return this.asV2025
   }
@@ -2069,7 +2075,7 @@ export class TreasuryBountyRejectedEvent {
   /**
    *  A bounty proposal was rejected; funds were slashed. [index, bond]
    */
-  get asV2025(): [number, bigint] {
+  get asV2025(): [v2025.BountyIndex, v2025.Balance] {
     assert(this.isV2025)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -2079,7 +2085,7 @@ export class TreasuryBountyRejectedEvent {
     return this.isV2025
   }
 
-  get asLatest(): [number, bigint] {
+  get asLatest(): [v2025.BountyIndex, v2025.Balance] {
     deprecateLatest()
     return this.asV2025
   }
@@ -2100,7 +2106,7 @@ export class TreasuryNewTipEvent {
   /**
    *  A new tip suggestion has been opened.
    */
-  get asV1038(): Uint8Array {
+  get asV1038(): v1038.Hash {
     assert(this.isV1038)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -2110,7 +2116,7 @@ export class TreasuryNewTipEvent {
     return this.isV1038
   }
 
-  get asLatest(): Uint8Array {
+  get asLatest(): v1038.Hash {
     deprecateLatest()
     return this.asV1038
   }
@@ -2131,7 +2137,7 @@ export class TreasuryProposedEvent {
   /**
    *  New proposal.
    */
-  get asV1020(): number {
+  get asV1020(): v1020.ProposalIndex {
     assert(this.isV1020)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -2177,7 +2183,7 @@ export class TreasuryRejectedEvent {
   /**
    *  A proposal was rejected; funds were slashed.
    */
-  get asV1032(): [number, bigint] {
+  get asV1032(): [v1032.ProposalIndex, v1032.Balance] {
     assert(this.isV1032)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -2223,7 +2229,7 @@ export class TreasuryTipClosedEvent {
   /**
    *  A tip suggestion has been closed.
    */
-  get asV1038(): [Uint8Array, Uint8Array, bigint] {
+  get asV1038(): [v1038.Hash, v1038.AccountId, v1038.Balance] {
     assert(this.isV1038)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -2233,7 +2239,7 @@ export class TreasuryTipClosedEvent {
     return this.isV1038
   }
 
-  get asLatest(): [Uint8Array, Uint8Array, bigint] {
+  get asLatest(): [v1038.Hash, v1038.AccountId, v1038.Balance] {
     deprecateLatest()
     return this.asV1038
   }
@@ -2254,7 +2260,7 @@ export class TreasuryTipRetractedEvent {
   /**
    *  A tip suggestion has been retracted.
    */
-  get asV1038(): Uint8Array {
+  get asV1038(): v1038.Hash {
     assert(this.isV1038)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
@@ -2264,7 +2270,7 @@ export class TreasuryTipRetractedEvent {
     return this.isV1038
   }
 
-  get asLatest(): Uint8Array {
+  get asLatest(): v1038.Hash {
     deprecateLatest()
     return this.asV1038
   }

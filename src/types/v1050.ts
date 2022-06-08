@@ -1,164 +1,172 @@
 import type {Result} from './support'
 
+export type Hash = Uint8Array
+
+export type MemberCount = number
+
+export type AccountId = Uint8Array
+
 export interface AccountData {
-  free: bigint
-  reserved: bigint
-  miscFrozen: bigint
-  feeFrozen: bigint
+  free: Balance
+  reserved: Balance
+  miscFrozen: Balance
+  feeFrozen: Balance
 }
 
-export type Type_112 = Type_112_System | Type_112_Babe | Type_112_Timestamp | Type_112_Indices | Type_112_Balances | Type_112_Authorship | Type_112_Staking | Type_112_Offences | Type_112_Session | Type_112_FinalityTracker | Type_112_Grandpa | Type_112_ImOnline | Type_112_AuthorityDiscovery | Type_112_Democracy | Type_112_Council | Type_112_TechnicalCommittee | Type_112_ElectionsPhragmen | Type_112_TechnicalMembership | Type_112_Treasury | Type_112_Claims | Type_112_Parachains | Type_112_Attestations | Type_112_Slots | Type_112_Registrar | Type_112_Utility | Type_112_Identity | Type_112_Society | Type_112_Recovery | Type_112_Vesting
+export type Proposal = Proposal_System | Proposal_Babe | Proposal_Timestamp | Proposal_Indices | Proposal_Balances | Proposal_Authorship | Proposal_Staking | Proposal_Offences | Proposal_Session | Proposal_FinalityTracker | Proposal_Grandpa | Proposal_ImOnline | Proposal_AuthorityDiscovery | Proposal_Democracy | Proposal_Council | Proposal_TechnicalCommittee | Proposal_ElectionsPhragmen | Proposal_TechnicalMembership | Proposal_Treasury | Proposal_Claims | Proposal_Parachains | Proposal_Attestations | Proposal_Slots | Proposal_Registrar | Proposal_Utility | Proposal_Identity | Proposal_Society | Proposal_Recovery | Proposal_Vesting
 
-export interface Type_112_System {
+export interface Proposal_System {
   __kind: 'System'
   value: SystemCall
 }
 
-export interface Type_112_Babe {
+export interface Proposal_Babe {
   __kind: 'Babe'
   value: BabeCall
 }
 
-export interface Type_112_Timestamp {
+export interface Proposal_Timestamp {
   __kind: 'Timestamp'
   value: TimestampCall
 }
 
-export interface Type_112_Indices {
+export interface Proposal_Indices {
   __kind: 'Indices'
   value: IndicesCall
 }
 
-export interface Type_112_Balances {
+export interface Proposal_Balances {
   __kind: 'Balances'
   value: BalancesCall
 }
 
-export interface Type_112_Authorship {
+export interface Proposal_Authorship {
   __kind: 'Authorship'
   value: AuthorshipCall
 }
 
-export interface Type_112_Staking {
+export interface Proposal_Staking {
   __kind: 'Staking'
   value: StakingCall
 }
 
-export interface Type_112_Offences {
+export interface Proposal_Offences {
   __kind: 'Offences'
   value: OffencesCall
 }
 
-export interface Type_112_Session {
+export interface Proposal_Session {
   __kind: 'Session'
   value: SessionCall
 }
 
-export interface Type_112_FinalityTracker {
+export interface Proposal_FinalityTracker {
   __kind: 'FinalityTracker'
   value: FinalityTrackerCall
 }
 
-export interface Type_112_Grandpa {
+export interface Proposal_Grandpa {
   __kind: 'Grandpa'
   value: GrandpaCall
 }
 
-export interface Type_112_ImOnline {
+export interface Proposal_ImOnline {
   __kind: 'ImOnline'
   value: ImOnlineCall
 }
 
-export interface Type_112_AuthorityDiscovery {
+export interface Proposal_AuthorityDiscovery {
   __kind: 'AuthorityDiscovery'
   value: AuthorityDiscoveryCall
 }
 
-export interface Type_112_Democracy {
+export interface Proposal_Democracy {
   __kind: 'Democracy'
   value: DemocracyCall
 }
 
-export interface Type_112_Council {
+export interface Proposal_Council {
   __kind: 'Council'
   value: CouncilCall
 }
 
-export interface Type_112_TechnicalCommittee {
+export interface Proposal_TechnicalCommittee {
   __kind: 'TechnicalCommittee'
   value: TechnicalCommitteeCall
 }
 
-export interface Type_112_ElectionsPhragmen {
+export interface Proposal_ElectionsPhragmen {
   __kind: 'ElectionsPhragmen'
   value: ElectionsPhragmenCall
 }
 
-export interface Type_112_TechnicalMembership {
+export interface Proposal_TechnicalMembership {
   __kind: 'TechnicalMembership'
   value: TechnicalMembershipCall
 }
 
-export interface Type_112_Treasury {
+export interface Proposal_Treasury {
   __kind: 'Treasury'
   value: TreasuryCall
 }
 
-export interface Type_112_Claims {
+export interface Proposal_Claims {
   __kind: 'Claims'
   value: ClaimsCall
 }
 
-export interface Type_112_Parachains {
+export interface Proposal_Parachains {
   __kind: 'Parachains'
   value: ParachainsCall
 }
 
-export interface Type_112_Attestations {
+export interface Proposal_Attestations {
   __kind: 'Attestations'
   value: AttestationsCall
 }
 
-export interface Type_112_Slots {
+export interface Proposal_Slots {
   __kind: 'Slots'
   value: SlotsCall
 }
 
-export interface Type_112_Registrar {
+export interface Proposal_Registrar {
   __kind: 'Registrar'
   value: RegistrarCall
 }
 
-export interface Type_112_Utility {
+export interface Proposal_Utility {
   __kind: 'Utility'
   value: UtilityCall
 }
 
-export interface Type_112_Identity {
+export interface Proposal_Identity {
   __kind: 'Identity'
   value: IdentityCall
 }
 
-export interface Type_112_Society {
+export interface Proposal_Society {
   __kind: 'Society'
   value: SocietyCall
 }
 
-export interface Type_112_Recovery {
+export interface Proposal_Recovery {
   __kind: 'Recovery'
   value: RecoveryCall
 }
 
-export interface Type_112_Vesting {
+export interface Proposal_Vesting {
   __kind: 'Vesting'
   value: VestingCall
 }
 
-export interface AccountInfoWithRefCount {
-  nonce: number
-  refcount: number
+export interface AccountInfo {
+  nonce: Index
+  refcount: RefCount
   data: AccountData
 }
+
+export type Balance = bigint
 
 export type SystemCall = SystemCall_fill_block | SystemCall_remark | SystemCall_set_heap_pages | SystemCall_set_code | SystemCall_set_code_without_checks | SystemCall_set_changes_trie_config | SystemCall_set_storage | SystemCall_kill_storage | SystemCall_kill_prefix | SystemCall_suicide
 
@@ -167,7 +175,7 @@ export type SystemCall = SystemCall_fill_block | SystemCall_remark | SystemCall_
  */
 export interface SystemCall_fill_block {
   __kind: 'fill_block'
-  ratio: number
+  ratio: Perbill
 }
 
 /**
@@ -215,7 +223,7 @@ export interface SystemCall_set_changes_trie_config {
  */
 export interface SystemCall_set_storage {
   __kind: 'set_storage'
-  items: [Uint8Array, Uint8Array][]
+  items: KeyValue[]
 }
 
 /**
@@ -223,7 +231,7 @@ export interface SystemCall_set_storage {
  */
 export interface SystemCall_kill_storage {
   __kind: 'kill_storage'
-  keys: Uint8Array[]
+  keys: Key[]
 }
 
 /**
@@ -231,7 +239,7 @@ export interface SystemCall_kill_storage {
  */
 export interface SystemCall_kill_prefix {
   __kind: 'kill_prefix'
-  prefix: Uint8Array
+  prefix: Key
 }
 
 /**
@@ -284,7 +292,7 @@ export type IndicesCall = IndicesCall_claim | IndicesCall_transfer | IndicesCall
  */
 export interface IndicesCall_claim {
   __kind: 'claim'
-  index: number
+  index: AccountIndex
 }
 
 /**
@@ -307,8 +315,8 @@ export interface IndicesCall_claim {
  */
 export interface IndicesCall_transfer {
   __kind: 'transfer'
-  new: Uint8Array
-  index: number
+  new: AccountId
+  index: AccountIndex
 }
 
 /**
@@ -331,7 +339,7 @@ export interface IndicesCall_transfer {
  */
 export interface IndicesCall_free {
   __kind: 'free'
-  index: number
+  index: AccountIndex
 }
 
 /**
@@ -354,8 +362,8 @@ export interface IndicesCall_free {
  */
 export interface IndicesCall_force_transfer {
   __kind: 'force_transfer'
-  new: Uint8Array
-  index: number
+  new: AccountId
+  index: AccountIndex
 }
 
 export type BalancesCall = BalancesCall_transfer | BalancesCall_set_balance | BalancesCall_force_transfer | BalancesCall_transfer_keep_alive
@@ -388,7 +396,7 @@ export type BalancesCall = BalancesCall_transfer | BalancesCall_set_balance | Ba
  */
 export interface BalancesCall_transfer {
   __kind: 'transfer'
-  dest: Uint8Array
+  dest: LookupSource
   value: bigint
 }
 
@@ -409,7 +417,7 @@ export interface BalancesCall_transfer {
  */
 export interface BalancesCall_set_balance {
   __kind: 'set_balance'
-  who: Uint8Array
+  who: LookupSource
   newFree: bigint
   newReserved: bigint
 }
@@ -420,8 +428,8 @@ export interface BalancesCall_set_balance {
  */
 export interface BalancesCall_force_transfer {
   __kind: 'force_transfer'
-  source: Uint8Array
-  dest: Uint8Array
+  source: LookupSource
+  dest: LookupSource
   value: bigint
 }
 
@@ -435,7 +443,7 @@ export interface BalancesCall_force_transfer {
  */
 export interface BalancesCall_transfer_keep_alive {
   __kind: 'transfer_keep_alive'
-  dest: Uint8Array
+  dest: LookupSource
   value: bigint
 }
 
@@ -470,7 +478,7 @@ export type StakingCall = StakingCall_bond | StakingCall_bond_extra | StakingCal
  */
 export interface StakingCall_bond {
   __kind: 'bond'
-  controller: Uint8Array
+  controller: LookupSource
   value: bigint
   payee: RewardDestination
 }
@@ -564,7 +572,7 @@ export interface StakingCall_withdraw_unbonded {
  */
 export interface StakingCall_validate {
   __kind: 'validate'
-  prefs: ValidatorPrefsWithCommission
+  prefs: ValidatorPrefs
 }
 
 /**
@@ -582,7 +590,7 @@ export interface StakingCall_validate {
  */
 export interface StakingCall_nominate {
   __kind: 'nominate'
-  targets: Uint8Array[]
+  targets: LookupSource[]
 }
 
 /**
@@ -635,7 +643,7 @@ export interface StakingCall_set_payee {
  */
 export interface StakingCall_set_controller {
   __kind: 'set_controller'
-  controller: Uint8Array
+  controller: LookupSource
 }
 
 /**
@@ -674,7 +682,7 @@ export interface StakingCall_force_new_era {
  */
 export interface StakingCall_set_invulnerables {
   __kind: 'set_invulnerables'
-  validators: Uint8Array[]
+  validators: AccountId[]
 }
 
 /**
@@ -682,7 +690,7 @@ export interface StakingCall_set_invulnerables {
  */
 export interface StakingCall_force_unstake {
   __kind: 'force_unstake'
-  stash: Uint8Array
+  stash: AccountId
 }
 
 /**
@@ -707,7 +715,7 @@ export interface StakingCall_force_new_era_always {
  */
 export interface StakingCall_cancel_deferred_slash {
   __kind: 'cancel_deferred_slash'
-  era: number
+  era: EraIndex
   slashIndices: number[]
 }
 
@@ -738,8 +746,8 @@ export interface StakingCall_cancel_deferred_slash {
  */
 export interface StakingCall_payout_nominator {
   __kind: 'payout_nominator'
-  era: number
-  validators: [Uint8Array, number][]
+  era: EraIndex
+  validators: [AccountId, number][]
 }
 
 /**
@@ -761,7 +769,7 @@ export interface StakingCall_payout_nominator {
  */
 export interface StakingCall_payout_validator {
   __kind: 'payout_validator'
-  era: number
+  era: EraIndex
 }
 
 /**
@@ -798,7 +806,7 @@ export interface StakingCall_set_history_depth {
  */
 export interface StakingCall_reap_stash {
   __kind: 'reap_stash'
-  stash: Uint8Array
+  stash: AccountId
 }
 
 export type OffencesCall = never
@@ -821,7 +829,7 @@ export type SessionCall = SessionCall_set_keys | SessionCall_purge_keys
  */
 export interface SessionCall_set_keys {
   __kind: 'set_keys'
-  keys: [Uint8Array, Uint8Array, Uint8Array, Uint8Array, Uint8Array]
+  keys: Keys
   proof: Uint8Array
 }
 
@@ -866,8 +874,8 @@ export type ImOnlineCall = ImOnlineCall_heartbeat
 
 export interface ImOnlineCall_heartbeat {
   __kind: 'heartbeat'
-  heartbeat: HeartbeatTo244
-  signature: Uint8Array
+  heartbeat: Heartbeat
+  signature: Signature
 }
 
 export type AuthorityDiscoveryCall = never
@@ -892,7 +900,7 @@ export type DemocracyCall = DemocracyCall_propose | DemocracyCall_second | Democ
  */
 export interface DemocracyCall_propose {
   __kind: 'propose'
-  proposalHash: Uint8Array
+  proposalHash: Hash
   value: bigint
 }
 
@@ -931,7 +939,7 @@ export interface DemocracyCall_second {
 export interface DemocracyCall_vote {
   __kind: 'vote'
   refIndex: number
-  vote: number
+  vote: Vote
 }
 
 /**
@@ -951,7 +959,7 @@ export interface DemocracyCall_vote {
 export interface DemocracyCall_proxy_vote {
   __kind: 'proxy_vote'
   refIndex: number
-  vote: number
+  vote: Vote
 }
 
 /**
@@ -968,7 +976,7 @@ export interface DemocracyCall_proxy_vote {
  */
 export interface DemocracyCall_emergency_cancel {
   __kind: 'emergency_cancel'
-  refIndex: number
+  refIndex: ReferendumIndex
 }
 
 /**
@@ -986,7 +994,7 @@ export interface DemocracyCall_emergency_cancel {
  */
 export interface DemocracyCall_external_propose {
   __kind: 'external_propose'
-  proposalHash: Uint8Array
+  proposalHash: Hash
 }
 
 /**
@@ -1007,7 +1015,7 @@ export interface DemocracyCall_external_propose {
  */
 export interface DemocracyCall_external_propose_majority {
   __kind: 'external_propose_majority'
-  proposalHash: Uint8Array
+  proposalHash: Hash
 }
 
 /**
@@ -1028,7 +1036,7 @@ export interface DemocracyCall_external_propose_majority {
  */
 export interface DemocracyCall_external_propose_default {
   __kind: 'external_propose_default'
-  proposalHash: Uint8Array
+  proposalHash: Hash
 }
 
 /**
@@ -1054,9 +1062,9 @@ export interface DemocracyCall_external_propose_default {
  */
 export interface DemocracyCall_fast_track {
   __kind: 'fast_track'
-  proposalHash: Uint8Array
-  votingPeriod: number
-  delay: number
+  proposalHash: Hash
+  votingPeriod: BlockNumber
+  delay: BlockNumber
 }
 
 /**
@@ -1077,7 +1085,7 @@ export interface DemocracyCall_fast_track {
  */
 export interface DemocracyCall_veto_external {
   __kind: 'veto_external'
-  proposalHash: Uint8Array
+  proposalHash: Hash
 }
 
 /**
@@ -1109,7 +1117,7 @@ export interface DemocracyCall_cancel_referendum {
  */
 export interface DemocracyCall_cancel_queued {
   __kind: 'cancel_queued'
-  which: number
+  which: ReferendumIndex
 }
 
 /**
@@ -1127,7 +1135,7 @@ export interface DemocracyCall_cancel_queued {
  */
 export interface DemocracyCall_activate_proxy {
   __kind: 'activate_proxy'
-  proxy: Uint8Array
+  proxy: AccountId
 }
 
 /**
@@ -1162,7 +1170,7 @@ export interface DemocracyCall_close_proxy {
  */
 export interface DemocracyCall_deactivate_proxy {
   __kind: 'deactivate_proxy'
-  proxy: Uint8Array
+  proxy: AccountId
 }
 
 /**
@@ -1184,7 +1192,7 @@ export interface DemocracyCall_deactivate_proxy {
  */
 export interface DemocracyCall_delegate {
   __kind: 'delegate'
-  to: Uint8Array
+  to: AccountId
   conviction: Conviction
 }
 
@@ -1279,7 +1287,7 @@ export interface DemocracyCall_note_imminent_preimage {
  */
 export interface DemocracyCall_reap_preimage {
   __kind: 'reap_preimage'
-  proposalHash: Uint8Array
+  proposalHash: Hash
 }
 
 /**
@@ -1297,7 +1305,7 @@ export interface DemocracyCall_reap_preimage {
  */
 export interface DemocracyCall_unlock {
   __kind: 'unlock'
-  target: Uint8Array
+  target: AccountId
 }
 
 /**
@@ -1317,7 +1325,7 @@ export interface DemocracyCall_unlock {
  */
 export interface DemocracyCall_open_proxy {
   __kind: 'open_proxy'
-  target: Uint8Array
+  target: AccountId
 }
 
 export type CouncilCall = CouncilCall_set_members | CouncilCall_execute | CouncilCall_propose | CouncilCall_vote | CouncilCall_close
@@ -1332,8 +1340,8 @@ export type CouncilCall = CouncilCall_set_members | CouncilCall_execute | Counci
  */
 export interface CouncilCall_set_members {
   __kind: 'set_members'
-  newMembers: Uint8Array[]
-  prime: (Uint8Array | undefined)
+  newMembers: AccountId[]
+  prime: (AccountId | undefined)
 }
 
 /**
@@ -1343,7 +1351,7 @@ export interface CouncilCall_set_members {
  */
 export interface CouncilCall_execute {
   __kind: 'execute'
-  proposal: Type_112
+  proposal: Proposal
 }
 
 /**
@@ -1355,7 +1363,7 @@ export interface CouncilCall_execute {
 export interface CouncilCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_112
+  proposal: Proposal
 }
 
 /**
@@ -1366,7 +1374,7 @@ export interface CouncilCall_propose {
  */
 export interface CouncilCall_vote {
   __kind: 'vote'
-  proposal: Uint8Array
+  proposal: Hash
   index: number
   approve: boolean
 }
@@ -1388,7 +1396,7 @@ export interface CouncilCall_vote {
  */
 export interface CouncilCall_close {
   __kind: 'close'
-  proposal: Uint8Array
+  proposal: Hash
   index: number
 }
 
@@ -1404,8 +1412,8 @@ export type TechnicalCommitteeCall = TechnicalCommitteeCall_set_members | Techni
  */
 export interface TechnicalCommitteeCall_set_members {
   __kind: 'set_members'
-  newMembers: Uint8Array[]
-  prime: (Uint8Array | undefined)
+  newMembers: AccountId[]
+  prime: (AccountId | undefined)
 }
 
 /**
@@ -1415,7 +1423,7 @@ export interface TechnicalCommitteeCall_set_members {
  */
 export interface TechnicalCommitteeCall_execute {
   __kind: 'execute'
-  proposal: Type_112
+  proposal: Proposal
 }
 
 /**
@@ -1427,7 +1435,7 @@ export interface TechnicalCommitteeCall_execute {
 export interface TechnicalCommitteeCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_112
+  proposal: Proposal
 }
 
 /**
@@ -1438,7 +1446,7 @@ export interface TechnicalCommitteeCall_propose {
  */
 export interface TechnicalCommitteeCall_vote {
   __kind: 'vote'
-  proposal: Uint8Array
+  proposal: Hash
   index: number
   approve: boolean
 }
@@ -1460,7 +1468,7 @@ export interface TechnicalCommitteeCall_vote {
  */
 export interface TechnicalCommitteeCall_close {
   __kind: 'close'
-  proposal: Uint8Array
+  proposal: Hash
   index: number
 }
 
@@ -1485,7 +1493,7 @@ export type ElectionsPhragmenCall = ElectionsPhragmenCall_vote | ElectionsPhragm
  */
 export interface ElectionsPhragmenCall_vote {
   __kind: 'vote'
-  votes: Uint8Array[]
+  votes: AccountId[]
   value: bigint
 }
 
@@ -1519,7 +1527,7 @@ export interface ElectionsPhragmenCall_remove_voter {
  */
 export interface ElectionsPhragmenCall_report_defunct_voter {
   __kind: 'report_defunct_voter'
-  target: Uint8Array
+  target: LookupSource
 }
 
 /**
@@ -1573,7 +1581,7 @@ export interface ElectionsPhragmenCall_renounce_candidacy {
  */
 export interface ElectionsPhragmenCall_remove_member {
   __kind: 'remove_member'
-  who: Uint8Array
+  who: LookupSource
 }
 
 export type TechnicalMembershipCall = TechnicalMembershipCall_add_member | TechnicalMembershipCall_remove_member | TechnicalMembershipCall_swap_member | TechnicalMembershipCall_reset_members | TechnicalMembershipCall_change_key | TechnicalMembershipCall_set_prime | TechnicalMembershipCall_clear_prime
@@ -1585,7 +1593,7 @@ export type TechnicalMembershipCall = TechnicalMembershipCall_add_member | Techn
  */
 export interface TechnicalMembershipCall_add_member {
   __kind: 'add_member'
-  who: Uint8Array
+  who: AccountId
 }
 
 /**
@@ -1595,7 +1603,7 @@ export interface TechnicalMembershipCall_add_member {
  */
 export interface TechnicalMembershipCall_remove_member {
   __kind: 'remove_member'
-  who: Uint8Array
+  who: AccountId
 }
 
 /**
@@ -1607,8 +1615,8 @@ export interface TechnicalMembershipCall_remove_member {
  */
 export interface TechnicalMembershipCall_swap_member {
   __kind: 'swap_member'
-  remove: Uint8Array
-  add: Uint8Array
+  remove: AccountId
+  add: AccountId
 }
 
 /**
@@ -1619,7 +1627,7 @@ export interface TechnicalMembershipCall_swap_member {
  */
 export interface TechnicalMembershipCall_reset_members {
   __kind: 'reset_members'
-  members: Uint8Array[]
+  members: AccountId[]
 }
 
 /**
@@ -1631,7 +1639,7 @@ export interface TechnicalMembershipCall_reset_members {
  */
 export interface TechnicalMembershipCall_change_key {
   __kind: 'change_key'
-  new: Uint8Array
+  new: AccountId
 }
 
 /**
@@ -1639,7 +1647,7 @@ export interface TechnicalMembershipCall_change_key {
  */
 export interface TechnicalMembershipCall_set_prime {
   __kind: 'set_prime'
-  who: Uint8Array
+  who: AccountId
 }
 
 /**
@@ -1665,7 +1673,7 @@ export type TreasuryCall = TreasuryCall_propose_spend | TreasuryCall_reject_prop
 export interface TreasuryCall_propose_spend {
   __kind: 'propose_spend'
   value: bigint
-  beneficiary: Uint8Array
+  beneficiary: LookupSource
 }
 
 /**
@@ -1721,7 +1729,7 @@ export interface TreasuryCall_approve_proposal {
 export interface TreasuryCall_report_awesome {
   __kind: 'report_awesome'
   reason: Uint8Array
-  who: Uint8Array
+  who: AccountId
 }
 
 /**
@@ -1747,7 +1755,7 @@ export interface TreasuryCall_report_awesome {
  */
 export interface TreasuryCall_retract_tip {
   __kind: 'retract_tip'
-  hash: Uint8Array
+  hash: Hash
 }
 
 /**
@@ -1774,8 +1782,8 @@ export interface TreasuryCall_retract_tip {
 export interface TreasuryCall_tip_new {
   __kind: 'tip_new'
   reason: Uint8Array
-  who: Uint8Array
-  tipValue: bigint
+  who: AccountId
+  tipValue: BalanceOf
 }
 
 /**
@@ -1801,8 +1809,8 @@ export interface TreasuryCall_tip_new {
  */
 export interface TreasuryCall_tip {
   __kind: 'tip'
-  hash: Uint8Array
-  tipValue: bigint
+  hash: Hash
+  tipValue: BalanceOf
 }
 
 /**
@@ -1823,7 +1831,7 @@ export interface TreasuryCall_tip {
  */
 export interface TreasuryCall_close_tip {
   __kind: 'close_tip'
-  hash: Uint8Array
+  hash: Hash
 }
 
 export type ClaimsCall = ClaimsCall_claim | ClaimsCall_mint_claim
@@ -1833,8 +1841,8 @@ export type ClaimsCall = ClaimsCall_claim | ClaimsCall_mint_claim
  */
 export interface ClaimsCall_claim {
   __kind: 'claim'
-  dest: Uint8Array
-  ethereumSignature: Uint8Array
+  dest: AccountId
+  ethereumSignature: EcdsaSignature
 }
 
 /**
@@ -1842,9 +1850,9 @@ export interface ClaimsCall_claim {
  */
 export interface ClaimsCall_mint_claim {
   __kind: 'mint_claim'
-  who: Uint8Array
-  value: bigint
-  vestingSchedule: ([bigint, bigint, number] | undefined)
+  who: EthereumAddress
+  value: BalanceOf
+  vestingSchedule: ([BalanceOf, BalanceOf, BlockNumber] | undefined)
 }
 
 export type ParachainsCall = ParachainsCall_set_heads
@@ -1942,7 +1950,7 @@ export interface SlotsCall_bid_renew {
  */
 export interface SlotsCall_set_offboarding {
   __kind: 'set_offboarding'
-  dest: Uint8Array
+  dest: LookupSource
 }
 
 /**
@@ -1958,7 +1966,7 @@ export interface SlotsCall_fix_deploy_data {
   __kind: 'fix_deploy_data'
   sub: number
   paraId: number
-  codeHash: Uint8Array
+  codeHash: Hash
   codeSize: number
   initialHeadData: Uint8Array
 }
@@ -2046,8 +2054,8 @@ export interface RegistrarCall_register_parathread {
 export interface RegistrarCall_select_parathread {
   __kind: 'select_parathread'
   id: number
-  collator: Uint8Array
-  headHash: Uint8Array
+  collator: CollatorId
+  headHash: Hash
 }
 
 /**
@@ -2166,7 +2174,7 @@ export interface UtilityCall_as_sub {
 export interface UtilityCall_as_multi {
   __kind: 'as_multi'
   threshold: number
-  otherSignatories: Uint8Array[]
+  otherSignatories: AccountId[]
   maybeTimepoint: (Timepoint | undefined)
   call: Type_113
 }
@@ -2208,7 +2216,7 @@ export interface UtilityCall_as_multi {
 export interface UtilityCall_approve_as_multi {
   __kind: 'approve_as_multi'
   threshold: number
-  otherSignatories: Uint8Array[]
+  otherSignatories: AccountId[]
   maybeTimepoint: (Timepoint | undefined)
   callHash: Uint8Array
 }
@@ -2240,7 +2248,7 @@ export interface UtilityCall_approve_as_multi {
 export interface UtilityCall_cancel_as_multi {
   __kind: 'cancel_as_multi'
   threshold: number
-  otherSignatories: Uint8Array[]
+  otherSignatories: AccountId[]
   timepoint: Timepoint
   callHash: Uint8Array
 }
@@ -2264,7 +2272,7 @@ export type IdentityCall = IdentityCall_add_registrar | IdentityCall_set_identit
  */
 export interface IdentityCall_add_registrar {
   __kind: 'add_registrar'
-  account: Uint8Array
+  account: AccountId
 }
 
 /**
@@ -2312,7 +2320,7 @@ export interface IdentityCall_set_identity {
  */
 export interface IdentityCall_set_subs {
   __kind: 'set_subs'
-  subs: [Uint8Array, Data][]
+  subs: [AccountId, Data][]
 }
 
 /**
@@ -2388,7 +2396,7 @@ export interface IdentityCall_request_judgement {
  */
 export interface IdentityCall_cancel_request {
   __kind: 'cancel_request'
-  regIndex: number
+  regIndex: RegistrarIndex
 }
 
 /**
@@ -2428,7 +2436,7 @@ export interface IdentityCall_set_fee {
 export interface IdentityCall_set_account_id {
   __kind: 'set_account_id'
   index: number
-  new: Uint8Array
+  new: AccountId
 }
 
 /**
@@ -2475,7 +2483,7 @@ export interface IdentityCall_set_fields {
 export interface IdentityCall_provide_judgement {
   __kind: 'provide_judgement'
   regIndex: number
-  target: Uint8Array
+  target: LookupSource
   judgement: IdentityJudgement
 }
 
@@ -2502,7 +2510,7 @@ export interface IdentityCall_provide_judgement {
  */
 export interface IdentityCall_kill_identity {
   __kind: 'kill_identity'
-  target: Uint8Array
+  target: LookupSource
 }
 
 export type SocietyCall = SocietyCall_bid | SocietyCall_unbid | SocietyCall_vouch | SocietyCall_unvouch | SocietyCall_vote | SocietyCall_defender_vote | SocietyCall_payout | SocietyCall_found | SocietyCall_unfound | SocietyCall_judge_suspended_member | SocietyCall_judge_suspended_candidate | SocietyCall_set_max_members
@@ -2544,7 +2552,7 @@ export type SocietyCall = SocietyCall_bid | SocietyCall_unbid | SocietyCall_vouc
  */
 export interface SocietyCall_bid {
   __kind: 'bid'
-  value: bigint
+  value: BalanceOf
 }
 
 /**
@@ -2621,9 +2629,9 @@ export interface SocietyCall_unbid {
  */
 export interface SocietyCall_vouch {
   __kind: 'vouch'
-  who: Uint8Array
-  value: bigint
-  tip: bigint
+  who: AccountId
+  value: BalanceOf
+  tip: BalanceOf
 }
 
 /**
@@ -2673,7 +2681,7 @@ export interface SocietyCall_unvouch {
  */
 export interface SocietyCall_vote {
   __kind: 'vote'
-  candidate: Uint8Array
+  candidate: LookupSource
   approve: boolean
 }
 
@@ -2749,7 +2757,7 @@ export interface SocietyCall_payout {
  */
 export interface SocietyCall_found {
   __kind: 'found'
-  founder: Uint8Array
+  founder: AccountId
   maxMembers: number
   rules: Uint8Array
 }
@@ -2804,7 +2812,7 @@ export interface SocietyCall_unfound {
  */
 export interface SocietyCall_judge_suspended_member {
   __kind: 'judge_suspended_member'
-  who: Uint8Array
+  who: AccountId
   forgive: boolean
 }
 
@@ -2852,7 +2860,7 @@ export interface SocietyCall_judge_suspended_member {
  */
 export interface SocietyCall_judge_suspended_candidate {
   __kind: 'judge_suspended_candidate'
-  who: Uint8Array
+  who: AccountId
   judgement: SocietyJudgement
 }
 
@@ -2896,7 +2904,7 @@ export type RecoveryCall = RecoveryCall_as_recovered | RecoveryCall_set_recovere
  */
 export interface RecoveryCall_as_recovered {
   __kind: 'as_recovered'
-  account: Uint8Array
+  account: AccountId
   call: Type_113
 }
 
@@ -2917,8 +2925,8 @@ export interface RecoveryCall_as_recovered {
  */
 export interface RecoveryCall_set_recovered {
   __kind: 'set_recovered'
-  lost: Uint8Array
-  rescuer: Uint8Array
+  lost: AccountId
+  rescuer: AccountId
 }
 
 /**
@@ -2952,9 +2960,9 @@ export interface RecoveryCall_set_recovered {
  */
 export interface RecoveryCall_create_recovery {
   __kind: 'create_recovery'
-  friends: Uint8Array[]
+  friends: AccountId[]
   threshold: number
-  delayPeriod: number
+  delayPeriod: BlockNumber
 }
 
 /**
@@ -2983,7 +2991,7 @@ export interface RecoveryCall_create_recovery {
  */
 export interface RecoveryCall_initiate_recovery {
   __kind: 'initiate_recovery'
-  account: Uint8Array
+  account: AccountId
 }
 
 /**
@@ -3015,8 +3023,8 @@ export interface RecoveryCall_initiate_recovery {
  */
 export interface RecoveryCall_vouch_recovery {
   __kind: 'vouch_recovery'
-  lost: Uint8Array
-  rescuer: Uint8Array
+  lost: AccountId
+  rescuer: AccountId
 }
 
 /**
@@ -3043,7 +3051,7 @@ export interface RecoveryCall_vouch_recovery {
  */
 export interface RecoveryCall_claim_recovery {
   __kind: 'claim_recovery'
-  account: Uint8Array
+  account: AccountId
 }
 
 /**
@@ -3070,7 +3078,7 @@ export interface RecoveryCall_claim_recovery {
  */
 export interface RecoveryCall_close_recovery {
   __kind: 'close_recovery'
-  rescuer: Uint8Array
+  rescuer: AccountId
 }
 
 /**
@@ -3115,7 +3123,7 @@ export interface RecoveryCall_remove_recovery {
  */
 export interface RecoveryCall_cancel_recovered {
   __kind: 'cancel_recovered'
-  account: Uint8Array
+  account: AccountId
 }
 
 export type VestingCall = VestingCall_vest | VestingCall_vest_other | VestingCall_vested_transfer
@@ -3159,7 +3167,7 @@ export interface VestingCall_vest {
  */
 export interface VestingCall_vest_other {
   __kind: 'vest_other'
-  target: Uint8Array
+  target: LookupSource
 }
 
 /**
@@ -3180,20 +3188,38 @@ export interface VestingCall_vest_other {
  */
 export interface VestingCall_vested_transfer {
   __kind: 'vested_transfer'
-  target: Uint8Array
+  target: LookupSource
   schedule: VestingInfo
 }
+
+export type Index = number
+
+export type RefCount = number
+
+export type Perbill = number
 
 export interface ChangesTrieConfiguration {
   digestInterval: number
   digestLevels: number
 }
 
+export type StorageKey = Uint8Array
+
+export type StorageData = Uint8Array
+
+export type KeyValue = [StorageKey, StorageData]
+
+export type Key = Uint8Array
+
+export type AccountIndex = number
+
+export type LookupSource = Uint8Array
+
 export interface Header {
-  parentHash: Uint8Array
+  parentHash: Hash
   number: number
-  stateRoot: Uint8Array
-  extrinsicsRoot: Uint8Array
+  stateRoot: Hash
+  extrinsicsRoot: Hash
   digest: Digest
 }
 
@@ -3216,7 +3242,7 @@ export interface RewardDestination_Controller {
 
 export interface RewardDestination_Account {
   __kind: 'Account'
-  value: Uint8Array
+  value: AccountId
 }
 
 export interface RewardDestination_None {
@@ -3224,16 +3250,28 @@ export interface RewardDestination_None {
   value: null
 }
 
-export interface ValidatorPrefsWithCommission {
+export interface ValidatorPrefs {
   commission: number
 }
 
-export interface HeartbeatTo244 {
-  blockNumber: number
+export type EraIndex = number
+
+export type Keys = [AccountId, AccountId, AccountId, AccountId, AccountId]
+
+export interface Heartbeat {
+  blockNumber: BlockNumber
   networkState: OpaqueNetworkState
-  sessionIndex: number
-  authorityIndex: number
+  sessionIndex: SessionIndex
+  authorityIndex: AuthIndex
 }
+
+export type Signature = Uint8Array
+
+export type Vote = number
+
+export type ReferendumIndex = number
+
+export type BlockNumber = number
 
 export type Conviction = Conviction_None | Conviction_Locked1x | Conviction_Locked2x | Conviction_Locked3x | Conviction_Locked4x | Conviction_Locked5x | Conviction_Locked6x
 
@@ -3265,6 +3303,12 @@ export interface Conviction_Locked6x {
   __kind: 'Locked6x'
 }
 
+export type BalanceOf = bigint
+
+export type EcdsaSignature = Uint8Array
+
+export type EthereumAddress = Uint8Array
+
 export interface AttestedCandidate {
   candidate: AbridgedCandidateReceipt
   validityVotes: ValidityAttestation[]
@@ -3272,10 +3316,12 @@ export interface AttestedCandidate {
 }
 
 export interface ParaInfo {
-  manager: Uint8Array
-  deposit: bigint
+  manager: AccountId
+  deposit: Balance
   locked: boolean
 }
+
+export type CollatorId = Uint8Array
 
 export type Type_113 = Type_113_System | Type_113_Babe | Type_113_Timestamp | Type_113_Indices | Type_113_Balances | Type_113_Authorship | Type_113_Staking | Type_113_Offences | Type_113_Session | Type_113_FinalityTracker | Type_113_Grandpa | Type_113_ImOnline | Type_113_AuthorityDiscovery | Type_113_Democracy | Type_113_Council | Type_113_TechnicalCommittee | Type_113_ElectionsPhragmen | Type_113_TechnicalMembership | Type_113_Treasury | Type_113_Claims | Type_113_Parachains | Type_113_Attestations | Type_113_Slots | Type_113_Registrar | Type_113_Utility | Type_113_Identity | Type_113_Society | Type_113_Recovery | Type_113_Vesting
 
@@ -3425,18 +3471,18 @@ export interface Type_113_Vesting {
 }
 
 export interface Timepoint {
-  height: number
+  height: BlockNumber
   index: number
 }
 
 export interface IdentityInfo {
-  additional: [Data, Data][]
+  additional: IdentityInfoAdditional[]
   display: Data
   legal: Data
   web: Data
   riot: Data
   email: Data
-  pgpFingerprint: (Uint8Array | undefined)
+  pgpFingerprint: (H160 | undefined)
   image: Data
   twitter: Data
 }
@@ -3615,23 +3661,25 @@ export interface Data_Raw32 {
 
 export interface Data_BlakeTwo256 {
   __kind: 'BlakeTwo256'
-  value: Uint8Array
+  value: H256
 }
 
 export interface Data_Sha256 {
   __kind: 'Sha256'
-  value: Uint8Array
+  value: H256
 }
 
 export interface Data_Keccak256 {
   __kind: 'Keccak256'
-  value: Uint8Array
+  value: H256
 }
 
 export interface Data_ShaThree256 {
   __kind: 'ShaThree256'
-  value: Uint8Array
+  value: H256
 }
+
+export type RegistrarIndex = number
 
 export type IdentityJudgement = IdentityJudgement_Unknown | IdentityJudgement_FeePaid | IdentityJudgement_Reasonable | IdentityJudgement_KnownGood | IdentityJudgement_OutOfDate | IdentityJudgement_LowQuality | IdentityJudgement_Erroneous
 
@@ -3642,7 +3690,7 @@ export interface IdentityJudgement_Unknown {
 
 export interface IdentityJudgement_FeePaid {
   __kind: 'FeePaid'
-  value: bigint
+  value: Balance
 }
 
 export interface IdentityJudgement_Reasonable {
@@ -3685,9 +3733,9 @@ export interface SocietyJudgement_Approve {
 }
 
 export interface VestingInfo {
-  locked: bigint
-  perBlock: bigint
-  startingBlock: number
+  locked: Balance
+  perBlock: Balance
+  startingBlock: BlockNumber
 }
 
 export interface Digest {
@@ -3695,17 +3743,21 @@ export interface Digest {
 }
 
 export interface OpaqueNetworkState {
-  peerId: Uint8Array
-  externalAddresses: Uint8Array[]
+  peerId: OpaquePeerId
+  externalAddresses: OpaqueMultiaddr[]
 }
 
+export type SessionIndex = number
+
+export type AuthIndex = number
+
 export interface AbridgedCandidateReceipt {
-  parachainIndex: number
-  relayParent: Uint8Array
-  headData: Uint8Array
-  collator: Uint8Array
-  signature: Uint8Array
-  povBlockHash: Uint8Array
+  parachainIndex: ParaId
+  relayParent: Hash
+  headData: HeadData
+  collator: CollatorId
+  signature: CollatorSignature
+  povBlockHash: Hash
   commitments: CandidateCommitments
 }
 
@@ -3718,13 +3770,19 @@ export interface ValidityAttestation_Never {
 
 export interface ValidityAttestation_Implicit {
   __kind: 'Implicit'
-  value: Uint8Array
+  value: ValidatorSignature
 }
 
 export interface ValidityAttestation_Explicit {
   __kind: 'Explicit'
-  value: Uint8Array
+  value: ValidatorSignature
 }
+
+export type IdentityInfoAdditional = [Data, Data]
+
+export type H160 = Uint8Array
+
+export type H256 = Uint8Array
 
 export type DigestItem = DigestItem_Other | DigestItem_AuthoritiesChange | DigestItem_ChangesTrieRoot | DigestItem_SealV0 | DigestItem_Consensus | DigestItem_Seal | DigestItem_PreRuntime | DigestItem_ChangesTrieSignal | DigestItem_RuntimeEnvironmentUpdated
 
@@ -3735,32 +3793,32 @@ export interface DigestItem_Other {
 
 export interface DigestItem_AuthoritiesChange {
   __kind: 'AuthoritiesChange'
-  value: Uint8Array[]
+  value: AuthorityId[]
 }
 
 export interface DigestItem_ChangesTrieRoot {
   __kind: 'ChangesTrieRoot'
-  value: Uint8Array
+  value: Hash
 }
 
 export interface DigestItem_SealV0 {
   __kind: 'SealV0'
-  value: [bigint, Uint8Array]
+  value: SealV0
 }
 
 export interface DigestItem_Consensus {
   __kind: 'Consensus'
-  value: [Uint8Array, Uint8Array]
+  value: Consensus
 }
 
 export interface DigestItem_Seal {
   __kind: 'Seal'
-  value: [Uint8Array, Uint8Array]
+  value: Seal
 }
 
 export interface DigestItem_PreRuntime {
   __kind: 'PreRuntime'
-  value: [Uint8Array, Uint8Array]
+  value: PreRuntime
 }
 
 export interface DigestItem_ChangesTrieSignal {
@@ -3773,14 +3831,38 @@ export interface DigestItem_RuntimeEnvironmentUpdated {
   value: null
 }
 
+export type OpaquePeerId = Uint8Array
+
+export type OpaqueMultiaddr = Uint8Array
+
+export type ParaId = number
+
+export type HeadData = Uint8Array
+
+export type CollatorSignature = Uint8Array
+
 export interface CandidateCommitments {
-  upwardMessages: Uint8Array[]
+  upwardMessages: UpwardMessage[]
   horizontalMessages: OutboundHrmpMessage[]
-  newValidationCode: (Uint8Array | undefined)
-  headData: Uint8Array
+  newValidationCode: (ValidationCode | undefined)
+  headData: HeadData
   processedDownwardMessages: number
-  hrmpWatermark: number
+  hrmpWatermark: BlockNumber
 }
+
+export type ValidatorSignature = Uint8Array
+
+export type AuthorityId = Uint8Array
+
+export type SealV0 = [bigint, Signature]
+
+export type ConsensusEngineId = Uint8Array
+
+export type Consensus = [ConsensusEngineId, Uint8Array]
+
+export type Seal = [ConsensusEngineId, Uint8Array]
+
+export type PreRuntime = [ConsensusEngineId, Uint8Array]
 
 export type ChangesTrieSignal = ChangesTrieSignal_NewConfiguration
 
@@ -3789,7 +3871,11 @@ export interface ChangesTrieSignal_NewConfiguration {
   value: (ChangesTrieConfiguration | undefined)
 }
 
+export type UpwardMessage = Uint8Array
+
 export interface OutboundHrmpMessage {
   recipient: number
   data: Uint8Array
 }
+
+export type ValidationCode = Uint8Array

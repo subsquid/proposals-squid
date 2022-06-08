@@ -76,6 +76,8 @@
     "TechnicalCommittee.Closed"
   ],
   "calls": [
-    "Democracy.vote"
+    "Democracy.vote",
+    "Bounties.accept_curator",
+    "Treasury.accept_curator"
   ]
 }
