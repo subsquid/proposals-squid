@@ -19,7 +19,8 @@ export class Parser {
         const def = this.types[type]
         switch (def.kind) {
             case TypeKind.Primitive:
-                return this.parsePrimitive(def.primitive, val)
+            case TypeKind.Compact:
+                return this.parsePrimitive(val)
             case TypeKind.BitSequence:
                 return this.parseBitSequence(val)
             case TypeKind.Array:
@@ -143,7 +144,7 @@ export class Parser {
         return toHex(val)
     }
 
-    private parsePrimitive(type: Primitive, val: unknown): unknown {
+    private parsePrimitive(val: unknown): unknown {
         return val
     }
 }
