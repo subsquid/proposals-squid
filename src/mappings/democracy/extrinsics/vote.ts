@@ -4,6 +4,7 @@ import { proposalManager, voteManager } from '../../../managers'
 import { ProposalType, SplitVoteBalance, StandardVoteBalance, Vote, VoteBalance, VoteDecision } from '../../../model'
 import { DemocracyVoteCall } from '../../../types/calls'
 import { CallContext } from '../../../types/support'
+import { getOriginAccountId } from '../../../common/tools'
 
 type DemocracyVote =
     | {
@@ -85,6 +86,7 @@ export async function handleVote(
         call: {
             name: true
             args: true
+            origin: true
         }
         extrinsic: true
     }>
@@ -122,7 +124,7 @@ export async function handleVote(
         ctx.store,
         new Vote({
             id: ctx.call.id,
-            voter: 'unknown',
+            voter: ctx.call.origin ? getOriginAccountId(ctx.call.origin) : null,
             createdAt: ctx.block.height,
             decision,
             lockPeriod,

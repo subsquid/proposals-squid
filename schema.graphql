@@ -135,7 +135,7 @@ union VoteBalance = StandardVoteBalance | SplitVoteBalance
 
 type Vote @entity {
   id: ID!
-  voter: String!
+  voter: String
   proposal: Proposal!
   createdAt: Int! @index
   timestamp: DateTime! @index

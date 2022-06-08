@@ -13,8 +13,8 @@ export class Vote {
   @PrimaryColumn_()
   id!: string
 
-  @Column_("text", {nullable: false})
-  voter!: string
+  @Column_("text", {nullable: true})
+  voter!: string | undefined | null
 
   @Index_()
   @ManyToOne_(() => Proposal, {nullable: false})
