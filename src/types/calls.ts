@@ -49,6 +49,71 @@ export class BountiesAcceptCuratorCall {
   }
 }
 
+export class BountiesUnassignCuratorCall {
+  constructor(private ctx: CallContext) {
+    assert(this.ctx.call.name === 'Bounties.unassign_curator')
+  }
+
+  /**
+   *  Unassign curator from a bounty.
+   * 
+   *  This function can only be called by the `RejectOrigin` a signed origin.
+   * 
+   *  If this function is called by the `RejectOrigin`, we assume that the curator is malicious
+   *  or inactive. As a result, we will slash the curator when possible.
+   * 
+   *  If the origin is the curator, we take this as a sign they are unable to do their job and
+   *  they willingly give up. We could slash them, but for now we allow them to recover their
+   *  deposit and exit without issue. (We may want to change this if it is abused.)
+   * 
+   *  Finally, the origin can be anyone if and only if the curator is "inactive". This allows
+   *  anyone in the community to call out that a curator is not doing their due diligence, and
+   *  we should pick a new curator. In this case the curator should also be slashed.
+   * 
+   *  # <weight>
+   *  - O(1).
+   *  # </weight>
+   */
+  get isV2028(): boolean {
+    return this.ctx._chain.getCallHash('Bounties.unassign_curator') === '77b779cfa161e4e6eeffa4c35f55ae2bd68aba06e4b5d48766892991c97064c9'
+  }
+
+  /**
+   *  Unassign curator from a bounty.
+   * 
+   *  This function can only be called by the `RejectOrigin` a signed origin.
+   * 
+   *  If this function is called by the `RejectOrigin`, we assume that the curator is malicious
+   *  or inactive. As a result, we will slash the curator when possible.
+   * 
+   *  If the origin is the curator, we take this as a sign they are unable to do their job and
+   *  they willingly give up. We could slash them, but for now we allow them to recover their
+   *  deposit and exit without issue. (We may want to change this if it is abused.)
+   * 
+   *  Finally, the origin can be anyone if and only if the curator is "inactive". This allows
+   *  anyone in the community to call out that a curator is not doing their due diligence, and
+   *  we should pick a new curator. In this case the curator should also be slashed.
+   * 
+   *  # <weight>
+   *  - O(1).
+   *  # </weight>
+   */
+  get asV2028(): {bountyId: number} {
+    assert(this.isV2028)
+    return this.ctx._chain.decodeCall(this.ctx.call)
+  }
+
+  get isLatest(): boolean {
+    deprecateLatest()
+    return this.isV2028
+  }
+
+  get asLatest(): {bountyId: number} {
+    deprecateLatest()
+    return this.asV2028
+  }
+}
+
 export class DemocracyVoteCall {
   constructor(private ctx: CallContext) {
     assert(this.ctx.call.name === 'Democracy.vote')
@@ -186,6 +251,75 @@ export class TreasuryAcceptCuratorCall {
    *  A deposit will be reserved from curator and refund upon successful payout.
    * 
    *  May only be called from the curator.
+   * 
+   *  # <weight>
+   *  - O(1).
+   *  - Limited storage reads.
+   *  - One DB change.
+   *  # </weight>
+   */
+  get asV2025(): {bountyId: number} {
+    assert(this.isV2025)
+    return this.ctx._chain.decodeCall(this.ctx.call)
+  }
+
+  get isLatest(): boolean {
+    deprecateLatest()
+    return this.isV2025
+  }
+
+  get asLatest(): {bountyId: number} {
+    deprecateLatest()
+    return this.asV2025
+  }
+}
+
+export class TreasuryUnassignCuratorCall {
+  constructor(private ctx: CallContext) {
+    assert(this.ctx.call.name === 'Treasury.unassign_curator')
+  }
+
+  /**
+   *  Unassign curator from a bounty.
+   * 
+   *  This function can only be called by the `RejectOrigin` a signed origin.
+   * 
+   *  If this function is called by the `RejectOrigin`, we assume that the curator is malicious
+   *  or inactive. As a result, we will slash the curator when possible.
+   * 
+   *  If the origin is the curator, we take this as a sign they are unable to do their job and
+   *  they willingly give up. We could slash them, but for now we allow them to recover their
+   *  deposit and exit without issue. (We may want to change this if it is abused.)
+   * 
+   *  Finally, the origin can be anyone if and only if the curator is "inactive". This allows
+   *  anyone in the community to call out that a curator is not doing their due diligence, and
+   *  we should pick a new curator. In this case the curator should also be slashed.
+   * 
+   *  # <weight>
+   *  - O(1).
+   *  - Limited storage reads.
+   *  - One DB change.
+   *  # </weight>
+   */
+  get isV2025(): boolean {
+    return this.ctx._chain.getCallHash('Treasury.unassign_curator') === '77b779cfa161e4e6eeffa4c35f55ae2bd68aba06e4b5d48766892991c97064c9'
+  }
+
+  /**
+   *  Unassign curator from a bounty.
+   * 
+   *  This function can only be called by the `RejectOrigin` a signed origin.
+   * 
+   *  If this function is called by the `RejectOrigin`, we assume that the curator is malicious
+   *  or inactive. As a result, we will slash the curator when possible.
+   * 
+   *  If the origin is the curator, we take this as a sign they are unable to do their job and
+   *  they willingly give up. We could slash them, but for now we allow them to recover their
+   *  deposit and exit without issue. (We may want to change this if it is abused.)
+   * 
+   *  Finally, the origin can be anyone if and only if the curator is "inactive". This allows
+   *  anyone in the community to call out that a curator is not doing their due diligence, and
+   *  we should pick a new curator. In this case the curator should also be slashed.
    * 
    *  # <weight>
    *  - O(1).
