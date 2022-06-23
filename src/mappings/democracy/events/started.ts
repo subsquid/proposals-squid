@@ -1,16 +1,15 @@
 import { toHex } from '@subsquid/substrate-processor'
-import { EventHandlerContext } from '../../contexts'
+import { EventHandlerContext } from '../../types/contexts'
 import { DemocracyStartedEvent } from '../../../types/events'
-import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
+import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
+import { ProposalStatus, ProposalType, ReferendumThresholdType } from '../../../model'
 import { storage } from '../../../storage'
-import { Threshold } from '../../../common/types'
+import { createReferendum } from '../../utils/proposals'
 
 interface ReferendumEventData {
     index: number
-    threshold: Threshold
+    threshold: string
 }
 
 function getEventData(ctx: EventContext): ReferendumEventData {
@@ -32,19 +31,12 @@ function getEventData(ctx: EventContext): ReferendumEventData {
     }
 }
 
-export async function handleStarted(
-    ctx: EventHandlerContext<{
-        event: {
-            name: true
-            args: true
-        }
-    }>
-) {
+export async function handleStarted(ctx: EventHandlerContext) {
     const { index, threshold } = getEventData(ctx)
 
     const storageData = await storage.democracy.getReferendumInfoOf(ctx, index)
     if (!storageData) {
-        new StorageNotExists(ProposalType.Referendum, index, ctx.block.height)
+        ctx.log.warn(StorageNotExistsWarn(ProposalType.Referendum, index))
         return
     }
 
@@ -56,13 +48,10 @@ export async function handleStarted(
     const { hash } = storageData
     const hexHash = toHex(hash)
 
-    await proposalManager.create(ctx.store, {
-        id: ctx.event.id,
+    await createReferendum(ctx, {
         index,
-        type: ProposalType.Referendum,
-        threshold,
+        threshold: threshold as ReferendumThresholdType,
         status: ProposalStatus.Started,
         hash: hexHash,
-        block: ctx.block,
     })
 }

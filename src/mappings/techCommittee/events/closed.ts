@@ -1,10 +1,10 @@
 import { toHex } from '@subsquid/substrate-processor'
-import { EventHandlerContext } from '../../contexts'
-import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
+import { EventHandlerContext } from '../../types/contexts'
+import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
 import { TechnicalCommitteeClosedEvent } from '../../../types/events'
+import { updateProposalStatus } from '../../utils/proposals'
 
 function getEventData(ctx: EventContext): Uint8Array {
     const event = new TechnicalCommitteeClosedEvent(ctx)
@@ -17,22 +17,13 @@ function getEventData(ctx: EventContext): Uint8Array {
     }
 }
 
-export async function handleClosed(
-    ctx: EventHandlerContext<{
-        event: {
-            name: true
-            args: true
-        }
-    }>
-) {
+export async function handleClosed(ctx: EventHandlerContext) {
     const hash = getEventData(ctx)
 
     const hexHash = toHex(hash)
-    const proposal = await proposalManager.updateStatus(ctx.store, hexHash, ProposalType.TechCommitteeProposal, {
-        block: ctx.block,
+
+    await updateProposalStatus(ctx, hexHash, ProposalType.TechCommitteeProposal, {
+        isEnded: true,
         status: ProposalStatus.Closed,
     })
-    if (!proposal) {
-        new MissingProposalRecord(ProposalType.TechCommitteeProposal, hexHash, ctx.block.height)
-    }
 }

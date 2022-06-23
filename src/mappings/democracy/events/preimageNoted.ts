@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { toHex } from '@subsquid/substrate-processor'
-import { EventHandlerContext } from '../../contexts'
+import { EventHandlerContext } from '../../types/contexts'
 import { DemocracyPreimageNotedEvent } from '../../../types/events'
-import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
-import { EventContext, StorageContext } from '../../../types/support'
+import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
+import { EventContext, BlockContext } from '../../../types/support'
 import { DemocracyPreimagesStorage } from '../../../types/storage'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { ss58codec, parseProposalCall } from '../../../common/tools'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
 import { Call } from '../../../types/v9111'
-import { proposalManager } from '../../../managers'
+import { createPreimage } from '../../utils/proposals'
 
 type ProposalCall = Call
 
@@ -52,7 +52,7 @@ function decodeProposal(chain: Chain, data: Uint8Array): ProposalCall {
     return chain.scaleCodec.decodeBinary(chain.description.call, data)
 }
 
-async function getStorageData(ctx: StorageContext, hash: Uint8Array): Promise<PreimageStorageData | undefined> {
+async function getStorageData(ctx: BlockContext, hash: Uint8Array): Promise<PreimageStorageData | undefined> {
     const storage = new DemocracyPreimagesStorage(ctx)
     if (storage.isV1022) {
         const storageData = await storage.getAsV1022(hash)
@@ -95,20 +95,13 @@ async function getStorageData(ctx: StorageContext, hash: Uint8Array): Promise<Pr
     }
 }
 
-export async function handlePreimageNoted(
-    ctx: EventHandlerContext<{
-        event: {
-            name: true
-            args: true
-        }
-    }>
-) {
+export async function handlePreimageNoted(ctx: EventHandlerContext) {
     const { hash, provider, deposit } = getEventData(ctx)
     const hexHash = toHex(hash)
 
     const storageData = await getStorageData(ctx, hash)
     if (!storageData) {
-        new StorageNotExists(ProposalType.Preimage, hexHash, ctx.block.height)
+        ctx.log.warn(StorageNotExistsWarn(ProposalType.Preimage, hexHash))
         return
     }
 
@@ -138,14 +131,11 @@ export async function handlePreimageNoted(
 
     const proposer = ss58codec.encode(provider)
 
-    await proposalManager.create(ctx.store, {
-        id: ctx.event.id,
+    await createPreimage(ctx, {
         hash: hexHash,
-        type: ProposalType.Preimage,
         proposer,
         deposit,
         call: decodedCall,
         status: ProposalStatus.Noted,
-        block: ctx.block,
     })
 }

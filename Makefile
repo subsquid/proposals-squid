@@ -1,4 +1,4 @@
-process: migrate
+process:
 	@node -r dotenv/config lib/processor.js
 
 
@@ -30,8 +30,8 @@ typegen:
 explore:
 	@npx squid-substrate-metadata-explorer \
 		--chain wss://kusama-rpc.polkadot.io \
-		--archive https://kusama.indexer.gc.subsquid.io/v4/graphql \
-		--out ./typegen/versions.json
+		--archive https://kusama.archive.subsquid.io/graphql \
+		--out ./typegen/versions.jsonl
 
 
 up:

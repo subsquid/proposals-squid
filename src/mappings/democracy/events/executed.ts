@@ -1,9 +1,9 @@
-import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
+import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
 import { DemocracyExecutedEvent } from '../../../types/events'
-import { EventHandlerContext } from '../../contexts'
+import { EventHandlerContext } from '../../types/contexts'
+import { updateProposalStatus } from '../../utils/proposals'
 
 function getEventData(ctx: EventContext): number {
     const event = new DemocracyExecutedEvent(ctx)
@@ -24,22 +24,10 @@ function getEventData(ctx: EventContext): number {
     }
 }
 
-export async function handleExecuted(
-    ctx: EventHandlerContext<{
-        event: {
-            name: true
-            args: true
-        }
-    }>
-) {
+export async function handleExecuted(ctx: EventHandlerContext) {
     const index = getEventData(ctx)
 
-    const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.Referendum, {
-        block: ctx.block,
+    await updateProposalStatus(ctx, index, ProposalType.Referendum, {
         status: ProposalStatus.Executed,
-        isEnded: true,
     })
-    if (!proposal) {
-        new MissingProposalRecord(ProposalType.Referendum, index, ctx.block.height)
-    }
 }

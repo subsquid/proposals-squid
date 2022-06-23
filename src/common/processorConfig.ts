@@ -1,7 +1,6 @@
 import { SubstrateProcessor } from '@subsquid/substrate-processor'
-import { ChainName } from './types'
 
-type Parameters<T> = T extends (...args: infer T) => any ? T : never
+type Parameters<T> = T extends (...args: infer R) => unknown ? R : never
 
 enum HandlerParams {
     NAME,
@@ -10,7 +9,7 @@ enum HandlerParams {
 }
 
 export type ChainConfig = Readonly<{
-    name: ChainName
+    name: string
     prefix: number | string
 }>
 

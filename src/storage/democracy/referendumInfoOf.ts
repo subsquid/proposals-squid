@@ -1,5 +1,5 @@
 import { UnknownVersionError } from '../../common/errors'
-import { StorageContext } from '../../types/support'
+import { BlockContext } from '../../types/support'
 import { DemocracyReferendumInfoOfStorage } from '../../types/storage'
 import * as v1055 from '../../types/v1055'
 import * as v9111 from '../../types/v9111'
@@ -23,7 +23,7 @@ type OngoingReferendumData = {
 type ReferendumStorageData = FinishedReferendumData | OngoingReferendumData
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
-async function getStorageData(ctx: StorageContext, index: number): Promise<ReferendumStorageData | undefined> {
+async function getStorageData(ctx: BlockContext, index: number): Promise<ReferendumStorageData | undefined> {
     const storage = new DemocracyReferendumInfoOfStorage(ctx)
     if (storage.isV1020) {
         const storageData = await storage.getAsV1020(index)
@@ -86,6 +86,6 @@ async function getStorageData(ctx: StorageContext, index: number): Promise<Refer
     }
 }
 
-export async function getReferendumInfoOf(ctx: StorageContext, index: number) {
+export async function getReferendumInfoOf(ctx: BlockContext, index: number) {
     return await getStorageData(ctx, index)
 }

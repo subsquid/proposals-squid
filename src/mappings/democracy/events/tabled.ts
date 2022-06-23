@@ -1,9 +1,9 @@
-import { EventHandlerContext } from '../../contexts'
+import { EventHandlerContext } from '../../types/contexts'
 import { DemocracyTabledEvent } from '../../../types/events'
-import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
+import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
+import { updateProposalStatus } from '../../utils/proposals'
 
 interface TabledEventData {
     index: number
@@ -32,21 +32,11 @@ function getEventData(ctx: EventContext): TabledEventData {
     }
 }
 
-export async function handleTabled(
-    ctx: EventHandlerContext<{
-        event: {
-            name: true
-            args: true
-        }
-    }>
-) {
+export async function handleTabled(ctx: EventHandlerContext) {
     const { index } = getEventData(ctx)
 
-    const proposal = await proposalManager.updateStatus(ctx.store, index, ProposalType.DemocracyProposal, {
-        block: ctx.block,
-        status: ProposalStatus.Tabled,
+    await updateProposalStatus(ctx, index, ProposalType.DemocracyProposal, {
+        status: ProposalStatus.Used,
+        isEnded: true,
     })
-    if (!proposal) {
-        new MissingProposalRecord(ProposalType.DemocracyProposal, index, ctx.block.height)
-    }
 }

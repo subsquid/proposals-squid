@@ -1,11 +1,9 @@
 import { SubstrateProcessor } from '@subsquid/substrate-processor'
-import { handleChainState } from './chainState'
 import { TypeormDatabase } from '@subsquid/typeorm-store'
 import config from './config'
 import * as modules from './mappings'
 
-const db = new TypeormDatabase(`${config.chain.name}_processor`)
-
+const db = new TypeormDatabase()
 const processor = new SubstrateProcessor(db)
 
 processor.setTypesBundle(config.typesBundle)
@@ -74,7 +72,5 @@ processor.addEventHandler('Bounties.BountyCanceled', modules.bounties.events.han
 processor.addEventHandler('Bounties.BountyExtended', modules.bounties.events.handleExtended)
 processor.addCallHandler('Bounties.accept_curator', modules.bounties.extrinsic.handleAcceptCurator)
 processor.addCallHandler('Bounties.unassign_curator', modules.bounties.extrinsic.handleUnassignCurator)
-
-// processor.addPostHook(handleChainState)
 
 processor.run()

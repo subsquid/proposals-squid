@@ -1,0 +1,51 @@
+module.exports = class Data1655928986413 {
+  name = 'Data1655928986413'
+
+  async up(db) {
+    await db.query(`CREATE TABLE "vote" ("id" character varying NOT NULL, "voter" text, "block_number" integer NOT NULL, "timestamp" TIMESTAMP WITH TIME ZONE NOT NULL, "decision" character varying(7), "balance" jsonb, "lock_period" integer, "type" character varying(10), "proposal_id" character varying NOT NULL, CONSTRAINT "PK_2d5932d46afe39c8176f9d4be72" PRIMARY KEY ("id"))`)
+    await db.query(`CREATE INDEX "IDX_db85a3f8526cbaa2865faf8637" ON "vote" ("proposal_id") `)
+    await db.query(`CREATE INDEX "IDX_41065267c13533592a24836335" ON "vote" ("block_number") `)
+    await db.query(`CREATE INDEX "IDX_8d701dbd422ac5e3e1d7a9a0d1" ON "vote" ("timestamp") `)
+    await db.query(`CREATE TABLE "status_history" ("id" character varying NOT NULL, "status" character varying(11) NOT NULL, "block" integer NOT NULL, "timestamp" TIMESTAMP WITH TIME ZONE NOT NULL, "proposal_id" character varying NOT NULL, CONSTRAINT "PK_271a5228edb4eeb41bc01d58fac" PRIMARY KEY ("id"))`)
+    await db.query(`CREATE INDEX "IDX_6ecfec106cbaabdc5ac1bb4fbf" ON "status_history" ("proposal_id") `)
+    await db.query(`CREATE TABLE "proposal_group" ("id" character varying NOT NULL, "preimage_hash" text, "treasury_index" integer, "bounty_index" integer, "tip_hash" text, CONSTRAINT "PK_a55a5b4a31bbfc52ae411bdc438" PRIMARY KEY ("id"))`)
+    await db.query(`CREATE INDEX "IDX_393e9084128f7c3d63fcc9d870" ON "proposal_group" ("preimage_hash") `)
+    await db.query(`CREATE INDEX "IDX_ddb0d81ba23a6f7ff9d49e6245" ON "proposal_group" ("treasury_index") `)
+    await db.query(`CREATE INDEX "IDX_8f3e46a377e8eacffa6d4f229a" ON "proposal_group" ("bounty_index") `)
+    await db.query(`CREATE INDEX "IDX_cbe8c0c53c2ea11a3d9135c0c8" ON "proposal_group" ("tip_hash") `)
+    await db.query(`CREATE TABLE "proposal" ("id" character varying NOT NULL, "type" character varying(21) NOT NULL, "hash" text, "index" integer, "proposer" text, "deposit" numeric, "threshold" jsonb, "proposed_call" jsonb, "curator" text, "payee" text, "reward" numeric, "status" character varying(11) NOT NULL, "created_at_block" integer NOT NULL, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "ended_at_block" integer, "ended_at" TIMESTAMP WITH TIME ZONE, "updated_at_block" integer, "updated_at" TIMESTAMP WITH TIME ZONE, "group_id" character varying, CONSTRAINT "PK_ca872ecfe4fef5720d2d39e4275" PRIMARY KEY ("id"))`)
+    await db.query(`CREATE INDEX "IDX_788a2da76636d59b8803d21968" ON "proposal" ("type") `)
+    await db.query(`CREATE INDEX "IDX_8a5d128863df341f83f7ae4974" ON "proposal" ("hash") `)
+    await db.query(`CREATE INDEX "IDX_081891a0598db72dd59758cfae" ON "proposal" ("index") `)
+    await db.query(`CREATE INDEX "IDX_f165403894de704708157f7cdb" ON "proposal" ("created_at_block") `)
+    await db.query(`CREATE INDEX "IDX_92d4592195fbffd27d2079c0d5" ON "proposal" ("created_at") `)
+    await db.query(`CREATE INDEX "IDX_a55a5b4a31bbfc52ae411bdc43" ON "proposal" ("group_id") `)
+    await db.query(`ALTER TABLE "vote" ADD CONSTRAINT "FK_db85a3f8526cbaa2865faf8637f" FOREIGN KEY ("proposal_id") REFERENCES "proposal"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`)
+    await db.query(`ALTER TABLE "status_history" ADD CONSTRAINT "FK_6ecfec106cbaabdc5ac1bb4fbf4" FOREIGN KEY ("proposal_id") REFERENCES "proposal"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`)
+    await db.query(`ALTER TABLE "proposal" ADD CONSTRAINT "FK_a55a5b4a31bbfc52ae411bdc438" FOREIGN KEY ("group_id") REFERENCES "proposal_group"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`)
+  }
+
+  async down(db) {
+    await db.query(`DROP TABLE "vote"`)
+    await db.query(`DROP INDEX "public"."IDX_db85a3f8526cbaa2865faf8637"`)
+    await db.query(`DROP INDEX "public"."IDX_41065267c13533592a24836335"`)
+    await db.query(`DROP INDEX "public"."IDX_8d701dbd422ac5e3e1d7a9a0d1"`)
+    await db.query(`DROP TABLE "status_history"`)
+    await db.query(`DROP INDEX "public"."IDX_6ecfec106cbaabdc5ac1bb4fbf"`)
+    await db.query(`DROP TABLE "proposal_group"`)
+    await db.query(`DROP INDEX "public"."IDX_393e9084128f7c3d63fcc9d870"`)
+    await db.query(`DROP INDEX "public"."IDX_ddb0d81ba23a6f7ff9d49e6245"`)
+    await db.query(`DROP INDEX "public"."IDX_8f3e46a377e8eacffa6d4f229a"`)
+    await db.query(`DROP INDEX "public"."IDX_cbe8c0c53c2ea11a3d9135c0c8"`)
+    await db.query(`DROP TABLE "proposal"`)
+    await db.query(`DROP INDEX "public"."IDX_788a2da76636d59b8803d21968"`)
+    await db.query(`DROP INDEX "public"."IDX_8a5d128863df341f83f7ae4974"`)
+    await db.query(`DROP INDEX "public"."IDX_081891a0598db72dd59758cfae"`)
+    await db.query(`DROP INDEX "public"."IDX_f165403894de704708157f7cdb"`)
+    await db.query(`DROP INDEX "public"."IDX_92d4592195fbffd27d2079c0d5"`)
+    await db.query(`DROP INDEX "public"."IDX_a55a5b4a31bbfc52ae411bdc43"`)
+    await db.query(`ALTER TABLE "vote" DROP CONSTRAINT "FK_db85a3f8526cbaa2865faf8637f"`)
+    await db.query(`ALTER TABLE "status_history" DROP CONSTRAINT "FK_6ecfec106cbaabdc5ac1bb4fbf4"`)
+    await db.query(`ALTER TABLE "proposal" DROP CONSTRAINT "FK_a55a5b4a31bbfc52ae411bdc438"`)
+  }
+}

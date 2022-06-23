@@ -1,32 +1,3 @@
-enum RelayChain {
-  kusama
-  polkadot
-}
-
-type Chain @entity {
-  id: ID!
-  token: Token!
-  paraId: Int
-  relayChain: RelayChain
-  states: [ChainState!] @derivedFrom(field: "chain")
-}
-
-type Token {
-  symbol: String
-  decimals: Int
-}
-
-type ChainState @entity {
-  id: ID!
-  chain: Chain! @index
-  tokenBalance: BigInt!
-  tokenHolders: Int!
-  councilMembers: Int!
-  democracyProposals: Int!
-  councilProposals: Int!
-  timestamp: DateTime! @index
-}
-
 enum ProposalType {
   Preimage
   DemocracyProposal
@@ -93,7 +64,7 @@ type Proposal @entity {
   reward: BigInt
   voting: [Vote!] @derivedFrom(field: "proposal")
   status: ProposalStatus!
-  statusHistory: [StatusHistoryItem!]!
+  statusHistory: [StatusHistory!] @derivedFrom(field: "proposal")
   createdAtBlock: Int! @index
   createdAt: DateTime! @index
   endedAtBlock: Int
@@ -103,7 +74,9 @@ type Proposal @entity {
   group: ProposalGroup
 }
 
-type StatusHistoryItem {
+type StatusHistory @entity {
+  id: ID!
+  proposal: Proposal!
   status: ProposalStatus!
   block: Int!
   timestamp: DateTime!
@@ -141,8 +114,9 @@ enum VoteType {
 type Vote @entity {
   id: ID!
   voter: String
+  proposalId: ID!
   proposal: Proposal!
-  createdAt: Int! @index
+  blockNumber: Int! @index
   timestamp: DateTime! @index
   decision: VoteDecision
   balance: VoteBalance

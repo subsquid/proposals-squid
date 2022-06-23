@@ -1,9 +1,8 @@
-import { UnknownVersionError } from '../../../common/errors'
-import { proposalManager } from '../../../managers'
-import { ProposalType } from '../../../model'
+import { MissingProposalRecordWarn, UnknownVersionError } from '../../../common/errors'
+import { Proposal, ProposalType } from '../../../model'
 import { BountiesUnassignCuratorCall, TreasuryUnassignCuratorCall } from '../../../types/calls'
 import { CallContext } from '../../../types/support'
-import { CallHandlerContext } from '../../contexts'
+import { CallHandlerContext } from '../../types/contexts'
 
 interface CallData {
     index: number
@@ -33,26 +32,20 @@ function getBountyCallData(ctx: CallContext): CallData {
     }
 }
 
-export async function handleUnassignCurator(
-    ctx: CallHandlerContext<{
-        call: {
-            name: true
-            args: true
-            origin: true
-        }
-    }>
-) {
+export async function handleUnassignCurator(ctx: CallHandlerContext) {
+    if (!ctx.call.success) return
+
     const section = ctx.call.name.split('.')[0]
     const getEventData = section === 'Bounties' ? getBountyCallData : getTrasuryCallData
     const { index } = getEventData(ctx)
 
-    const proposal = await proposalManager.get(ctx.store, index, ProposalType.Bounty)
+    const proposal = await ctx.store.get(Proposal, { where: { index, type: ProposalType.Bounty } })
     if (!proposal) {
-        ctx.log.warn(`Missing record for bounty ${index}`)
+        ctx.log.warn(MissingProposalRecordWarn(ProposalType.Bounty, index))
         return
     }
 
     proposal.curator = null
 
-    await proposalManager.update(ctx.store, proposal, { block: ctx.block })
+    await ctx.store.save(proposal)
 }

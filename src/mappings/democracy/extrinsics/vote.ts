@@ -1,7 +1,7 @@
-import { CallHandlerContext } from '../../contexts'
-import { UnknownVersionError } from '../../../common/errors'
-import { proposalManager, voteManager } from '../../../managers'
+import { CallHandlerContext } from '../../types/contexts'
+import { MissingProposalRecordWarn, UnknownVersionError } from '../../../common/errors'
 import {
+    Proposal,
     ProposalType,
     SplitVoteBalance,
     StandardVoteBalance,
@@ -13,6 +13,7 @@ import {
 import { DemocracyVoteCall } from '../../../types/calls'
 import { CallContext } from '../../../types/support'
 import { getOriginAccountId } from '../../../common/tools'
+import { getVotesCount } from '../../utils/votes'
 
 type DemocracyVote =
     | {
@@ -89,20 +90,16 @@ function getCallData(ctx: CallContext): DemocracyVoteCallData {
     }
 }
 
-export async function handleVote(
-    ctx: CallHandlerContext<{
-        call: {
-            name: true
-            args: true
-            origin: true
-        }
-        extrinsic: true
-    }>
-) {
+export async function handleVote(ctx: CallHandlerContext) {
+    if (!ctx.call.success) return
+
     const { index, vote } = getCallData(ctx)
 
-    const proposal = await proposalManager.get(ctx.store, index, ProposalType.Referendum)
-    if (!proposal) return
+    const proposal = await ctx.store.get(Proposal, { where: { index, type: ProposalType.Referendum } })
+    if (!proposal) {
+        ctx.log.warn(MissingProposalRecordWarn(ProposalType.Referendum, index))
+        return
+    }
 
     let decision: VoteDecision
     switch (vote.type) {
@@ -128,12 +125,13 @@ export async function handleVote(
         lockPeriod = vote.value < 128 ? vote.value : vote.value - 128
     }
 
-    await voteManager.save(
-        ctx.store,
+    const count = await getVotesCount(ctx, proposal.id)
+
+    await ctx.store.insert(
         new Vote({
-            id: ctx.call.id,
+            id: `${proposal.id}-${count.toString().padStart(8, '0')}`,
             voter: ctx.call.origin ? getOriginAccountId(ctx.call.origin) : null,
-            createdAt: ctx.block.height,
+            blockNumber: ctx.block.height,
             decision,
             lockPeriod,
             proposal,

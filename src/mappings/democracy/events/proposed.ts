@@ -1,12 +1,12 @@
 import { toHex } from '@subsquid/substrate-processor'
 import { DemocracyProposedEvent } from '../../../types/events'
-import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
+import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
 import { ss58codec } from '../../../common/tools'
 import { storage } from '../../../storage'
-import { EventHandlerContext } from '../../contexts'
+import { EventHandlerContext } from '../../types/contexts'
+import { createDemocracyProposal } from '../../utils/proposals'
 
 interface DemocracyProposalEventData {
     index: number
@@ -32,14 +32,7 @@ function getEventData(ctx: EventContext): DemocracyProposalEventData {
     }
 }
 
-export async function handleProposed(
-    ctx: EventHandlerContext<{
-        event: {
-            name: true
-            args: true
-        }
-    }>
-) {
+export async function handleProposed(ctx: EventHandlerContext) {
     const { index, deposit } = getEventData(ctx)
 
     const storageData = await storage.democracy.getProposals(ctx)
@@ -50,20 +43,17 @@ export async function handleProposed(
 
     const proposalData = storageData.find((prop) => prop.index === index)
     if (!proposalData) {
-        new StorageNotExists(ProposalType.DemocracyProposal, index, ctx.block.height)
+        ctx.log.warn(StorageNotExistsWarn(ProposalType.DemocracyProposal, index))
         return
     }
     const { hash, proposer } = proposalData
     const hexHash = toHex(hash)
 
-    await proposalManager.create(ctx.store, {
-        id: ctx.event.id,
+    await createDemocracyProposal(ctx, {
         hash: hexHash,
         index,
         proposer: ss58codec.encode(proposer),
-        type: ProposalType.DemocracyProposal,
         status: ProposalStatus.Proposed,
         deposit,
-        block: ctx.block,
     })
 }

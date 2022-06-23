@@ -1,6 +1,6 @@
 {
   "outDir": "../src/types",
-  "chainVersions": "./versions.json",
+  "specVersions": "./versions.jsonl",
   "typesBundle": "kusama",
   "storage": [
     "Council.Members",

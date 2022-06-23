@@ -1,12 +1,12 @@
 import { toHex } from '@subsquid/substrate-processor'
-import { EventHandlerContext } from '../../contexts'
+import { EventHandlerContext } from '../../types/contexts'
 import { TipsNewTipEvent, TreasuryNewTipEvent } from '../../../types/events'
-import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
+import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
 import { ss58codec } from '../../../common/tools'
 import { storage } from '../../../storage'
+import { createTip } from '../../utils/proposals'
 
 interface TipEventData {
     hash: Uint8Array
@@ -41,14 +41,7 @@ function getTipsEventData(ctx: EventContext): TipEventData {
     }
 }
 
-export async function handleNewTip(
-    ctx: EventHandlerContext<{
-        event: {
-            name: true
-            args: true
-        }
-    }>
-) {
+export async function handleNewTip(ctx: EventHandlerContext) {
     const section = ctx.event.name.split('.')[0]
     const getEventData = section === 'Tips' ? getTipsEventData : getTreasuryEventData
     const { hash } = getEventData(ctx)
@@ -56,20 +49,17 @@ export async function handleNewTip(
     const hexHash = toHex(hash)
     const storageData = await storage.tips.getTips(ctx, hash)
     if (!storageData) {
-        new StorageNotExists(ProposalType.Tip, hexHash, ctx.block.height)
+        ctx.log.warn(StorageNotExistsWarn(ProposalType.Tip, hexHash))
         return
     }
 
     const { who, deposit, finder } = storageData
 
-    await proposalManager.create(ctx.store, {
-        id: ctx.event.id,
-        type: ProposalType.Tip,
+    await createTip(ctx, {
         hash: hexHash,
         proposer: finder ? ss58codec.encode(finder) : undefined,
         payee: ss58codec.encode(who),
         deposit,
         status: ProposalStatus.Proposed,
-        block: ctx.block,
     })
 }

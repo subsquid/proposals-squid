@@ -17,13 +17,16 @@ export class Vote {
   @Column_("text", {nullable: true})
   voter!: string | undefined | null
 
+  @Column_("text", {nullable: false})
+  proposalId!: string
+
   @Index_()
   @ManyToOne_(() => Proposal, {nullable: false})
   proposal!: Proposal
 
   @Index_()
   @Column_("int4", {nullable: false})
-  createdAt!: number
+  blockNumber!: number
 
   @Index_()
   @Column_("timestamp with time zone", {nullable: false})
