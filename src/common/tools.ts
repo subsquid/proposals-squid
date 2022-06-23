@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as ss58 from '@subsquid/ss58'
-import { toCamelCase } from '@subsquid/util'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
 import { Parser } from './parser'
 import { Codec } from '@subsquid/scale-codec'
 import config from '../config'
+import { decodeHex } from '@subsquid/util-internal-hex'
 
-export const ss58codec = ss58.codec(config.prefix)
+export const ss58codec = ss58.codec(config.chain.prefix)
 
 interface Call {
     __kind: string
@@ -17,7 +17,7 @@ export function parseProposalCall(chain: Chain, data: Call) {
     const section = data.__kind as string
     const method = data.value.__kind as string
 
-    const name = `${toCamelCase(section)}.${method}`
+    const name = `${section}.${method}`
 
     const description = ((chain as any).calls.get(name).docs as string[]).join('\n')
 
@@ -30,5 +30,21 @@ export function parseProposalCall(chain: Chain, data: Call) {
         method,
         description,
         args,
+    }
+}
+
+export function getOriginAccountId(origin: any) {
+    // eslint-disable-next-line sonarjs/no-small-switch
+    switch (origin.__kind) {
+        case 'system':
+            // eslint-disable-next-line sonarjs/no-nested-switch, sonarjs/no-small-switch
+            switch (origin.value.__kind) {
+                case 'Signed':
+                    return ss58codec.encode(decodeHex(origin.value.value))
+                default:
+                    throw new Error(`Unknown origin type ${origin.__kind}.${origin.value.__kind}`)
+            }
+        default:
+            throw new Error(`Unknown origin type ${origin.__kind}`)
     }
 }

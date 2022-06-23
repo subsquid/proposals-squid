@@ -1,6 +1,6 @@
 import { UnknownVersionError } from '../../common/errors'
 import { TipsTipsStorage, TreasuryTipsStorage } from '../../types/storage'
-import { StorageContext } from '../../types/support'
+import { BlockContext } from '../../types/support'
 
 interface TipStorageData {
     who: Uint8Array
@@ -8,7 +8,7 @@ interface TipStorageData {
     deposit?: bigint
 }
 
-async function getTipsStorageData(ctx: StorageContext, hash: Uint8Array): Promise<TipStorageData | undefined> {
+async function getTipsStorageData(ctx: BlockContext, hash: Uint8Array): Promise<TipStorageData | undefined> {
     const storage = new TipsTipsStorage(ctx)
     if (!storage.isExists) return undefined
 
@@ -19,7 +19,7 @@ async function getTipsStorageData(ctx: StorageContext, hash: Uint8Array): Promis
     }
 }
 
-async function getTreasuryStorageData(ctx: StorageContext, hash: Uint8Array): Promise<TipStorageData | undefined> {
+async function getTreasuryStorageData(ctx: BlockContext, hash: Uint8Array): Promise<TipStorageData | undefined> {
     const storage = new TreasuryTipsStorage(ctx)
     if (!storage.isExists) return undefined
 
@@ -40,6 +40,6 @@ async function getTreasuryStorageData(ctx: StorageContext, hash: Uint8Array): Pr
     }
 }
 
-export async function getTips(ctx: StorageContext, hash: Uint8Array) {
+export async function getTips(ctx: BlockContext, hash: Uint8Array) {
     return (await getTipsStorageData(ctx, hash)) || (await getTreasuryStorageData(ctx, hash))
 }

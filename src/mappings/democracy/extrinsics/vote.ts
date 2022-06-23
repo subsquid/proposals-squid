@@ -1,25 +1,28 @@
-import { EventHandlerContext, ExtrinsicHandlerContext, toHex } from '@subsquid/substrate-processor'
-import { UnknownVersionError } from '../../../common/errors'
-import { ss58codec } from '../../../common/tools'
-import config from '../../../config'
-import { proposalManager, voteManager } from '../../../managers'
-import { ProposalType, SplitVoteBalance, StandardVoteBalance, Vote, VoteBalance, VoteDecision } from '../../../model'
+import { CallHandlerContext } from '../../types/contexts'
+import { MissingProposalRecordWarn, UnknownVersionError } from '../../../common/errors'
+import {
+    Proposal,
+    ProposalType,
+    SplitVoteBalance,
+    StandardVoteBalance,
+    Vote,
+    VoteBalance,
+    VoteDecision,
+    VoteType,
+} from '../../../model'
 import { DemocracyVoteCall } from '../../../types/calls'
-import { CouncilVotedEvent } from '../../../types/events'
-import { EventContext } from '../../../types/support'
+import { CallContext } from '../../../types/support'
+import { getOriginAccountId } from '../../../common/tools'
+import { getVotesCount } from '../../utils/votes'
 
 type DemocracyVote =
     | {
-          type: 'old'
-          value: number
-      }
-    | {
-          type: 'standard'
+          type: 'Standard'
           balance?: bigint
           value: number
       }
     | {
-          type: 'split'
+          type: 'Split'
           aye: bigint
           nay: bigint
       }
@@ -29,14 +32,14 @@ interface DemocracyVoteCallData {
     vote: DemocracyVote
 }
 
-function getCallData(ctx: ExtrinsicHandlerContext): DemocracyVoteCallData {
+function getCallData(ctx: CallContext): DemocracyVoteCallData {
     const event = new DemocracyVoteCall(ctx)
     if (event.isV1020) {
         const { refIndex, vote } = event.asV1020
         return {
             index: refIndex,
             vote: {
-                type: 'old',
+                type: 'Standard',
                 value: vote,
             },
         }
@@ -46,7 +49,7 @@ function getCallData(ctx: ExtrinsicHandlerContext): DemocracyVoteCallData {
             return {
                 index: refIndex,
                 vote: {
-                    type: 'standard',
+                    type: 'Standard',
                     value: vote.value.vote,
                     balance: vote.value.balance,
                 },
@@ -55,7 +58,7 @@ function getCallData(ctx: ExtrinsicHandlerContext): DemocracyVoteCallData {
             return {
                 index: refIndex,
                 vote: {
-                    type: 'split',
+                    type: 'Split',
                     aye: vote.value.aye,
                     nay: vote.value.nay,
                 },
@@ -67,7 +70,7 @@ function getCallData(ctx: ExtrinsicHandlerContext): DemocracyVoteCallData {
             return {
                 index: refIndex,
                 vote: {
-                    type: 'standard',
+                    type: 'Standard',
                     value: vote.vote,
                     balance: vote.balance,
                 },
@@ -76,7 +79,7 @@ function getCallData(ctx: ExtrinsicHandlerContext): DemocracyVoteCallData {
             return {
                 index: refIndex,
                 vote: {
-                    type: 'split',
+                    type: 'Split',
                     aye: vote.aye,
                     nay: vote.nay,
                 },
@@ -87,51 +90,54 @@ function getCallData(ctx: ExtrinsicHandlerContext): DemocracyVoteCallData {
     }
 }
 
-export async function handleVote(ctx: ExtrinsicHandlerContext) {
+export async function handleVote(ctx: CallHandlerContext) {
+    if (!ctx.call.success) return
+
     const { index, vote } = getCallData(ctx)
 
-    const proposal = await proposalManager.get(ctx, index, ProposalType.Referendum)
-    if (!proposal) return
+    const proposal = await ctx.store.get(Proposal, { where: { index, type: ProposalType.Referendum } })
+    if (!proposal) {
+        ctx.log.warn(MissingProposalRecordWarn(ProposalType.Referendum, index))
+        return
+    }
 
     let decision: VoteDecision
     switch (vote.type) {
-        case 'old':
-        case 'standard':
+        case 'Standard':
             decision = vote.value < 128 ? VoteDecision.no : VoteDecision.yes
             break
-        case 'split':
+        case 'Split':
             decision = VoteDecision.abstain
             break
     }
 
     let lockPeriod: number | undefined
-    if (vote.type != 'split') {
-        lockPeriod = vote.value < 128 ? vote.value : vote.value - 128
-    }
-
     let balance: VoteBalance | undefined
-    if (vote.type === 'split') {
+    if (vote.type === 'Split') {
         balance = new SplitVoteBalance({
             aye: vote.aye,
             nay: vote.nay,
         })
-    } else if (vote.type === 'standard') {
+    } else if (vote.type === 'Standard') {
         balance = new StandardVoteBalance({
             value: vote.balance,
         })
+        lockPeriod = vote.value < 128 ? vote.value : vote.value - 128
     }
 
-    await voteManager.save(
-        ctx,
+    const count = await getVotesCount(ctx, proposal.id)
+
+    await ctx.store.insert(
         new Vote({
-            id: ctx.event.id,
-            voter: ctx.extrinsic.signer,
-            createdAt: ctx.block.height,
+            id: `${proposal.id}-${count.toString().padStart(8, '0')}`,
+            voter: ctx.call.origin ? getOriginAccountId(ctx.call.origin) : null,
+            blockNumber: ctx.block.height,
             decision,
             lockPeriod,
             proposal,
             balance,
             timestamp: new Date(ctx.block.timestamp),
+            type: VoteType.Referendum,
         })
     )
 }

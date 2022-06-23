@@ -1,9 +1,9 @@
-import { EventHandlerContext } from '@subsquid/substrate-processor'
-import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
+import { EventHandlerContext } from '../../types/contexts'
+import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
 import { TreasuryAwardedEvent } from '../../../types/events'
+import { updateProposalStatus } from '../../utils/proposals'
 
 interface TreasuryEventData {
     index: number
@@ -29,11 +29,8 @@ function getEventData(ctx: EventContext): TreasuryEventData {
 export async function handleAwarded(ctx: EventHandlerContext) {
     const { index } = getEventData(ctx)
 
-    const proposal = await proposalManager.updateStatus(ctx, index, ProposalType.TreasuryProposal, {
-        status: ProposalStatus.Awarded,
+    await updateProposalStatus(ctx, index, ProposalType.TreasuryProposal, {
         isEnded: true,
+        status: ProposalStatus.Awarded,
     })
-    if (!proposal) {
-        (new MissingProposalRecord(ProposalType.TreasuryProposal, index, ctx.block.height))
-    }
 }

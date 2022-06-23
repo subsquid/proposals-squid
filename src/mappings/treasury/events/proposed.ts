@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { EventHandlerContext } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../types/contexts'
 import { TreasuryProposedEvent } from '../../../types/events'
-import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
+import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
-import config from '../../../config'
 import { ss58codec } from '../../../common/tools'
 import { storage } from '../../../storage'
+import { createTreasury } from '../../utils/proposals'
 
 interface TreasuryProposalEventData {
     index: number
@@ -35,15 +34,14 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const storageData = await storage.treasury.getProposals(ctx, index)
     if (!storageData) {
-        (new StorageNotExists(ProposalType.TreasuryProposal, index, ctx.block.height))
+        ctx.log.warn(StorageNotExistsWarn(ProposalType.TreasuryProposal, index))
         return
     }
 
     const { proposer, beneficiary, value, bond } = storageData
 
-    await proposalManager.create(ctx, {
+    await createTreasury(ctx, {
         index,
-        type: ProposalType.TreasuryProposal,
         proposer: ss58codec.encode(proposer),
         status: ProposalStatus.Proposed,
         reward: value,

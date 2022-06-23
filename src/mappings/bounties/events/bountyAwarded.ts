@@ -1,11 +1,10 @@
-import { EventHandlerContext } from '@subsquid/substrate-processor'
-import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
+import { EventHandlerContext } from '../../types/contexts'
+import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
 import { BountiesBountyAwardedEvent, TreasuryBountyAwardedEvent } from '../../../types/events'
 import { ss58codec } from '../../../common/tools'
-import config from '../../../config'
+import { updateProposalStatus } from '../../utils/proposals'
 
 interface BountyEventData {
     index: number
@@ -45,18 +44,15 @@ function getBountyEventData(ctx: EventContext): BountyEventData {
 }
 
 export async function handleAwarded(ctx: EventHandlerContext) {
-    const getEventData = ctx.event.section === 'bounties' ? getBountyEventData : getTreasuryEventData
+    const section = ctx.event.name.split('.')[0]
+    const getEventData = section === 'Bounties' ? getBountyEventData : getTreasuryEventData
     const { index, beneficiary } = getEventData(ctx)
 
-    const proposal = await proposalManager.updateStatus(ctx, index, ProposalType.Bounty, {
-        status: ProposalStatus.Awarded,
+    await updateProposalStatus(ctx, index, ProposalType.Bounty, {
         isEnded: true,
+        status: ProposalStatus.Awarded,
+        data: {
+            payee: ss58codec.encode(beneficiary),
+        },
     })
-    if (!proposal) {
-        new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height)
-        return
-    }
-
-    proposal.payee = ss58codec.encode(beneficiary)
-    await proposalManager.update(ctx, proposal)
 }

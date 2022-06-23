@@ -4115,7 +4115,7 @@ export interface MultisigCall_as_multi {
   threshold: number
   otherSignatories: AccountId32[]
   maybeTimepoint: (Timepoint | undefined)
-  call: WrapperKeepOpaque
+  call: Uint8Array
   storeCall: boolean
   maxWeight: bigint
 }
@@ -6482,8 +6482,6 @@ export interface Timepoint {
   height: number
   index: number
 }
-
-export type WrapperKeepOpaque = [number, Call]
 
 export interface RawSolution {
   solution: NposCompactSolution24

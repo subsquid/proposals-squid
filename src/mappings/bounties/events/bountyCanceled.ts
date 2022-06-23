@@ -1,9 +1,9 @@
-import { EventHandlerContext } from '@subsquid/substrate-processor'
-import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
+import { EventHandlerContext } from '../../types/contexts'
+import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
 import { BountiesBountyCanceledEvent, TreasuryBountyCanceledEvent } from '../../../types/events'
+import { updateProposalStatus } from '../../utils/proposals'
 
 interface BountyEventData {
     index: number
@@ -39,14 +39,12 @@ function getBountyEventData(ctx: EventContext): BountyEventData {
 }
 
 export async function handleCanceled(ctx: EventHandlerContext) {
-    const getEventData = ctx.event.section === 'bounties' ? getBountyEventData : getTreasuryEventData
+    const section = ctx.event.name.split('.')[0]
+    const getEventData = section === 'Bounties' ? getBountyEventData : getTreasuryEventData
     const { index } = getEventData(ctx)
 
-    const proposal = await proposalManager.updateStatus(ctx, index, ProposalType.Bounty, {
-        status: ProposalStatus.Cancelled,
+    await updateProposalStatus(ctx, index, ProposalType.Bounty, {
+        status: ProposalStatus.Active,
         isEnded: true,
     })
-    if (!proposal) {
-        (new MissingProposalRecord(ProposalType.Bounty, index, ctx.block.height))
-    }
 }

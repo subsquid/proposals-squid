@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../types/contexts'
 import { CouncilProposedEvent } from '../../../types/events'
-import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
+import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
 import { ss58codec, parseProposalCall } from '../../../common/tools'
 import { storage } from '../../../storage'
+import { createCoucilMotion } from '../../utils/proposals'
 
 interface CouncilProposalEventData {
     proposer: Uint8Array
@@ -43,15 +44,14 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const storageData = await storage.council.getProposalOf(ctx, hash)
     if (!storageData) {
-        new StorageNotExists(ProposalType.CouncilMotion, index, ctx.block.height)
+        ctx.log.warn(StorageNotExistsWarn(ProposalType.CouncilMotion, index))
         return
     }
 
     const { section, method, args, description } = parseProposalCall(ctx._chain, storageData)
 
-    await proposalManager.create(ctx, {
+    await createCoucilMotion(ctx, {
         index,
-        type: ProposalType.CouncilMotion,
         hash: toHex(hash),
         proposer: ss58codec.encode(proposer),
         status: ProposalStatus.Proposed,

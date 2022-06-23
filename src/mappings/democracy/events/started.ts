@@ -1,26 +1,15 @@
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../types/contexts'
 import { DemocracyStartedEvent } from '../../../types/events'
-import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
+import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
-import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
+import { ProposalStatus, ProposalType, ReferendumThresholdType } from '../../../model'
 import { storage } from '../../../storage'
-import { Threshold } from '../../../common/types'
+import { createReferendum } from '../../utils/proposals'
 
 interface ReferendumEventData {
     index: number
-    threshold: Threshold
-}
-
-function fixThreshold(ctx: EventHandlerContext) {
-    const threshold = ctx.event.params[1].value as string
-    if (threshold.toLowerCase() === 'simplemajority') {
-        ctx.event.params[1].value = 'SimpleMajority'
-    } else if (threshold.toLowerCase() === 'supermajorityapproval') {
-        ctx.event.params[1].value = 'SuperMajorityApprove'
-    } else {
-        ctx.event.params[1].value = 'SuperMajorityAgainst'
-    }
+    threshold: string
 }
 
 function getEventData(ctx: EventContext): ReferendumEventData {
@@ -43,28 +32,25 @@ function getEventData(ctx: EventContext): ReferendumEventData {
 }
 
 export async function handleStarted(ctx: EventHandlerContext) {
-    fixThreshold(ctx)
-
     const { index, threshold } = getEventData(ctx)
 
     const storageData = await storage.democracy.getReferendumInfoOf(ctx, index)
     if (!storageData) {
-        new StorageNotExists(ProposalType.Referendum, index, ctx.block.height)
+        ctx.log.warn(StorageNotExistsWarn(ProposalType.Referendum, index))
         return
     }
 
     if (storageData.status === 'Finished') {
-        console.warn(`Referendum with index ${index} has already finished at block ${ctx.block.height}`)
+        ctx.log.warn(`Referendum with index ${index} has already finished at block ${ctx.block.height}`)
         return
     }
 
     const { hash } = storageData
     const hexHash = toHex(hash)
 
-    await proposalManager.create(ctx, {
+    await createReferendum(ctx, {
         index,
-        type: ProposalType.Referendum,
-        threshold,
+        threshold: threshold as ReferendumThresholdType,
         status: ProposalStatus.Started,
         hash: hexHash,
     })

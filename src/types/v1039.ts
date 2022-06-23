@@ -1,133 +1,135 @@
 import type {Result} from './support'
 
-export type Type_96 = Type_96_System | Type_96_Babe | Type_96_Timestamp | Type_96_Indices | Type_96_Balances | Type_96_Authorship | Type_96_Staking | Type_96_Offences | Type_96_Session | Type_96_FinalityTracker | Type_96_Grandpa | Type_96_ImOnline | Type_96_AuthorityDiscovery | Type_96_Democracy | Type_96_Council | Type_96_TechnicalCommittee | Type_96_ElectionsPhragmen | Type_96_TechnicalMembership | Type_96_Treasury | Type_96_Claims | Type_96_Parachains | Type_96_Attestations | Type_96_Slots | Type_96_Registrar | Type_96_Utility | Type_96_Identity
+export type Hash = Uint8Array
 
-export interface Type_96_System {
+export type Proposal = Proposal_System | Proposal_Babe | Proposal_Timestamp | Proposal_Indices | Proposal_Balances | Proposal_Authorship | Proposal_Staking | Proposal_Offences | Proposal_Session | Proposal_FinalityTracker | Proposal_Grandpa | Proposal_ImOnline | Proposal_AuthorityDiscovery | Proposal_Democracy | Proposal_Council | Proposal_TechnicalCommittee | Proposal_ElectionsPhragmen | Proposal_TechnicalMembership | Proposal_Treasury | Proposal_Claims | Proposal_Parachains | Proposal_Attestations | Proposal_Slots | Proposal_Registrar | Proposal_Utility | Proposal_Identity
+
+export interface Proposal_System {
   __kind: 'System'
   value: SystemCall
 }
 
-export interface Type_96_Babe {
+export interface Proposal_Babe {
   __kind: 'Babe'
   value: BabeCall
 }
 
-export interface Type_96_Timestamp {
+export interface Proposal_Timestamp {
   __kind: 'Timestamp'
   value: TimestampCall
 }
 
-export interface Type_96_Indices {
+export interface Proposal_Indices {
   __kind: 'Indices'
   value: IndicesCall
 }
 
-export interface Type_96_Balances {
+export interface Proposal_Balances {
   __kind: 'Balances'
   value: BalancesCall
 }
 
-export interface Type_96_Authorship {
+export interface Proposal_Authorship {
   __kind: 'Authorship'
   value: AuthorshipCall
 }
 
-export interface Type_96_Staking {
+export interface Proposal_Staking {
   __kind: 'Staking'
   value: StakingCall
 }
 
-export interface Type_96_Offences {
+export interface Proposal_Offences {
   __kind: 'Offences'
   value: OffencesCall
 }
 
-export interface Type_96_Session {
+export interface Proposal_Session {
   __kind: 'Session'
   value: SessionCall
 }
 
-export interface Type_96_FinalityTracker {
+export interface Proposal_FinalityTracker {
   __kind: 'FinalityTracker'
   value: FinalityTrackerCall
 }
 
-export interface Type_96_Grandpa {
+export interface Proposal_Grandpa {
   __kind: 'Grandpa'
   value: GrandpaCall
 }
 
-export interface Type_96_ImOnline {
+export interface Proposal_ImOnline {
   __kind: 'ImOnline'
   value: ImOnlineCall
 }
 
-export interface Type_96_AuthorityDiscovery {
+export interface Proposal_AuthorityDiscovery {
   __kind: 'AuthorityDiscovery'
   value: AuthorityDiscoveryCall
 }
 
-export interface Type_96_Democracy {
+export interface Proposal_Democracy {
   __kind: 'Democracy'
   value: DemocracyCall
 }
 
-export interface Type_96_Council {
+export interface Proposal_Council {
   __kind: 'Council'
   value: CouncilCall
 }
 
-export interface Type_96_TechnicalCommittee {
+export interface Proposal_TechnicalCommittee {
   __kind: 'TechnicalCommittee'
   value: TechnicalCommitteeCall
 }
 
-export interface Type_96_ElectionsPhragmen {
+export interface Proposal_ElectionsPhragmen {
   __kind: 'ElectionsPhragmen'
   value: ElectionsPhragmenCall
 }
 
-export interface Type_96_TechnicalMembership {
+export interface Proposal_TechnicalMembership {
   __kind: 'TechnicalMembership'
   value: TechnicalMembershipCall
 }
 
-export interface Type_96_Treasury {
+export interface Proposal_Treasury {
   __kind: 'Treasury'
   value: TreasuryCall
 }
 
-export interface Type_96_Claims {
+export interface Proposal_Claims {
   __kind: 'Claims'
   value: ClaimsCall
 }
 
-export interface Type_96_Parachains {
+export interface Proposal_Parachains {
   __kind: 'Parachains'
   value: ParachainsCall
 }
 
-export interface Type_96_Attestations {
+export interface Proposal_Attestations {
   __kind: 'Attestations'
   value: AttestationsCall
 }
 
-export interface Type_96_Slots {
+export interface Proposal_Slots {
   __kind: 'Slots'
   value: SlotsCall
 }
 
-export interface Type_96_Registrar {
+export interface Proposal_Registrar {
   __kind: 'Registrar'
   value: RegistrarCall
 }
 
-export interface Type_96_Utility {
+export interface Proposal_Utility {
   __kind: 'Utility'
   value: UtilityCall
 }
 
-export interface Type_96_Identity {
+export interface Proposal_Identity {
   __kind: 'Identity'
   value: IdentityCall
 }
@@ -170,7 +172,7 @@ export interface SystemCall_set_code {
  */
 export interface SystemCall_set_storage {
   __kind: 'set_storage'
-  items: [Uint8Array, Uint8Array][]
+  items: KeyValue[]
 }
 
 /**
@@ -178,7 +180,7 @@ export interface SystemCall_set_storage {
  */
 export interface SystemCall_kill_storage {
   __kind: 'kill_storage'
-  keys: Uint8Array[]
+  keys: Key[]
 }
 
 /**
@@ -186,7 +188,7 @@ export interface SystemCall_kill_storage {
  */
 export interface SystemCall_kill_prefix {
   __kind: 'kill_prefix'
-  prefix: Uint8Array
+  prefix: Key
 }
 
 export type BabeCall = never
@@ -242,7 +244,7 @@ export type BalancesCall = BalancesCall_transfer | BalancesCall_set_balance | Ba
  */
 export interface BalancesCall_transfer {
   __kind: 'transfer'
-  dest: Type_17
+  dest: LookupSource
   value: bigint
 }
 
@@ -263,7 +265,7 @@ export interface BalancesCall_transfer {
  */
 export interface BalancesCall_set_balance {
   __kind: 'set_balance'
-  who: Type_17
+  who: LookupSource
   newFree: bigint
   newReserved: bigint
 }
@@ -274,8 +276,8 @@ export interface BalancesCall_set_balance {
  */
 export interface BalancesCall_force_transfer {
   __kind: 'force_transfer'
-  source: Type_17
-  dest: Type_17
+  source: LookupSource
+  dest: LookupSource
   value: bigint
 }
 
@@ -289,7 +291,7 @@ export interface BalancesCall_force_transfer {
  */
 export interface BalancesCall_transfer_keep_alive {
   __kind: 'transfer_keep_alive'
-  dest: Type_17
+  dest: LookupSource
   value: bigint
 }
 
@@ -324,7 +326,7 @@ export type StakingCall = StakingCall_bond | StakingCall_bond_extra | StakingCal
  */
 export interface StakingCall_bond {
   __kind: 'bond'
-  controller: Type_17
+  controller: LookupSource
   value: bigint
   payee: RewardDestination
 }
@@ -417,7 +419,7 @@ export interface StakingCall_withdraw_unbonded {
  */
 export interface StakingCall_validate {
   __kind: 'validate'
-  prefs: ValidatorPrefsWithCommission
+  prefs: ValidatorPrefs
 }
 
 /**
@@ -435,7 +437,7 @@ export interface StakingCall_validate {
  */
 export interface StakingCall_nominate {
   __kind: 'nominate'
-  targets: Type_17[]
+  targets: LookupSource[]
 }
 
 /**
@@ -488,7 +490,7 @@ export interface StakingCall_set_payee {
  */
 export interface StakingCall_set_controller {
   __kind: 'set_controller'
-  controller: Type_17
+  controller: LookupSource
 }
 
 /**
@@ -527,7 +529,7 @@ export interface StakingCall_force_new_era {
  */
 export interface StakingCall_set_invulnerables {
   __kind: 'set_invulnerables'
-  validators: Uint8Array[]
+  validators: AccountId[]
 }
 
 /**
@@ -535,7 +537,7 @@ export interface StakingCall_set_invulnerables {
  */
 export interface StakingCall_force_unstake {
   __kind: 'force_unstake'
-  stash: Uint8Array
+  stash: AccountId
 }
 
 /**
@@ -560,7 +562,7 @@ export interface StakingCall_force_new_era_always {
  */
 export interface StakingCall_cancel_deferred_slash {
   __kind: 'cancel_deferred_slash'
-  era: number
+  era: EraIndex
   slashIndices: number[]
 }
 
@@ -595,7 +597,7 @@ export type SessionCall = SessionCall_set_keys
  */
 export interface SessionCall_set_keys {
   __kind: 'set_keys'
-  keys: [Uint8Array, Uint8Array, Uint8Array, Uint8Array, Uint8Array]
+  keys: Keys
   proof: Uint8Array
 }
 
@@ -624,8 +626,8 @@ export type ImOnlineCall = ImOnlineCall_heartbeat
 
 export interface ImOnlineCall_heartbeat {
   __kind: 'heartbeat'
-  heartbeat: HeartbeatTo244
-  signature: Uint8Array
+  heartbeat: Heartbeat
+  signature: Signature
 }
 
 export type AuthorityDiscoveryCall = never
@@ -642,7 +644,7 @@ export type DemocracyCall = DemocracyCall_propose | DemocracyCall_second | Democ
  */
 export interface DemocracyCall_propose {
   __kind: 'propose'
-  proposalHash: Uint8Array
+  proposalHash: Hash
   value: bigint
 }
 
@@ -671,7 +673,7 @@ export interface DemocracyCall_second {
 export interface DemocracyCall_vote {
   __kind: 'vote'
   refIndex: number
-  vote: number
+  vote: Vote
 }
 
 /**
@@ -686,7 +688,7 @@ export interface DemocracyCall_vote {
 export interface DemocracyCall_proxy_vote {
   __kind: 'proxy_vote'
   refIndex: number
-  vote: number
+  vote: Vote
 }
 
 /**
@@ -695,7 +697,7 @@ export interface DemocracyCall_proxy_vote {
  */
 export interface DemocracyCall_emergency_cancel {
   __kind: 'emergency_cancel'
-  refIndex: number
+  refIndex: ReferendumIndex
 }
 
 /**
@@ -704,7 +706,7 @@ export interface DemocracyCall_emergency_cancel {
  */
 export interface DemocracyCall_external_propose {
   __kind: 'external_propose'
-  proposalHash: Uint8Array
+  proposalHash: Hash
 }
 
 /**
@@ -716,7 +718,7 @@ export interface DemocracyCall_external_propose {
  */
 export interface DemocracyCall_external_propose_majority {
   __kind: 'external_propose_majority'
-  proposalHash: Uint8Array
+  proposalHash: Hash
 }
 
 /**
@@ -728,7 +730,7 @@ export interface DemocracyCall_external_propose_majority {
  */
 export interface DemocracyCall_external_propose_default {
   __kind: 'external_propose_default'
-  proposalHash: Uint8Array
+  proposalHash: Hash
 }
 
 /**
@@ -744,9 +746,9 @@ export interface DemocracyCall_external_propose_default {
  */
 export interface DemocracyCall_fast_track {
   __kind: 'fast_track'
-  proposalHash: Uint8Array
-  votingPeriod: number
-  delay: number
+  proposalHash: Hash
+  votingPeriod: BlockNumber
+  delay: BlockNumber
 }
 
 /**
@@ -754,7 +756,7 @@ export interface DemocracyCall_fast_track {
  */
 export interface DemocracyCall_veto_external {
   __kind: 'veto_external'
-  proposalHash: Uint8Array
+  proposalHash: Hash
 }
 
 /**
@@ -770,7 +772,7 @@ export interface DemocracyCall_cancel_referendum {
  */
 export interface DemocracyCall_cancel_queued {
   __kind: 'cancel_queued'
-  which: number
+  which: ReferendumIndex
 }
 
 /**
@@ -782,7 +784,7 @@ export interface DemocracyCall_cancel_queued {
  */
 export interface DemocracyCall_set_proxy {
   __kind: 'set_proxy'
-  proxy: Uint8Array
+  proxy: AccountId
 }
 
 /**
@@ -805,7 +807,7 @@ export interface DemocracyCall_resign_proxy {
  */
 export interface DemocracyCall_remove_proxy {
   __kind: 'remove_proxy'
-  proxy: Uint8Array
+  proxy: AccountId
 }
 
 /**
@@ -817,7 +819,7 @@ export interface DemocracyCall_remove_proxy {
  */
 export interface DemocracyCall_delegate {
   __kind: 'delegate'
-  to: Uint8Array
+  to: AccountId
   conviction: Conviction
 }
 
@@ -866,7 +868,7 @@ export interface DemocracyCall_note_imminent_preimage {
  */
 export interface DemocracyCall_reap_preimage {
   __kind: 'reap_preimage'
-  proposalHash: Uint8Array
+  proposalHash: Hash
 }
 
 export type CouncilCall = CouncilCall_set_members | CouncilCall_execute | CouncilCall_propose | CouncilCall_vote
@@ -879,7 +881,7 @@ export type CouncilCall = CouncilCall_set_members | CouncilCall_execute | Counci
  */
 export interface CouncilCall_set_members {
   __kind: 'set_members'
-  newMembers: Uint8Array[]
+  newMembers: AccountId[]
 }
 
 /**
@@ -889,7 +891,7 @@ export interface CouncilCall_set_members {
  */
 export interface CouncilCall_execute {
   __kind: 'execute'
-  proposal: Type_96
+  proposal: Proposal
 }
 
 /**
@@ -901,7 +903,7 @@ export interface CouncilCall_execute {
 export interface CouncilCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_96
+  proposal: Proposal
 }
 
 /**
@@ -912,7 +914,7 @@ export interface CouncilCall_propose {
  */
 export interface CouncilCall_vote {
   __kind: 'vote'
-  proposal: Uint8Array
+  proposal: Hash
   index: number
   approve: boolean
 }
@@ -927,7 +929,7 @@ export type TechnicalCommitteeCall = TechnicalCommitteeCall_set_members | Techni
  */
 export interface TechnicalCommitteeCall_set_members {
   __kind: 'set_members'
-  newMembers: Uint8Array[]
+  newMembers: AccountId[]
 }
 
 /**
@@ -937,7 +939,7 @@ export interface TechnicalCommitteeCall_set_members {
  */
 export interface TechnicalCommitteeCall_execute {
   __kind: 'execute'
-  proposal: Type_96
+  proposal: Proposal
 }
 
 /**
@@ -949,7 +951,7 @@ export interface TechnicalCommitteeCall_execute {
 export interface TechnicalCommitteeCall_propose {
   __kind: 'propose'
   threshold: number
-  proposal: Type_96
+  proposal: Proposal
 }
 
 /**
@@ -960,7 +962,7 @@ export interface TechnicalCommitteeCall_propose {
  */
 export interface TechnicalCommitteeCall_vote {
   __kind: 'vote'
-  proposal: Uint8Array
+  proposal: Hash
   index: number
   approve: boolean
 }
@@ -986,7 +988,7 @@ export type ElectionsPhragmenCall = ElectionsPhragmenCall_vote | ElectionsPhragm
  */
 export interface ElectionsPhragmenCall_vote {
   __kind: 'vote'
-  votes: Uint8Array[]
+  votes: AccountId[]
   value: bigint
 }
 
@@ -1020,7 +1022,7 @@ export interface ElectionsPhragmenCall_remove_voter {
  */
 export interface ElectionsPhragmenCall_report_defunct_voter {
   __kind: 'report_defunct_voter'
-  target: Type_17
+  target: LookupSource
 }
 
 /**
@@ -1074,7 +1076,7 @@ export interface ElectionsPhragmenCall_renounce_candidacy {
  */
 export interface ElectionsPhragmenCall_remove_member {
   __kind: 'remove_member'
-  who: Type_17
+  who: LookupSource
 }
 
 export type TechnicalMembershipCall = TechnicalMembershipCall_add_member | TechnicalMembershipCall_remove_member | TechnicalMembershipCall_swap_member | TechnicalMembershipCall_reset_members | TechnicalMembershipCall_change_key
@@ -1086,7 +1088,7 @@ export type TechnicalMembershipCall = TechnicalMembershipCall_add_member | Techn
  */
 export interface TechnicalMembershipCall_add_member {
   __kind: 'add_member'
-  who: Uint8Array
+  who: AccountId
 }
 
 /**
@@ -1096,7 +1098,7 @@ export interface TechnicalMembershipCall_add_member {
  */
 export interface TechnicalMembershipCall_remove_member {
   __kind: 'remove_member'
-  who: Uint8Array
+  who: AccountId
 }
 
 /**
@@ -1106,8 +1108,8 @@ export interface TechnicalMembershipCall_remove_member {
  */
 export interface TechnicalMembershipCall_swap_member {
   __kind: 'swap_member'
-  remove: Uint8Array
-  add: Uint8Array
+  remove: AccountId
+  add: AccountId
 }
 
 /**
@@ -1118,7 +1120,7 @@ export interface TechnicalMembershipCall_swap_member {
  */
 export interface TechnicalMembershipCall_reset_members {
   __kind: 'reset_members'
-  members: Uint8Array[]
+  members: AccountId[]
 }
 
 /**
@@ -1128,7 +1130,7 @@ export interface TechnicalMembershipCall_reset_members {
  */
 export interface TechnicalMembershipCall_change_key {
   __kind: 'change_key'
-  new: Uint8Array
+  new: AccountId
 }
 
 export type TreasuryCall = TreasuryCall_propose_spend | TreasuryCall_reject_proposal | TreasuryCall_approve_proposal | TreasuryCall_report_awesome | TreasuryCall_retract_tip | TreasuryCall_tip_new | TreasuryCall_tip | TreasuryCall_close_tip
@@ -1147,7 +1149,7 @@ export type TreasuryCall = TreasuryCall_propose_spend | TreasuryCall_reject_prop
 export interface TreasuryCall_propose_spend {
   __kind: 'propose_spend'
   value: bigint
-  beneficiary: Type_17
+  beneficiary: LookupSource
 }
 
 /**
@@ -1203,7 +1205,7 @@ export interface TreasuryCall_approve_proposal {
 export interface TreasuryCall_report_awesome {
   __kind: 'report_awesome'
   reason: Uint8Array
-  who: Uint8Array
+  who: AccountId
 }
 
 /**
@@ -1229,7 +1231,7 @@ export interface TreasuryCall_report_awesome {
  */
 export interface TreasuryCall_retract_tip {
   __kind: 'retract_tip'
-  hash: Uint8Array
+  hash: Hash
 }
 
 /**
@@ -1256,8 +1258,8 @@ export interface TreasuryCall_retract_tip {
 export interface TreasuryCall_tip_new {
   __kind: 'tip_new'
   reason: Uint8Array
-  who: Uint8Array
-  tipValue: bigint
+  who: AccountId
+  tipValue: BalanceOf
 }
 
 /**
@@ -1283,8 +1285,8 @@ export interface TreasuryCall_tip_new {
  */
 export interface TreasuryCall_tip {
   __kind: 'tip'
-  hash: Uint8Array
-  tipValue: bigint
+  hash: Hash
+  tipValue: BalanceOf
 }
 
 /**
@@ -1305,7 +1307,7 @@ export interface TreasuryCall_tip {
  */
 export interface TreasuryCall_close_tip {
   __kind: 'close_tip'
-  hash: Uint8Array
+  hash: Hash
 }
 
 export type ClaimsCall = ClaimsCall_claim | ClaimsCall_mint_claim
@@ -1315,8 +1317,8 @@ export type ClaimsCall = ClaimsCall_claim | ClaimsCall_mint_claim
  */
 export interface ClaimsCall_claim {
   __kind: 'claim'
-  dest: Uint8Array
-  ethereumSignature: Uint8Array
+  dest: AccountId
+  ethereumSignature: EcdsaSignature
 }
 
 /**
@@ -1324,9 +1326,9 @@ export interface ClaimsCall_claim {
  */
 export interface ClaimsCall_mint_claim {
   __kind: 'mint_claim'
-  who: Uint8Array
-  value: bigint
-  vestingSchedule: ([bigint, bigint, number] | undefined)
+  who: EthereumAddress
+  value: BalanceOf
+  vestingSchedule: ([BalanceOf, BalanceOf, BlockNumber] | undefined)
 }
 
 export type ParachainsCall = ParachainsCall_set_heads
@@ -1346,7 +1348,6 @@ export type AttestationsCall = AttestationsCall_more_attestations
  */
 export interface AttestationsCall_more_attestations {
   __kind: 'more_attestations'
-  more: MoreAttestations
 }
 
 export type SlotsCall = SlotsCall_new_auction | SlotsCall_bid | SlotsCall_bid_renew | SlotsCall_set_offboarding | SlotsCall_fix_deploy_data | SlotsCall_elaborate_deploy_data
@@ -1425,7 +1426,7 @@ export interface SlotsCall_bid_renew {
  */
 export interface SlotsCall_set_offboarding {
   __kind: 'set_offboarding'
-  dest: Type_17
+  dest: LookupSource
 }
 
 /**
@@ -1441,7 +1442,7 @@ export interface SlotsCall_fix_deploy_data {
   __kind: 'fix_deploy_data'
   sub: number
   paraId: number
-  codeHash: Uint8Array
+  codeHash: Hash
   initialHeadData: Uint8Array
 }
 
@@ -1521,8 +1522,8 @@ export interface RegistrarCall_register_parathread {
 export interface RegistrarCall_select_parathread {
   __kind: 'select_parathread'
   id: number
-  collator: Uint8Array
-  headHash: Uint8Array
+  collator: CollatorId
+  headHash: Hash
 }
 
 /**
@@ -1577,7 +1578,7 @@ export type UtilityCall = UtilityCall_batch | UtilityCall_as_sub | UtilityCall_a
  */
 export interface UtilityCall_batch {
   __kind: 'batch'
-  calls: Type_97[]
+  calls: Type_110[]
 }
 
 /**
@@ -1592,7 +1593,7 @@ export interface UtilityCall_batch {
 export interface UtilityCall_as_sub {
   __kind: 'as_sub'
   index: number
-  call: Type_97
+  call: Type_110
 }
 
 /**
@@ -1641,9 +1642,9 @@ export interface UtilityCall_as_sub {
 export interface UtilityCall_as_multi {
   __kind: 'as_multi'
   threshold: number
-  otherSignatories: Uint8Array[]
+  otherSignatories: AccountId[]
   maybeTimepoint: (Timepoint | undefined)
-  call: Type_97
+  call: Type_110
 }
 
 /**
@@ -1683,7 +1684,7 @@ export interface UtilityCall_as_multi {
 export interface UtilityCall_approve_as_multi {
   __kind: 'approve_as_multi'
   threshold: number
-  otherSignatories: Uint8Array[]
+  otherSignatories: AccountId[]
   maybeTimepoint: (Timepoint | undefined)
   callHash: Uint8Array
 }
@@ -1715,7 +1716,7 @@ export interface UtilityCall_approve_as_multi {
 export interface UtilityCall_cancel_as_multi {
   __kind: 'cancel_as_multi'
   threshold: number
-  otherSignatories: Uint8Array[]
+  otherSignatories: AccountId[]
   timepoint: Timepoint
   callHash: Uint8Array
 }
@@ -1739,7 +1740,7 @@ export type IdentityCall = IdentityCall_add_registrar | IdentityCall_set_identit
  */
 export interface IdentityCall_add_registrar {
   __kind: 'add_registrar'
-  account: Uint8Array
+  account: AccountId
 }
 
 /**
@@ -1787,7 +1788,7 @@ export interface IdentityCall_set_identity {
  */
 export interface IdentityCall_set_subs {
   __kind: 'set_subs'
-  subs: [Uint8Array, Data][]
+  subs: [AccountId, Data][]
 }
 
 /**
@@ -1863,7 +1864,7 @@ export interface IdentityCall_request_judgement {
  */
 export interface IdentityCall_cancel_request {
   __kind: 'cancel_request'
-  regIndex: number
+  regIndex: RegistrarIndex
 }
 
 /**
@@ -1903,7 +1904,7 @@ export interface IdentityCall_set_fee {
 export interface IdentityCall_set_account_id {
   __kind: 'set_account_id'
   index: number
-  new: Uint8Array
+  new: AccountId
 }
 
 /**
@@ -1950,7 +1951,7 @@ export interface IdentityCall_set_fields {
 export interface IdentityCall_provide_judgement {
   __kind: 'provide_judgement'
   regIndex: number
-  target: Type_17
+  target: LookupSource
   judgement: IdentityJudgement
 }
 
@@ -1977,992 +1978,1000 @@ export interface IdentityCall_provide_judgement {
  */
 export interface IdentityCall_kill_identity {
   __kind: 'kill_identity'
-  target: Type_17
+  target: LookupSource
 }
 
-export type Type_17 = Type_17_Idx0 | Type_17_Idx1 | Type_17_Idx2 | Type_17_Idx3 | Type_17_Idx4 | Type_17_Idx5 | Type_17_Idx6 | Type_17_Idx7 | Type_17_Idx8 | Type_17_Idx9 | Type_17_Idx10 | Type_17_Idx11 | Type_17_Idx12 | Type_17_Idx13 | Type_17_Idx14 | Type_17_Idx15 | Type_17_Idx16 | Type_17_Idx17 | Type_17_Idx18 | Type_17_Idx19 | Type_17_Idx20 | Type_17_Idx21 | Type_17_Idx22 | Type_17_Idx23 | Type_17_Idx24 | Type_17_Idx25 | Type_17_Idx26 | Type_17_Idx27 | Type_17_Idx28 | Type_17_Idx29 | Type_17_Idx30 | Type_17_Idx31 | Type_17_Idx32 | Type_17_Idx33 | Type_17_Idx34 | Type_17_Idx35 | Type_17_Idx36 | Type_17_Idx37 | Type_17_Idx38 | Type_17_Idx39 | Type_17_Idx40 | Type_17_Idx41 | Type_17_Idx42 | Type_17_Idx43 | Type_17_Idx44 | Type_17_Idx45 | Type_17_Idx46 | Type_17_Idx47 | Type_17_Idx48 | Type_17_Idx49 | Type_17_Idx50 | Type_17_Idx51 | Type_17_Idx52 | Type_17_Idx53 | Type_17_Idx54 | Type_17_Idx55 | Type_17_Idx56 | Type_17_Idx57 | Type_17_Idx58 | Type_17_Idx59 | Type_17_Idx60 | Type_17_Idx61 | Type_17_Idx62 | Type_17_Idx63 | Type_17_Idx64 | Type_17_Idx65 | Type_17_Idx66 | Type_17_Idx67 | Type_17_Idx68 | Type_17_Idx69 | Type_17_Idx70 | Type_17_Idx71 | Type_17_Idx72 | Type_17_Idx73 | Type_17_Idx74 | Type_17_Idx75 | Type_17_Idx76 | Type_17_Idx77 | Type_17_Idx78 | Type_17_Idx79 | Type_17_Idx80 | Type_17_Idx81 | Type_17_Idx82 | Type_17_Idx83 | Type_17_Idx84 | Type_17_Idx85 | Type_17_Idx86 | Type_17_Idx87 | Type_17_Idx88 | Type_17_Idx89 | Type_17_Idx90 | Type_17_Idx91 | Type_17_Idx92 | Type_17_Idx93 | Type_17_Idx94 | Type_17_Idx95 | Type_17_Idx96 | Type_17_Idx97 | Type_17_Idx98 | Type_17_Idx99 | Type_17_Idx100 | Type_17_Idx101 | Type_17_Idx102 | Type_17_Idx103 | Type_17_Idx104 | Type_17_Idx105 | Type_17_Idx106 | Type_17_Idx107 | Type_17_Idx108 | Type_17_Idx109 | Type_17_Idx110 | Type_17_Idx111 | Type_17_Idx112 | Type_17_Idx113 | Type_17_Idx114 | Type_17_Idx115 | Type_17_Idx116 | Type_17_Idx117 | Type_17_Idx118 | Type_17_Idx119 | Type_17_Idx120 | Type_17_Idx121 | Type_17_Idx122 | Type_17_Idx123 | Type_17_Idx124 | Type_17_Idx125 | Type_17_Idx126 | Type_17_Idx127 | Type_17_Idx128 | Type_17_Idx129 | Type_17_Idx130 | Type_17_Idx131 | Type_17_Idx132 | Type_17_Idx133 | Type_17_Idx134 | Type_17_Idx135 | Type_17_Idx136 | Type_17_Idx137 | Type_17_Idx138 | Type_17_Idx139 | Type_17_Idx140 | Type_17_Idx141 | Type_17_Idx142 | Type_17_Idx143 | Type_17_Idx144 | Type_17_Idx145 | Type_17_Idx146 | Type_17_Idx147 | Type_17_Idx148 | Type_17_Idx149 | Type_17_Idx150 | Type_17_Idx151 | Type_17_Idx152 | Type_17_Idx153 | Type_17_Idx154 | Type_17_Idx155 | Type_17_Idx156 | Type_17_Idx157 | Type_17_Idx158 | Type_17_Idx159 | Type_17_Idx160 | Type_17_Idx161 | Type_17_Idx162 | Type_17_Idx163 | Type_17_Idx164 | Type_17_Idx165 | Type_17_Idx166 | Type_17_Idx167 | Type_17_Idx168 | Type_17_Idx169 | Type_17_Idx170 | Type_17_Idx171 | Type_17_Idx172 | Type_17_Idx173 | Type_17_Idx174 | Type_17_Idx175 | Type_17_Idx176 | Type_17_Idx177 | Type_17_Idx178 | Type_17_Idx179 | Type_17_Idx180 | Type_17_Idx181 | Type_17_Idx182 | Type_17_Idx183 | Type_17_Idx184 | Type_17_Idx185 | Type_17_Idx186 | Type_17_Idx187 | Type_17_Idx188 | Type_17_Idx189 | Type_17_Idx190 | Type_17_Idx191 | Type_17_Idx192 | Type_17_Idx193 | Type_17_Idx194 | Type_17_Idx195 | Type_17_Idx196 | Type_17_Idx197 | Type_17_Idx198 | Type_17_Idx199 | Type_17_Idx200 | Type_17_Idx201 | Type_17_Idx202 | Type_17_Idx203 | Type_17_Idx204 | Type_17_Idx205 | Type_17_Idx206 | Type_17_Idx207 | Type_17_Idx208 | Type_17_Idx209 | Type_17_Idx210 | Type_17_Idx211 | Type_17_Idx212 | Type_17_Idx213 | Type_17_Idx214 | Type_17_Idx215 | Type_17_Idx216 | Type_17_Idx217 | Type_17_Idx218 | Type_17_Idx219 | Type_17_Idx220 | Type_17_Idx221 | Type_17_Idx222 | Type_17_Idx223 | Type_17_Idx224 | Type_17_Idx225 | Type_17_Idx226 | Type_17_Idx227 | Type_17_Idx228 | Type_17_Idx229 | Type_17_Idx230 | Type_17_Idx231 | Type_17_Idx232 | Type_17_Idx233 | Type_17_Idx234 | Type_17_Idx235 | Type_17_Idx236 | Type_17_Idx237 | Type_17_Idx238 | Type_17_IdxU16 | Type_17_IdxU32 | Type_17_IdxU64 | Type_17_AccountId
+export type StorageKey = Uint8Array
 
-export interface Type_17_Idx0 {
+export type StorageData = Uint8Array
+
+export type KeyValue = [StorageKey, StorageData]
+
+export type Key = Uint8Array
+
+export type LookupSource = LookupSource_Idx0 | LookupSource_Idx1 | LookupSource_Idx2 | LookupSource_Idx3 | LookupSource_Idx4 | LookupSource_Idx5 | LookupSource_Idx6 | LookupSource_Idx7 | LookupSource_Idx8 | LookupSource_Idx9 | LookupSource_Idx10 | LookupSource_Idx11 | LookupSource_Idx12 | LookupSource_Idx13 | LookupSource_Idx14 | LookupSource_Idx15 | LookupSource_Idx16 | LookupSource_Idx17 | LookupSource_Idx18 | LookupSource_Idx19 | LookupSource_Idx20 | LookupSource_Idx21 | LookupSource_Idx22 | LookupSource_Idx23 | LookupSource_Idx24 | LookupSource_Idx25 | LookupSource_Idx26 | LookupSource_Idx27 | LookupSource_Idx28 | LookupSource_Idx29 | LookupSource_Idx30 | LookupSource_Idx31 | LookupSource_Idx32 | LookupSource_Idx33 | LookupSource_Idx34 | LookupSource_Idx35 | LookupSource_Idx36 | LookupSource_Idx37 | LookupSource_Idx38 | LookupSource_Idx39 | LookupSource_Idx40 | LookupSource_Idx41 | LookupSource_Idx42 | LookupSource_Idx43 | LookupSource_Idx44 | LookupSource_Idx45 | LookupSource_Idx46 | LookupSource_Idx47 | LookupSource_Idx48 | LookupSource_Idx49 | LookupSource_Idx50 | LookupSource_Idx51 | LookupSource_Idx52 | LookupSource_Idx53 | LookupSource_Idx54 | LookupSource_Idx55 | LookupSource_Idx56 | LookupSource_Idx57 | LookupSource_Idx58 | LookupSource_Idx59 | LookupSource_Idx60 | LookupSource_Idx61 | LookupSource_Idx62 | LookupSource_Idx63 | LookupSource_Idx64 | LookupSource_Idx65 | LookupSource_Idx66 | LookupSource_Idx67 | LookupSource_Idx68 | LookupSource_Idx69 | LookupSource_Idx70 | LookupSource_Idx71 | LookupSource_Idx72 | LookupSource_Idx73 | LookupSource_Idx74 | LookupSource_Idx75 | LookupSource_Idx76 | LookupSource_Idx77 | LookupSource_Idx78 | LookupSource_Idx79 | LookupSource_Idx80 | LookupSource_Idx81 | LookupSource_Idx82 | LookupSource_Idx83 | LookupSource_Idx84 | LookupSource_Idx85 | LookupSource_Idx86 | LookupSource_Idx87 | LookupSource_Idx88 | LookupSource_Idx89 | LookupSource_Idx90 | LookupSource_Idx91 | LookupSource_Idx92 | LookupSource_Idx93 | LookupSource_Idx94 | LookupSource_Idx95 | LookupSource_Idx96 | LookupSource_Idx97 | LookupSource_Idx98 | LookupSource_Idx99 | LookupSource_Idx100 | LookupSource_Idx101 | LookupSource_Idx102 | LookupSource_Idx103 | LookupSource_Idx104 | LookupSource_Idx105 | LookupSource_Idx106 | LookupSource_Idx107 | LookupSource_Idx108 | LookupSource_Idx109 | LookupSource_Idx110 | LookupSource_Idx111 | LookupSource_Idx112 | LookupSource_Idx113 | LookupSource_Idx114 | LookupSource_Idx115 | LookupSource_Idx116 | LookupSource_Idx117 | LookupSource_Idx118 | LookupSource_Idx119 | LookupSource_Idx120 | LookupSource_Idx121 | LookupSource_Idx122 | LookupSource_Idx123 | LookupSource_Idx124 | LookupSource_Idx125 | LookupSource_Idx126 | LookupSource_Idx127 | LookupSource_Idx128 | LookupSource_Idx129 | LookupSource_Idx130 | LookupSource_Idx131 | LookupSource_Idx132 | LookupSource_Idx133 | LookupSource_Idx134 | LookupSource_Idx135 | LookupSource_Idx136 | LookupSource_Idx137 | LookupSource_Idx138 | LookupSource_Idx139 | LookupSource_Idx140 | LookupSource_Idx141 | LookupSource_Idx142 | LookupSource_Idx143 | LookupSource_Idx144 | LookupSource_Idx145 | LookupSource_Idx146 | LookupSource_Idx147 | LookupSource_Idx148 | LookupSource_Idx149 | LookupSource_Idx150 | LookupSource_Idx151 | LookupSource_Idx152 | LookupSource_Idx153 | LookupSource_Idx154 | LookupSource_Idx155 | LookupSource_Idx156 | LookupSource_Idx157 | LookupSource_Idx158 | LookupSource_Idx159 | LookupSource_Idx160 | LookupSource_Idx161 | LookupSource_Idx162 | LookupSource_Idx163 | LookupSource_Idx164 | LookupSource_Idx165 | LookupSource_Idx166 | LookupSource_Idx167 | LookupSource_Idx168 | LookupSource_Idx169 | LookupSource_Idx170 | LookupSource_Idx171 | LookupSource_Idx172 | LookupSource_Idx173 | LookupSource_Idx174 | LookupSource_Idx175 | LookupSource_Idx176 | LookupSource_Idx177 | LookupSource_Idx178 | LookupSource_Idx179 | LookupSource_Idx180 | LookupSource_Idx181 | LookupSource_Idx182 | LookupSource_Idx183 | LookupSource_Idx184 | LookupSource_Idx185 | LookupSource_Idx186 | LookupSource_Idx187 | LookupSource_Idx188 | LookupSource_Idx189 | LookupSource_Idx190 | LookupSource_Idx191 | LookupSource_Idx192 | LookupSource_Idx193 | LookupSource_Idx194 | LookupSource_Idx195 | LookupSource_Idx196 | LookupSource_Idx197 | LookupSource_Idx198 | LookupSource_Idx199 | LookupSource_Idx200 | LookupSource_Idx201 | LookupSource_Idx202 | LookupSource_Idx203 | LookupSource_Idx204 | LookupSource_Idx205 | LookupSource_Idx206 | LookupSource_Idx207 | LookupSource_Idx208 | LookupSource_Idx209 | LookupSource_Idx210 | LookupSource_Idx211 | LookupSource_Idx212 | LookupSource_Idx213 | LookupSource_Idx214 | LookupSource_Idx215 | LookupSource_Idx216 | LookupSource_Idx217 | LookupSource_Idx218 | LookupSource_Idx219 | LookupSource_Idx220 | LookupSource_Idx221 | LookupSource_Idx222 | LookupSource_Idx223 | LookupSource_Idx224 | LookupSource_Idx225 | LookupSource_Idx226 | LookupSource_Idx227 | LookupSource_Idx228 | LookupSource_Idx229 | LookupSource_Idx230 | LookupSource_Idx231 | LookupSource_Idx232 | LookupSource_Idx233 | LookupSource_Idx234 | LookupSource_Idx235 | LookupSource_Idx236 | LookupSource_Idx237 | LookupSource_Idx238 | LookupSource_IdxU16 | LookupSource_IdxU32 | LookupSource_IdxU64 | LookupSource_AccountId
+
+export interface LookupSource_Idx0 {
   __kind: 'Idx0'
 }
 
-export interface Type_17_Idx1 {
+export interface LookupSource_Idx1 {
   __kind: 'Idx1'
 }
 
-export interface Type_17_Idx2 {
+export interface LookupSource_Idx2 {
   __kind: 'Idx2'
 }
 
-export interface Type_17_Idx3 {
+export interface LookupSource_Idx3 {
   __kind: 'Idx3'
 }
 
-export interface Type_17_Idx4 {
+export interface LookupSource_Idx4 {
   __kind: 'Idx4'
 }
 
-export interface Type_17_Idx5 {
+export interface LookupSource_Idx5 {
   __kind: 'Idx5'
 }
 
-export interface Type_17_Idx6 {
+export interface LookupSource_Idx6 {
   __kind: 'Idx6'
 }
 
-export interface Type_17_Idx7 {
+export interface LookupSource_Idx7 {
   __kind: 'Idx7'
 }
 
-export interface Type_17_Idx8 {
+export interface LookupSource_Idx8 {
   __kind: 'Idx8'
 }
 
-export interface Type_17_Idx9 {
+export interface LookupSource_Idx9 {
   __kind: 'Idx9'
 }
 
-export interface Type_17_Idx10 {
+export interface LookupSource_Idx10 {
   __kind: 'Idx10'
 }
 
-export interface Type_17_Idx11 {
+export interface LookupSource_Idx11 {
   __kind: 'Idx11'
 }
 
-export interface Type_17_Idx12 {
+export interface LookupSource_Idx12 {
   __kind: 'Idx12'
 }
 
-export interface Type_17_Idx13 {
+export interface LookupSource_Idx13 {
   __kind: 'Idx13'
 }
 
-export interface Type_17_Idx14 {
+export interface LookupSource_Idx14 {
   __kind: 'Idx14'
 }
 
-export interface Type_17_Idx15 {
+export interface LookupSource_Idx15 {
   __kind: 'Idx15'
 }
 
-export interface Type_17_Idx16 {
+export interface LookupSource_Idx16 {
   __kind: 'Idx16'
 }
 
-export interface Type_17_Idx17 {
+export interface LookupSource_Idx17 {
   __kind: 'Idx17'
 }
 
-export interface Type_17_Idx18 {
+export interface LookupSource_Idx18 {
   __kind: 'Idx18'
 }
 
-export interface Type_17_Idx19 {
+export interface LookupSource_Idx19 {
   __kind: 'Idx19'
 }
 
-export interface Type_17_Idx20 {
+export interface LookupSource_Idx20 {
   __kind: 'Idx20'
 }
 
-export interface Type_17_Idx21 {
+export interface LookupSource_Idx21 {
   __kind: 'Idx21'
 }
 
-export interface Type_17_Idx22 {
+export interface LookupSource_Idx22 {
   __kind: 'Idx22'
 }
 
-export interface Type_17_Idx23 {
+export interface LookupSource_Idx23 {
   __kind: 'Idx23'
 }
 
-export interface Type_17_Idx24 {
+export interface LookupSource_Idx24 {
   __kind: 'Idx24'
 }
 
-export interface Type_17_Idx25 {
+export interface LookupSource_Idx25 {
   __kind: 'Idx25'
 }
 
-export interface Type_17_Idx26 {
+export interface LookupSource_Idx26 {
   __kind: 'Idx26'
 }
 
-export interface Type_17_Idx27 {
+export interface LookupSource_Idx27 {
   __kind: 'Idx27'
 }
 
-export interface Type_17_Idx28 {
+export interface LookupSource_Idx28 {
   __kind: 'Idx28'
 }
 
-export interface Type_17_Idx29 {
+export interface LookupSource_Idx29 {
   __kind: 'Idx29'
 }
 
-export interface Type_17_Idx30 {
+export interface LookupSource_Idx30 {
   __kind: 'Idx30'
 }
 
-export interface Type_17_Idx31 {
+export interface LookupSource_Idx31 {
   __kind: 'Idx31'
 }
 
-export interface Type_17_Idx32 {
+export interface LookupSource_Idx32 {
   __kind: 'Idx32'
 }
 
-export interface Type_17_Idx33 {
+export interface LookupSource_Idx33 {
   __kind: 'Idx33'
 }
 
-export interface Type_17_Idx34 {
+export interface LookupSource_Idx34 {
   __kind: 'Idx34'
 }
 
-export interface Type_17_Idx35 {
+export interface LookupSource_Idx35 {
   __kind: 'Idx35'
 }
 
-export interface Type_17_Idx36 {
+export interface LookupSource_Idx36 {
   __kind: 'Idx36'
 }
 
-export interface Type_17_Idx37 {
+export interface LookupSource_Idx37 {
   __kind: 'Idx37'
 }
 
-export interface Type_17_Idx38 {
+export interface LookupSource_Idx38 {
   __kind: 'Idx38'
 }
 
-export interface Type_17_Idx39 {
+export interface LookupSource_Idx39 {
   __kind: 'Idx39'
 }
 
-export interface Type_17_Idx40 {
+export interface LookupSource_Idx40 {
   __kind: 'Idx40'
 }
 
-export interface Type_17_Idx41 {
+export interface LookupSource_Idx41 {
   __kind: 'Idx41'
 }
 
-export interface Type_17_Idx42 {
+export interface LookupSource_Idx42 {
   __kind: 'Idx42'
 }
 
-export interface Type_17_Idx43 {
+export interface LookupSource_Idx43 {
   __kind: 'Idx43'
 }
 
-export interface Type_17_Idx44 {
+export interface LookupSource_Idx44 {
   __kind: 'Idx44'
 }
 
-export interface Type_17_Idx45 {
+export interface LookupSource_Idx45 {
   __kind: 'Idx45'
 }
 
-export interface Type_17_Idx46 {
+export interface LookupSource_Idx46 {
   __kind: 'Idx46'
 }
 
-export interface Type_17_Idx47 {
+export interface LookupSource_Idx47 {
   __kind: 'Idx47'
 }
 
-export interface Type_17_Idx48 {
+export interface LookupSource_Idx48 {
   __kind: 'Idx48'
 }
 
-export interface Type_17_Idx49 {
+export interface LookupSource_Idx49 {
   __kind: 'Idx49'
 }
 
-export interface Type_17_Idx50 {
+export interface LookupSource_Idx50 {
   __kind: 'Idx50'
 }
 
-export interface Type_17_Idx51 {
+export interface LookupSource_Idx51 {
   __kind: 'Idx51'
 }
 
-export interface Type_17_Idx52 {
+export interface LookupSource_Idx52 {
   __kind: 'Idx52'
 }
 
-export interface Type_17_Idx53 {
+export interface LookupSource_Idx53 {
   __kind: 'Idx53'
 }
 
-export interface Type_17_Idx54 {
+export interface LookupSource_Idx54 {
   __kind: 'Idx54'
 }
 
-export interface Type_17_Idx55 {
+export interface LookupSource_Idx55 {
   __kind: 'Idx55'
 }
 
-export interface Type_17_Idx56 {
+export interface LookupSource_Idx56 {
   __kind: 'Idx56'
 }
 
-export interface Type_17_Idx57 {
+export interface LookupSource_Idx57 {
   __kind: 'Idx57'
 }
 
-export interface Type_17_Idx58 {
+export interface LookupSource_Idx58 {
   __kind: 'Idx58'
 }
 
-export interface Type_17_Idx59 {
+export interface LookupSource_Idx59 {
   __kind: 'Idx59'
 }
 
-export interface Type_17_Idx60 {
+export interface LookupSource_Idx60 {
   __kind: 'Idx60'
 }
 
-export interface Type_17_Idx61 {
+export interface LookupSource_Idx61 {
   __kind: 'Idx61'
 }
 
-export interface Type_17_Idx62 {
+export interface LookupSource_Idx62 {
   __kind: 'Idx62'
 }
 
-export interface Type_17_Idx63 {
+export interface LookupSource_Idx63 {
   __kind: 'Idx63'
 }
 
-export interface Type_17_Idx64 {
+export interface LookupSource_Idx64 {
   __kind: 'Idx64'
 }
 
-export interface Type_17_Idx65 {
+export interface LookupSource_Idx65 {
   __kind: 'Idx65'
 }
 
-export interface Type_17_Idx66 {
+export interface LookupSource_Idx66 {
   __kind: 'Idx66'
 }
 
-export interface Type_17_Idx67 {
+export interface LookupSource_Idx67 {
   __kind: 'Idx67'
 }
 
-export interface Type_17_Idx68 {
+export interface LookupSource_Idx68 {
   __kind: 'Idx68'
 }
 
-export interface Type_17_Idx69 {
+export interface LookupSource_Idx69 {
   __kind: 'Idx69'
 }
 
-export interface Type_17_Idx70 {
+export interface LookupSource_Idx70 {
   __kind: 'Idx70'
 }
 
-export interface Type_17_Idx71 {
+export interface LookupSource_Idx71 {
   __kind: 'Idx71'
 }
 
-export interface Type_17_Idx72 {
+export interface LookupSource_Idx72 {
   __kind: 'Idx72'
 }
 
-export interface Type_17_Idx73 {
+export interface LookupSource_Idx73 {
   __kind: 'Idx73'
 }
 
-export interface Type_17_Idx74 {
+export interface LookupSource_Idx74 {
   __kind: 'Idx74'
 }
 
-export interface Type_17_Idx75 {
+export interface LookupSource_Idx75 {
   __kind: 'Idx75'
 }
 
-export interface Type_17_Idx76 {
+export interface LookupSource_Idx76 {
   __kind: 'Idx76'
 }
 
-export interface Type_17_Idx77 {
+export interface LookupSource_Idx77 {
   __kind: 'Idx77'
 }
 
-export interface Type_17_Idx78 {
+export interface LookupSource_Idx78 {
   __kind: 'Idx78'
 }
 
-export interface Type_17_Idx79 {
+export interface LookupSource_Idx79 {
   __kind: 'Idx79'
 }
 
-export interface Type_17_Idx80 {
+export interface LookupSource_Idx80 {
   __kind: 'Idx80'
 }
 
-export interface Type_17_Idx81 {
+export interface LookupSource_Idx81 {
   __kind: 'Idx81'
 }
 
-export interface Type_17_Idx82 {
+export interface LookupSource_Idx82 {
   __kind: 'Idx82'
 }
 
-export interface Type_17_Idx83 {
+export interface LookupSource_Idx83 {
   __kind: 'Idx83'
 }
 
-export interface Type_17_Idx84 {
+export interface LookupSource_Idx84 {
   __kind: 'Idx84'
 }
 
-export interface Type_17_Idx85 {
+export interface LookupSource_Idx85 {
   __kind: 'Idx85'
 }
 
-export interface Type_17_Idx86 {
+export interface LookupSource_Idx86 {
   __kind: 'Idx86'
 }
 
-export interface Type_17_Idx87 {
+export interface LookupSource_Idx87 {
   __kind: 'Idx87'
 }
 
-export interface Type_17_Idx88 {
+export interface LookupSource_Idx88 {
   __kind: 'Idx88'
 }
 
-export interface Type_17_Idx89 {
+export interface LookupSource_Idx89 {
   __kind: 'Idx89'
 }
 
-export interface Type_17_Idx90 {
+export interface LookupSource_Idx90 {
   __kind: 'Idx90'
 }
 
-export interface Type_17_Idx91 {
+export interface LookupSource_Idx91 {
   __kind: 'Idx91'
 }
 
-export interface Type_17_Idx92 {
+export interface LookupSource_Idx92 {
   __kind: 'Idx92'
 }
 
-export interface Type_17_Idx93 {
+export interface LookupSource_Idx93 {
   __kind: 'Idx93'
 }
 
-export interface Type_17_Idx94 {
+export interface LookupSource_Idx94 {
   __kind: 'Idx94'
 }
 
-export interface Type_17_Idx95 {
+export interface LookupSource_Idx95 {
   __kind: 'Idx95'
 }
 
-export interface Type_17_Idx96 {
+export interface LookupSource_Idx96 {
   __kind: 'Idx96'
 }
 
-export interface Type_17_Idx97 {
+export interface LookupSource_Idx97 {
   __kind: 'Idx97'
 }
 
-export interface Type_17_Idx98 {
+export interface LookupSource_Idx98 {
   __kind: 'Idx98'
 }
 
-export interface Type_17_Idx99 {
+export interface LookupSource_Idx99 {
   __kind: 'Idx99'
 }
 
-export interface Type_17_Idx100 {
+export interface LookupSource_Idx100 {
   __kind: 'Idx100'
 }
 
-export interface Type_17_Idx101 {
+export interface LookupSource_Idx101 {
   __kind: 'Idx101'
 }
 
-export interface Type_17_Idx102 {
+export interface LookupSource_Idx102 {
   __kind: 'Idx102'
 }
 
-export interface Type_17_Idx103 {
+export interface LookupSource_Idx103 {
   __kind: 'Idx103'
 }
 
-export interface Type_17_Idx104 {
+export interface LookupSource_Idx104 {
   __kind: 'Idx104'
 }
 
-export interface Type_17_Idx105 {
+export interface LookupSource_Idx105 {
   __kind: 'Idx105'
 }
 
-export interface Type_17_Idx106 {
+export interface LookupSource_Idx106 {
   __kind: 'Idx106'
 }
 
-export interface Type_17_Idx107 {
+export interface LookupSource_Idx107 {
   __kind: 'Idx107'
 }
 
-export interface Type_17_Idx108 {
+export interface LookupSource_Idx108 {
   __kind: 'Idx108'
 }
 
-export interface Type_17_Idx109 {
+export interface LookupSource_Idx109 {
   __kind: 'Idx109'
 }
 
-export interface Type_17_Idx110 {
+export interface LookupSource_Idx110 {
   __kind: 'Idx110'
 }
 
-export interface Type_17_Idx111 {
+export interface LookupSource_Idx111 {
   __kind: 'Idx111'
 }
 
-export interface Type_17_Idx112 {
+export interface LookupSource_Idx112 {
   __kind: 'Idx112'
 }
 
-export interface Type_17_Idx113 {
+export interface LookupSource_Idx113 {
   __kind: 'Idx113'
 }
 
-export interface Type_17_Idx114 {
+export interface LookupSource_Idx114 {
   __kind: 'Idx114'
 }
 
-export interface Type_17_Idx115 {
+export interface LookupSource_Idx115 {
   __kind: 'Idx115'
 }
 
-export interface Type_17_Idx116 {
+export interface LookupSource_Idx116 {
   __kind: 'Idx116'
 }
 
-export interface Type_17_Idx117 {
+export interface LookupSource_Idx117 {
   __kind: 'Idx117'
 }
 
-export interface Type_17_Idx118 {
+export interface LookupSource_Idx118 {
   __kind: 'Idx118'
 }
 
-export interface Type_17_Idx119 {
+export interface LookupSource_Idx119 {
   __kind: 'Idx119'
 }
 
-export interface Type_17_Idx120 {
+export interface LookupSource_Idx120 {
   __kind: 'Idx120'
 }
 
-export interface Type_17_Idx121 {
+export interface LookupSource_Idx121 {
   __kind: 'Idx121'
 }
 
-export interface Type_17_Idx122 {
+export interface LookupSource_Idx122 {
   __kind: 'Idx122'
 }
 
-export interface Type_17_Idx123 {
+export interface LookupSource_Idx123 {
   __kind: 'Idx123'
 }
 
-export interface Type_17_Idx124 {
+export interface LookupSource_Idx124 {
   __kind: 'Idx124'
 }
 
-export interface Type_17_Idx125 {
+export interface LookupSource_Idx125 {
   __kind: 'Idx125'
 }
 
-export interface Type_17_Idx126 {
+export interface LookupSource_Idx126 {
   __kind: 'Idx126'
 }
 
-export interface Type_17_Idx127 {
+export interface LookupSource_Idx127 {
   __kind: 'Idx127'
 }
 
-export interface Type_17_Idx128 {
+export interface LookupSource_Idx128 {
   __kind: 'Idx128'
 }
 
-export interface Type_17_Idx129 {
+export interface LookupSource_Idx129 {
   __kind: 'Idx129'
 }
 
-export interface Type_17_Idx130 {
+export interface LookupSource_Idx130 {
   __kind: 'Idx130'
 }
 
-export interface Type_17_Idx131 {
+export interface LookupSource_Idx131 {
   __kind: 'Idx131'
 }
 
-export interface Type_17_Idx132 {
+export interface LookupSource_Idx132 {
   __kind: 'Idx132'
 }
 
-export interface Type_17_Idx133 {
+export interface LookupSource_Idx133 {
   __kind: 'Idx133'
 }
 
-export interface Type_17_Idx134 {
+export interface LookupSource_Idx134 {
   __kind: 'Idx134'
 }
 
-export interface Type_17_Idx135 {
+export interface LookupSource_Idx135 {
   __kind: 'Idx135'
 }
 
-export interface Type_17_Idx136 {
+export interface LookupSource_Idx136 {
   __kind: 'Idx136'
 }
 
-export interface Type_17_Idx137 {
+export interface LookupSource_Idx137 {
   __kind: 'Idx137'
 }
 
-export interface Type_17_Idx138 {
+export interface LookupSource_Idx138 {
   __kind: 'Idx138'
 }
 
-export interface Type_17_Idx139 {
+export interface LookupSource_Idx139 {
   __kind: 'Idx139'
 }
 
-export interface Type_17_Idx140 {
+export interface LookupSource_Idx140 {
   __kind: 'Idx140'
 }
 
-export interface Type_17_Idx141 {
+export interface LookupSource_Idx141 {
   __kind: 'Idx141'
 }
 
-export interface Type_17_Idx142 {
+export interface LookupSource_Idx142 {
   __kind: 'Idx142'
 }
 
-export interface Type_17_Idx143 {
+export interface LookupSource_Idx143 {
   __kind: 'Idx143'
 }
 
-export interface Type_17_Idx144 {
+export interface LookupSource_Idx144 {
   __kind: 'Idx144'
 }
 
-export interface Type_17_Idx145 {
+export interface LookupSource_Idx145 {
   __kind: 'Idx145'
 }
 
-export interface Type_17_Idx146 {
+export interface LookupSource_Idx146 {
   __kind: 'Idx146'
 }
 
-export interface Type_17_Idx147 {
+export interface LookupSource_Idx147 {
   __kind: 'Idx147'
 }
 
-export interface Type_17_Idx148 {
+export interface LookupSource_Idx148 {
   __kind: 'Idx148'
 }
 
-export interface Type_17_Idx149 {
+export interface LookupSource_Idx149 {
   __kind: 'Idx149'
 }
 
-export interface Type_17_Idx150 {
+export interface LookupSource_Idx150 {
   __kind: 'Idx150'
 }
 
-export interface Type_17_Idx151 {
+export interface LookupSource_Idx151 {
   __kind: 'Idx151'
 }
 
-export interface Type_17_Idx152 {
+export interface LookupSource_Idx152 {
   __kind: 'Idx152'
 }
 
-export interface Type_17_Idx153 {
+export interface LookupSource_Idx153 {
   __kind: 'Idx153'
 }
 
-export interface Type_17_Idx154 {
+export interface LookupSource_Idx154 {
   __kind: 'Idx154'
 }
 
-export interface Type_17_Idx155 {
+export interface LookupSource_Idx155 {
   __kind: 'Idx155'
 }
 
-export interface Type_17_Idx156 {
+export interface LookupSource_Idx156 {
   __kind: 'Idx156'
 }
 
-export interface Type_17_Idx157 {
+export interface LookupSource_Idx157 {
   __kind: 'Idx157'
 }
 
-export interface Type_17_Idx158 {
+export interface LookupSource_Idx158 {
   __kind: 'Idx158'
 }
 
-export interface Type_17_Idx159 {
+export interface LookupSource_Idx159 {
   __kind: 'Idx159'
 }
 
-export interface Type_17_Idx160 {
+export interface LookupSource_Idx160 {
   __kind: 'Idx160'
 }
 
-export interface Type_17_Idx161 {
+export interface LookupSource_Idx161 {
   __kind: 'Idx161'
 }
 
-export interface Type_17_Idx162 {
+export interface LookupSource_Idx162 {
   __kind: 'Idx162'
 }
 
-export interface Type_17_Idx163 {
+export interface LookupSource_Idx163 {
   __kind: 'Idx163'
 }
 
-export interface Type_17_Idx164 {
+export interface LookupSource_Idx164 {
   __kind: 'Idx164'
 }
 
-export interface Type_17_Idx165 {
+export interface LookupSource_Idx165 {
   __kind: 'Idx165'
 }
 
-export interface Type_17_Idx166 {
+export interface LookupSource_Idx166 {
   __kind: 'Idx166'
 }
 
-export interface Type_17_Idx167 {
+export interface LookupSource_Idx167 {
   __kind: 'Idx167'
 }
 
-export interface Type_17_Idx168 {
+export interface LookupSource_Idx168 {
   __kind: 'Idx168'
 }
 
-export interface Type_17_Idx169 {
+export interface LookupSource_Idx169 {
   __kind: 'Idx169'
 }
 
-export interface Type_17_Idx170 {
+export interface LookupSource_Idx170 {
   __kind: 'Idx170'
 }
 
-export interface Type_17_Idx171 {
+export interface LookupSource_Idx171 {
   __kind: 'Idx171'
 }
 
-export interface Type_17_Idx172 {
+export interface LookupSource_Idx172 {
   __kind: 'Idx172'
 }
 
-export interface Type_17_Idx173 {
+export interface LookupSource_Idx173 {
   __kind: 'Idx173'
 }
 
-export interface Type_17_Idx174 {
+export interface LookupSource_Idx174 {
   __kind: 'Idx174'
 }
 
-export interface Type_17_Idx175 {
+export interface LookupSource_Idx175 {
   __kind: 'Idx175'
 }
 
-export interface Type_17_Idx176 {
+export interface LookupSource_Idx176 {
   __kind: 'Idx176'
 }
 
-export interface Type_17_Idx177 {
+export interface LookupSource_Idx177 {
   __kind: 'Idx177'
 }
 
-export interface Type_17_Idx178 {
+export interface LookupSource_Idx178 {
   __kind: 'Idx178'
 }
 
-export interface Type_17_Idx179 {
+export interface LookupSource_Idx179 {
   __kind: 'Idx179'
 }
 
-export interface Type_17_Idx180 {
+export interface LookupSource_Idx180 {
   __kind: 'Idx180'
 }
 
-export interface Type_17_Idx181 {
+export interface LookupSource_Idx181 {
   __kind: 'Idx181'
 }
 
-export interface Type_17_Idx182 {
+export interface LookupSource_Idx182 {
   __kind: 'Idx182'
 }
 
-export interface Type_17_Idx183 {
+export interface LookupSource_Idx183 {
   __kind: 'Idx183'
 }
 
-export interface Type_17_Idx184 {
+export interface LookupSource_Idx184 {
   __kind: 'Idx184'
 }
 
-export interface Type_17_Idx185 {
+export interface LookupSource_Idx185 {
   __kind: 'Idx185'
 }
 
-export interface Type_17_Idx186 {
+export interface LookupSource_Idx186 {
   __kind: 'Idx186'
 }
 
-export interface Type_17_Idx187 {
+export interface LookupSource_Idx187 {
   __kind: 'Idx187'
 }
 
-export interface Type_17_Idx188 {
+export interface LookupSource_Idx188 {
   __kind: 'Idx188'
 }
 
-export interface Type_17_Idx189 {
+export interface LookupSource_Idx189 {
   __kind: 'Idx189'
 }
 
-export interface Type_17_Idx190 {
+export interface LookupSource_Idx190 {
   __kind: 'Idx190'
 }
 
-export interface Type_17_Idx191 {
+export interface LookupSource_Idx191 {
   __kind: 'Idx191'
 }
 
-export interface Type_17_Idx192 {
+export interface LookupSource_Idx192 {
   __kind: 'Idx192'
 }
 
-export interface Type_17_Idx193 {
+export interface LookupSource_Idx193 {
   __kind: 'Idx193'
 }
 
-export interface Type_17_Idx194 {
+export interface LookupSource_Idx194 {
   __kind: 'Idx194'
 }
 
-export interface Type_17_Idx195 {
+export interface LookupSource_Idx195 {
   __kind: 'Idx195'
 }
 
-export interface Type_17_Idx196 {
+export interface LookupSource_Idx196 {
   __kind: 'Idx196'
 }
 
-export interface Type_17_Idx197 {
+export interface LookupSource_Idx197 {
   __kind: 'Idx197'
 }
 
-export interface Type_17_Idx198 {
+export interface LookupSource_Idx198 {
   __kind: 'Idx198'
 }
 
-export interface Type_17_Idx199 {
+export interface LookupSource_Idx199 {
   __kind: 'Idx199'
 }
 
-export interface Type_17_Idx200 {
+export interface LookupSource_Idx200 {
   __kind: 'Idx200'
 }
 
-export interface Type_17_Idx201 {
+export interface LookupSource_Idx201 {
   __kind: 'Idx201'
 }
 
-export interface Type_17_Idx202 {
+export interface LookupSource_Idx202 {
   __kind: 'Idx202'
 }
 
-export interface Type_17_Idx203 {
+export interface LookupSource_Idx203 {
   __kind: 'Idx203'
 }
 
-export interface Type_17_Idx204 {
+export interface LookupSource_Idx204 {
   __kind: 'Idx204'
 }
 
-export interface Type_17_Idx205 {
+export interface LookupSource_Idx205 {
   __kind: 'Idx205'
 }
 
-export interface Type_17_Idx206 {
+export interface LookupSource_Idx206 {
   __kind: 'Idx206'
 }
 
-export interface Type_17_Idx207 {
+export interface LookupSource_Idx207 {
   __kind: 'Idx207'
 }
 
-export interface Type_17_Idx208 {
+export interface LookupSource_Idx208 {
   __kind: 'Idx208'
 }
 
-export interface Type_17_Idx209 {
+export interface LookupSource_Idx209 {
   __kind: 'Idx209'
 }
 
-export interface Type_17_Idx210 {
+export interface LookupSource_Idx210 {
   __kind: 'Idx210'
 }
 
-export interface Type_17_Idx211 {
+export interface LookupSource_Idx211 {
   __kind: 'Idx211'
 }
 
-export interface Type_17_Idx212 {
+export interface LookupSource_Idx212 {
   __kind: 'Idx212'
 }
 
-export interface Type_17_Idx213 {
+export interface LookupSource_Idx213 {
   __kind: 'Idx213'
 }
 
-export interface Type_17_Idx214 {
+export interface LookupSource_Idx214 {
   __kind: 'Idx214'
 }
 
-export interface Type_17_Idx215 {
+export interface LookupSource_Idx215 {
   __kind: 'Idx215'
 }
 
-export interface Type_17_Idx216 {
+export interface LookupSource_Idx216 {
   __kind: 'Idx216'
 }
 
-export interface Type_17_Idx217 {
+export interface LookupSource_Idx217 {
   __kind: 'Idx217'
 }
 
-export interface Type_17_Idx218 {
+export interface LookupSource_Idx218 {
   __kind: 'Idx218'
 }
 
-export interface Type_17_Idx219 {
+export interface LookupSource_Idx219 {
   __kind: 'Idx219'
 }
 
-export interface Type_17_Idx220 {
+export interface LookupSource_Idx220 {
   __kind: 'Idx220'
 }
 
-export interface Type_17_Idx221 {
+export interface LookupSource_Idx221 {
   __kind: 'Idx221'
 }
 
-export interface Type_17_Idx222 {
+export interface LookupSource_Idx222 {
   __kind: 'Idx222'
 }
 
-export interface Type_17_Idx223 {
+export interface LookupSource_Idx223 {
   __kind: 'Idx223'
 }
 
-export interface Type_17_Idx224 {
+export interface LookupSource_Idx224 {
   __kind: 'Idx224'
 }
 
-export interface Type_17_Idx225 {
+export interface LookupSource_Idx225 {
   __kind: 'Idx225'
 }
 
-export interface Type_17_Idx226 {
+export interface LookupSource_Idx226 {
   __kind: 'Idx226'
 }
 
-export interface Type_17_Idx227 {
+export interface LookupSource_Idx227 {
   __kind: 'Idx227'
 }
 
-export interface Type_17_Idx228 {
+export interface LookupSource_Idx228 {
   __kind: 'Idx228'
 }
 
-export interface Type_17_Idx229 {
+export interface LookupSource_Idx229 {
   __kind: 'Idx229'
 }
 
-export interface Type_17_Idx230 {
+export interface LookupSource_Idx230 {
   __kind: 'Idx230'
 }
 
-export interface Type_17_Idx231 {
+export interface LookupSource_Idx231 {
   __kind: 'Idx231'
 }
 
-export interface Type_17_Idx232 {
+export interface LookupSource_Idx232 {
   __kind: 'Idx232'
 }
 
-export interface Type_17_Idx233 {
+export interface LookupSource_Idx233 {
   __kind: 'Idx233'
 }
 
-export interface Type_17_Idx234 {
+export interface LookupSource_Idx234 {
   __kind: 'Idx234'
 }
 
-export interface Type_17_Idx235 {
+export interface LookupSource_Idx235 {
   __kind: 'Idx235'
 }
 
-export interface Type_17_Idx236 {
+export interface LookupSource_Idx236 {
   __kind: 'Idx236'
 }
 
-export interface Type_17_Idx237 {
+export interface LookupSource_Idx237 {
   __kind: 'Idx237'
 }
 
-export interface Type_17_Idx238 {
+export interface LookupSource_Idx238 {
   __kind: 'Idx238'
 }
 
-export interface Type_17_IdxU16 {
+export interface LookupSource_IdxU16 {
   __kind: 'IdxU16'
   value: number
 }
 
-export interface Type_17_IdxU32 {
+export interface LookupSource_IdxU32 {
   __kind: 'IdxU32'
   value: number
 }
 
-export interface Type_17_IdxU64 {
+export interface LookupSource_IdxU64 {
   __kind: 'IdxU64'
   value: bigint
 }
 
-export interface Type_17_AccountId {
+export interface LookupSource_AccountId {
   __kind: 'AccountId'
-  value: Uint8Array
+  value: AccountId
 }
 
 export interface Header {
-  parentHash: Uint8Array
+  parentHash: Hash
   number: number
-  stateRoot: Uint8Array
-  extrinsicsRoot: Uint8Array
+  stateRoot: Hash
+  extrinsicsRoot: Hash
   digest: Digest
 }
 
@@ -2985,7 +2994,7 @@ export interface RewardDestination_Controller {
 
 export interface RewardDestination_Account {
   __kind: 'Account'
-  value: Uint8Array
+  value: AccountId
 }
 
 export interface RewardDestination_None {
@@ -2993,16 +3002,30 @@ export interface RewardDestination_None {
   value: null
 }
 
-export interface ValidatorPrefsWithCommission {
+export interface ValidatorPrefs {
   commission: number
 }
 
-export interface HeartbeatTo244 {
-  blockNumber: number
+export type AccountId = Uint8Array
+
+export type EraIndex = number
+
+export type Keys = [AccountId, AccountId, AccountId, AccountId, AccountId]
+
+export interface Heartbeat {
+  blockNumber: BlockNumber
   networkState: OpaqueNetworkState
-  sessionIndex: number
-  authorityIndex: number
+  sessionIndex: SessionIndex
+  authorityIndex: AuthIndex
 }
+
+export type Signature = Uint8Array
+
+export type Vote = number
+
+export type ReferendumIndex = number
+
+export type BlockNumber = number
 
 export type Conviction = Conviction_None | Conviction_Locked1x | Conviction_Locked2x | Conviction_Locked3x | Conviction_Locked4x | Conviction_Locked5x | Conviction_Locked6x
 
@@ -3034,165 +3057,171 @@ export interface Conviction_Locked6x {
   __kind: 'Locked6x'
 }
 
+export type BalanceOf = bigint
+
+export type EcdsaSignature = Uint8Array
+
+export type EthereumAddress = Uint8Array
+
 export interface AttestedCandidate {
   candidate: AbridgedCandidateReceipt
   validityVotes: ValidityAttestation[]
   validatorIndices: Uint8Array
 }
 
-export type MoreAttestations = null
-
 export interface ParaInfo {
-  manager: Uint8Array
-  deposit: bigint
+  manager: AccountId
+  deposit: Balance
   locked: boolean
 }
 
-export type Type_97 = Type_97_System | Type_97_Babe | Type_97_Timestamp | Type_97_Indices | Type_97_Balances | Type_97_Authorship | Type_97_Staking | Type_97_Offences | Type_97_Session | Type_97_FinalityTracker | Type_97_Grandpa | Type_97_ImOnline | Type_97_AuthorityDiscovery | Type_97_Democracy | Type_97_Council | Type_97_TechnicalCommittee | Type_97_ElectionsPhragmen | Type_97_TechnicalMembership | Type_97_Treasury | Type_97_Claims | Type_97_Parachains | Type_97_Attestations | Type_97_Slots | Type_97_Registrar | Type_97_Utility | Type_97_Identity
+export type CollatorId = Uint8Array
 
-export interface Type_97_System {
+export type Type_110 = Type_110_System | Type_110_Babe | Type_110_Timestamp | Type_110_Indices | Type_110_Balances | Type_110_Authorship | Type_110_Staking | Type_110_Offences | Type_110_Session | Type_110_FinalityTracker | Type_110_Grandpa | Type_110_ImOnline | Type_110_AuthorityDiscovery | Type_110_Democracy | Type_110_Council | Type_110_TechnicalCommittee | Type_110_ElectionsPhragmen | Type_110_TechnicalMembership | Type_110_Treasury | Type_110_Claims | Type_110_Parachains | Type_110_Attestations | Type_110_Slots | Type_110_Registrar | Type_110_Utility | Type_110_Identity
+
+export interface Type_110_System {
   __kind: 'System'
   value: SystemCall
 }
 
-export interface Type_97_Babe {
+export interface Type_110_Babe {
   __kind: 'Babe'
   value: BabeCall
 }
 
-export interface Type_97_Timestamp {
+export interface Type_110_Timestamp {
   __kind: 'Timestamp'
   value: TimestampCall
 }
 
-export interface Type_97_Indices {
+export interface Type_110_Indices {
   __kind: 'Indices'
   value: IndicesCall
 }
 
-export interface Type_97_Balances {
+export interface Type_110_Balances {
   __kind: 'Balances'
   value: BalancesCall
 }
 
-export interface Type_97_Authorship {
+export interface Type_110_Authorship {
   __kind: 'Authorship'
   value: AuthorshipCall
 }
 
-export interface Type_97_Staking {
+export interface Type_110_Staking {
   __kind: 'Staking'
   value: StakingCall
 }
 
-export interface Type_97_Offences {
+export interface Type_110_Offences {
   __kind: 'Offences'
   value: OffencesCall
 }
 
-export interface Type_97_Session {
+export interface Type_110_Session {
   __kind: 'Session'
   value: SessionCall
 }
 
-export interface Type_97_FinalityTracker {
+export interface Type_110_FinalityTracker {
   __kind: 'FinalityTracker'
   value: FinalityTrackerCall
 }
 
-export interface Type_97_Grandpa {
+export interface Type_110_Grandpa {
   __kind: 'Grandpa'
   value: GrandpaCall
 }
 
-export interface Type_97_ImOnline {
+export interface Type_110_ImOnline {
   __kind: 'ImOnline'
   value: ImOnlineCall
 }
 
-export interface Type_97_AuthorityDiscovery {
+export interface Type_110_AuthorityDiscovery {
   __kind: 'AuthorityDiscovery'
   value: AuthorityDiscoveryCall
 }
 
-export interface Type_97_Democracy {
+export interface Type_110_Democracy {
   __kind: 'Democracy'
   value: DemocracyCall
 }
 
-export interface Type_97_Council {
+export interface Type_110_Council {
   __kind: 'Council'
   value: CouncilCall
 }
 
-export interface Type_97_TechnicalCommittee {
+export interface Type_110_TechnicalCommittee {
   __kind: 'TechnicalCommittee'
   value: TechnicalCommitteeCall
 }
 
-export interface Type_97_ElectionsPhragmen {
+export interface Type_110_ElectionsPhragmen {
   __kind: 'ElectionsPhragmen'
   value: ElectionsPhragmenCall
 }
 
-export interface Type_97_TechnicalMembership {
+export interface Type_110_TechnicalMembership {
   __kind: 'TechnicalMembership'
   value: TechnicalMembershipCall
 }
 
-export interface Type_97_Treasury {
+export interface Type_110_Treasury {
   __kind: 'Treasury'
   value: TreasuryCall
 }
 
-export interface Type_97_Claims {
+export interface Type_110_Claims {
   __kind: 'Claims'
   value: ClaimsCall
 }
 
-export interface Type_97_Parachains {
+export interface Type_110_Parachains {
   __kind: 'Parachains'
   value: ParachainsCall
 }
 
-export interface Type_97_Attestations {
+export interface Type_110_Attestations {
   __kind: 'Attestations'
   value: AttestationsCall
 }
 
-export interface Type_97_Slots {
+export interface Type_110_Slots {
   __kind: 'Slots'
   value: SlotsCall
 }
 
-export interface Type_97_Registrar {
+export interface Type_110_Registrar {
   __kind: 'Registrar'
   value: RegistrarCall
 }
 
-export interface Type_97_Utility {
+export interface Type_110_Utility {
   __kind: 'Utility'
   value: UtilityCall
 }
 
-export interface Type_97_Identity {
+export interface Type_110_Identity {
   __kind: 'Identity'
   value: IdentityCall
 }
 
 export interface Timepoint {
-  height: number
+  height: BlockNumber
   index: number
 }
 
 export interface IdentityInfo {
-  additional: [Data, Data][]
+  additional: IdentityInfoAdditional[]
   display: Data
   legal: Data
   web: Data
   riot: Data
   email: Data
-  pgpFingerprint: (Uint8Array | undefined)
+  pgpFingerprint: (H160 | undefined)
   image: Data
   twitter: Data
 }
@@ -3371,23 +3400,25 @@ export interface Data_Raw32 {
 
 export interface Data_BlakeTwo256 {
   __kind: 'BlakeTwo256'
-  value: Uint8Array
+  value: H256
 }
 
 export interface Data_Sha256 {
   __kind: 'Sha256'
-  value: Uint8Array
+  value: H256
 }
 
 export interface Data_Keccak256 {
   __kind: 'Keccak256'
-  value: Uint8Array
+  value: H256
 }
 
 export interface Data_ShaThree256 {
   __kind: 'ShaThree256'
-  value: Uint8Array
+  value: H256
 }
+
+export type RegistrarIndex = number
 
 export type IdentityJudgement = IdentityJudgement_Unknown | IdentityJudgement_FeePaid | IdentityJudgement_Reasonable | IdentityJudgement_KnownGood | IdentityJudgement_OutOfDate | IdentityJudgement_LowQuality | IdentityJudgement_Erroneous
 
@@ -3398,7 +3429,7 @@ export interface IdentityJudgement_Unknown {
 
 export interface IdentityJudgement_FeePaid {
   __kind: 'FeePaid'
-  value: bigint
+  value: Balance
 }
 
 export interface IdentityJudgement_Reasonable {
@@ -3431,17 +3462,21 @@ export interface Digest {
 }
 
 export interface OpaqueNetworkState {
-  peerId: Uint8Array
-  externalAddresses: Uint8Array[]
+  peerId: OpaquePeerId
+  externalAddresses: OpaqueMultiaddr[]
 }
 
+export type SessionIndex = number
+
+export type AuthIndex = number
+
 export interface AbridgedCandidateReceipt {
-  parachainIndex: number
-  relayParent: Uint8Array
-  headData: Uint8Array
-  collator: Uint8Array
-  signature: Uint8Array
-  povBlockHash: Uint8Array
+  parachainIndex: ParaId
+  relayParent: Hash
+  headData: HeadData
+  collator: CollatorId
+  signature: CollatorSignature
+  povBlockHash: Hash
   commitments: CandidateCommitments
 }
 
@@ -3454,13 +3489,21 @@ export interface ValidityAttestation_Never {
 
 export interface ValidityAttestation_Implicit {
   __kind: 'Implicit'
-  value: Uint8Array
+  value: ValidatorSignature
 }
 
 export interface ValidityAttestation_Explicit {
   __kind: 'Explicit'
-  value: Uint8Array
+  value: ValidatorSignature
 }
+
+export type Balance = bigint
+
+export type IdentityInfoAdditional = [Data, Data]
+
+export type H160 = Uint8Array
+
+export type H256 = Uint8Array
 
 export type DigestItem = DigestItem_Other | DigestItem_AuthoritiesChange | DigestItem_ChangesTrieRoot | DigestItem_SealV0 | DigestItem_Consensus | DigestItem_Seal | DigestItem_PreRuntime | DigestItem_ChangesTrieSignal | DigestItem_RuntimeEnvironmentUpdated
 
@@ -3471,32 +3514,32 @@ export interface DigestItem_Other {
 
 export interface DigestItem_AuthoritiesChange {
   __kind: 'AuthoritiesChange'
-  value: Uint8Array[]
+  value: AuthorityId[]
 }
 
 export interface DigestItem_ChangesTrieRoot {
   __kind: 'ChangesTrieRoot'
-  value: Uint8Array
+  value: Hash
 }
 
 export interface DigestItem_SealV0 {
   __kind: 'SealV0'
-  value: [bigint, Uint8Array]
+  value: SealV0
 }
 
 export interface DigestItem_Consensus {
   __kind: 'Consensus'
-  value: [Uint8Array, Uint8Array]
+  value: Consensus
 }
 
 export interface DigestItem_Seal {
   __kind: 'Seal'
-  value: [Uint8Array, Uint8Array]
+  value: Seal
 }
 
 export interface DigestItem_PreRuntime {
   __kind: 'PreRuntime'
-  value: [Uint8Array, Uint8Array]
+  value: PreRuntime
 }
 
 export interface DigestItem_ChangesTrieSignal {
@@ -3509,14 +3552,38 @@ export interface DigestItem_RuntimeEnvironmentUpdated {
   value: null
 }
 
+export type OpaquePeerId = Uint8Array
+
+export type OpaqueMultiaddr = Uint8Array
+
+export type ParaId = number
+
+export type HeadData = Uint8Array
+
+export type CollatorSignature = Uint8Array
+
 export interface CandidateCommitments {
-  upwardMessages: Uint8Array[]
+  upwardMessages: UpwardMessage[]
   horizontalMessages: OutboundHrmpMessage[]
-  newValidationCode: (Uint8Array | undefined)
-  headData: Uint8Array
+  newValidationCode: (ValidationCode | undefined)
+  headData: HeadData
   processedDownwardMessages: number
-  hrmpWatermark: number
+  hrmpWatermark: BlockNumber
 }
+
+export type ValidatorSignature = Uint8Array
+
+export type AuthorityId = Uint8Array
+
+export type SealV0 = [bigint, Signature]
+
+export type ConsensusEngineId = Uint8Array
+
+export type Consensus = [ConsensusEngineId, Uint8Array]
+
+export type Seal = [ConsensusEngineId, Uint8Array]
+
+export type PreRuntime = [ConsensusEngineId, Uint8Array]
 
 export type ChangesTrieSignal = ChangesTrieSignal_NewConfiguration
 
@@ -3525,10 +3592,14 @@ export interface ChangesTrieSignal_NewConfiguration {
   value: (ChangesTrieConfiguration | undefined)
 }
 
+export type UpwardMessage = Uint8Array
+
 export interface OutboundHrmpMessage {
   recipient: number
   data: Uint8Array
 }
+
+export type ValidationCode = Uint8Array
 
 export interface ChangesTrieConfiguration {
   digestInterval: number

@@ -6,14 +6,10 @@ export class UnknownVersionError extends Error {
     }
 }
 
-export class MissingProposalRecord {
-    constructor(proposal: ProposalType, hashOrIndex: string | number, block: number) {
-        console.warn(`Missing record for ${proposal} ${hashOrIndex} at block ${block}`)
-    }
+export function MissingProposalRecordWarn(proposal: ProposalType, hashOrIndex: string | number) {
+    return `Missing record for ${proposal} ${hashOrIndex}`
 }
 
-export class StorageNotExists {
-    constructor(proposal: ProposalType, hashOrIndex: string | number, block: number) {
-        console.warn(`Storage doesn't exist for ${proposal} ${hashOrIndex} at block ${block}`)
-    }
+export function StorageNotExistsWarn(proposal: ProposalType, hashOrIndex: string | number) {
+    return `Storage doesn't exist for ${proposal} ${hashOrIndex}`
 }

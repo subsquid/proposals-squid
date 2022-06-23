@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { UnknownVersionError } from '../../common/errors'
 import { BountiesBountiesStorage, TreasuryBountiesStorage } from '../../types/storage'
-import { StorageContext } from '../../types/support'
+import { BlockContext } from '../../types/support'
 
 interface BountyStorageData {
     proposer: Uint8Array
@@ -9,7 +9,7 @@ interface BountyStorageData {
     bond: bigint
 }
 
-async function getBountyStorageData(ctx: StorageContext, index: number): Promise<BountyStorageData | undefined> {
+async function getBountyStorageData(ctx: BlockContext, index: number): Promise<BountyStorageData | undefined> {
     const storage = new BountiesBountiesStorage(ctx)
     if (!storage.isExists) return undefined
 
@@ -20,7 +20,7 @@ async function getBountyStorageData(ctx: StorageContext, index: number): Promise
     }
 }
 
-async function getTreasuryStorageData(ctx: StorageContext, index: number): Promise<BountyStorageData | undefined> {
+async function getTreasuryStorageData(ctx: BlockContext, index: number): Promise<BountyStorageData | undefined> {
     const storage = new TreasuryBountiesStorage(ctx)
     if (!storage.isExists) return undefined
 
@@ -31,6 +31,6 @@ async function getTreasuryStorageData(ctx: StorageContext, index: number): Promi
     }
 }
 
-export async function getBounties(ctx: StorageContext, index: number) {
+export async function getBounties(ctx: BlockContext, index: number) {
     return (await getBountyStorageData(ctx, index)) || (await getTreasuryStorageData(ctx, index))
 }

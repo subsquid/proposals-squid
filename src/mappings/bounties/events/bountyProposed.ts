@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { EventHandlerContext } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../types/contexts'
 import { BountiesBountyProposedEvent, TreasuryBountyProposedEvent } from '../../../types/events'
-import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
+import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
-import config from '../../../config'
 import { ss58codec } from '../../../common/tools'
 import { storage } from '../../../storage'
+import { createBounty } from '../../utils/proposals'
 
 interface BountyEventData {
     index: number
@@ -43,20 +42,20 @@ function getBountyEventData(ctx: EventContext): BountyEventData {
 }
 
 export async function handleProposed(ctx: EventHandlerContext) {
-    const getEventData = ctx.event.section === 'bounties' ? getBountyEventData : getTreasuryEventData
+    const section = ctx.event.name.split('.')[0]
+    const getEventData = section === 'Bounties' ? getBountyEventData : getTreasuryEventData
     const { index } = getEventData(ctx)
 
     const storageData = await storage.bounties.getBounties(ctx, index)
     if (!storageData) {
-        (new StorageNotExists(ProposalType.Bounty, index, ctx.block.height))
+        ctx.log.warn(StorageNotExistsWarn(ProposalType.Bounty, index))
         return
     }
 
     const { proposer, value, bond } = storageData
 
-    await proposalManager.create(ctx, {
+    await createBounty(ctx, {
         index,
-        type: ProposalType.Bounty,
         proposer: ss58codec.encode(proposer),
         status: ProposalStatus.Proposed,
         reward: value,

@@ -1,6 +1,6 @@
 import { UnknownVersionError } from '../../common/errors'
 import { TreasuryProposalsStorage } from '../../types/storage'
-import { StorageContext } from '../../types/support'
+import { BlockContext } from '../../types/support'
 
 interface TreasuryProposalStorageData {
     proposer: Uint8Array
@@ -9,7 +9,7 @@ interface TreasuryProposalStorageData {
     bond: bigint
 }
 
-async function getStorageData(ctx: StorageContext, index: number): Promise<TreasuryProposalStorageData | undefined> {
+async function getStorageData(ctx: BlockContext, index: number): Promise<TreasuryProposalStorageData | undefined> {
     const storage = new TreasuryProposalsStorage(ctx)
     if (!storage.isExists) return undefined
 
@@ -20,6 +20,6 @@ async function getStorageData(ctx: StorageContext, index: number): Promise<Treas
     }
 }
 
-export async function getProposals(ctx: StorageContext, index: number) {
+export async function getProposals(ctx: BlockContext, index: number) {
     return await getStorageData(ctx, index)
 }

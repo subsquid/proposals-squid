@@ -3,6 +3,7 @@ import * as marshal from "./marshal"
 import {Proposal} from "./proposal.model"
 import {VoteDecision} from "./_voteDecision"
 import {VoteBalance, fromJsonVoteBalance} from "./_voteBalance"
+import {VoteType} from "./_voteType"
 
 @Entity_()
 export class Vote {
@@ -13,8 +14,11 @@ export class Vote {
   @PrimaryColumn_()
   id!: string
 
+  @Column_("text", {nullable: true})
+  voter!: string | undefined | null
+
   @Column_("text", {nullable: false})
-  voter!: string
+  proposalId!: string
 
   @Index_()
   @ManyToOne_(() => Proposal, {nullable: false})
@@ -22,7 +26,7 @@ export class Vote {
 
   @Index_()
   @Column_("int4", {nullable: false})
-  createdAt!: number
+  blockNumber!: number
 
   @Index_()
   @Column_("timestamp with time zone", {nullable: false})
@@ -36,4 +40,7 @@ export class Vote {
 
   @Column_("int4", {nullable: true})
   lockPeriod!: number | undefined | null
+
+  @Column_("varchar", {length: 10, nullable: true})
+  type!: VoteType | undefined | null
 }

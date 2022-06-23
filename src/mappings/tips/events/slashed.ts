@@ -1,9 +1,10 @@
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
-import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../types/contexts'
+import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
 import { TipsTipSlashedEvent } from '../../../types/events'
+import { updateProposalStatus } from '../../utils/proposals'
 
 interface TipEventData {
     hash: Uint8Array
@@ -30,11 +31,9 @@ export async function handleSlashed(ctx: EventHandlerContext) {
     const { hash } = getEventData(ctx)
 
     const hexHash = toHex(hash)
-    const proposal = await proposalManager.updateStatus(ctx, hexHash, ProposalType.Tip, {
-        status: ProposalStatus.Slashed,
+
+    await updateProposalStatus(ctx, hexHash, ProposalType.Tip, {
         isEnded: true,
+        status: ProposalStatus.Slashed,
     })
-    if (!proposal) {
-        (new MissingProposalRecord(ProposalType.Tip, hexHash, ctx.block.height))
-    }
 }

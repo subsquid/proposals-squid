@@ -1,11 +1,11 @@
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
-import { UnknownVersionError } from '../../../common/errors'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../types/contexts'
+import { MissingProposalRecordWarn, UnknownVersionError } from '../../../common/errors'
 import { ss58codec } from '../../../common/tools'
-import config from '../../../config'
-import { proposalManager, voteManager } from '../../../managers'
-import { ProposalType, Vote, VoteDecision } from '../../../model'
+import { Proposal, ProposalType, Vote, VoteDecision, VoteType } from '../../../model'
 import { TechnicalCommitteeVotedEvent } from '../../../types/events'
 import { EventContext } from '../../../types/support'
+import { getVotesCount } from '../../utils/votes'
 
 interface TechnicalCommitteeVoteEventData {
     voter: Uint8Array
@@ -38,17 +38,25 @@ export async function handleVoted(ctx: EventHandlerContext) {
     const { voter, hash, decision } = getEventData(ctx)
 
     const hexHash = toHex(hash)
-    const proposal = await proposalManager.get(ctx, hexHash, ProposalType.TechCommitteeProposal)
+    const proposal = await ctx.store.get(Proposal, {
+        where: { hash: hexHash, type: ProposalType.TechCommitteeProposal },
+    })
+    if (!proposal) {
+        ctx.log.warn(MissingProposalRecordWarn(ProposalType.TechCommitteeProposal, hexHash))
+        return
+    }
 
-    await voteManager.save(
-        ctx,
+    const count = await getVotesCount(ctx, proposal.id)
+
+    await ctx.store.insert(
         new Vote({
-            id: ctx.event.id,
+            id: `${proposal.id}-${count.toString().padStart(8, '0')}`,
             voter: ss58codec.encode(voter),
-            createdAt: ctx.block.height,
+            blockNumber: ctx.block.height,
             decision: decision ? VoteDecision.yes : VoteDecision.no,
             proposal,
             timestamp: new Date(ctx.block.timestamp),
+            type: VoteType.Motion,
         })
     )
 }

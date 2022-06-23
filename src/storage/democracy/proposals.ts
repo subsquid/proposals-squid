@@ -1,5 +1,5 @@
 import { UnknownVersionError } from '../../common/errors'
-import { StorageContext } from '../../types/support'
+import { BlockContext } from '../../types/support'
 import { DemocracyPublicPropsStorage } from '../../types/storage'
 
 interface DemocracyProposalStorageData {
@@ -8,7 +8,7 @@ interface DemocracyProposalStorageData {
     proposer: Uint8Array
 }
 
-async function getStorageData(ctx: StorageContext): Promise<DemocracyProposalStorageData[] | undefined> {
+async function getStorageData(ctx: BlockContext): Promise<DemocracyProposalStorageData[] | undefined> {
     const storage = new DemocracyPublicPropsStorage(ctx)
     if (storage.isV1020) {
         return undefined
@@ -29,6 +29,6 @@ async function getStorageData(ctx: StorageContext): Promise<DemocracyProposalSto
     }
 }
 
-export async function getProposals(ctx: StorageContext) {
+export async function getProposals(ctx: BlockContext) {
     return await getStorageData(ctx)
 }

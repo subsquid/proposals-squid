@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../types/contexts'
 import { TechnicalCommitteeProposedEvent } from '../../../types/events'
-import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
+import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
 import { ss58codec, parseProposalCall } from '../../../common/tools'
 import { storage } from '../../../storage'
+import { createTechCommitteeMotion } from '../../utils/proposals'
 
 interface TechnicalCommitteeProposalEventData {
     proposer: Uint8Array
@@ -43,16 +44,14 @@ export async function handleProposed(ctx: EventHandlerContext) {
 
     const storageData = await storage.techCommittee.getProposalOf(ctx, hash)
     if (!storageData) {
-        new StorageNotExists(ProposalType.TechCommitteeProposal, index, ctx.block.height)
+        ctx.log.warn(StorageNotExistsWarn(ProposalType.TechCommitteeProposal, index))
         return
     }
 
     const { section, method, args, description } = parseProposalCall(ctx._chain, storageData)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
-    await proposalManager.create(ctx, {
+    await createTechCommitteeMotion(ctx, {
         index,
-        type: ProposalType.TechCommitteeProposal,
         hash: toHex(hash),
         proposer: ss58codec.encode(proposer),
         status: ProposalStatus.Proposed,

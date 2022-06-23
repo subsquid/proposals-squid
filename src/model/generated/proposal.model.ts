@@ -5,7 +5,7 @@ import {Threshold, fromJsonThreshold} from "./_threshold"
 import {ProposedCall} from "./_proposedCall"
 import {Vote} from "./vote.model"
 import {ProposalStatus} from "./_proposalStatus"
-import {StatusHistoryItem} from "./_statusHistoryItem"
+import {StatusHistory} from "./statusHistory.model"
 import {ProposalGroup} from "./proposalGroup.model"
 
 @Entity_()
@@ -56,8 +56,8 @@ export class Proposal {
   @Column_("varchar", {length: 11, nullable: false})
   status!: ProposalStatus
 
-  @Column_("jsonb", {transformer: {to: obj => obj.map((val: any) => val.toJSON()), from: obj => marshal.fromList(obj, val => new StatusHistoryItem(undefined, marshal.nonNull(val)))}, nullable: false})
-  statusHistory!: (StatusHistoryItem)[]
+  @OneToMany_(() => StatusHistory, e => e.proposal)
+  statusHistory!: StatusHistory[]
 
   @Index_()
   @Column_("int4", {nullable: false})

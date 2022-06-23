@@ -1,12 +1,12 @@
 import { CouncilProposalOfStorage, Instance1CollectiveProposalOfStorage } from '../../types/storage'
-import { StorageContext } from '../../types/support'
+import { BlockContext } from '../../types/support'
 import { Call } from '../../types/v9170'
 
 type CouncilProposalStorageData = Call
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 async function getInstanceStorageData(
-    ctx: StorageContext,
+    ctx: BlockContext,
     hash: Uint8Array
 ): Promise<CouncilProposalStorageData | undefined> {
     const storage = new Instance1CollectiveProposalOfStorage(ctx)
@@ -94,7 +94,7 @@ async function getInstanceStorageData(
 }
 
 async function getCoucilStorageData(
-    ctx: StorageContext,
+    ctx: BlockContext,
     hash: Uint8Array
 ): Promise<CouncilProposalStorageData | undefined> {
     const storage = new CouncilProposalOfStorage(ctx)
@@ -122,7 +122,7 @@ async function getCoucilStorageData(
 }
 
 export async function getProposalOf(
-    ctx: StorageContext,
+    ctx: BlockContext,
     hash: Uint8Array
 ): Promise<CouncilProposalStorageData | undefined> {
     return (await getCoucilStorageData(ctx, hash)) || (await getInstanceStorageData(ctx, hash))

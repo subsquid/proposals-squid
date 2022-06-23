@@ -1,7 +1,6 @@
 import { SubstrateProcessor } from '@subsquid/substrate-processor'
-import { ChainName } from './types'
 
-type Parameters<T> = T extends (...args: infer T) => any ? T : never
+type Parameters<T> = T extends (...args: infer R) => unknown ? R : never
 
 enum HandlerParams {
     NAME,
@@ -9,12 +8,16 @@ enum HandlerParams {
     FUNC,
 }
 
-export interface ProcessorConfig {
-    chainName: ChainName
+export type ChainConfig = Readonly<{
+    name: string
     prefix: number | string
-    dataSource: Parameters<SubstrateProcessor['setDataSource']>[HandlerParams.NAME]
-    typesBundle: Parameters<SubstrateProcessor['setTypesBundle']>[HandlerParams.NAME]
-    batchSize?: Parameters<SubstrateProcessor['setBatchSize']>[HandlerParams.NAME]
-    port?: Parameters<SubstrateProcessor['setPrometheusPort']>[HandlerParams.NAME]
-    blockRange?: Parameters<SubstrateProcessor['setBlockRange']>[HandlerParams.NAME]
-}
+}>
+
+export type ProcessorConfig<S> = Readonly<{
+    chain: ChainConfig
+    dataSource: Parameters<SubstrateProcessor<S>['setDataSource']>[HandlerParams.NAME]
+    typesBundle: Parameters<SubstrateProcessor<S>['setTypesBundle']>[HandlerParams.NAME]
+    batchSize?: Parameters<SubstrateProcessor<S>['setBatchSize']>[HandlerParams.NAME]
+    port?: Parameters<SubstrateProcessor<S>['setPrometheusPort']>[HandlerParams.NAME]
+    blockRange?: Parameters<SubstrateProcessor<S>['setBlockRange']>[HandlerParams.NAME]
+}>

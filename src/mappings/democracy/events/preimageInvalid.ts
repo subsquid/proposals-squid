@@ -1,9 +1,10 @@
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
-import { MissingProposalRecord, UnknownVersionError } from '../../../common/errors'
+import { toHex } from '@subsquid/substrate-processor'
+import { UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
 import { DemocracyPreimageInvalidEvent } from '../../../types/events'
+import { EventHandlerContext } from '../../types/contexts'
+import { updateProposalStatus } from '../../utils/proposals'
 
 interface PreimageEventData {
     hash: Uint8Array
@@ -34,10 +35,7 @@ export async function handlePreimageInvalid(ctx: EventHandlerContext) {
 
     const hexHash = toHex(hash)
 
-    const proposal = await proposalManager.updateStatus(ctx, hexHash, ProposalType.Preimage, {
+    await updateProposalStatus(ctx, hexHash, ProposalType.Preimage, {
         status: ProposalStatus.Invalid,
     })
-    if (!proposal) {
-        (new MissingProposalRecord(ProposalType.Preimage, hexHash, ctx.block.height))
-    }
 }

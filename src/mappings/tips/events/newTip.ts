@@ -1,12 +1,12 @@
-import { EventHandlerContext, toHex } from '@subsquid/substrate-processor'
+import { toHex } from '@subsquid/substrate-processor'
+import { EventHandlerContext } from '../../types/contexts'
 import { TipsNewTipEvent, TreasuryNewTipEvent } from '../../../types/events'
-import { StorageNotExists, UnknownVersionError } from '../../../common/errors'
+import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
 import { EventContext } from '../../../types/support'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { proposalManager } from '../../../managers'
-import config from '../../../config'
 import { ss58codec } from '../../../common/tools'
 import { storage } from '../../../storage'
+import { createTip } from '../../utils/proposals'
 
 interface TipEventData {
     hash: Uint8Array
@@ -42,20 +42,20 @@ function getTipsEventData(ctx: EventContext): TipEventData {
 }
 
 export async function handleNewTip(ctx: EventHandlerContext) {
-    const getEventData = ctx.event.section === 'tips' ? getTipsEventData : getTreasuryEventData
+    const section = ctx.event.name.split('.')[0]
+    const getEventData = section === 'Tips' ? getTipsEventData : getTreasuryEventData
     const { hash } = getEventData(ctx)
 
     const hexHash = toHex(hash)
     const storageData = await storage.tips.getTips(ctx, hash)
     if (!storageData) {
-        (new StorageNotExists(ProposalType.Tip, hexHash, ctx.block.height))
+        ctx.log.warn(StorageNotExistsWarn(ProposalType.Tip, hexHash))
         return
     }
 
     const { who, deposit, finder } = storageData
 
-    await proposalManager.create(ctx, {
-        type: ProposalType.Tip,
+    await createTip(ctx, {
         hash: hexHash,
         proposer: finder ? ss58codec.encode(finder) : undefined,
         payee: ss58codec.encode(who),
