@@ -1,38 +1,10 @@
 import { toHex } from '@subsquid/substrate-processor'
 import { EventHandlerContext } from '../../types/contexts'
-import { MissingProposalRecordWarn, UnknownVersionError } from '../../../common/errors'
+import { MissingProposalRecordWarn } from '../../../common/errors'
 import { ss58codec } from '../../../common/tools'
 import { Proposal, ProposalType, Vote, VoteDecision, VoteType } from '../../../model'
-import { CouncilVotedEvent } from '../../../types/events'
-import { EventContext } from '../../../types/support'
 import { getVotesCount } from '../../utils/votes'
-
-interface CouncilVoteEventData {
-    voter: Uint8Array
-    hash: Uint8Array
-    decision: boolean
-}
-
-function getEventData(ctx: EventContext): CouncilVoteEventData {
-    const event = new CouncilVotedEvent(ctx)
-    if (event.isV1020) {
-        const [voter, hash, decision] = event.asV1020
-        return {
-            voter,
-            hash,
-            decision,
-        }
-    } else if (event.isV9130) {
-        const { account, proposalHash, voted } = event.asV9130
-        return {
-            voter: account,
-            hash: proposalHash,
-            decision: voted,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
-}
+import { getVotedData } from './getters'
 
 export async function handleVoted(
     ctx: EventHandlerContext<{
@@ -42,7 +14,7 @@ export async function handleVoted(
         }
     }>
 ) {
-    const { voter, hash, decision } = getEventData(ctx)
+    const { voter, hash, decision } = getVotedData(ctx)
 
     const hexHash = toHex(hash)
     const proposal = await ctx.store.get(Proposal, {

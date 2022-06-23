@@ -1,50 +1,23 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { toHex } from '@subsquid/substrate-processor'
 import { EventHandlerContext } from '../../types/contexts'
-import { DemocracyPreimageNotedEvent } from '../../../types/events'
 import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
-import { EventContext, BlockContext } from '../../../types/support'
+import { BlockContext } from '../../../types/support'
 import { DemocracyPreimagesStorage } from '../../../types/storage'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { ss58codec, parseProposalCall } from '../../../common/tools'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
 import { Call } from '../../../types/v9111'
 import { createPreimage } from '../../utils/proposals'
+import { getPreimageNotedData } from './getters'
 
 type ProposalCall = Call
-
-interface PreimageEventData {
-    hash: Uint8Array
-    provider: Uint8Array
-    deposit: bigint
-}
 
 interface PreimageStorageData {
     data: Uint8Array
     provider: Uint8Array
     deposit: bigint
     block: number
-}
-
-function getEventData(ctx: EventContext): PreimageEventData {
-    const event = new DemocracyPreimageNotedEvent(ctx)
-    if (event.isV1022) {
-        const [hash, provider, deposit] = event.asV1022
-        return {
-            hash,
-            provider,
-            deposit,
-        }
-    } else if (event.isV9130) {
-        const { proposalHash: hash, who: provider, deposit } = event.asV9130
-        return {
-            hash,
-            provider,
-            deposit,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
 }
 
 function decodeProposal(chain: Chain, data: Uint8Array): ProposalCall {
@@ -96,7 +69,7 @@ async function getStorageData(ctx: BlockContext, hash: Uint8Array): Promise<Prei
 }
 
 export async function handlePreimageNoted(ctx: EventHandlerContext) {
-    const { hash, provider, deposit } = getEventData(ctx)
+    const { hash, provider, deposit } = getPreimageNotedData(ctx)
     const hexHash = toHex(hash)
 
     const storageData = await getStorageData(ctx, hash)

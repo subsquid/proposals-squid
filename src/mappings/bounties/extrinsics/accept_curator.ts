@@ -1,43 +1,14 @@
-import { MissingProposalRecordWarn, UnknownVersionError } from '../../../common/errors'
+import { MissingProposalRecordWarn } from '../../../common/errors'
 import { getOriginAccountId } from '../../../common/tools'
 import { Proposal, ProposalType } from '../../../model'
-import { BountiesAcceptCuratorCall, TreasuryAcceptCuratorCall } from '../../../types/calls'
-import { CallContext } from '../../../types/support'
 import { CallHandlerContext } from '../../types/contexts'
-
-interface CallData {
-    index: number
-}
-
-function getTrasuryCallData(ctx: CallContext): CallData {
-    const call = new TreasuryAcceptCuratorCall(ctx)
-    if (call.isV2025) {
-        const { bountyId } = call.asV2025
-        return {
-            index: bountyId,
-        }
-    } else {
-        throw new UnknownVersionError(call.constructor.name)
-    }
-}
-
-function getBountyCallData(ctx: CallContext): CallData {
-    const call = new BountiesAcceptCuratorCall(ctx)
-    if (call.isV2028) {
-        const { bountyId } = call.asV2028
-        return {
-            index: bountyId,
-        }
-    } else {
-        throw new UnknownVersionError(call.constructor.name)
-    }
-}
+import { getAccepterCuratorData, getAccepterCuratorDataOld } from './getters'
 
 export async function handleAcceptCurator(ctx: CallHandlerContext) {
     if (!ctx.call.success) return
 
     const section = ctx.call.name.split('.')[0]
-    const getEventData = section === 'Bounties' ? getBountyCallData : getTrasuryCallData
+    const getEventData = section === 'Bounties' ? getAccepterCuratorData : getAccepterCuratorDataOld
     const { index } = getEventData(ctx)
 
     const proposal = await ctx.store.get(Proposal, { where: { index, type: ProposalType.Bounty } })
