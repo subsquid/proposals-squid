@@ -29,8 +29,8 @@ typegen:
 
 explore:
 	@npx squid-substrate-metadata-explorer \
-		--chain wss://kusama-rpc.polkadot.io \
-		--archive https://kusama.archive.subsquid.io/graphql \
+		--chain wss://moonriver.api.onfinality.io/public-ws \
+		--archive https://moonriver.archive.subsquid.io/graphql \
 		--out ./typegen/versions.jsonl
 
 

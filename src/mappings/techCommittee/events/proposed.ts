@@ -3,7 +3,7 @@ import { toHex } from '@subsquid/substrate-processor'
 import { EventHandlerContext } from '../../types/contexts'
 import { StorageNotExistsWarn } from '../../../common/errors'
 import { ProposalStatus, ProposalType } from '../../../model'
-import { ss58codec, parseProposalCall } from '../../../common/tools'
+import { parseProposalCall, encodeId } from '../../../common/tools'
 import { storage } from '../../../storage'
 import { createTechCommitteeMotion } from '../../utils/proposals'
 import { getProposedData } from './getters'
@@ -22,7 +22,7 @@ export async function handleProposed(ctx: EventHandlerContext) {
     await createTechCommitteeMotion(ctx, {
         index,
         hash: toHex(hash),
-        proposer: ss58codec.encode(proposer),
+        proposer: encodeId(proposer),
         status: ProposalStatus.Proposed,
         threshold,
         call: {

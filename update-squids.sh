@@ -1,4 +1,4 @@
-for CHAIN in kusama polkadot moonbeam moonriver acala crust hydradx bifrost
+for CHAIN in kusama polkadot moonbeam moonriver acala karura
 do
-    npx sqd squid:update deepdao-${CHAIN}@v3 -r --source https://github.com/subsquid/subsquid-deepdao#${CHAIN}
+    npx sqd squid:release deepdao-${CHAIN}@v4 --source https://github.com/subsquid/subsquid-deepdao#${CHAIN}
 done

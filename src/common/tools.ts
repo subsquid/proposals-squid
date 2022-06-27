@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as ss58 from '@subsquid/ss58'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
 import { Parser } from './parser'
 import { Codec } from '@subsquid/scale-codec'
-import config from '../config'
 import { decodeHex } from '@subsquid/util-internal-hex'
+import { getAddress } from '@ethersproject/address'
+import { toHex } from '@subsquid/substrate-processor'
 
-export const ss58codec = ss58.codec(config.chain.prefix)
+// const ss58codec = ss58.codec(config.chain.prefix)
 
 interface Call {
     __kind: string
@@ -41,11 +41,19 @@ export function getOriginAccountId(origin: any) {
             // eslint-disable-next-line sonarjs/no-nested-switch, sonarjs/no-small-switch
             switch (origin.value.__kind) {
                 case 'Signed':
-                    return ss58codec.encode(decodeHex(origin.value.value))
+                    return encodeId(decodeHex(origin.value.value))
                 default:
                     return undefined
             }
         default:
             return undefined
     }
+}
+
+export function decodeId(id: string): Uint8Array {
+    return Buffer.from(id.slice(2), 'hex')
+}
+
+export function encodeId(id: Uint8Array): string {
+    return getAddress(toHex(id))
 }
