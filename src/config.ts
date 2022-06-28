@@ -3,14 +3,14 @@ import { Store } from '@subsquid/typeorm-store'
 
 const config: ProcessorConfig<Store> = {
     chain: {
-        name: 'kusama',
-        prefix: 'kusama',
+        name: 'bifrost',
+        prefix: 'bifrost',
     },
     dataSource: {
-        archive: 'https://kusama.archive.subsquid.io/graphql',
-        chain: 'wss://kusama.api.onfinality.io/public-ws',
+        archive: 'https://bifrost.archive.subsquid.io/graphql',
+        chain: 'wss://bifrost-parachain.api.onfinality.io/public-ws',
     },
-    typesBundle: 'kusama',
+    typesBundle: 'bifrost',
     batchSize: 500,
     blockRange: {
         from: 0,
