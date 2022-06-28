@@ -3,14 +3,14 @@ import { Store } from '@subsquid/typeorm-store'
 
 const config: ProcessorConfig<Store> = {
     chain: {
-        name: 'kusama',
-        prefix: 'kusama',
+        name: 'acala',
+        prefix: 'acala',
     },
     dataSource: {
-        archive: 'https://kusama.archive.subsquid.io/graphql',
-        chain: 'wss://kusama.api.onfinality.io/public-ws',
+        archive: 'https://acala.archive.subsquid.io/graphql',
+        chain: 'wss://acala.api.onfinality.io/public-ws',
     },
-    typesBundle: 'kusama',
+    typesBundle: 'acala',
     batchSize: 500,
     blockRange: {
         from: 0,
