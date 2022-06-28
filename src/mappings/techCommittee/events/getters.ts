@@ -1,3 +1,4 @@
+import assert from 'assert'
 import { UnknownVersionError } from '../../../common/errors'
 import {
     TechnicalCommitteeApprovedEvent,
@@ -50,14 +51,10 @@ export function getExecutedData(ctx: EventContext): Uint8Array {
         return event.asV2005[0]
     } else if (event.isV9111) {
         return event.asV9111[0]
-    } else if (event.isV9130) {
-        return event.asV9130.proposalHash
-    } else if (event.isV9160) {
-        return event.asV9160.proposalHash
-    } else if (event.isV9170) {
-        return event.asV9170.proposalHash
     } else {
-        throw new UnknownVersionError(event.constructor.name)
+        const data = ctx._chain.decodeEvent(ctx.event)
+        assert(Buffer.isBuffer(data.proposalHash))
+        return data.proposalHash
     }
 }
 

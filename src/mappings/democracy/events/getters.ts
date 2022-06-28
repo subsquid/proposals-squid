@@ -32,11 +32,8 @@ export function getExecutedData(ctx: EventContext): number {
     } else if (event.isV9111) {
         return event.asV9111[0]
     } else if (event.isV9130) {
-        return event.asV9130.refIndex
-    } else if (event.isV9160) {
-        return event.asV9160.refIndex
-    } else if (event.isV9170) {
-        return event.asV9170.refIndex
+        const data = ctx._chain.decodeEvent(ctx.event)
+        return data.refIndex
     } else {
         throw new UnknownVersionError(event.constructor.name)
     }
