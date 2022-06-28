@@ -31,11 +31,9 @@ export function getExecutedData(ctx: EventContext): number {
         return event.asV9090[0]
     } else if (event.isV9111) {
         return event.asV9111[0]
-    } else if (event.isV9130) {
+    } else {
         const data = ctx._chain.decodeEvent(ctx.event)
         return data.refIndex
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
     }
 }
 
