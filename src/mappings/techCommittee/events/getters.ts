@@ -1,3 +1,4 @@
+import assert from 'assert'
 import { UnknownVersionError } from '../../../common/errors'
 import {
     TechnicalCommitteeApprovedEvent,
@@ -11,53 +12,45 @@ import { EventContext } from '../../types/contexts'
 
 export function getApprovedData(ctx: EventContext): Uint8Array {
     const event = new TechnicalCommitteeApprovedEvent(ctx)
-    if (event.isV1020) {
-        return event.asV1020
-    } else if (event.isV9130) {
-        return event.asV9130.proposalHash
+    if (event.isV803) {
+        return event.asV803
     } else {
-        throw new UnknownVersionError(event.constructor.name)
+        const data = ctx._chain.decodeEvent(ctx.event)
+        assert(Buffer.isBuffer(data.proposalHash))
+        return data.proposalHash
     }
 }
 
 export function getClosedData(ctx: EventContext): Uint8Array {
     const event = new TechnicalCommitteeClosedEvent(ctx)
-    if (event.isV1050) {
-        return event.asV1050[0]
-    } else if (event.isV9130) {
-        return event.asV9130.proposalHash
+    if (event.isV803) {
+        return event.asV803[0]
     } else {
-        throw new UnknownVersionError(event.constructor.name)
+        const data = ctx._chain.decodeEvent(ctx.event)
+        assert(Buffer.isBuffer(data.proposalHash))
+        return data.proposalHash
     }
 }
 
 export function getDissaprovedData(ctx: EventContext): Uint8Array {
     const event = new TechnicalCommitteeDisapprovedEvent(ctx)
-    if (event.isV1020) {
-        return event.asV1020
-    } else if (event.isV9130) {
-        return event.asV9130.proposalHash
+    if (event.isV803) {
+        return event.asV803
     } else {
-        throw new UnknownVersionError(event.constructor.name)
+        const data = ctx._chain.decodeEvent(ctx.event)
+        assert(Buffer.isBuffer(data.proposalHash))
+        return data.proposalHash
     }
 }
 
 export function getExecutedData(ctx: EventContext): Uint8Array {
     const event = new TechnicalCommitteeExecutedEvent(ctx)
-    if (event.isV1020) {
-        return event.asV1020[0]
-    } else if (event.isV2005) {
-        return event.asV2005[0]
-    } else if (event.isV9111) {
-        return event.asV9111[0]
-    } else if (event.isV9130) {
-        return event.asV9130.proposalHash
-    } else if (event.isV9160) {
-        return event.asV9160.proposalHash
-    } else if (event.isV9170) {
-        return event.asV9170.proposalHash
+    if (event.isV803) {
+        return event.asV803[0]
     } else {
-        throw new UnknownVersionError(event.constructor.name)
+        const data = ctx._chain.decodeEvent(ctx.event)
+        assert(Buffer.isBuffer(data.proposalHash))
+        return data.proposalHash
     }
 }
 
@@ -70,16 +63,16 @@ export interface ProposedData {
 
 export function getProposedData(ctx: EventContext): ProposedData {
     const event = new TechnicalCommitteeProposedEvent(ctx)
-    if (event.isV1020) {
-        const [proposer, index, hash, threshold] = event.asV1020
+    if (event.isV803) {
+        const [proposer, index, hash, threshold] = event.asV803
         return {
             proposer,
             index,
             hash,
             threshold,
         }
-    } else if (event.isV9130) {
-        const { account, proposalIndex, proposalHash, threshold } = event.asV9130
+    } else if (event.isV916) {
+        const { account, proposalIndex, proposalHash, threshold } = event.asV916
         return {
             proposer: account,
             index: proposalIndex,
@@ -99,15 +92,15 @@ export interface VotedData {
 
 export function getVotedData(ctx: EventContext): VotedData {
     const event = new TechnicalCommitteeVotedEvent(ctx)
-    if (event.isV1020) {
-        const [voter, hash, decision] = event.asV1020
+    if (event.isV803) {
+        const [voter, hash, decision] = event.asV803
         return {
             voter,
             hash,
             decision,
         }
-    } else if (event.isV9130) {
-        const { account, proposalHash, voted } = event.asV9130
+    } else if (event.isV916) {
+        const { account, proposalHash, voted } = event.asV916
         return {
             voter: account,
             hash: proposalHash,

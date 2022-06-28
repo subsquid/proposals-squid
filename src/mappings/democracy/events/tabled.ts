@@ -13,15 +13,15 @@ interface TabledEventData {
 
 function getEventData(ctx: EventContext): TabledEventData {
     const event = new DemocracyTabledEvent(ctx)
-    if (event.isV1020) {
-        const [index, deposit, depositors] = event.asV1020
+    if (event.isV803) {
+        const [index, deposit, depositors] = event.asV803
         return {
             index,
             deposit,
             depositors,
         }
-    } else if (event.isV9130) {
-        const { proposalIndex: index, deposit, depositors } = event.asV9130
+    } else if (event.isV916) {
+        const { proposalIndex: index, deposit, depositors } = event.asV916
         return {
             index,
             deposit,

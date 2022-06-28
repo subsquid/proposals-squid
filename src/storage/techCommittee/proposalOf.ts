@@ -1,6 +1,5 @@
 import { Instance2CollectiveProposalOfStorage, TechnicalCommitteeProposalOfStorage } from '../../types/storage'
-import { BlockContext } from '../../types/support'
-import { Call } from '../../types/v9170'
+import { BlockContext, Call } from '../../types/support'
 
 type TechnicalCommitteeProposalStorageData = Call
 

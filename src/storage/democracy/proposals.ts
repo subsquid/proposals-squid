@@ -10,8 +10,8 @@ interface DemocracyProposalStorageData {
 
 async function getStorageData(ctx: BlockContext): Promise<DemocracyProposalStorageData[] | undefined> {
     const storage = new DemocracyPublicPropsStorage(ctx)
-    if (storage.isV1020) {
-        const storageData = await storage.getAsV1020()
+    if (storage.isV803) {
+        const storageData = await storage.getAsV803()
         if (!storageData) return undefined
 
         return storageData.map((proposal): DemocracyProposalStorageData => {
@@ -22,7 +22,7 @@ async function getStorageData(ctx: BlockContext): Promise<DemocracyProposalStora
                 proposer,
             }
         })
-    } else if (storage.isV1022) {
+/*     } else if (storage.isV1022) {
         const storageData = await storage.getAsV1022()
         if (!storageData) return undefined
 
@@ -33,7 +33,7 @@ async function getStorageData(ctx: BlockContext): Promise<DemocracyProposalStora
                 hash,
                 proposer,
             }
-        })
+        }) */
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
