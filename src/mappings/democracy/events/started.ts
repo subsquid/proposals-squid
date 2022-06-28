@@ -14,14 +14,14 @@ interface ReferendumEventData {
 
 function getEventData(ctx: EventContext): ReferendumEventData {
     const event = new DemocracyStartedEvent(ctx)
-    if (event.isV1020) {
-        const [index, threshold] = event.asV1020
+    if (event.isV1001) {
+        const [index, threshold] = event.asV1001
         return {
             index,
             threshold: threshold.__kind,
         }
-    } else if (event.isV9130) {
-        const { refIndex: index, threshold } = event.asV9130
+    } else if (event.isV2010) {
+        const { refIndex: index, threshold } = event.asV2010
         return {
             index,
             threshold: threshold.__kind,

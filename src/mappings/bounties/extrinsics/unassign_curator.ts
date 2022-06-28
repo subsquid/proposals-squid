@@ -1,13 +1,12 @@
 import { MissingProposalRecordWarn } from '../../../common/errors'
 import { Proposal, ProposalType } from '../../../model'
 import { CallHandlerContext } from '../../types/contexts'
-import { getUnassingCuratorData, getUnassingCuratorDataOld } from './getters'
+import { getUnassingCuratorData } from './getters'
 
 export async function handleUnassignCurator(ctx: CallHandlerContext) {
     if (!ctx.call.success) return
 
-    const section = ctx.call.name.split('.')[0]
-    const getEventData = section === 'Bounties' ? getUnassingCuratorData : getUnassingCuratorDataOld
+    const getEventData = getUnassingCuratorData
     const { index } = getEventData(ctx)
 
     const proposal = await ctx.store.get(Proposal, { where: { index, type: ProposalType.Bounty } })

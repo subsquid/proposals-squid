@@ -1,8 +1,8 @@
 import { UnknownVersionError } from '../../common/errors'
 import { BlockContext } from '../../types/support'
 import { DemocracyReferendumInfoOfStorage } from '../../types/storage'
-import * as v1055 from '../../types/v1055'
-import * as v9111 from '../../types/v9111'
+import * as v1055 from '../../types/v1001'
+import * as v9111 from '../../types/v1019'
 
 type Threshold = 'SuperMajorityApprove' | 'SuperMajorityAgainst' | 'SimpleMajority'
 
@@ -25,20 +25,8 @@ type ReferendumStorageData = FinishedReferendumData | OngoingReferendumData
 // eslint-disable-next-line sonarjs/cognitive-complexity
 async function getStorageData(ctx: BlockContext, index: number): Promise<ReferendumStorageData | undefined> {
     const storage = new DemocracyReferendumInfoOfStorage(ctx)
-    if (storage.isV1020) {
-        const storageData = await storage.getAsV1020(index)
-        if (!storageData) return undefined
-
-        const { proposalHash: hash, end, delay, threshold } = storageData
-        return {
-            status: 'Ongoing',
-            hash,
-            end,
-            delay,
-            threshold: threshold.__kind,
-        }
-    } else if (storage.isV1055) {
-        const storageData = await storage.getAsV1055(index)
+    if (storage.isV1001) {
+        const storageData = await storage.getAsV1001(index)
         if (!storageData) return undefined
 
         const { __kind: status } = storageData
@@ -59,8 +47,8 @@ async function getStorageData(ctx: BlockContext, index: number): Promise<Referen
                 approved,
             }
         }
-    } else if (storage.isV9111) {
-        const storageData = await storage.getAsV9111(index)
+    } else if (storage.isV1019) {
+        const storageData = await storage.getAsV1019(index)
         if (!storageData) return undefined
 
         const { __kind: status } = storageData
