@@ -14,10 +14,10 @@ async function getInstanceStorageData(
 
     return ctx._chain.getStorage(ctx.block.hash, 'Instance1Collective', 'ProposalOf', hash)
 
-    // if (storage.isV1020) {
-    //     return (await storage.getAsV1020(hash)) as Call
-    // } else if (storage.isV1022) {
-    //     return (await storage.getAsV1022(hash)) as Call
+    // if (storage.isV0) {
+    //     return (await storage.getAsV0(hash)) as Call
+    // } else if (storage.isV0) {
+    //     return (await storage.getAsV0(hash)) as Call
     // } else if (storage.isV1024) {
     //     return (await storage.getAsV1024(hash)) as Call
     // } else if (storage.isV1027) {
@@ -30,20 +30,20 @@ async function getInstanceStorageData(
     //     return (await storage.getAsV1031(hash)) as Call
     // } else if (storage.isV1032) {
     //     return (await storage.getAsV1032(hash)) as Call
-    // } else if (storage.isV1038) {
-    //     return (await storage.getAsV1038(hash)) as Call
+    // } else if (storage.isV0) {
+    //     return (await storage.getAsV0(hash)) as Call
     // } else if (storage.isV1039) {
     //     return (await storage.getAsV1039(hash)) as Call
     // } else if (storage.isV1040) {
     //     return (await storage.getAsV1040(hash)) as Call
     // } else if (storage.isV1042) {
     //     return (await storage.getAsV1042(hash)) as Call
-    // } else if (storage.isV1050) {
-    //     return (await storage.getAsV1050(hash)) as Call
+    // } else if (storage.isV0) {
+    //     return (await storage.getAsV0(hash)) as Call
     // } else if (storage.isV1054) {
     //     return (await storage.getAsV1054(hash)) as Call
-    // } else if (storage.isV1055) {
-    //     return (await storage.getAsV1055(hash)) as Call
+    // } else if (storage.isV0) {
+    //     return (await storage.getAsV0(hash)) as Call
     // } else if (storage.isV1058) {
     //     return (await storage.getAsV1058(hash)) as Call
     // } else if (storage.isV1062) {
@@ -68,8 +68,8 @@ async function getInstanceStorageData(
     //     return (await storage.getAsV2025(hash)) as Call
     // } else if (storage.isV2026) {
     //     return (await storage.getAsV2026(hash)) as Call
-    // } else if (storage.isV2028) {
-    //     return (await storage.getAsV2028(hash)) as Call
+    // } else if (storage.isV28) {
+    //     return (await storage.getAsV28(hash)) as Call
     // } else if (storage.isV2029) {
     //     return (await storage.getAsV2029(hash)) as Call
     // } else if (storage.isV2030) {
@@ -102,12 +102,12 @@ async function getCoucilStorageData(
 
     return ctx._chain.getStorage(ctx.block.hash, 'Council', 'ProposalOf', hash)
 
-    // if (storage.isV9111) {
-    //     return (await storage.getAsV9111(hash)) as Call
+    // if (storage.isV9110) {
+    //     return (await storage.getAsV9110(hash)) as Call
     // } else if (storage.isV9122) {
     //     return (await storage.getAsV9122(hash)) as Call
-    // } else if (storage.isV9130) {
-    //     return (await storage.getAsV9130(hash)) as Call
+    // } else if (storage.isV9140) {
+    //     return (await storage.getAsV9140(hash)) as Call
     // } else if (storage.isV9160) {
     //     return (await storage.getAsV9160(hash)) as Call
     // } else if (storage.isV9170) {

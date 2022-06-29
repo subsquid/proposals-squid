@@ -17,14 +17,14 @@ interface BountyAwardedData {
 
 export function getBountyAwardedData(ctx: EventContext): BountyAwardedData {
     const event = new BountiesBountyAwardedEvent(ctx)
-    if (event.isV2028) {
-        const [index, beneficiary] = event.asV2028
+    if (event.isV28) {
+        const [index, beneficiary] = event.asV28
         return {
             index,
             beneficiary,
         }
-    } else if (event.isV9130) {
-        const { index, beneficiary } = event.asV9130
+    } else if (event.isV9140) {
+        const { index, beneficiary } = event.asV9140
         return {
             index,
             beneficiary,
@@ -40,13 +40,13 @@ interface BountyBacameActiveData {
 
 export function getBountyBacameActiveData(ctx: EventContext): BountyBacameActiveData {
     const event = new BountiesBountyBecameActiveEvent(ctx)
-    if (event.isV2028) {
-        const index = event.asV2028
+    if (event.isV28) {
+        const index = event.asV28
         return {
             index,
         }
-    } else if (event.isV9130) {
-        const { index } = event.asV9130
+    } else if (event.isV9140) {
+        const { index } = event.asV9140
         return {
             index,
         }
@@ -61,13 +61,13 @@ interface BountyCanceledData {
 
 export function getBountyCanceledData(ctx: EventContext): BountyCanceledData {
     const event = new BountiesBountyCanceledEvent(ctx)
-    if (event.isV2028) {
-        const index = event.asV2028
+    if (event.isV28) {
+        const index = event.asV28
         return {
             index,
         }
-    } else if (event.isV9130) {
-        const { index } = event.asV9130
+    } else if (event.isV9140) {
+        const { index } = event.asV9140
         return {
             index,
         }
@@ -84,15 +84,15 @@ interface BountyClaimedData {
 
 export function getBountyClaimedData(ctx: EventContext): BountyClaimedData {
     const event = new BountiesBountyClaimedEvent(ctx)
-    if (event.isV2028) {
-        const [index, payout, beneficiary] = event.asV2028
+    if (event.isV28) {
+        const [index, payout, beneficiary] = event.asV28
         return {
             index,
             payout,
             beneficiary,
         }
-    } else if (event.isV9130) {
-        const { index, payout, beneficiary } = event.asV9130
+    } else if (event.isV9140) {
+        const { index, payout, beneficiary } = event.asV9140
         return {
             index,
             payout,
@@ -109,13 +109,13 @@ interface BountyExtendedData {
 
 export function getBountyExtendedData(ctx: EventContext): BountyExtendedData {
     const event = new BountiesBountyExtendedEvent(ctx)
-    if (event.isV2028) {
-        const index = event.asV2028
+    if (event.isV28) {
+        const index = event.asV28
         return {
             index,
         }
-    } else if (event.isV9130) {
-        const { index } = event.asV9130
+    } else if (event.isV9140) {
+        const { index } = event.asV9140
         return {
             index,
         }
@@ -130,13 +130,13 @@ interface BountyProposedData {
 
 export function getBountyProposedData(ctx: EventContext): BountyProposedData {
     const event = new BountiesBountyProposedEvent(ctx)
-    if (event.isV2028) {
-        const index = event.asV2028
+    if (event.isV28) {
+        const index = event.asV28
         return {
             index,
         }
-    } else if (event.isV9130) {
-        const { index } = event.asV9130
+    } else if (event.isV9140) {
+        const { index } = event.asV9140
         return {
             index,
         }
@@ -151,13 +151,13 @@ interface BountyRejectedData {
 
 export function getBountyRejectedData(ctx: EventContext): BountyRejectedData {
     const event = new BountiesBountyRejectedEvent(ctx)
-    if (event.isV2028) {
-        const [index] = event.asV2028
+    if (event.isV28) {
+        const [index] = event.asV28
         return {
             index,
         }
-    } else if (event.isV9130) {
-        const { index } = event.asV9130
+    } else if (event.isV9140) {
+        const { index } = event.asV9140
         return {
             index,
         }

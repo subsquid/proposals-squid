@@ -21,17 +21,8 @@ interface DemocracyVoteCallData {
 
 export function getVoteData(ctx: CallContext): DemocracyVoteCallData {
     const event = new DemocracyVoteCall(ctx)
-    if (event.isV1020) {
-        const { refIndex, vote } = event.asV1020
-        return {
-            index: refIndex,
-            vote: {
-                type: 'Standard',
-                value: vote,
-            },
-        }
-    } else if (event.isV1055) {
-        const { refIndex, vote } = event.asV1055
+    if (event.isV0) {
+        const { refIndex, vote } = event.asV0
         if (vote.__kind === 'Standard') {
             return {
                 index: refIndex,
@@ -51,8 +42,8 @@ export function getVoteData(ctx: CallContext): DemocracyVoteCallData {
                 },
             }
         }
-    } else if (event.isV9111) {
-        const { refIndex, vote } = event.asV9111
+    } else if (event.isV9110) {
+        const { refIndex, vote } = event.asV9110
         if (vote.__kind === 'Standard') {
             return {
                 index: refIndex,

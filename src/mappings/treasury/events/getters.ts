@@ -8,13 +8,13 @@ interface ProposedData {
 
 export function getProposedData(ctx: EventContext): ProposedData {
     const event = new TreasuryProposedEvent(ctx)
-    if (event.isV1020) {
-        const index = event.asV1020
+    if (event.isV0) {
+        const index = event.asV0
         return {
             index,
         }
-    } else if (event.isV9160) {
-        const { proposalIndex: index } = event.asV9160
+    } else if (event.isV9170) {
+        const { proposalIndex: index } = event.asV9170
         return {
             index,
         }
@@ -29,13 +29,13 @@ interface RejectedData {
 
 export function getRejectedData(ctx: EventContext): RejectedData {
     const event = new TreasuryRejectedEvent(ctx)
-    if (event.isV1032) {
-        const [index] = event.asV1032
+    if (event.isV0) {
+        const [index] = event.asV0
         return {
             index,
         }
-    } else if (event.isV9160) {
-        const { proposalIndex: index } = event.asV9160
+    } else if (event.isV9170) {
+        const { proposalIndex: index } = event.asV9170
         return {
             index,
         }
@@ -50,13 +50,13 @@ interface AwarderData {
 
 export function getAwarderData(ctx: EventContext): AwarderData {
     const event = new TreasuryAwardedEvent(ctx)
-    if (event.isV1020) {
-        const [index] = event.asV1020
+    if (event.isV0) {
+        const [index] = event.asV0
         return {
             index,
         }
-    } else if (event.isV9160) {
-        const { proposalIndex: index } = event.asV9160
+    } else if (event.isV9170) {
+        const { proposalIndex: index } = event.asV9170
         return {
             index,
         }

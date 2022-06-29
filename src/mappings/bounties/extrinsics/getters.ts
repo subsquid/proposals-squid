@@ -13,8 +13,8 @@ interface AccepterCuratorData {
 
 export function getAccepterCuratorData(ctx: CallContext): AccepterCuratorData {
     const call = new BountiesAcceptCuratorCall(ctx)
-    if (call.isV2028) {
-        const { bountyId } = call.asV2028
+    if (call.isV28) {
+        const { bountyId } = call.asV28
         return {
             index: bountyId,
         }
@@ -29,8 +29,8 @@ interface UnassingCuratorData {
 
 export function getUnassingCuratorData(ctx: CallContext): UnassingCuratorData {
     const call = new BountiesUnassignCuratorCall(ctx)
-    if (call.isV2028) {
-        const { bountyId } = call.asV2028
+    if (call.isV28) {
+        const { bountyId } = call.asV28
         return {
             index: bountyId,
         }
