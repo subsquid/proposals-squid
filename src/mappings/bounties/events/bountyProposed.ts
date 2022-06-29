@@ -4,10 +4,11 @@ import { ProposalStatus, ProposalType } from '../../../model'
 import { ss58codec } from '../../../common/tools'
 import { storage } from '../../../storage'
 import { createBounty } from '../../utils/proposals'
-import { getBountyProposedData } from './getters'
+import { getBountyProposedData, getBountyProposedDataOld } from './getters'
 
 export async function handleProposed(ctx: EventHandlerContext) {
-    const getEventData = getBountyProposedData
+    const section = ctx.event.name.split('.')[0]
+    const getEventData = section === 'Bounties' ? getBountyProposedData : getBountyProposedDataOld
     const { index } = getEventData(ctx)
 
     const storageData = await storage.bounties.getBounties(ctx, index)

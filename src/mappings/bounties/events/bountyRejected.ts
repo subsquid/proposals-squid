@@ -1,10 +1,11 @@
 import { EventHandlerContext } from '../../types/contexts'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { updateProposalStatus } from '../../utils/proposals'
-import { getBountyRejectedData } from './getters'
+import { getBountyRejectedData, getBountyRejectedDataOld } from './getters'
 
 export async function handleRejected(ctx: EventHandlerContext) {
-    const getEventData = getBountyRejectedData
+    const section = ctx.event.name.split('.')[0]
+    const getEventData = section === 'Bounties' ? getBountyRejectedData : getBountyRejectedDataOld
     const { index } = getEventData(ctx)
 
     await updateProposalStatus(ctx, index, ProposalType.Bounty, {

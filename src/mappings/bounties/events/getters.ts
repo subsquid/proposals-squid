@@ -6,7 +6,14 @@ import {
     BountiesBountyClaimedEvent,
     BountiesBountyExtendedEvent,
     BountiesBountyProposedEvent,
-    BountiesBountyRejectedEvent
+    BountiesBountyRejectedEvent,
+    TreasuryBountyAwardedEvent,
+    TreasuryBountyBecameActiveEvent,
+    TreasuryBountyCanceledEvent,
+    TreasuryBountyClaimedEvent,
+    TreasuryBountyExtendedEvent,
+    TreasuryBountyProposedEvent,
+    TreasuryBountyRejectedEvent,
 } from '../../../types/events'
 import { EventContext } from '../../types/contexts'
 
@@ -158,6 +165,93 @@ export function getBountyRejectedData(ctx: EventContext): BountyRejectedData {
         }
     } else if (event.isV9140) {
         const { index } = event.asV9140
+        return {
+            index,
+        }
+    } else {
+        throw new UnknownVersionError(event.constructor.name)
+    }
+}
+
+export function getBountyAwardedDataOld(ctx: EventContext): BountyAwardedData {
+    const event = new TreasuryBountyAwardedEvent(ctx)
+    if (event.isV25) {
+        const [index, beneficiary] = event.asV25
+        return {
+            index,
+            beneficiary,
+        }
+    } else {
+        throw new UnknownVersionError(event.constructor.name)
+    }
+}
+
+export function getBountyBacameActiveDataOld(ctx: EventContext): BountyBacameActiveData {
+    const event = new TreasuryBountyBecameActiveEvent(ctx)
+    if (event.isV25) {
+        const index = event.asV25
+        return {
+            index,
+        }
+    } else {
+        throw new UnknownVersionError(event.constructor.name)
+    }
+}
+
+export function getBountyCanceledDataOld(ctx: EventContext): BountyCanceledData {
+    const event = new TreasuryBountyCanceledEvent(ctx)
+    if (event.isV25) {
+        const index = event.asV25
+        return {
+            index,
+        }
+    } else {
+        throw new UnknownVersionError(event.constructor.name)
+    }
+}
+
+export function getBountyClaimedDataOld(ctx: EventContext): BountyClaimedData {
+    const event = new TreasuryBountyClaimedEvent(ctx)
+    if (event.isV25) {
+        const [index, payout, beneficiary] = event.asV25
+        return {
+            index,
+            beneficiary,
+            payout,
+        }
+    } else {
+        throw new UnknownVersionError(event.constructor.name)
+    }
+}
+
+export function getBountyExtendedDataOld(ctx: EventContext): BountyExtendedData {
+    const event = new TreasuryBountyExtendedEvent(ctx)
+    if (event.isV25) {
+        const index = event.asV25
+        return {
+            index,
+        }
+    } else {
+        throw new UnknownVersionError(event.constructor.name)
+    }
+}
+
+export function getBountyProposedDataOld(ctx: EventContext): BountyProposedData {
+    const event = new TreasuryBountyProposedEvent(ctx)
+    if (event.isV25) {
+        const index = event.asV25
+        return {
+            index,
+        }
+    } else {
+        throw new UnknownVersionError(event.constructor.name)
+    }
+}
+
+export function getBountyRejectedDataOld(ctx: EventContext): BountyRejectedData {
+    const event = new TreasuryBountyRejectedEvent(ctx)
+    if (event.isV25) {
+        const [index] = event.asV25
         return {
             index,
         }

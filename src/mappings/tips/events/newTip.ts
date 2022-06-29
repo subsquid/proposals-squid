@@ -5,10 +5,11 @@ import { ProposalStatus, ProposalType } from '../../../model'
 import { ss58codec } from '../../../common/tools'
 import { storage } from '../../../storage'
 import { createTip } from '../../utils/proposals'
-import { getNewTipData } from './getters'
+import { getNewTipData, getNewTipDataOld } from './getters'
 
 export async function handleNewTip(ctx: EventHandlerContext) {
-    const getEventData = getNewTipData
+    const section = ctx.event.name.split('.')[0]
+    const getEventData = section === 'Tips' ? getNewTipData : getNewTipDataOld
     const { hash } = getEventData(ctx)
 
     const hexHash = toHex(hash)
