@@ -9,7 +9,7 @@ export class ReferendumThreshold {
   constructor(props?: Partial<Omit<ReferendumThreshold, 'toJSON'>>, json?: any) {
     Object.assign(this, props)
     if (json != null) {
-      this._type = marshal.string.fromJSON(json.type) as any  
+      this._type = marshal.string.fromJSON(json.type)
     }
   }
 

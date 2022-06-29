@@ -7,9 +7,9 @@ import { DemocracyPreimagesStorage } from '../../../types/storage'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { ss58codec, parseProposalCall } from '../../../common/tools'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
-import { Call } from '../../../types/v9111'
 import { createPreimage } from '../../utils/proposals'
 import { getPreimageNotedData } from './getters'
+import { Call } from '../../../types/v9170'
 
 type ProposalCall = Call
 

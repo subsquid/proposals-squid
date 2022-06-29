@@ -6,33 +6,13 @@ import {
     BountiesBountyClaimedEvent,
     BountiesBountyExtendedEvent,
     BountiesBountyProposedEvent,
-    BountiesBountyRejectedEvent,
-    TreasuryBountyAwardedEvent,
-    TreasuryBountyBecameActiveEvent,
-    TreasuryBountyCanceledEvent,
-    TreasuryBountyClaimedEvent,
-    TreasuryBountyExtendedEvent,
-    TreasuryBountyProposedEvent,
-    TreasuryBountyRejectedEvent,
+    BountiesBountyRejectedEvent
 } from '../../../types/events'
 import { EventContext } from '../../types/contexts'
 
 interface BountyAwardedData {
     index: number
     beneficiary: Uint8Array
-}
-
-export function getBountyAwardedDataOld(ctx: EventContext): BountyAwardedData {
-    const event = new TreasuryBountyAwardedEvent(ctx)
-    if (event.isV2025) {
-        const [index, beneficiary] = event.asV2025
-        return {
-            index,
-            beneficiary,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
 }
 
 export function getBountyAwardedData(ctx: EventContext): BountyAwardedData {
@@ -58,18 +38,6 @@ interface BountyBacameActiveData {
     index: number
 }
 
-export function getBountyBacameActiveDataOld(ctx: EventContext): BountyBacameActiveData {
-    const event = new TreasuryBountyBecameActiveEvent(ctx)
-    if (event.isV2025) {
-        const index = event.asV2025
-        return {
-            index,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
-}
-
 export function getBountyBacameActiveData(ctx: EventContext): BountyBacameActiveData {
     const event = new BountiesBountyBecameActiveEvent(ctx)
     if (event.isV2028) {
@@ -89,18 +57,6 @@ export function getBountyBacameActiveData(ctx: EventContext): BountyBacameActive
 
 interface BountyCanceledData {
     index: number
-}
-
-export function getBountyCanceledDataOld(ctx: EventContext): BountyCanceledData {
-    const event = new TreasuryBountyCanceledEvent(ctx)
-    if (event.isV2025) {
-        const index = event.asV2025
-        return {
-            index,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
 }
 
 export function getBountyCanceledData(ctx: EventContext): BountyCanceledData {
@@ -124,20 +80,6 @@ interface BountyClaimedData {
     index: number
     payout: bigint
     beneficiary: Uint8Array
-}
-
-export function getBountyClaimedDataOld(ctx: EventContext): BountyClaimedData {
-    const event = new TreasuryBountyClaimedEvent(ctx)
-    if (event.isV2025) {
-        const [index, payout, beneficiary] = event.asV2025
-        return {
-            index,
-            beneficiary,
-            payout,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
 }
 
 export function getBountyClaimedData(ctx: EventContext): BountyClaimedData {
@@ -165,18 +107,6 @@ interface BountyExtendedData {
     index: number
 }
 
-export function getBountyExtendedDataOld(ctx: EventContext): BountyExtendedData {
-    const event = new TreasuryBountyExtendedEvent(ctx)
-    if (event.isV2025) {
-        const index = event.asV2025
-        return {
-            index,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
-}
-
 export function getBountyExtendedData(ctx: EventContext): BountyExtendedData {
     const event = new BountiesBountyExtendedEvent(ctx)
     if (event.isV2028) {
@@ -198,18 +128,6 @@ interface BountyProposedData {
     index: number
 }
 
-export function getBountyProposedDataOld(ctx: EventContext): BountyProposedData {
-    const event = new TreasuryBountyProposedEvent(ctx)
-    if (event.isV2025) {
-        const index = event.asV2025
-        return {
-            index,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
-}
-
 export function getBountyProposedData(ctx: EventContext): BountyProposedData {
     const event = new BountiesBountyProposedEvent(ctx)
     if (event.isV2028) {
@@ -229,18 +147,6 @@ export function getBountyProposedData(ctx: EventContext): BountyProposedData {
 
 interface BountyRejectedData {
     index: number
-}
-
-export function getBountyRejectedDataOld(ctx: EventContext): BountyRejectedData {
-    const event = new TreasuryBountyRejectedEvent(ctx)
-    if (event.isV2025) {
-        const [index] = event.asV2025
-        return {
-            index,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
 }
 
 export function getBountyRejectedData(ctx: EventContext): BountyRejectedData {

@@ -1,8 +1,7 @@
 import assert from 'assert'
 import {Chain, ChainContext, CallContext, Call, Result} from './support'
-import * as v1020 from './v1020'
-import * as v1055 from './v1055'
-import * as v9111 from './v9111'
+import * as v0 from './v0'
+import * as v9110 from './v9110'
 
 export class BountiesAcceptCuratorCall {
   private readonly _chain: Chain
@@ -27,7 +26,7 @@ export class BountiesAcceptCuratorCall {
    *  - O(1).
    *  # </weight>
    */
-  get isV2028(): boolean {
+  get isV28(): boolean {
     return this._chain.getCallHash('Bounties.accept_curator') === '77b779cfa161e4e6eeffa4c35f55ae2bd68aba06e4b5d48766892991c97064c9'
   }
 
@@ -41,8 +40,8 @@ export class BountiesAcceptCuratorCall {
    *  - O(1).
    *  # </weight>
    */
-  get asV2028(): {bountyId: number} {
-    assert(this.isV2028)
+  get asV28(): {bountyId: number} {
+    assert(this.isV28)
     return this._chain.decodeCall(this.call)
   }
 }
@@ -80,7 +79,7 @@ export class BountiesUnassignCuratorCall {
    *  - O(1).
    *  # </weight>
    */
-  get isV2028(): boolean {
+  get isV28(): boolean {
     return this._chain.getCallHash('Bounties.unassign_curator') === '77b779cfa161e4e6eeffa4c35f55ae2bd68aba06e4b5d48766892991c97064c9'
   }
 
@@ -104,8 +103,8 @@ export class BountiesUnassignCuratorCall {
    *  - O(1).
    *  # </weight>
    */
-  get asV2028(): {bountyId: number} {
-    assert(this.isV2028)
+  get asV28(): {bountyId: number} {
+    assert(this.isV28)
     return this._chain.decodeCall(this.call)
   }
 }
@@ -127,44 +126,23 @@ export class DemocracyVoteCall {
    *  Vote in a referendum. If `vote.is_aye()`, the vote is to enact the proposal;
    *  otherwise it is a vote to keep the status quo.
    * 
-   *  # <weight>
-   *  - O(1).
-   *  - One DB change, one DB entry.
-   *  # </weight>
-   */
-  get isV1020(): boolean {
-    return this._chain.getCallHash('Democracy.vote') === '3a01fd8d5e95145a311b99cf21decce5be8578650f311f3a6091395407f5efe9'
-  }
-
-  /**
-   *  Vote in a referendum. If `vote.is_aye()`, the vote is to enact the proposal;
-   *  otherwise it is a vote to keep the status quo.
-   * 
-   *  # <weight>
-   *  - O(1).
-   *  - One DB change, one DB entry.
-   *  # </weight>
-   */
-  get asV1020(): {refIndex: number, vote: v1020.Vote} {
-    assert(this.isV1020)
-    return this._chain.decodeCall(this.call)
-  }
-
-  /**
-   *  Vote in a referendum. If `vote.is_aye()`, the vote is to enact the proposal;
-   *  otherwise it is a vote to keep the status quo.
-   * 
    *  The dispatch origin of this call must be _Signed_.
    * 
    *  - `ref_index`: The index of the referendum to vote for.
    *  - `vote`: The vote configuration.
    * 
    *  # <weight>
-   *  - `O(1)`.
-   *  - One DB change, one DB entry.
+   *  - Complexity: `O(R)` where R is the number of referendums the voter has voted on.
+   *    weight is charged as if maximum votes.
+   *  - Db reads: `ReferendumInfoOf`, `VotingOf`, `balances locks`
+   *  - Db writes: `ReferendumInfoOf`, `VotingOf`, `balances locks`
+   *  --------------------
+   *  - Base Weight:
+   *      - Vote New: 49.24 + .333 * R µs
+   *      - Vote Existing: 49.94 + .343 * R µs
    *  # </weight>
    */
-  get isV1055(): boolean {
+  get isV0(): boolean {
     return this._chain.getCallHash('Democracy.vote') === '6cdb35b5ffcb74405cdf222b0cc0bf7ad7025d59f676bea6712d77bcc9aff1db'
   }
 
@@ -178,12 +156,18 @@ export class DemocracyVoteCall {
    *  - `vote`: The vote configuration.
    * 
    *  # <weight>
-   *  - `O(1)`.
-   *  - One DB change, one DB entry.
+   *  - Complexity: `O(R)` where R is the number of referendums the voter has voted on.
+   *    weight is charged as if maximum votes.
+   *  - Db reads: `ReferendumInfoOf`, `VotingOf`, `balances locks`
+   *  - Db writes: `ReferendumInfoOf`, `VotingOf`, `balances locks`
+   *  --------------------
+   *  - Base Weight:
+   *      - Vote New: 49.24 + .333 * R µs
+   *      - Vote Existing: 49.94 + .343 * R µs
    *  # </weight>
    */
-  get asV1055(): {refIndex: number, vote: v1055.AccountVote} {
-    assert(this.isV1055)
+  get asV0(): {refIndex: number, vote: v0.AccountVote} {
+    assert(this.isV0)
     return this._chain.decodeCall(this.call)
   }
 
@@ -198,7 +182,7 @@ export class DemocracyVoteCall {
    * 
    * Weight: `O(R)` where R is the number of referendums the voter has voted on.
    */
-  get isV9111(): boolean {
+  get isV9110(): boolean {
     return this._chain.getCallHash('Democracy.vote') === '3936a4cb49f77280bd94142d4ec458afcf5cb8a5e5b0d602b1b1530928021e28'
   }
 
@@ -213,8 +197,8 @@ export class DemocracyVoteCall {
    * 
    * Weight: `O(R)` where R is the number of referendums the voter has voted on.
    */
-  get asV9111(): {refIndex: number, vote: v9111.AccountVote} {
-    assert(this.isV9111)
+  get asV9110(): {refIndex: number, vote: v9110.AccountVote} {
+    assert(this.isV9110)
     return this._chain.decodeCall(this.call)
   }
 }
@@ -244,7 +228,7 @@ export class TreasuryAcceptCuratorCall {
    *  - One DB change.
    *  # </weight>
    */
-  get isV2025(): boolean {
+  get isV25(): boolean {
     return this._chain.getCallHash('Treasury.accept_curator') === '77b779cfa161e4e6eeffa4c35f55ae2bd68aba06e4b5d48766892991c97064c9'
   }
 
@@ -260,8 +244,8 @@ export class TreasuryAcceptCuratorCall {
    *  - One DB change.
    *  # </weight>
    */
-  get asV2025(): {bountyId: number} {
-    assert(this.isV2025)
+  get asV25(): {bountyId: number} {
+    assert(this.isV25)
     return this._chain.decodeCall(this.call)
   }
 }
@@ -301,7 +285,7 @@ export class TreasuryUnassignCuratorCall {
    *  - One DB change.
    *  # </weight>
    */
-  get isV2025(): boolean {
+  get isV25(): boolean {
     return this._chain.getCallHash('Treasury.unassign_curator') === '77b779cfa161e4e6eeffa4c35f55ae2bd68aba06e4b5d48766892991c97064c9'
   }
 
@@ -327,8 +311,8 @@ export class TreasuryUnassignCuratorCall {
    *  - One DB change.
    *  # </weight>
    */
-  get asV2025(): {bountyId: number} {
-    assert(this.isV2025)
+  get asV25(): {bountyId: number} {
+    assert(this.isV25)
     return this._chain.decodeCall(this.call)
   }
 }

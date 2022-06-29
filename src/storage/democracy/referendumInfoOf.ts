@@ -1,8 +1,6 @@
 import { UnknownVersionError } from '../../common/errors'
 import { BlockContext } from '../../types/support'
 import { DemocracyReferendumInfoOfStorage } from '../../types/storage'
-import * as v1055 from '../../types/v1055'
-import * as v9111 from '../../types/v9111'
 
 type Threshold = 'SuperMajorityApprove' | 'SuperMajorityAgainst' | 'SimpleMajority'
 
@@ -37,13 +35,13 @@ async function getStorageData(ctx: BlockContext, index: number): Promise<Referen
             delay,
             threshold: threshold.__kind,
         }
-    } else if (storage.isV1055) {
+    /* } else if (storage.isV1055) {
         const storageData = await storage.getAsV1055(index)
         if (!storageData) return undefined
 
         const { __kind: status } = storageData
         if (status === 'Ongoing') {
-            const { proposalHash: hash, end, delay, threshold } = (storageData as v1055.ReferendumInfo_Ongoing).value
+            const { proposalHash: hash, end, delay, threshold } = (storageData as V1050.ReferendumInfo_Ongoing).value
             return {
                 status,
                 hash,
@@ -58,8 +56,8 @@ async function getStorageData(ctx: BlockContext, index: number): Promise<Referen
                 end,
                 approved,
             }
-        }
-    } else if (storage.isV9111) {
+        } */
+    /* } else if (storage.isV9111) {
         const storageData = await storage.getAsV9111(index)
         if (!storageData) return undefined
 
@@ -80,7 +78,7 @@ async function getStorageData(ctx: BlockContext, index: number): Promise<Referen
                 end,
                 approved,
             }
-        }
+        } */
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }

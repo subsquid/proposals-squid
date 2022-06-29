@@ -1,7 +1,7 @@
 {
   "outDir": "../src/types",
   "specVersions": "./versions.jsonl",
-  "typesBundle": "kusama",
+  "typesBundle": "polkadot",
   "storage": [
     "Council.Members",
     "Council.ProposalCount",
@@ -22,7 +22,6 @@
     "TechnicalCommittee.ProposalOf",
     "Instance2Collective.ProposalOf",
     "System.Account",
-    "System.AccountNonce",
     "Balances.Account"
   ],
   "events": [

@@ -15,19 +15,6 @@ interface ClosedData {
     reward: bigint
 }
 
-export function getClosedDataOld(ctx: EventContext): ClosedData {
-    const event = new TreasuryTipClosedEvent(ctx)
-    if (event.isV1038) {
-        const [hash, , reward] = event.asV1038
-        return {
-            hash,
-            reward,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
-}
-
 export function getClosedData(ctx: EventContext): ClosedData {
     const event = new TipsTipClosedEvent(ctx)
     if (event.isV2028) {
@@ -51,18 +38,6 @@ interface NewTipData {
     hash: Uint8Array
 }
 
-export function getNewTipDataOld(ctx: EventContext): NewTipData {
-    const event = new TreasuryNewTipEvent(ctx)
-    if (event.isV1038) {
-        const hash = event.asV1038
-        return {
-            hash,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
-}
-
 export function getNewTipData(ctx: EventContext): NewTipData {
     const event = new TipsNewTipEvent(ctx)
     if (event.isV2028) {
@@ -82,18 +57,6 @@ export function getNewTipData(ctx: EventContext): NewTipData {
 
 interface RectractedData {
     hash: Uint8Array
-}
-
-export function getRectractedDataOld(ctx: EventContext): RectractedData {
-    const event = new TreasuryTipRetractedEvent(ctx)
-    if (event.isV1038) {
-        const hash = event.asV1038
-        return {
-            hash,
-        }
-    } else {
-        throw new UnknownVersionError(event.constructor.name)
-    }
 }
 
 export function getRectractedData(ctx: EventContext): RectractedData {
