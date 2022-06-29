@@ -1,6 +1,5 @@
-import { Instance2CollectiveProposalOfStorage, TechnicalCommitteeProposalOfStorage } from '../../types/storage'
-import { BlockContext } from '../../types/support'
-import { Call } from '../../types/v9170'
+import { Instance2CollectiveProposalOfStorage } from '../../types/storage'
+import { BlockContext, Call } from '../../types/support'
 
 type TechnicalCommitteeProposalStorageData = Call
 
@@ -93,7 +92,7 @@ async function getInstanceStorageData(
     // }
 }
 
-async function getCoucilStorageData(
+/* async function getCoucilStorageData(
     ctx: BlockContext,
     hash: Uint8Array
 ): Promise<TechnicalCommitteeProposalStorageData | undefined> {
@@ -119,11 +118,11 @@ async function getCoucilStorageData(
     // } else {
     //     throw new UnknownVersionError(storage.constructor.name)
     // }
-}
+} */
 
 export async function getProposalOf(
     ctx: BlockContext,
     hash: Uint8Array
 ): Promise<TechnicalCommitteeProposalStorageData | undefined> {
-    return (await getCoucilStorageData(ctx, hash)) || (await getInstanceStorageData(ctx, hash))
+    return /* (await getCoucilStorageData(ctx, hash)) || */ (await getInstanceStorageData(ctx, hash))
 }

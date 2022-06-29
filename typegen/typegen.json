@@ -1,7 +1,7 @@
 {
   "outDir": "../src/types",
   "specVersions": "./versions.jsonl",
-  "typesBundle": "kusama",
+  "typesBundle": "hydradx",
   "storage": [
     "Council.Members",
     "Council.ProposalCount",
@@ -17,12 +17,9 @@
     "Treasury.Proposals",
     "Treasury.Tips",
     "Tips.Tips",
-    "Treasury.Bounties",
-    "Bounties.Bounties",
     "TechnicalCommittee.ProposalOf",
     "Instance2Collective.ProposalOf",
     "System.Account",
-    "System.AccountNonce",
     "Balances.Account"
   ],
   "events": [
@@ -47,27 +44,10 @@
     "Treasury.Proposed",
     "Treasury.Awarded",
     "Treasury.Rejected",
-    "Treasury.NewTip",
-    "Treasury.TipClosed",
-    "Treasury.TipRetracted",
-    "Treasury.BountyProposed",
-    "Treasury.BountyRejected",
-    "Treasury.BountyBecameActive",
-    "Treasury.BountyAwarded",
-    "Treasury.BountyClaimed",
-    "Treasury.BountyCanceled",
-    "Treasury.BountyExtended",
     "Tips.NewTip",
     "Tips.TipClosed",
     "Tips.TipRetracted",
     "Tips.TipSlashed",
-    "Bounties.BountyProposed",
-    "Bounties.BountyRejected",
-    "Bounties.BountyBecameActive",
-    "Bounties.BountyAwarded",
-    "Bounties.BountyClaimed",
-    "Bounties.BountyCanceled",
-    "Bounties.BountyExtended",
     "TechnicalCommittee.Proposed",
     "TechnicalCommittee.Voted",
     "TechnicalCommittee.Approved",
@@ -76,10 +56,6 @@
     "TechnicalCommittee.Closed"
   ],
   "calls": [
-    "Democracy.vote",
-    "Bounties.accept_curator",
-    "Treasury.accept_curator",
-    "Bounties.unassign_curator",
-    "Treasury.unassign_curator"
+    "Democracy.vote"
   ]
 }

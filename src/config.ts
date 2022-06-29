@@ -3,14 +3,14 @@ import { Store } from '@subsquid/typeorm-store'
 
 const config: ProcessorConfig<Store> = {
     chain: {
-        name: 'kusama',
-        prefix: 'kusama',
+        name: 'hydradx',
+        prefix: 'hydradx',
     },
     dataSource: {
-        archive: 'https://kusama.archive.subsquid.io/graphql',
-        chain: 'wss://kusama.api.onfinality.io/public-ws',
+        archive: 'https://hydradx-snakenet.archive.subsquid.io/graphql',
+        chain: 'wss://archive.snakenet.hydradx.io',
     },
-    typesBundle: 'kusama',
+    typesBundle: 'hydradx',
     batchSize: 500,
     blockRange: {
         from: 0,

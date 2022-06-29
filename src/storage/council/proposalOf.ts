@@ -1,6 +1,5 @@
-import { CouncilProposalOfStorage, Instance1CollectiveProposalOfStorage } from '../../types/storage'
-import { BlockContext } from '../../types/support'
-import { Call } from '../../types/v9170'
+import { Instance1CollectiveProposalOfStorage } from '../../types/storage'
+import { BlockContext, Call } from '../../types/support'
 
 type CouncilProposalStorageData = Call
 
@@ -93,14 +92,14 @@ async function getInstanceStorageData(
     // }
 }
 
-async function getCoucilStorageData(
+/* async function getCoucilStorageData(
     ctx: BlockContext,
     hash: Uint8Array
 ): Promise<CouncilProposalStorageData | undefined> {
     const storage = new CouncilProposalOfStorage(ctx)
     if (!storage.isExists) return undefined
 
-    return ctx._chain.getStorage(ctx.block.hash, 'Council', 'ProposalOf', hash)
+    return ctx._chain.getStorage(ctx.block.hash, 'Council', 'ProposalOf', hash) */
 
     // if (storage.isV9111) {
     //     return (await storage.getAsV9111(hash)) as Call
@@ -119,11 +118,11 @@ async function getCoucilStorageData(
     // } else {
     //     throw new UnknownVersionError(storage.constructor.name)
     // }
-}
+//}
 
 export async function getProposalOf(
     ctx: BlockContext,
     hash: Uint8Array
 ): Promise<CouncilProposalStorageData | undefined> {
-    return (await getCoucilStorageData(ctx, hash)) || (await getInstanceStorageData(ctx, hash))
+    return /* (await getCoucilStorageData(ctx, hash)) || */ (await getInstanceStorageData(ctx, hash))
 }

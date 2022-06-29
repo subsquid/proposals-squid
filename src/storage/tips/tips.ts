@@ -1,5 +1,5 @@
 import { UnknownVersionError } from '../../common/errors'
-import { TipsTipsStorage, TreasuryTipsStorage } from '../../types/storage'
+import { TreasuryTipsStorage } from '../../types/storage'
 import { BlockContext } from '../../types/support'
 
 interface TipStorageData {
@@ -8,7 +8,7 @@ interface TipStorageData {
     deposit?: bigint
 }
 
-async function getTipsStorageData(ctx: BlockContext, hash: Uint8Array): Promise<TipStorageData | undefined> {
+/* async function getTipsStorageData(ctx: BlockContext, hash: Uint8Array): Promise<TipStorageData | undefined> {
     const storage = new TipsTipsStorage(ctx)
     if (!storage.isExists) return undefined
 
@@ -17,14 +17,14 @@ async function getTipsStorageData(ctx: BlockContext, hash: Uint8Array): Promise<
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
-}
+} */
 
 async function getTreasuryStorageData(ctx: BlockContext, hash: Uint8Array): Promise<TipStorageData | undefined> {
     const storage = new TreasuryTipsStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV1038) {
-        const storageData = await storage.getAsV1038(hash)
+    if (storage.isV15) {
+        const storageData = await storage.getAsV15(hash)
         if (!storageData) return undefined
 
         const { who, finder } = storageData
@@ -33,13 +33,11 @@ async function getTreasuryStorageData(ctx: BlockContext, hash: Uint8Array): Prom
             finder: finder?.[0],
             deposit: finder?.[1],
         }
-    } else if (storage.isV2013) {
-        return await storage.getAsV2013(hash)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
 }
 
 export async function getTips(ctx: BlockContext, hash: Uint8Array) {
-    return (await getTipsStorageData(ctx, hash)) || (await getTreasuryStorageData(ctx, hash))
+    return /* (await getTipsStorageData(ctx, hash)) || */ (await getTreasuryStorageData(ctx, hash))
 }
