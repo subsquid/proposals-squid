@@ -1,13 +1,13 @@
 import { UnknownVersionError } from '../../common/errors'
 import { Instance1CollectiveProposalOfStorage } from '../../types/storage'
-import { StorageContext } from '../../types/support'
-import { Type_103 } from '../../types/v18'
+import { BlockContext } from '../../types/support'
+import { Proposal } from '../../types/v18'
 
-type CouncilProposalStorageData = Type_103
+type CouncilProposalStorageData = Proposal
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 async function getInstanceStorageData(
-    ctx: StorageContext,
+    ctx: BlockContext,
     hash: Uint8Array
 ): Promise<CouncilProposalStorageData | undefined> {
     const storage = new Instance1CollectiveProposalOfStorage(ctx)
@@ -27,7 +27,7 @@ async function getInstanceStorageData(
 }
 
 export async function getProposalOf(
-    ctx: StorageContext,
+    ctx: BlockContext,
     hash: Uint8Array
 ): Promise<CouncilProposalStorageData | undefined> {
     return await getInstanceStorageData(ctx, hash)

@@ -11,6 +11,7 @@
     "Democracy.PublicProps",
     "Democracy.ReferendumInfoOf",
     "Instance1Collective.ProposalOf",
+    "Instance1Collective.ProposalOf",
     "Treasury.Proposals",
     "Treasury.Tips",
     "Instance2Collective.ProposalOf",

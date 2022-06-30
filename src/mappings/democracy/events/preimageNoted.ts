@@ -8,9 +8,10 @@ import { ss58codec, parseProposalCall } from '../../../common/tools'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
 import { createPreimage } from '../../utils/proposals'
 import { getPreimageNotedData } from './getters'
-import { BlockContext, Call } from '../../../types/support'
+import { BlockContext } from '../../../types/support'
+import { Proposal } from '../../../types/v18'
 
-type ProposalCall = Call
+type ProposalCall = Proposal
 
 interface PreimageStorageData {
     data: Uint8Array
