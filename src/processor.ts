@@ -9,7 +9,6 @@ const processor = new SubstrateProcessor(db)
 processor.setTypesBundle(config.typesBundle)
 processor.setBatchSize(config.batchSize || 100)
 processor.setDataSource(config.dataSource)
-processor.setPrometheusPort(config.port || 3000)
 processor.setBlockRange(config.blockRange || { from: 0 })
 
 processor.addEventHandler('Democracy.Proposed', modules.democracy.events.handleProposed)
