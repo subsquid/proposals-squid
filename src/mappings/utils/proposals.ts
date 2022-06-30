@@ -75,6 +75,9 @@ export async function updateProposalStatus(
                       index: hashOrIndex,
                       type,
                   },
+        order: {
+            id: 'DESC',
+        },
     })
 
     if (!proposal) {
