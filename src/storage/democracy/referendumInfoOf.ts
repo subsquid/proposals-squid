@@ -1,8 +1,8 @@
 import { UnknownVersionError } from '../../common/errors'
 import { BlockContext } from '../../types/support'
 import { DemocracyReferendumInfoOfStorage } from '../../types/storage'
-import * as V803 from '../../types/V803'
-import * as V906 from '../../types/V906'
+import * as V803 from '../../types/v803'
+import * as V906 from '../../types/v906'
 
 type Threshold = 'SuperMajorityApprove' | 'SuperMajorityAgainst' | 'SimpleMajority'
 

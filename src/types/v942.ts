@@ -5764,9 +5764,9 @@ export interface VtokenMintingCall_set_hook_iteration_limit {
 export type SlpCall = SlpCall_initialize_delegator | SlpCall_bond | SlpCall_bond_extra | SlpCall_unbond | SlpCall_unbond_all | SlpCall_rebond | SlpCall_delegate | SlpCall_undelegate | SlpCall_redelegate | SlpCall_payout | SlpCall_liquidize | SlpCall_chill | SlpCall_transfer_back | SlpCall_transfer_to | SlpCall_increase_token_pool | SlpCall_decrease_token_pool | SlpCall_update_ongoing_time_unit | SlpCall_refund_currency_due_unbond | SlpCall_supplement_fee_reserve | SlpCall_charge_host_fee_and_tune_vtoken_exchange_rate | SlpCall_set_xcm_dest_weight_and_fee | SlpCall_set_operate_origin | SlpCall_set_fee_source | SlpCall_add_delegator | SlpCall_remove_delegator | SlpCall_add_validator | SlpCall_remove_validator | SlpCall_set_validators_by_delegator | SlpCall_set_delegator_ledger | SlpCall_set_minimums_and_maximums | SlpCall_set_currency_delays | SlpCall_set_hosting_fees | SlpCall_set_currency_tune_exchange_rate_limit | SlpCall_confirm_delegator_ledger_query_response | SlpCall_fail_delegator_ledger_query_response | SlpCall_confirm_validators_by_delegator_query_response | SlpCall_fail_validators_by_delegator_query_response
 
 /**
- * *****************************
- * ****** Outer Calls ******
- * *****************************
+ * *****************************/
+ * ****** Outer Calls ******/
+ * *****************************/
  * 
  * Delegator initialization work. Generate a new delegator and return its ID.
  */
@@ -5942,10 +5942,10 @@ export interface SlpCall_charge_host_fee_and_tune_vtoken_exchange_rate {
 }
 
 /**
- * *****************************
- * ****** Storage Setters ******
- * *****************************
- *
+ * *****************************/
+ * ****** Storage Setters ******/
+ * *****************************/
+ * 
  * Update storage XcmDestWeightAndFee<T>.
  */
 export interface SlpCall_set_xcm_dest_weight_and_fee {
