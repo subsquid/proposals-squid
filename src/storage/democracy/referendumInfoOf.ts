@@ -1,6 +1,8 @@
 import { UnknownVersionError } from '../../common/errors'
 import { BlockContext } from '../../types/support'
 import { DemocracyReferendumInfoOfStorage } from '../../types/storage'
+import * as v29 from '../../types/v29'
+import * as v13 from '../../types/v13'
 
 type Threshold = 'SuperMajorityApprove' | 'SuperMajorityAgainst' | 'SimpleMajority'
 
@@ -23,17 +25,49 @@ type ReferendumStorageData = FinishedReferendumData | OngoingReferendumData
 // eslint-disable-next-line sonarjs/cognitive-complexity
 async function getStorageData(ctx: BlockContext, index: number): Promise<ReferendumStorageData | undefined> {
     const storage = new DemocracyReferendumInfoOfStorage(ctx)
-    if (storage.isV15) {
-        const storageData = await storage.getAsV15(index)
+    if (storage.isV13) {
+        const storageData = await storage.getAsV13(index)
         if (!storageData) return undefined
 
-        const { proposalHash: hash, end, delay, threshold } = storageData
-        return {
-            status: 'Ongoing',
-            hash,
-            end,
-            delay,
-            threshold: threshold.__kind,
+        const { __kind: status } = storageData
+        if (status === 'Ongoing') {
+            const { proposalHash: hash, end, delay, threshold } = (storageData as v13.ReferendumInfo_Ongoing).value
+            return {
+                status,
+                hash,
+                end,
+                delay,
+                threshold: threshold.__kind,
+            }
+        } else {
+            const { end, approved } = (storageData as v13.ReferendumInfo_Finished).value
+            return {
+                status,
+                end,
+                approved,
+            }
+        }
+    } else if (storage.isV29) {
+        const storageData = await storage.getAsV29(index)
+        if (!storageData) return undefined
+
+        const { __kind: status } = storageData
+        if (status === 'Ongoing') {
+            const { proposalHash: hash, end, delay, threshold } = (storageData as v29.ReferendumInfo_Ongoing).value
+            return {
+                status,
+                hash,
+                end,
+                delay,
+                threshold: threshold.__kind,
+            }
+        } else {
+            const { end, approved } = storageData as v29.ReferendumInfo_Finished
+            return {
+                status,
+                end,
+                approved,
+            }
         }
     } else {
         throw new UnknownVersionError(storage.constructor.name)

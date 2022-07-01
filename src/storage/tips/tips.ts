@@ -23,15 +23,15 @@ async function getTreasuryStorageData(ctx: BlockContext, hash: Uint8Array): Prom
     const storage = new TreasuryTipsStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV15) {
-        const storageData = await storage.getAsV15(hash)
+    if (storage.isV13) {
+        const storageData = await storage.getAsV13(hash)
         if (!storageData) return undefined
 
-        const { who, finder } = storageData
+        const { who, finder, deposit } = storageData
         return {
             who,
-            finder: finder?.[0],
-            deposit: finder?.[1],
+            finder,
+            deposit,
         }
     } else {
         throw new UnknownVersionError(storage.constructor.name)
@@ -39,5 +39,5 @@ async function getTreasuryStorageData(ctx: BlockContext, hash: Uint8Array): Prom
 }
 
 export async function getTips(ctx: BlockContext, hash: Uint8Array) {
-    return /* (await getTipsStorageData(ctx, hash)) || */ (await getTreasuryStorageData(ctx, hash))
+    return /* (await getTipsStorageData(ctx, hash)) || */ await getTreasuryStorageData(ctx, hash)
 }

@@ -2,15 +2,16 @@
 import { toHex } from '@subsquid/substrate-processor'
 import { EventHandlerContext } from '../../types/contexts'
 import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
-import { BlockContext, Call } from '../../../types/support'
+import { BlockContext } from '../../../types/support'
 import { DemocracyPreimagesStorage } from '../../../types/storage'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { ss58codec, parseProposalCall } from '../../../common/tools'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
 import { createPreimage } from '../../utils/proposals'
 import { getPreimageNotedData } from './getters'
+import { Proposal } from '../../../types/v22'
 
-type ProposalCall = Call
+type ProposalCall = Proposal
 
 interface PreimageStorageData {
     data: Uint8Array
@@ -26,17 +27,29 @@ function decodeProposal(chain: Chain, data: Uint8Array): ProposalCall {
 
 async function getStorageData(ctx: BlockContext, hash: Uint8Array): Promise<PreimageStorageData | undefined> {
     const storage = new DemocracyPreimagesStorage(ctx)
-    if (storage.isV15) {
-        const storageData = await storage.getAsV15(hash)
-        if (!storageData) return undefined
+    if (storage.isV13) {
+        const storageData = await storage.getAsV13(hash)
+        if (!storageData || storageData.__kind === 'Missing') return undefined
 
-        const [data, provider, deposit, block] = storageData
+        const { provider, deposit, since, data } = storageData.value
 
         return {
             data,
             provider,
             deposit,
-            block,
+            block: since,
+        }
+    } else if (storage.isV29) {
+        const storageData = await storage.getAsV29(hash)
+        if (!storageData || storageData.__kind === 'Missing') return undefined
+
+        const { provider, deposit, since, data } = storageData
+
+        return {
+            data,
+            provider,
+            deposit,
+            block: since,
         }
     } else {
         throw new UnknownVersionError(storage.constructor.name)

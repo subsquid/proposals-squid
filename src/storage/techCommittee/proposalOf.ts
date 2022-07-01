@@ -1,7 +1,8 @@
 import { Instance2CollectiveProposalOfStorage } from '../../types/storage'
-import { BlockContext, Call } from '../../types/support'
+import { BlockContext } from '../../types/support'
+import { Proposal } from '../../types/v22'
 
-type TechnicalCommitteeProposalStorageData = Call
+type TechnicalCommitteeProposalStorageData = Proposal
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 async function getInstanceStorageData(
@@ -124,5 +125,5 @@ export async function getProposalOf(
     ctx: BlockContext,
     hash: Uint8Array
 ): Promise<TechnicalCommitteeProposalStorageData | undefined> {
-    return /* (await getCoucilStorageData(ctx, hash)) || */ (await getInstanceStorageData(ctx, hash))
+    return /* (await getCoucilStorageData(ctx, hash)) || */ await getInstanceStorageData(ctx, hash)
 }

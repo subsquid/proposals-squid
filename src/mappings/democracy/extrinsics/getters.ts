@@ -21,14 +21,47 @@ interface DemocracyVoteCallData {
 
 export function getVoteData(ctx: CallContext): DemocracyVoteCallData {
     const event = new DemocracyVoteCall(ctx)
-    if (event.isV15) {
-        const { refIndex, vote } = event.asV15
-        return {
-            index: refIndex,
-            vote: {
-                type: 'Standard',
-                value: vote,
-            },
+    if (event.isV13) {
+        const { refIndex, vote } = event.asV13
+        if (vote.__kind === 'Standard') {
+            return {
+                index: refIndex,
+                vote: {
+                    type: 'Standard',
+                    value: vote.value.vote,
+                    balance: vote.value.balance,
+                },
+            }
+        } else {
+            return {
+                index: refIndex,
+                vote: {
+                    type: 'Split',
+                    aye: vote.value.aye,
+                    nay: vote.value.nay,
+                },
+            }
+        }
+    } else if (event.isV29) {
+        const { refIndex, vote } = event.asV29
+        if (vote.__kind === 'Standard') {
+            return {
+                index: refIndex,
+                vote: {
+                    type: 'Standard',
+                    value: vote.vote,
+                    balance: vote.balance,
+                },
+            }
+        } else {
+            return {
+                index: refIndex,
+                vote: {
+                    type: 'Split',
+                    aye: vote.aye,
+                    nay: vote.nay,
+                },
+            }
         }
     } else {
         throw new UnknownVersionError(event.constructor.name)

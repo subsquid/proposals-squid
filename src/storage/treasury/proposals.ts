@@ -13,8 +13,8 @@ async function getStorageData(ctx: BlockContext, index: number): Promise<Treasur
     const storage = new TreasuryProposalsStorage(ctx)
     if (!storage.isExists) return undefined
 
-    if (storage.isV1) {
-        return await storage.getAsV1(index)
+    if (storage.isV13) {
+        return await storage.getAsV13(index)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
