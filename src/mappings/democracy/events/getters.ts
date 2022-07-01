@@ -28,6 +28,8 @@ export function getExecutedData(ctx: EventContext): number {
     const event = new DemocracyExecutedEvent(ctx)
     if (event.isV803) {
         return event.asV803[0]
+    } else if (event.isV906) {
+        return event.asV906[0]
     } else {
         const data = ctx._chain.decodeEvent(ctx.event)
         assert(Buffer.isBuffer(data.refIndex))
