@@ -19,7 +19,7 @@ export function getCancelledData(ctx: EventContext): number {
         return event.asV13
     } else {
         const data = ctx._chain.decodeEvent(ctx.event)
-        assert(Buffer.isBuffer(data.refIndex))
+        assert(typeof data.refIndex === 'number')
         return data.refIndex
     }
 }
@@ -30,7 +30,7 @@ export function getExecutedData(ctx: EventContext): number {
         return event.asV13[0]
     } else {
         const data = ctx._chain.decodeEvent(ctx.event)
-        assert(Buffer.isBuffer(data.refIndex))
+        assert(typeof data.refIndex === 'number')
         return data.refIndex
     }
 }
@@ -41,7 +41,7 @@ export function getNotPassedData(ctx: EventContext): number {
         return event.asV13
     } else {
         const data = ctx._chain.decodeEvent(ctx.event)
-        assert(Buffer.isBuffer(data.refIndex))
+        assert(typeof data.refIndex === 'number')
         return data.refIndex
     }
 }
@@ -52,7 +52,7 @@ export function getPassedData(ctx: EventContext): number {
         return event.asV13
     } else {
         const data = ctx._chain.decodeEvent(ctx.event)
-        assert(Buffer.isBuffer(data.refIndex))
+        assert(typeof data.refIndex === 'number')
         return data.refIndex
     }
 }
