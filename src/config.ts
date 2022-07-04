@@ -8,7 +8,7 @@ const config: ProcessorConfig<Store> = {
     },
     dataSource: {
         archive: 'https://bifrost.archive.subsquid.io/graphql',
-        chain: 'wss://bifrost-parachain.api.onfinality.io/public-ws',
+        chain: 'eu.bifrost-rpc.liebi.com',
     },
     typesBundle: 'bifrost',
     batchSize: 500,
