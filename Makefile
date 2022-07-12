@@ -29,8 +29,7 @@ typegen:
 
 explore:
 	@npx squid-substrate-metadata-explorer \
-		--chain wss://kusama-rpc.polkadot.io \
-		--archive https://kusama.archive.subsquid.io/graphql \
+		--archive https://phala.archive.subsquid.io/graphql \
 		--out ./typegen/versions.jsonl
 
 

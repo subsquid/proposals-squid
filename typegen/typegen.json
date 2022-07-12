@@ -1,28 +1,21 @@
 {
   "outDir": "../src/types",
   "specVersions": "./versions.jsonl",
-  "typesBundle": "kusama",
+  "typesBundle": "khala",
   "storage": [
     "Council.Members",
     "Council.ProposalCount",
-    "Instance1Collective.Members",
-    "Instance1Collective.ProposalCount",
     "Democracy.PublicPropCount",
     "Balances.TotalIssuance",
     "Democracy.Preimages",
     "Democracy.PublicProps",
     "Democracy.ReferendumInfoOf",
     "Council.ProposalOf",
-    "Instance1Collective.ProposalOf",
     "Treasury.Proposals",
-    "Treasury.Tips",
     "Tips.Tips",
-    "Treasury.Bounties",
     "Bounties.Bounties",
     "TechnicalCommittee.ProposalOf",
-    "Instance2Collective.ProposalOf",
     "System.Account",
-    "System.AccountNonce",
     "Balances.Account"
   ],
   "events": [
@@ -47,16 +40,6 @@
     "Treasury.Proposed",
     "Treasury.Awarded",
     "Treasury.Rejected",
-    "Treasury.NewTip",
-    "Treasury.TipClosed",
-    "Treasury.TipRetracted",
-    "Treasury.BountyProposed",
-    "Treasury.BountyRejected",
-    "Treasury.BountyBecameActive",
-    "Treasury.BountyAwarded",
-    "Treasury.BountyClaimed",
-    "Treasury.BountyCanceled",
-    "Treasury.BountyExtended",
     "Tips.NewTip",
     "Tips.TipClosed",
     "Tips.TipRetracted",
@@ -78,8 +61,6 @@
   "calls": [
     "Democracy.vote",
     "Bounties.accept_curator",
-    "Treasury.accept_curator",
-    "Bounties.unassign_curator",
-    "Treasury.unassign_curator"
+    "Bounties.unassign_curator"
   ]
 }
