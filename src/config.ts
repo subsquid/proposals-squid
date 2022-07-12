@@ -8,9 +8,9 @@ const config: ProcessorConfig<Store> = {
     },
     dataSource: {
         archive: 'https://phala.archive.subsquid.io/graphql',
-        chain: 'wss://phala.api.onfinality.io/public-ws',
+        chain: 'wss://api.phala.network/ws',
     },
-    typesBundle: 'phala',
+    typesBundle: 'khala',
     batchSize: 500,
     blockRange: {
         from: 0,
