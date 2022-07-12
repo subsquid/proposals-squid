@@ -14,10 +14,8 @@ import { EventContext } from '../../types/contexts'
 
 export function getCancelledData(ctx: EventContext): number {
     const event = new DemocracyCancelledEvent(ctx)
-    if (event.isV1020) {
-        return event.asV1020
-    } else if (event.isV9130) {
-        return event.asV9130.refIndex
+    if (event.isV1090) {
+        return event.asV1090.refIndex
     } else {
         throw new UnknownVersionError(event.constructor.name)
     }
@@ -25,12 +23,10 @@ export function getCancelledData(ctx: EventContext): number {
 
 export function getExecutedData(ctx: EventContext): number {
     const event = new DemocracyExecutedEvent(ctx)
-    if (event.isV1020) {
-        return event.asV1020[0]
-    } else if (event.isV9090) {
-        return event.asV9090[0]
-    } else if (event.isV9111) {
-        return event.asV9111[0]
+    if (event.isV1090) {
+        return event.asV1090.refIndex
+    } else if (event.isV1148) {
+        return event.asV1148.refIndex
     } else {
         const data = ctx._chain.decodeEvent(ctx.event)
         return data.refIndex
@@ -39,10 +35,8 @@ export function getExecutedData(ctx: EventContext): number {
 
 export function getNotPassedData(ctx: EventContext): number {
     const event = new DemocracyNotPassedEvent(ctx)
-    if (event.isV1020) {
-        return event.asV1020
-    } else if (event.isV9130) {
-        return event.asV9130.refIndex
+    if (event.isV1090) {
+        return event.asV1090.refIndex
     } else {
         throw new UnknownVersionError(event.constructor.name)
     }
@@ -50,10 +44,8 @@ export function getNotPassedData(ctx: EventContext): number {
 
 export function getPassedData(ctx: EventContext): number {
     const event = new DemocracyPassedEvent(ctx)
-    if (event.isV1020) {
-        return event.asV1020
-    } else if (event.isV9130) {
-        return event.asV9130.refIndex
+    if (event.isV1090) {
+        return event.asV1090.refIndex
     } else {
         throw new UnknownVersionError(event.constructor.name)
     }
@@ -66,14 +58,8 @@ export interface PreimageInvalidData {
 
 export function getPreimageInvalidData(ctx: EventContext): PreimageInvalidData {
     const event = new DemocracyPreimageInvalidEvent(ctx)
-    if (event.isV1022) {
-        const [hash, index] = event.asV1022
-        return {
-            hash,
-            index,
-        }
-    } else if (event.isV9130) {
-        const { proposalHash: hash, refIndex: index } = event.asV9130
+    if (event.isV1090) {
+        const { proposalHash: hash, refIndex: index } = event.asV1090
         return {
             hash,
             index,
@@ -90,14 +76,8 @@ export interface PreimageMissingData {
 
 export function getPreimageMissingData(ctx: EventContext): PreimageMissingData {
     const event = new DemocracyPreimageMissingEvent(ctx)
-    if (event.isV1022) {
-        const [hash, index] = event.asV1022
-        return {
-            hash,
-            index,
-        }
-    } else if (event.isV9130) {
-        const { proposalHash: hash, refIndex: index } = event.asV9130
+    if (event.isV1090) {
+        const { proposalHash: hash, refIndex: index } = event.asV1090
         return {
             hash,
             index,
@@ -115,15 +95,8 @@ interface PreimageNotedData {
 
 export function getPreimageNotedData(ctx: EventContext): PreimageNotedData {
     const event = new DemocracyPreimageNotedEvent(ctx)
-    if (event.isV1022) {
-        const [hash, provider, deposit] = event.asV1022
-        return {
-            hash,
-            provider,
-            deposit,
-        }
-    } else if (event.isV9130) {
-        const { proposalHash: hash, who: provider, deposit } = event.asV9130
+    if (event.isV1090) {
+        const { proposalHash: hash, who: provider, deposit } = event.asV1090
         return {
             hash,
             provider,
@@ -142,15 +115,8 @@ export interface PreimageReapedData {
 
 export function getPreimageReapedData(ctx: EventContext): PreimageReapedData {
     const event = new DemocracyPreimageReapedEvent(ctx)
-    if (event.isV1022) {
-        const [hash, provider, deposit] = event.asV1022
-        return {
-            hash,
-            provider,
-            deposit,
-        }
-    } else if (event.isV9130) {
-        const { proposalHash: hash, provider, deposit } = event.asV9130
+    if (event.isV1090) {
+        const { proposalHash: hash, provider, deposit } = event.asV1090
         return {
             hash,
             provider,
@@ -169,15 +135,8 @@ export interface PreimageUsedData {
 
 export function getPreimageUsedData(ctx: EventContext): PreimageUsedData {
     const event = new DemocracyPreimageUsedEvent(ctx)
-    if (event.isV1022) {
-        const [hash, provider, deposit] = event.asV1022
-        return {
-            hash,
-            provider,
-            deposit,
-        }
-    } else if (event.isV9130) {
-        const { proposalHash: hash, provider, deposit } = event.asV9130
+    if (event.isV1090) {
+        const { proposalHash: hash, provider, deposit } = event.asV1090
         return {
             hash,
             provider,

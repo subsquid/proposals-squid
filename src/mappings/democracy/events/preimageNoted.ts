@@ -7,11 +7,14 @@ import { DemocracyPreimagesStorage } from '../../../types/storage'
 import { ProposalStatus, ProposalType } from '../../../model'
 import { ss58codec, parseProposalCall } from '../../../common/tools'
 import { Chain } from '@subsquid/substrate-processor/lib/chain'
-import { Call } from '../../../types/v9111'
 import { createPreimage } from '../../utils/proposals'
 import { getPreimageNotedData } from './getters'
 
-type ProposalCall = Call
+import { Call as Call_v1090 } from '../../../types/v1090'
+import { Call as Call_v1148 } from '../../../types/v1148'
+import { Call as Call_v1160 } from '../../../types/v1160'
+
+type ProposalCall = Call_v1090 | Call_v1148 | Call_v1160
 
 interface PreimageStorageData {
     data: Uint8Array
@@ -27,32 +30,8 @@ function decodeProposal(chain: Chain, data: Uint8Array): ProposalCall {
 
 async function getStorageData(ctx: BlockContext, hash: Uint8Array): Promise<PreimageStorageData | undefined> {
     const storage = new DemocracyPreimagesStorage(ctx)
-    if (storage.isV1022) {
-        const storageData = await storage.getAsV1022(hash)
-        if (!storageData) return undefined
-
-        const [data, provider, deposit, block] = storageData
-
-        return {
-            data,
-            provider,
-            deposit,
-            block,
-        }
-    } else if (storage.isV1058) {
-        const storageData = await storage.getAsV1058(hash)
-        if (!storageData || storageData.__kind === 'Missing') return undefined
-
-        const { provider, deposit, since, data } = storageData.value
-
-        return {
-            data,
-            provider,
-            deposit,
-            block: since,
-        }
-    } else if (storage.isV9111) {
-        const storageData = await storage.getAsV9111(hash)
+    if (storage.isV1090) {
+        const storageData = await storage.getAsV1090(hash)
         if (!storageData || storageData.__kind === 'Missing') return undefined
 
         const { provider, deposit, since, data } = storageData
