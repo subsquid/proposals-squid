@@ -8,19 +8,19 @@
     "query-node:start": "squid-graphql-server"
   },
   "dependencies": {
-    "@subsquid/cli": "^0.5.1",
-    "@subsquid/graphql-server": "^1.1.0",
-    "@subsquid/ss58": "^0.1.1",
-    "@subsquid/substrate-processor": "^1.2.0",
-    "@subsquid/typeorm-migration": "^0.1.0",
-    "@subsquid/typeorm-store": "^0.1.0",
-    "dotenv": "^10.0.0",
-    "pg": "^8.7.3"
+    "@subsquid/cli": "^0.7.4",
+    "@subsquid/graphql-server": "^3.2.4",
+    "@subsquid/ss58": "^0.1.2",
+    "@subsquid/substrate-processor": "^2.0.2",
+    "@subsquid/typeorm-migration": "^0.1.4",
+    "@subsquid/typeorm-store": "^0.1.5",
+    "dotenv": "^16.0.3",
+    "pg": "^8.8.0"
   },
   "devDependencies": {
-    "@subsquid/typeorm-codegen": "^0.0.2",
     "@subsquid/substrate-metadata-explorer": "^1.0.3",
     "@subsquid/substrate-typegen": "^1.0.2",
+    "@subsquid/typeorm-codegen": "^0.0.2",
     "@types/node": "^16.11.17",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",

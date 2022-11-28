@@ -14,6 +14,7 @@ import * as v9130 from './v9130'
 import * as v9160 from './v9160'
 import * as v9170 from './v9170'
 import * as v9190 from './v9190'
+import * as v9320 from './v9320'
 
 export class BountiesBountyAwardedEvent {
   private readonly _chain: Chain
@@ -572,6 +573,21 @@ export class CouncilExecutedEvent {
    */
   get asV9190(): {proposalHash: v9190.H256, result: Result<null, v9190.DispatchError>} {
     assert(this.isV9190)
+    return this._chain.decodeEvent(this.event)
+  }
+
+  /**
+   * A motion was executed; result will be `Ok` if it returned without error.
+   */
+  get isV9320(): boolean {
+    return this._chain.getEventHash('Council.Executed') === 'e5b6a252102a5b07a3634397838b7b2ddcae208ae6f6ac2ab78b53c15a8d0d6d'
+  }
+
+  /**
+   * A motion was executed; result will be `Ok` if it returned without error.
+   */
+  get asV9320(): {proposalHash: v9320.H256, result: Result<null, v9320.DispatchError>} {
+    assert(this.isV9320)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1231,6 +1247,21 @@ export class DemocracyTabledEvent {
     assert(this.isV9130)
     return this._chain.decodeEvent(this.event)
   }
+
+  /**
+   * A public proposal has been tabled for referendum vote.
+   */
+  get isV9320(): boolean {
+    return this._chain.getEventHash('Democracy.Tabled') === '02ae149915d453560f4d12074a380744b3bbb2fe4c235e963f440e2d79243477'
+  }
+
+  /**
+   * A public proposal has been tabled for referendum vote.
+   */
+  get asV9320(): {proposalIndex: number, deposit: bigint} {
+    assert(this.isV9320)
+    return this._chain.decodeEvent(this.event)
+  }
 }
 
 export class TechnicalCommitteeApprovedEvent {
@@ -1482,6 +1513,21 @@ export class TechnicalCommitteeExecutedEvent {
    */
   get asV9190(): {proposalHash: v9190.H256, result: Result<null, v9190.DispatchError>} {
     assert(this.isV9190)
+    return this._chain.decodeEvent(this.event)
+  }
+
+  /**
+   * A motion was executed; result will be `Ok` if it returned without error.
+   */
+  get isV9320(): boolean {
+    return this._chain.getEventHash('TechnicalCommittee.Executed') === 'e5b6a252102a5b07a3634397838b7b2ddcae208ae6f6ac2ab78b53c15a8d0d6d'
+  }
+
+  /**
+   * A motion was executed; result will be `Ok` if it returned without error.
+   */
+  get asV9320(): {proposalHash: v9320.H256, result: Result<null, v9320.DispatchError>} {
+    assert(this.isV9320)
     return this._chain.decodeEvent(this.event)
   }
 }

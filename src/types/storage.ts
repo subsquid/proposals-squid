@@ -46,6 +46,11 @@ import * as v9180 from './v9180'
 import * as v9190 from './v9190'
 import * as v9220 from './v9220'
 import * as v9230 from './v9230'
+import * as v9250 from './v9250'
+import * as v9271 from './v9271'
+import * as v9291 from './v9291'
+import * as v9300 from './v9300'
+import * as v9320 from './v9320'
 
 export class BalancesAccountStorage {
   private readonly _chain: Chain
@@ -435,6 +440,106 @@ export class CouncilProposalOfStorage {
   }
 
   /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9250() {
+    return this._chain.getStorageItemTypeHash('Council', 'ProposalOf') === 'c62c655cbb15038afffc766086c6f698f366a8695bacaa50b3b5b2d97d4b89f5'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9250(key: v9250.H256): Promise<v9250.Call | undefined> {
+    assert(this.isV9250)
+    return this._chain.getStorage(this.blockHash, 'Council', 'ProposalOf', key)
+  }
+
+  async getManyAsV9250(keys: v9250.H256[]): Promise<(v9250.Call | undefined)[]> {
+    assert(this.isV9250)
+    return this._chain.queryStorage(this.blockHash, 'Council', 'ProposalOf', keys.map(k => [k]))
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9271() {
+    return this._chain.getStorageItemTypeHash('Council', 'ProposalOf') === 'b6f7b824ac82eac6e00f10809e508dfaacd22dda3aeafc8c9374020bd69d27ad'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9271(key: v9271.H256): Promise<v9271.Call | undefined> {
+    assert(this.isV9271)
+    return this._chain.getStorage(this.blockHash, 'Council', 'ProposalOf', key)
+  }
+
+  async getManyAsV9271(keys: v9271.H256[]): Promise<(v9271.Call | undefined)[]> {
+    assert(this.isV9271)
+    return this._chain.queryStorage(this.blockHash, 'Council', 'ProposalOf', keys.map(k => [k]))
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9291() {
+    return this._chain.getStorageItemTypeHash('Council', 'ProposalOf') === '15ce1541499aecffbe2bf8eeafc64023633a5d282a468972bd6c44aa77b52ce3'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9291(key: v9291.H256): Promise<v9291.Call | undefined> {
+    assert(this.isV9291)
+    return this._chain.getStorage(this.blockHash, 'Council', 'ProposalOf', key)
+  }
+
+  async getManyAsV9291(keys: v9291.H256[]): Promise<(v9291.Call | undefined)[]> {
+    assert(this.isV9291)
+    return this._chain.queryStorage(this.blockHash, 'Council', 'ProposalOf', keys.map(k => [k]))
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9300() {
+    return this._chain.getStorageItemTypeHash('Council', 'ProposalOf') === '4489558a261f014c524a3fa533244e852a4234f4db9aba95f960d069aa1a2db7'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9300(key: v9300.H256): Promise<v9300.Call | undefined> {
+    assert(this.isV9300)
+    return this._chain.getStorage(this.blockHash, 'Council', 'ProposalOf', key)
+  }
+
+  async getManyAsV9300(keys: v9300.H256[]): Promise<(v9300.Call | undefined)[]> {
+    assert(this.isV9300)
+    return this._chain.queryStorage(this.blockHash, 'Council', 'ProposalOf', keys.map(k => [k]))
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9320() {
+    return this._chain.getStorageItemTypeHash('Council', 'ProposalOf') === 'e264f3acf17bae2089248c1b5be4b79c3766ff552e8565a925e0bceaa16c973b'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9320(key: v9320.H256): Promise<v9320.Call | undefined> {
+    assert(this.isV9320)
+    return this._chain.getStorage(this.blockHash, 'Council', 'ProposalOf', key)
+  }
+
+  async getManyAsV9320(keys: v9320.H256[]): Promise<(v9320.Call | undefined)[]> {
+    assert(this.isV9320)
+    return this._chain.queryStorage(this.blockHash, 'Council', 'ProposalOf', keys.map(k => [k]))
+  }
+
+  /**
    * Checks whether the storage item is defined for the current chain version.
    */
   get isExists(): boolean {
@@ -606,6 +711,21 @@ export class DemocracyPublicPropsStorage {
   }
 
   /**
+   *  The public proposals. Unsorted. The second item is the proposal.
+   */
+  get isV9320() {
+    return this._chain.getStorageItemTypeHash('Democracy', 'PublicProps') === '3472d1c9441381a2b9709395dfc47ee60b049d41fbd71ce557eb1a61ef656bec'
+  }
+
+  /**
+   *  The public proposals. Unsorted. The second item is the proposal.
+   */
+  async getAsV9320(): Promise<[number, v9320.Bounded, v9320.AccountId32][]> {
+    assert(this.isV9320)
+    return this._chain.getStorage(this.blockHash, 'Democracy', 'PublicProps')
+  }
+
+  /**
    * Checks whether the storage item is defined for the current chain version.
    */
   get isExists(): boolean {
@@ -686,6 +806,30 @@ export class DemocracyReferendumInfoOfStorage {
 
   async getManyAsV9111(keys: number[]): Promise<(v9111.ReferendumInfo | undefined)[]> {
     assert(this.isV9111)
+    return this._chain.queryStorage(this.blockHash, 'Democracy', 'ReferendumInfoOf', keys.map(k => [k]))
+  }
+
+  /**
+   *  Information concerning any given referendum.
+   * 
+   *  TWOX-NOTE: SAFE as indexes are not under an attacker’s control.
+   */
+  get isV9320() {
+    return this._chain.getStorageItemTypeHash('Democracy', 'ReferendumInfoOf') === 'ba926738202889ee118b1f40d70a1edbd71f0893c703c708a73330af6ca468e1'
+  }
+
+  /**
+   *  Information concerning any given referendum.
+   * 
+   *  TWOX-NOTE: SAFE as indexes are not under an attacker’s control.
+   */
+  async getAsV9320(key: number): Promise<v9320.ReferendumInfo_578 | undefined> {
+    assert(this.isV9320)
+    return this._chain.getStorage(this.blockHash, 'Democracy', 'ReferendumInfoOf', key)
+  }
+
+  async getManyAsV9320(keys: number[]): Promise<(v9320.ReferendumInfo_578 | undefined)[]> {
+    assert(this.isV9320)
     return this._chain.queryStorage(this.blockHash, 'Democracy', 'ReferendumInfoOf', keys.map(k => [k]))
   }
 
@@ -2616,6 +2760,106 @@ export class TechnicalCommitteeProposalOfStorage {
 
   async getManyAsV9230(keys: v9230.H256[]): Promise<(v9230.Call | undefined)[]> {
     assert(this.isV9230)
+    return this._chain.queryStorage(this.blockHash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9250() {
+    return this._chain.getStorageItemTypeHash('TechnicalCommittee', 'ProposalOf') === 'c62c655cbb15038afffc766086c6f698f366a8695bacaa50b3b5b2d97d4b89f5'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9250(key: v9250.H256): Promise<v9250.Call | undefined> {
+    assert(this.isV9250)
+    return this._chain.getStorage(this.blockHash, 'TechnicalCommittee', 'ProposalOf', key)
+  }
+
+  async getManyAsV9250(keys: v9250.H256[]): Promise<(v9250.Call | undefined)[]> {
+    assert(this.isV9250)
+    return this._chain.queryStorage(this.blockHash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9271() {
+    return this._chain.getStorageItemTypeHash('TechnicalCommittee', 'ProposalOf') === 'b6f7b824ac82eac6e00f10809e508dfaacd22dda3aeafc8c9374020bd69d27ad'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9271(key: v9271.H256): Promise<v9271.Call | undefined> {
+    assert(this.isV9271)
+    return this._chain.getStorage(this.blockHash, 'TechnicalCommittee', 'ProposalOf', key)
+  }
+
+  async getManyAsV9271(keys: v9271.H256[]): Promise<(v9271.Call | undefined)[]> {
+    assert(this.isV9271)
+    return this._chain.queryStorage(this.blockHash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9291() {
+    return this._chain.getStorageItemTypeHash('TechnicalCommittee', 'ProposalOf') === '15ce1541499aecffbe2bf8eeafc64023633a5d282a468972bd6c44aa77b52ce3'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9291(key: v9291.H256): Promise<v9291.Call | undefined> {
+    assert(this.isV9291)
+    return this._chain.getStorage(this.blockHash, 'TechnicalCommittee', 'ProposalOf', key)
+  }
+
+  async getManyAsV9291(keys: v9291.H256[]): Promise<(v9291.Call | undefined)[]> {
+    assert(this.isV9291)
+    return this._chain.queryStorage(this.blockHash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9300() {
+    return this._chain.getStorageItemTypeHash('TechnicalCommittee', 'ProposalOf') === '4489558a261f014c524a3fa533244e852a4234f4db9aba95f960d069aa1a2db7'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9300(key: v9300.H256): Promise<v9300.Call | undefined> {
+    assert(this.isV9300)
+    return this._chain.getStorage(this.blockHash, 'TechnicalCommittee', 'ProposalOf', key)
+  }
+
+  async getManyAsV9300(keys: v9300.H256[]): Promise<(v9300.Call | undefined)[]> {
+    assert(this.isV9300)
+    return this._chain.queryStorage(this.blockHash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  get isV9320() {
+    return this._chain.getStorageItemTypeHash('TechnicalCommittee', 'ProposalOf') === 'e264f3acf17bae2089248c1b5be4b79c3766ff552e8565a925e0bceaa16c973b'
+  }
+
+  /**
+   *  Actual proposal for a given hash, if it's current.
+   */
+  async getAsV9320(key: v9320.H256): Promise<v9320.Call | undefined> {
+    assert(this.isV9320)
+    return this._chain.getStorage(this.blockHash, 'TechnicalCommittee', 'ProposalOf', key)
+  }
+
+  async getManyAsV9320(keys: v9320.H256[]): Promise<(v9320.Call | undefined)[]> {
+    assert(this.isV9320)
     return this._chain.queryStorage(this.blockHash, 'TechnicalCommittee', 'ProposalOf', keys.map(k => [k]))
   }
 

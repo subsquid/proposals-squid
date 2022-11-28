@@ -11,19 +11,27 @@ export async function handleProposed(ctx: EventHandlerContext) {
     const getEventData = section === 'Bounties' ? getBountyProposedData : getBountyProposedDataOld
     const { index } = getEventData(ctx)
 
-    const storageData = await storage.bounties.getBounties(ctx, index)
-    if (!storageData) {
-        ctx.log.warn(StorageNotExistsWarn(ProposalType.Bounty, index))
-        return
+    let storageData
+    try {
+        storageData = await storage.bounties.getBounties(ctx, index)
+    } catch (e) {
+        if (e instanceof Error) {
+            ctx.log.warn(e.message)
+        }
+    } finally {
+        if (!storageData) {
+            ctx.log.warn(StorageNotExistsWarn(ProposalType.Bounty, index))
+            return
+        }
+
+        const { proposer, value, bond } = storageData
+
+        await createBounty(ctx, {
+            index,
+            proposer: ss58codec.encode(proposer),
+            status: ProposalStatus.Proposed,
+            reward: value,
+            deposit: bond,
+        })
     }
-
-    const { proposer, value, bond } = storageData
-
-    await createBounty(ctx, {
-        index,
-        proposer: ss58codec.encode(proposer),
-        status: ProposalStatus.Proposed,
-        reward: value,
-        deposit: bond,
-    })
 }

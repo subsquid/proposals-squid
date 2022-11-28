@@ -1,6 +1,6 @@
 {
   "outDir": "../src/types",
-  "specVersions": "./versions.jsonl",
+  "specVersions": "https://kusama.archive.subsquid.io/graphql",
   "typesBundle": "kusama",
   "storage": [
     "Council.Members",

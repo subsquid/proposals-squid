@@ -34,26 +34,33 @@ function getEventData(ctx: EventContext): DemocracyProposalEventData {
 
 export async function handleProposed(ctx: EventHandlerContext) {
     const { index, deposit } = getEventData(ctx)
+    let storageData
+    try {
+        storageData = await storage.democracy.getProposals(ctx)
+    } catch (e) {
+        if (e instanceof Error) {
+            ctx.log.warn(e.message)
+        }
+    } finally {
+        if (!storageData) {
+            ctx.log.warn(`Storage doesn't exist for democracy proposals at block ${ctx.block.height}`)
+            return
+        }
 
-    const storageData = await storage.democracy.getProposals(ctx)
-    if (!storageData) {
-        ctx.log.warn(`Storage doesn't exist for democracy proposals at block ${ctx.block.height}`)
-        return
+        const proposalData = storageData.find((prop) => prop.index === index)
+        if (!proposalData) {
+            ctx.log.warn(StorageNotExistsWarn(ProposalType.DemocracyProposal, index))
+            return
+        }
+        const { hash, proposer } = proposalData
+        const hexHash = toHex(hash)
+
+        await createDemocracyProposal(ctx, {
+            hash: hexHash,
+            index,
+            proposer: ss58codec.encode(proposer),
+            status: ProposalStatus.Proposed,
+            deposit,
+        })
     }
-
-    const proposalData = storageData.find((prop) => prop.index === index)
-    if (!proposalData) {
-        ctx.log.warn(StorageNotExistsWarn(ProposalType.DemocracyProposal, index))
-        return
-    }
-    const { hash, proposer } = proposalData
-    const hexHash = toHex(hash)
-
-    await createDemocracyProposal(ctx, {
-        hash: hexHash,
-        index,
-        proposer: ss58codec.encode(proposer),
-        status: ProposalStatus.Proposed,
-        deposit,
-    })
 }
