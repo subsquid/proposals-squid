@@ -6,6 +6,7 @@ import * as modules from './mappings'
 const db = new TypeormDatabase()
 const processor = new SubstrateProcessor(db)
 
+processor.setBlockRange({ from: 14645899 })
 processor.setTypesBundle(config.typesBundle)
 processor.setBatchSize(config.batchSize || 100)
 processor.setDataSource(config.dataSource)
