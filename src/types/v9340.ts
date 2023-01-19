@@ -1,17 +1,6 @@
 import type {Result, Option} from './support'
 
-export type Type_60 = Type_60_Ok | Type_60_Err
-
-export interface Type_60_Ok {
-    __kind: 'Ok'
-}
-
-export interface Type_60_Err {
-    __kind: 'Err'
-    value: DispatchError
-}
-
-export type Call = Call_System | Call_Babe | Call_Timestamp | Call_Indices | Call_Balances | Call_Authorship | Call_Staking | Call_Session | Call_Grandpa | Call_ImOnline | Call_Democracy | Call_Council | Call_TechnicalCommittee | Call_PhragmenElection | Call_TechnicalMembership | Call_Treasury | Call_ConvictionVoting | Call_Referenda | Call_FellowshipCollective | Call_FellowshipReferenda | Call_Whitelist | Call_Claims | Call_Utility | Call_Identity | Call_Society | Call_Recovery | Call_Vesting | Call_Scheduler | Call_Proxy | Call_Multisig | Call_Preimage | Call_Bounties | Call_ChildBounties | Call_Tips | Call_ElectionProviderMultiPhase | Call_Gilt | Call_VoterList | Call_NominationPools | Call_FastUnstake | Call_Configuration | Call_ParasShared | Call_ParaInclusion | Call_ParaInherent | Call_Paras | Call_Initializer | Call_Dmp | Call_Ump | Call_Hrmp | Call_ParasDisputes | Call_Registrar | Call_Slots | Call_Auctions | Call_Crowdloan | Call_XcmPallet
+export type Call = Call_System | Call_Babe | Call_Timestamp | Call_Indices | Call_Balances | Call_Authorship | Call_Staking | Call_Session | Call_Grandpa | Call_ImOnline | Call_Democracy | Call_Council | Call_TechnicalCommittee | Call_PhragmenElection | Call_TechnicalMembership | Call_Treasury | Call_ConvictionVoting | Call_Referenda | Call_FellowshipCollective | Call_FellowshipReferenda | Call_Whitelist | Call_Claims | Call_Utility | Call_Identity | Call_Society | Call_Recovery | Call_Vesting | Call_Scheduler | Call_Proxy | Call_Multisig | Call_Preimage | Call_Bounties | Call_ChildBounties | Call_Tips | Call_ElectionProviderMultiPhase | Call_Nis | Call_NisCounterpartBalances | Call_VoterList | Call_NominationPools | Call_FastUnstake | Call_Configuration | Call_ParasShared | Call_ParaInclusion | Call_ParaInherent | Call_Paras | Call_Initializer | Call_Dmp | Call_Ump | Call_Hrmp | Call_ParasDisputes | Call_Registrar | Call_Slots | Call_Auctions | Call_Crowdloan | Call_XcmPallet
 
 export interface Call_System {
     __kind: 'System'
@@ -188,9 +177,14 @@ export interface Call_ElectionProviderMultiPhase {
     value: ElectionProviderMultiPhaseCall
 }
 
-export interface Call_Gilt {
-    __kind: 'Gilt'
-    value: GiltCall
+export interface Call_Nis {
+    __kind: 'Nis'
+    value: NisCall
+}
+
+export interface Call_NisCounterpartBalances {
+    __kind: 'NisCounterpartBalances'
+    value: NisCounterpartBalancesCall
 }
 
 export interface Call_VoterList {
@@ -283,107 +277,10 @@ export interface Call_XcmPallet {
     value: XcmPalletCall
 }
 
-export type Bounded = Bounded_Legacy | Bounded_Inline | Bounded_Lookup
-
-export interface Bounded_Legacy {
-    __kind: 'Legacy'
-    hash: Uint8Array
-}
-
-export interface Bounded_Inline {
-    __kind: 'Inline'
-    value: Uint8Array
-}
-
-export interface Bounded_Lookup {
-    __kind: 'Lookup'
-    hash: Uint8Array
-    len: number
-}
-
-export type ReferendumInfo = ReferendumInfo_Ongoing | ReferendumInfo_Finished
-
-export interface ReferendumInfo_Ongoing {
-    __kind: 'Ongoing'
-    value: ReferendumStatus
-}
-
-export interface ReferendumInfo_Finished {
-    __kind: 'Finished'
-    approved: boolean
-    end: number
-}
-
-export type DispatchError = DispatchError_Other | DispatchError_CannotLookup | DispatchError_BadOrigin | DispatchError_Module | DispatchError_ConsumerRemaining | DispatchError_NoProviders | DispatchError_TooManyConsumers | DispatchError_Token | DispatchError_Arithmetic | DispatchError_Transactional | DispatchError_Exhausted | DispatchError_Corruption | DispatchError_Unavailable
-
-export interface DispatchError_Other {
-    __kind: 'Other'
-}
-
-export interface DispatchError_CannotLookup {
-    __kind: 'CannotLookup'
-}
-
-export interface DispatchError_BadOrigin {
-    __kind: 'BadOrigin'
-}
-
-export interface DispatchError_Module {
-    __kind: 'Module'
-    value: ModuleError
-}
-
-export interface DispatchError_ConsumerRemaining {
-    __kind: 'ConsumerRemaining'
-}
-
-export interface DispatchError_NoProviders {
-    __kind: 'NoProviders'
-}
-
-export interface DispatchError_TooManyConsumers {
-    __kind: 'TooManyConsumers'
-}
-
-export interface DispatchError_Token {
-    __kind: 'Token'
-    value: TokenError
-}
-
-export interface DispatchError_Arithmetic {
-    __kind: 'Arithmetic'
-    value: ArithmeticError
-}
-
-export interface DispatchError_Transactional {
-    __kind: 'Transactional'
-    value: TransactionalError
-}
-
-export interface DispatchError_Exhausted {
-    __kind: 'Exhausted'
-}
-
-export interface DispatchError_Corruption {
-    __kind: 'Corruption'
-}
-
-export interface DispatchError_Unavailable {
-    __kind: 'Unavailable'
-}
-
 /**
  * Contains one variant per dispatchable that can be called by an extrinsic.
  */
-export type SystemCall = SystemCall_fill_block | SystemCall_remark | SystemCall_set_heap_pages | SystemCall_set_code | SystemCall_set_code_without_checks | SystemCall_set_storage | SystemCall_kill_storage | SystemCall_kill_prefix | SystemCall_remark_with_event
-
-/**
- * A dispatch that will fill the block weight up to the given ratio.
- */
-export interface SystemCall_fill_block {
-    __kind: 'fill_block'
-    ratio: number
-}
+export type SystemCall = SystemCall_remark | SystemCall_set_heap_pages | SystemCall_set_code | SystemCall_set_code_without_checks | SystemCall_set_storage | SystemCall_kill_storage | SystemCall_kill_prefix | SystemCall_remark_with_event
 
 /**
  * Make some on-chain remark.
@@ -1029,7 +926,8 @@ export interface StakingCall_set_validator_count {
 }
 
 /**
- * Increments the ideal number of validators.
+ * Increments the ideal number of validators upto maximum of
+ * `ElectionProviderBase::MaxWinners`.
  * 
  * The dispatch origin must be Root.
  * 
@@ -1043,7 +941,8 @@ export interface StakingCall_increase_validator_count {
 }
 
 /**
- * Scale up the ideal number of validators by a factor.
+ * Scale up the ideal number of validators by a factor upto maximum of
+ * `ElectionProviderBase::MaxWinners`.
  * 
  * The dispatch origin must be Root.
  * 
@@ -2554,7 +2453,7 @@ export type ConvictionVotingCall = ConvictionVotingCall_vote | ConvictionVotingC
 export interface ConvictionVotingCall_vote {
     __kind: 'vote'
     pollIndex: number
-    vote: AccountVote
+    vote: Type_144
 }
 
 /**
@@ -2594,7 +2493,7 @@ export interface ConvictionVotingCall_delegate {
  * Undelegate the voting power of the sending account for a particular class of polls.
  * 
  * Tokens may be unlocked following once an amount of time consistent with the lock period
- * of the conviction with which the delegation was issued.
+ * of the conviction with which the delegation was issued has passed.
  * 
  * The dispatch origin of this call must be _Signed_ and the signing account must be
  * currently delegating.
@@ -2612,7 +2511,7 @@ export interface ConvictionVotingCall_undelegate {
 }
 
 /**
- * Remove the lock caused prior voting/delegating which has expired within a particluar
+ * Remove the lock caused by prior voting/delegating which has expired within a particular
  * class.
  * 
  * The dispatch origin of this call must be _Signed_.
@@ -3155,18 +3054,18 @@ export interface ClaimsCall_move_claim {
 /**
  * Contains one variant per dispatchable that can be called by an extrinsic.
  */
-export type UtilityCall = UtilityCall_batch | UtilityCall_as_derivative | UtilityCall_batch_all | UtilityCall_dispatch_as | UtilityCall_force_batch
+export type UtilityCall = UtilityCall_batch | UtilityCall_as_derivative | UtilityCall_batch_all | UtilityCall_dispatch_as | UtilityCall_force_batch | UtilityCall_with_weight
 
 /**
  * Send a batch of dispatch calls.
  * 
- * May be called from any origin.
+ * May be called from any origin except `None`.
  * 
  * - `calls`: The calls to be dispatched from the same origin. The number of call must not
  *   exceed the constant: `batched_calls_limit` (available in constant metadata).
  * 
- * If origin is root then call are dispatch without checking origin filter. (This includes
- * bypassing `frame_system::Config::BaseCallFilter`).
+ * If origin is root then the calls are dispatched without checking origin filter. (This
+ * includes bypassing `frame_system::Config::BaseCallFilter`).
  * 
  * # <weight>
  * - Complexity: O(C) where C is the number of calls to be batched.
@@ -3208,13 +3107,13 @@ export interface UtilityCall_as_derivative {
  * Send a batch of dispatch calls and atomically execute them.
  * The whole transaction will rollback and fail if any of the calls failed.
  * 
- * May be called from any origin.
+ * May be called from any origin except `None`.
  * 
  * - `calls`: The calls to be dispatched from the same origin. The number of call must not
  *   exceed the constant: `batched_calls_limit` (available in constant metadata).
  * 
- * If origin is root then call are dispatch without checking origin filter. (This includes
- * bypassing `frame_system::Config::BaseCallFilter`).
+ * If origin is root then the calls are dispatched without checking origin filter. (This
+ * includes bypassing `frame_system::Config::BaseCallFilter`).
  * 
  * # <weight>
  * - Complexity: O(C) where C is the number of calls to be batched.
@@ -3247,13 +3146,13 @@ export interface UtilityCall_dispatch_as {
  * Send a batch of dispatch calls.
  * Unlike `batch`, it allows errors and won't interrupt.
  * 
- * May be called from any origin.
+ * May be called from any origin except `None`.
  * 
  * - `calls`: The calls to be dispatched from the same origin. The number of call must not
  *   exceed the constant: `batched_calls_limit` (available in constant metadata).
  * 
- * If origin is root then call are dispatch without checking origin filter. (This includes
- * bypassing `frame_system::Config::BaseCallFilter`).
+ * If origin is root then the calls are dispatch without checking origin filter. (This
+ * includes bypassing `frame_system::Config::BaseCallFilter`).
  * 
  * # <weight>
  * - Complexity: O(C) where C is the number of calls to be batched.
@@ -3262,6 +3161,20 @@ export interface UtilityCall_dispatch_as {
 export interface UtilityCall_force_batch {
     __kind: 'force_batch'
     calls: Call[]
+}
+
+/**
+ * Dispatch a function call with a specified weight.
+ * 
+ * This function does not check the weight of the call, and instead allows the
+ * Root origin to specify the weight of the call.
+ * 
+ * The dispatch origin for this call must be _Root_.
+ */
+export interface UtilityCall_with_weight {
+    __kind: 'with_weight'
+    call: Call
+    weight: Weight
 }
 
 /**
@@ -5388,24 +5301,22 @@ export interface ElectionProviderMultiPhaseCall_governance_fallback {
 /**
  * Contains one variant per dispatchable that can be called by an extrinsic.
  */
-export type GiltCall = GiltCall_place_bid | GiltCall_retract_bid | GiltCall_set_target | GiltCall_thaw
+export type NisCall = NisCall_place_bid | NisCall_retract_bid | NisCall_fund_deficit | NisCall_thaw
 
 /**
- * Place a bid for a gilt to be issued.
+ * Place a bid.
  * 
  * Origin must be Signed, and account must have at least `amount` in free balance.
  * 
- * - `amount`: The amount of the bid; these funds will be reserved. If the bid is
- * successfully elevated into an issued gilt, then these funds will continue to be
- * reserved until the gilt expires. Must be at least `MinFreeze`.
- * - `duration`: The number of periods for which the funds will be locked if the gilt is
- * issued. It will expire only after this period has elapsed after the point of issuance.
- * Must be greater than 1 and no more than `QueueCount`.
+ * - `amount`: The amount of the bid; these funds will be reserved, and if/when
+ *   consolidated, removed. Must be at least `MinBid`.
+ * - `duration`: The number of periods before which the newly consolidated bid may be
+ *   thawed. Must be greater than 1 and no more than `QueueCount`.
  * 
  * Complexities:
  * - `Queues[duration].len()` (just take max).
  */
-export interface GiltCall_place_bid {
+export interface NisCall_place_bid {
     __kind: 'place_bid'
     amount: bigint
     duration: number
@@ -5420,37 +5331,155 @@ export interface GiltCall_place_bid {
  * - `amount`: The amount of the previous bid.
  * - `duration`: The duration of the previous bid.
  */
-export interface GiltCall_retract_bid {
+export interface NisCall_retract_bid {
     __kind: 'retract_bid'
     amount: bigint
     duration: number
 }
 
 /**
- * Set target proportion of gilt-funds.
+ * Ensure we have sufficient funding for all potential payouts.
  * 
- * Origin must be `AdminOrigin`.
- * 
- * - `target`: The target proportion of effective issued funds that should be under gilts
- * at any one time.
+ * - `origin`: Must be accepted by `FundOrigin`.
  */
-export interface GiltCall_set_target {
-    __kind: 'set_target'
-    target: bigint
+export interface NisCall_fund_deficit {
+    __kind: 'fund_deficit'
 }
 
 /**
- * Remove an active but expired gilt. Reserved funds under gilt are freed and balance is
- * adjusted to ensure that the funds grow or shrink to maintain the equivalent proportion
- * of effective total issued funds.
+ * Reduce or remove an outstanding receipt, placing the according proportion of funds into
+ * the account of the owner.
  * 
- * Origin must be Signed and the account must be the owner of the gilt of the given index.
- * 
- * - `index`: The index of the gilt to be thawed.
+ * - `origin`: Must be Signed and the account must be the owner of the receipt `index` as
+ *   well as any fungible counterpart.
+ * - `index`: The index of the receipt.
+ * - `portion`: If `Some`, then only the given portion of the receipt should be thawed. If
+ *   `None`, then all of it should be.
  */
-export interface GiltCall_thaw {
+export interface NisCall_thaw {
     __kind: 'thaw'
     index: number
+    portion: (bigint | undefined)
+}
+
+/**
+ * Contains one variant per dispatchable that can be called by an extrinsic.
+ */
+export type NisCounterpartBalancesCall = NisCounterpartBalancesCall_transfer | NisCounterpartBalancesCall_set_balance | NisCounterpartBalancesCall_force_transfer | NisCounterpartBalancesCall_transfer_keep_alive | NisCounterpartBalancesCall_transfer_all | NisCounterpartBalancesCall_force_unreserve
+
+/**
+ * Transfer some liquid free balance to another account.
+ * 
+ * `transfer` will set the `FreeBalance` of the sender and receiver.
+ * If the sender's account is below the existential deposit as a result
+ * of the transfer, the account will be reaped.
+ * 
+ * The dispatch origin for this call must be `Signed` by the transactor.
+ * 
+ * # <weight>
+ * - Dependent on arguments but not critical, given proper implementations for input config
+ *   types. See related functions below.
+ * - It contains a limited number of reads and writes internally and no complex
+ *   computation.
+ * 
+ * Related functions:
+ * 
+ *   - `ensure_can_withdraw` is always called internally but has a bounded complexity.
+ *   - Transferring balances to accounts that did not exist before will cause
+ *     `T::OnNewAccount::on_new_account` to be called.
+ *   - Removing enough funds from an account will trigger `T::DustRemoval::on_unbalanced`.
+ *   - `transfer_keep_alive` works the same way as `transfer`, but has an additional check
+ *     that the transfer will not kill the origin account.
+ * ---------------------------------
+ * - Origin account is already in memory, so no DB operations for them.
+ * # </weight>
+ */
+export interface NisCounterpartBalancesCall_transfer {
+    __kind: 'transfer'
+    dest: MultiAddress
+    value: bigint
+}
+
+/**
+ * Set the balances of a given account.
+ * 
+ * This will alter `FreeBalance` and `ReservedBalance` in storage. it will
+ * also alter the total issuance of the system (`TotalIssuance`) appropriately.
+ * If the new free or reserved balance is below the existential deposit,
+ * it will reset the account nonce (`frame_system::AccountNonce`).
+ * 
+ * The dispatch origin for this call is `root`.
+ */
+export interface NisCounterpartBalancesCall_set_balance {
+    __kind: 'set_balance'
+    who: MultiAddress
+    newFree: bigint
+    newReserved: bigint
+}
+
+/**
+ * Exactly as `transfer`, except the origin must be root and the source account may be
+ * specified.
+ * # <weight>
+ * - Same as transfer, but additional read and write because the source account is not
+ *   assumed to be in the overlay.
+ * # </weight>
+ */
+export interface NisCounterpartBalancesCall_force_transfer {
+    __kind: 'force_transfer'
+    source: MultiAddress
+    dest: MultiAddress
+    value: bigint
+}
+
+/**
+ * Same as the [`transfer`] call, but with a check that the transfer will not kill the
+ * origin account.
+ * 
+ * 99% of the time you want [`transfer`] instead.
+ * 
+ * [`transfer`]: struct.Pallet.html#method.transfer
+ */
+export interface NisCounterpartBalancesCall_transfer_keep_alive {
+    __kind: 'transfer_keep_alive'
+    dest: MultiAddress
+    value: bigint
+}
+
+/**
+ * Transfer the entire transferable balance from the caller account.
+ * 
+ * NOTE: This function only attempts to transfer _transferable_ balances. This means that
+ * any locked, reserved, or existential deposits (when `keep_alive` is `true`), will not be
+ * transferred by this function. To ensure that this function results in a killed account,
+ * you might need to prepare the account by removing any reference counters, storage
+ * deposits, etc...
+ * 
+ * The dispatch origin of this call must be Signed.
+ * 
+ * - `dest`: The recipient of the transfer.
+ * - `keep_alive`: A boolean to determine if the `transfer_all` operation should send all
+ *   of the funds the account has, causing the sender account to be killed (false), or
+ *   transfer everything except at least the existential deposit, which will guarantee to
+ *   keep the sender account alive (true). # <weight>
+ * - O(1). Just like transfer, but reading the user's transferable balance first.
+ *   #</weight>
+ */
+export interface NisCounterpartBalancesCall_transfer_all {
+    __kind: 'transfer_all'
+    dest: MultiAddress
+    keepAlive: boolean
+}
+
+/**
+ * Unreserve some balance from a user by force.
+ * 
+ * Can only be called by ROOT.
+ */
+export interface NisCounterpartBalancesCall_force_unreserve {
+    __kind: 'force_unreserve'
+    who: MultiAddress
+    amount: bigint
 }
 
 /**
@@ -5493,7 +5522,7 @@ export interface VoterListCall_put_in_front_of {
 /**
  * Contains one variant per dispatchable that can be called by an extrinsic.
  */
-export type NominationPoolsCall = NominationPoolsCall_join | NominationPoolsCall_bond_extra | NominationPoolsCall_claim_payout | NominationPoolsCall_unbond | NominationPoolsCall_pool_withdraw_unbonded | NominationPoolsCall_withdraw_unbonded | NominationPoolsCall_create | NominationPoolsCall_nominate | NominationPoolsCall_set_state | NominationPoolsCall_set_metadata | NominationPoolsCall_set_configs | NominationPoolsCall_update_roles | NominationPoolsCall_chill
+export type NominationPoolsCall = NominationPoolsCall_join | NominationPoolsCall_bond_extra | NominationPoolsCall_claim_payout | NominationPoolsCall_unbond | NominationPoolsCall_pool_withdraw_unbonded | NominationPoolsCall_withdraw_unbonded | NominationPoolsCall_create | NominationPoolsCall_create_with_pool_id | NominationPoolsCall_nominate | NominationPoolsCall_set_state | NominationPoolsCall_set_metadata | NominationPoolsCall_set_configs | NominationPoolsCall_update_roles | NominationPoolsCall_chill
 
 /**
  * Stake funds with a pool. The amount to bond is transferred from the member to the
@@ -5640,6 +5669,23 @@ export interface NominationPoolsCall_create {
     root: MultiAddress
     nominator: MultiAddress
     stateToggler: MultiAddress
+}
+
+/**
+ * Create a new delegation pool with a previously used pool id
+ * 
+ * # Arguments
+ * 
+ * same as `create` with the inclusion of
+ * * `pool_id` - `A valid PoolId.
+ */
+export interface NominationPoolsCall_create_with_pool_id {
+    __kind: 'create_with_pool_id'
+    amount: bigint
+    root: MultiAddress
+    nominator: MultiAddress
+    stateToggler: MultiAddress
+    poolId: number
 }
 
 /**
@@ -6999,73 +7045,6 @@ export interface XcmPalletCall_limited_teleport_assets {
     weightLimit: V2WeightLimit
 }
 
-export interface ReferendumStatus {
-    end: number
-    proposal: Bounded
-    threshold: VoteThreshold
-    delay: number
-    tally: Type_580
-}
-
-export interface ModuleError {
-    index: number
-    error: Uint8Array
-}
-
-export type TokenError = TokenError_NoFunds | TokenError_WouldDie | TokenError_BelowMinimum | TokenError_CannotCreate | TokenError_UnknownAsset | TokenError_Frozen | TokenError_Unsupported
-
-export interface TokenError_NoFunds {
-    __kind: 'NoFunds'
-}
-
-export interface TokenError_WouldDie {
-    __kind: 'WouldDie'
-}
-
-export interface TokenError_BelowMinimum {
-    __kind: 'BelowMinimum'
-}
-
-export interface TokenError_CannotCreate {
-    __kind: 'CannotCreate'
-}
-
-export interface TokenError_UnknownAsset {
-    __kind: 'UnknownAsset'
-}
-
-export interface TokenError_Frozen {
-    __kind: 'Frozen'
-}
-
-export interface TokenError_Unsupported {
-    __kind: 'Unsupported'
-}
-
-export type ArithmeticError = ArithmeticError_Underflow | ArithmeticError_Overflow | ArithmeticError_DivisionByZero
-
-export interface ArithmeticError_Underflow {
-    __kind: 'Underflow'
-}
-
-export interface ArithmeticError_Overflow {
-    __kind: 'Overflow'
-}
-
-export interface ArithmeticError_DivisionByZero {
-    __kind: 'DivisionByZero'
-}
-
-export type TransactionalError = TransactionalError_LimitReached | TransactionalError_NoLayer
-
-export interface TransactionalError_LimitReached {
-    __kind: 'LimitReached'
-}
-
-export interface TransactionalError_NoLayer {
-    __kind: 'NoLayer'
-}
-
 export interface EquivocationProof {
     offender: Uint8Array
     slot: bigint
@@ -7232,6 +7211,24 @@ export interface Heartbeat {
     validatorsLen: number
 }
 
+export type Bounded = Bounded_Legacy | Bounded_Inline | Bounded_Lookup
+
+export interface Bounded_Legacy {
+    __kind: 'Legacy'
+    hash: Uint8Array
+}
+
+export interface Bounded_Inline {
+    __kind: 'Inline'
+    value: Uint8Array
+}
+
+export interface Bounded_Lookup {
+    __kind: 'Lookup'
+    hash: Uint8Array
+    len: number
+}
+
 export type AccountVote = AccountVote_Standard | AccountVote_Split
 
 export interface AccountVote_Standard {
@@ -7294,6 +7291,27 @@ export interface Renouncing_RunnerUp {
 export interface Renouncing_Candidate {
     __kind: 'Candidate'
     value: number
+}
+
+export type Type_144 = Type_144_Standard | Type_144_Split | Type_144_SplitAbstain
+
+export interface Type_144_Standard {
+    __kind: 'Standard'
+    vote: number
+    balance: bigint
+}
+
+export interface Type_144_Split {
+    __kind: 'Split'
+    aye: bigint
+    nay: bigint
+}
+
+export interface Type_144_SplitAbstain {
+    __kind: 'SplitAbstain'
+    aye: bigint
+    nay: bigint
+    abstain: bigint
 }
 
 export type OriginCaller = OriginCaller_system | OriginCaller_Council | OriginCaller_TechnicalCommittee | OriginCaller_Origins | OriginCaller_ParachainsOrigin | OriginCaller_XcmPallet | OriginCaller_Void
@@ -7850,26 +7868,6 @@ export interface V2WeightLimit_Unlimited {
 export interface V2WeightLimit_Limited {
     __kind: 'Limited'
     value: bigint
-}
-
-export type VoteThreshold = VoteThreshold_SuperMajorityApprove | VoteThreshold_SuperMajorityAgainst | VoteThreshold_SimpleMajority
-
-export interface VoteThreshold_SuperMajorityApprove {
-    __kind: 'SuperMajorityApprove'
-}
-
-export interface VoteThreshold_SuperMajorityAgainst {
-    __kind: 'SuperMajorityAgainst'
-}
-
-export interface VoteThreshold_SimpleMajority {
-    __kind: 'SimpleMajority'
-}
-
-export interface Type_580 {
-    ayes: bigint
-    nays: bigint
-    turnout: bigint
 }
 
 export type AllowedSlots = AllowedSlots_PrimarySlots | AllowedSlots_PrimaryAndSecondaryPlainSlots | AllowedSlots_PrimaryAndSecondaryVRFSlots

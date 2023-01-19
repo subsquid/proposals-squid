@@ -1,4 +1,4 @@
 export enum VoteType {
-  Referendum = "Referendum",
-  Motion = "Motion",
+    Referendum = "Referendum",
+    Motion = "Motion",
 }

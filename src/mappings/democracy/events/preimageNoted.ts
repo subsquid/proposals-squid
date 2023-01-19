@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { toHex } from '@subsquid/substrate-processor'
 import { EventHandlerContext } from '../../types/contexts'
 import { StorageNotExistsWarn, UnknownVersionError } from '../../../common/errors'
@@ -28,7 +27,7 @@ function decodeProposal(chain: Chain, data: Uint8Array): ProposalCall {
 async function getStorageData(ctx: BlockContext, hash: Uint8Array): Promise<PreimageStorageData | undefined> {
     const storage = new DemocracyPreimagesStorage(ctx)
     if (storage.isV1022) {
-        const storageData = await storage.getAsV1022(hash)
+        const storageData = await storage.asV1022.get(hash)
         if (!storageData) return undefined
 
         const [data, provider, deposit, block] = storageData
@@ -40,7 +39,7 @@ async function getStorageData(ctx: BlockContext, hash: Uint8Array): Promise<Prei
             block,
         }
     } else if (storage.isV1058) {
-        const storageData = await storage.getAsV1058(hash)
+        const storageData = await storage.asV1058.get(hash)
         if (!storageData || storageData.__kind === 'Missing') return undefined
 
         const { provider, deposit, since, data } = storageData.value
@@ -52,7 +51,7 @@ async function getStorageData(ctx: BlockContext, hash: Uint8Array): Promise<Prei
             block: since,
         }
     } else if (storage.isV9111) {
-        const storageData = await storage.getAsV9111(hash)
+        const storageData = await storage.asV9111.get(hash)
         if (!storageData || storageData.__kind === 'Missing') return undefined
 
         const { provider, deposit, since, data } = storageData

@@ -13,7 +13,7 @@ async function getTipsStorageData(ctx: BlockContext, hash: Uint8Array): Promise<
     if (!storage.isExists) return undefined
 
     if (storage.isV9111) {
-        return await storage.getAsV9111(hash)
+        return await storage.asV9111.get(hash)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
@@ -24,7 +24,7 @@ async function getTreasuryStorageData(ctx: BlockContext, hash: Uint8Array): Prom
     if (!storage.isExists) return undefined
 
     if (storage.isV1038) {
-        const storageData = await storage.getAsV1038(hash)
+        const storageData = await storage.asV1038.get(hash)
         if (!storageData) return undefined
 
         const { who, finder } = storageData
@@ -34,7 +34,7 @@ async function getTreasuryStorageData(ctx: BlockContext, hash: Uint8Array): Prom
             deposit: finder?.[1],
         }
     } else if (storage.isV2013) {
-        return await storage.getAsV2013(hash)
+        return await storage.asV2013.get(hash)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }

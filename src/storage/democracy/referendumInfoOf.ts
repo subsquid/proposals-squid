@@ -26,7 +26,7 @@ type ReferendumStorageData = FinishedReferendumData | OngoingReferendumData
 async function getStorageData(ctx: BlockContext, index: number): Promise<ReferendumStorageData | undefined> {
     const storage = new DemocracyReferendumInfoOfStorage(ctx)
     if (storage.isV1020) {
-        const storageData = await storage.getAsV1020(index)
+        const storageData = await storage.asV1020.get(index)
         if (!storageData) return undefined
 
         const { proposalHash: hash, end, delay, threshold } = storageData
@@ -38,7 +38,7 @@ async function getStorageData(ctx: BlockContext, index: number): Promise<Referen
             threshold: threshold.__kind,
         }
     } else if (storage.isV1055) {
-        const storageData = await storage.getAsV1055(index)
+        const storageData = await storage.asV1055.get(index)
         if (!storageData) return undefined
 
         const { __kind: status } = storageData
@@ -60,7 +60,7 @@ async function getStorageData(ctx: BlockContext, index: number): Promise<Referen
             }
         }
     } else if (storage.isV9111) {
-        const storageData = await storage.getAsV9111(index)
+        const storageData = await storage.asV9111.get(index)
         if (!storageData) return undefined
 
         const { __kind: status } = storageData
@@ -69,6 +69,28 @@ async function getStorageData(ctx: BlockContext, index: number): Promise<Referen
             return {
                 status,
                 hash,
+                end,
+                delay,
+                threshold: threshold.__kind,
+            }
+        } else {
+            const { end, approved } = storageData as v9111.ReferendumInfo_Finished
+            return {
+                status,
+                end,
+                approved,
+            }
+        }
+    } else if (storage.isV9320) {
+        const storageData = await storage.asV9320.get(index)
+        if (!storageData) return undefined
+
+        const { __kind: status } = storageData
+        if (status === 'Ongoing') {
+            const { proposal, end, delay, threshold } = storageData.value
+            return {
+                status,
+                hash: proposal.__kind === 'Inline' ? proposal.value : proposal.hash,
                 end,
                 delay,
                 threshold: threshold.__kind,

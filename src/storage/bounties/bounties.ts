@@ -14,7 +14,7 @@ async function getBountyStorageData(ctx: BlockContext, index: number): Promise<B
     if (!storage.isExists) return undefined
 
     if (storage.isV9111) {
-        return await storage.getAsV9111(index)
+        return await storage.asV9111.get(index)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
@@ -25,7 +25,7 @@ async function getTreasuryStorageData(ctx: BlockContext, index: number): Promise
     if (!storage.isExists) return undefined
 
     if (storage.isV2025) {
-        return await storage.getAsV2025(index)
+        return await storage.asV2025.get(index)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
